@@ -1,0 +1,30 @@
+NO ./textures/examples0.xpm
+SO ./textures/examples1.xpm
+WE ./textures/examples2.xpm
+
+F 220,100,0
+C 225,30,0
+
+			111111111
+			100000001
+			1000000S1
+			111111111
+
+
+// est ce que la partie ID et info et termine apres partie map
+// est ce quon est emtrain de lire la map ?
+
+
+
+// lire jusqua les 6 (continuer de lire jusqua 6 ou sinon end of file)
+// est ce quon q recuperer les 6 ID ? si non error, si oui 
+// veirife si les 6 ok 
+// si non error 
+// si oui
+// mettre tout dans un double char
+
+
+// is valid map
+// si mon premier est 1 ou 0 ou N S E W; ET apres la lettre cest pas une autre lettre NI un espace
+
+
