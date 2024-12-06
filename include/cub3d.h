@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/06 12:01:21 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/06 13:32:45 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,19 @@ typedef struct s_player
 	t_direction		orientation;
 }					t_player;
 
-typedef struct s_parsing_data
+typedef struct s_parsing
 {
+	// t_wall walls[4];
 	t_wall			walls;
 	t_floor_ceiling	floor_ceiling;
 	t_player		player;
 	char			**map;
 
-}					t_parsing_data;
+}					t_parsing;
 
 // DEBUG
 
-void				print_info(t_parsing_data *info);
+void				print_info(t_parsing *info);
 
 // PARING
 
@@ -86,17 +87,17 @@ bool				is_file_readable(char *file_name);
 bool				is_invalid_file_format(char *path, char *format);
 
 // parse_file
-bool				is_valid_data(t_parsing_data *info, char *filename);
+bool				is_valid_data(t_parsing *info, char *filename);
 // check_texture
 int					is_start_with_id(char *line);
-bool				is_valid_file_and_rgb(t_parsing_data *info);
+bool				is_valid_file_and_rgb(t_parsing *info);
 
 // init_texture
 int					start_of_texture(char *line);
 int					len_of_texture(char *line);
-void				init_data(t_parsing_data *info, char *line, int ID,
+void				init_data(t_parsing *info, char *line, int ID,
 						int texture_len);
-void				init_floor_ceiling(t_parsing_data *info, char *line,
+void				init_floor_ceiling(t_parsing *info, char *line,
 						int ID);
 
 // error.c

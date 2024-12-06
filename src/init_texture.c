@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 09:33:40 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/06 11:31:28 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/06 13:17:26 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	parse_rgb(char *line, int rgb[3])
 	}
 }
 
-void	init_floor_ceiling(t_parsing_data *info, char *line, int ID)
+void	init_floor_ceiling(t_parsing *info, char *line, int ID)
 {
 	if (ID == FLOOR)
 	{
@@ -80,7 +80,7 @@ void	init_floor_ceiling(t_parsing_data *info, char *line, int ID)
 	}
 }
 
-void	init_data(t_parsing_data *info, char *line, int ID, int texture_len)
+void	init_data(t_parsing *info, char *line, int ID, int texture_len)
 {
 	if (ID == NORTH)
 	{

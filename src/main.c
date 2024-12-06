@@ -6,13 +6,13 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:55:58 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/06 11:17:14 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/06 13:17:26 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_info(t_parsing_data *info)
+void	print_info(t_parsing *info)
 {
 	printf("%s\n", info->walls.north.path_to_img);
 	printf("%s\n", info->walls.south.path_to_img);
@@ -22,7 +22,7 @@ void	print_info(t_parsing_data *info)
 
 int	main(int argc, char **argv)
 {
-	t_parsing_data	info_parsing;
+	t_parsing	info_parsing;
 
 	if (!is_valid_arguments(argc, argv))
 		return (0);
