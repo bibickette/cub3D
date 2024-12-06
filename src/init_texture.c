@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 09:33:40 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/06 13:17:26 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/06 15:01:41 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	len_of_texture(char *line)
 	len = 0;
 	while (line[i] && line[i] == ' ')
 		i++;
-	while (line[i] && (line[i] != ' '  && line[i] != '\n'))
+	while (line[i] && (line[i] != ' ' && line[i] != '\n'))
 	{
 		i++;
 		len++;
@@ -51,14 +51,17 @@ static void	parse_rgb(char *line, int rgb[3])
 
 	r = 0;
 	i = 0;
-	while (line[i])
+	while (line[i] && line[i] != '\n')
 	{
 		num_to_convert = NULL;
 		num_len = 0;
 		while (line[i] && (line[i] == ' ' || line[i] == ','))
 			i++;
-		while (ft_isdigit(line[i++]))
+		while (ft_isdigit(line[i]) || line[i] == '-' || line[i] == '+')
+		{
 			num_len++;
+			i++;
+		}
 		num_to_convert = ft_substr(line, i - num_len, num_len);
 		rgb[r] = ft_atoi(num_to_convert);
 		free(num_to_convert);
@@ -72,11 +75,11 @@ void	init_floor_ceiling(t_parsing *info, char *line, int ID)
 {
 	if (ID == FLOOR)
 	{
-		parse_rgb(line, info->floor_ceiling.floor_rgb);
+		parse_rgb(line, info->textures.floor_rgb);
 	}
 	if (ID == CEILING)
 	{
-		parse_rgb(line, info->floor_ceiling.ceiling_rgb);
+		parse_rgb(line, info->textures.ceiling_rgb);
 	}
 }
 
@@ -84,23 +87,23 @@ void	init_data(t_parsing *info, char *line, int ID, int texture_len)
 {
 	if (ID == NORTH)
 	{
-		info->walls.north.path_to_img = ft_substr(line, 0, texture_len);
-		info->walls.north.id = ID;
+		info->textures.walls[NO].path_to_img = ft_substr(line, 0, texture_len);
+		info->textures.walls[NO].id = ID;
 	}
 	if (ID == SOUTH)
 	{
-		info->walls.south.path_to_img = ft_substr(line, 0, texture_len);
-		info->walls.south.id = ID;
+		info->textures.walls[SO].path_to_img = ft_substr(line, 0, texture_len);
+		info->textures.walls[SO].id = ID;
 	}
 	if (ID == EAST)
 	{
-		info->walls.east.path_to_img = ft_substr(line, 0, texture_len);
-		info->walls.east.id = ID;
+		info->textures.walls[EA].path_to_img = ft_substr(line, 0, texture_len);
+		info->textures.walls[EA].id = ID;
 	}
 	if (ID == WEST)
 	{
-		info->walls.west.path_to_img = ft_substr(line, 0, texture_len);
-		info->walls.west.id = ID;
+		info->textures.walls[WE].path_to_img = ft_substr(line, 0, texture_len);
+		info->textures.walls[WE].id = ID;
 	}
 	init_floor_ceiling(info, line, ID);
 }

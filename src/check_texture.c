@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 09:35:35 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/06 13:29:42 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/06 14:51:26 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,32 +42,28 @@ static bool	is_valid_rgb_value(int rgb[3])
 	while (i < 3)
 	{
 		if (rgb[i] < 0 || rgb[i] > 255)
-			return (false);
+			return (print_error(RGB_VALUE, NULL),false);
+		
 		i++;
 	}
+	
 	return (true);
 }
 
 bool	is_valid_file_and_rgb(t_parsing *info)
 {
-	// FAIRE UMN TABLEAU POUR PROPRETE
-	// tableau t_wall *walls
-	if (!is_valid_rgb_value(info->floor_ceiling.floor_rgb))
+	int	i;
+
+	i = -1;
+	if (!is_valid_rgb_value(info->textures.floor_rgb)
+		|| !is_valid_rgb_value(info->textures.ceiling_rgb))
 		return (false);
-	if (!is_valid_rgb_value(info->floor_ceiling.ceiling_rgb))
-		return (false);
-	if (!is_file_readable(info->walls.north.path_to_img)
-		|| is_invalid_file_format(info->walls.north.path_to_img, ".xpm"))
-		return (false);
-	if (!is_file_readable(info->walls.south.path_to_img)
-		|| is_invalid_file_format(info->walls.south.path_to_img, ".xpm"))
-		return (false);
-	if (!is_file_readable(info->walls.east.path_to_img)
-		|| is_invalid_file_format(info->walls.east.path_to_img, ".xpm"))
-		return (false);
-	if (!is_file_readable(info->walls.west.path_to_img)
-		|| is_invalid_file_format(info->walls.west.path_to_img, ".xpm"))
-		return (false);
+	while (++i < 4)
+	{
+		if (is_invalid_file_format(info->textures.walls[i].path_to_img, ".xpm")
+			|| !is_file_readable(info->textures.walls[i].path_to_img))
+			return (false);
+	}
 	// check size xpm;
 	return (true);
 }

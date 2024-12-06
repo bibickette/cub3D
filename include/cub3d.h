@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/06 13:32:45 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/06 15:02:35 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,25 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# define NO 0
+# define SO 1
+# define EA 2
+# define WE 3
+
+# define ERROR "Error\n"
+
+// error dinput
 # define ARG_ERR "This program takes one argument, no more no less"
-#define PERM_ERR "Permission refusée pour lire le fichier : "
-#define END_MSG ".\n"
+# define PERM_ERR "Permission refusée pour lire le fichier : "
+# define END_MSG ".\n"
 
-
+// error map
 # define ID_ERR "Not enough or too many identifiers NO, SO, EA, WE, F or C"
+# define FORMAT_ERR "Wrong file/texture format : must be "
+# define FILE_NOT_EXIST "File doesn't exist : "
+# define UNKNOWN_FILE_ERR "File access unknown error : "
+
+# define RGB_VALUE "RGB value must be between 0 and 255, and contains 3 values separate by space or coma"
 
 typedef enum e_direction
 {
@@ -36,71 +49,69 @@ typedef enum e_direction
 	SOUTH = 8,
 	FLOOR = 16,
 	CEILING = 32,
-}					t_direction;
-
-typedef struct s_texture
-{
-	int				id;
-	char			*path_to_img;
-}					t_texture;
+}				t_direction;
 
 typedef struct s_wall
 {
-	t_texture		north;
-	t_texture		south;
-	t_texture		east;
-	t_texture		west;
-}					t_wall;
+	int			id;
+	char		*path_to_img;
 
-typedef struct s_floor_ceiling
+}				t_wall;
+
+typedef struct s_texture
 {
-	int				floor_rgb[3];
-	int				ceiling_rgb[3];
-}					t_floor_ceiling;
+	t_wall		walls[4];
+	int			floor_rgb[3];
+	int			ceiling_rgb[3];
+}				t_texture;
 
 typedef struct s_player
 {
-	int				x;
-	int				y;
-	t_direction		orientation;
-}					t_player;
+	int			x;
+	int			y;
+	t_direction	orientation;
+}				t_player;
 
 typedef struct s_parsing
 {
-	// t_wall walls[4];
-	t_wall			walls;
-	t_floor_ceiling	floor_ceiling;
-	t_player		player;
-	char			**map;
+	t_texture	textures;
+	t_player	player;
+	char		**map;
 
-}					t_parsing;
+}				t_parsing;
 
 // DEBUG
 
-void				print_info(t_parsing *info);
+void			print_info(t_parsing *info);
 
 // PARING
 
 // check_args
-bool				is_valid_arguments(int argc, char **argv);
-bool				is_file_readable(char *file_name);
-bool				is_invalid_file_format(char *path, char *format);
+bool			is_valid_arguments(int argc, char **argv);
+bool			is_file_readable(char *file_name);
+bool			is_invalid_file_format(char *path, char *format);
 
 // parse_file
-bool				is_valid_data(t_parsing *info, char *filename);
+bool			is_valid_data(t_parsing *info, char *filename);
 // check_texture
-int					is_start_with_id(char *line);
-bool				is_valid_file_and_rgb(t_parsing *info);
+int				is_start_with_id(char *line);
+bool			is_valid_file_and_rgb(t_parsing *info);
 
 // init_texture
-int					start_of_texture(char *line);
-int					len_of_texture(char *line);
-void				init_data(t_parsing *info, char *line, int ID,
-						int texture_len);
-void				init_floor_ceiling(t_parsing *info, char *line,
-						int ID);
+int				start_of_texture(char *line);
+int				len_of_texture(char *line);
+void			init_data(t_parsing *info, char *line, int ID, int texture_len);
+void			init_floor_ceiling(t_parsing *info, char *line, int ID);
 
 // error.c
-void print_error(char *msg, char *arg);
+void			print_error(char *msg, char *arg);
+
+// free
+void	apocalypse_parsing(t_parsing *info);
+void	free_n_set_null(char *to_free);
+
+// print
+void	print_texture(t_parsing *info);
+
 
 #endif

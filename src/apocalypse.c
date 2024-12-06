@@ -1,22 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   apocalypse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 11:36:47 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/06 14:15:43 by fsalomon         ###   ########.fr       */
+/*   Created: 2024/12/06 13:55:43 by fsalomon          #+#    #+#             */
+/*   Updated: 2024/12/06 14:15:35 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_error(char *msg, char *arg)
+void	free_n_set_null(char *to_free)
 {
-	ft_putstr_fd(ERROR, STDERR_FILENO);
-	ft_putstr_fd(msg, STDERR_FILENO);
-	if (arg)
-		ft_putstr_fd(arg, STDERR_FILENO);
-	ft_putstr_fd(END_MSG, STDERR_FILENO);
+	if (to_free)
+	{
+		free(to_free);
+		to_free = 0;
+	}
+}
+
+void	apocalypse_parsing(t_parsing *info)
+{
+	int	i;
+
+	i = -1;
+	get_next_line(0, 1);
+	while (++i < 4)
+		if (info->textures.walls[i].path_to_img)
+			free_n_set_null(info->textures.walls[i].path_to_img);
 }

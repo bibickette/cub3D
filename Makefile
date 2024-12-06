@@ -6,7 +6,7 @@
 #    By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 14:29:17 by phwang            #+#    #+#              #
-#    Updated: 2024/12/06 11:41:17 by fsalomon         ###   ########.fr        #
+#    Updated: 2024/12/06 14:06:37 by fsalomon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,12 +37,13 @@ OBJ_DIR = obj
 # SIMULATION = $(addprefix $(SIMU_DIR)/, $(SIMU_FILES))				
 
 SRC = \
-	$(SRC_DIR)/main.c \
+		$(SRC_DIR)/main.c \
 		$(SRC_DIR)/check_arg.c \
 		$(SRC_DIR)/parse_file.c \
 		$(SRC_DIR)/check_texture.c \
 		$(SRC_DIR)/init_texture.c \
-		$(SRC_DIR)/error.c
+		$(SRC_DIR)/error.c \
+		$(SRC_DIR)/apocalypse.c \
 			
 
 OBJ	= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

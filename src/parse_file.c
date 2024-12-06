@@ -6,17 +6,28 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:13:44 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/06 13:23:59 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/06 14:33:39 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	load_identifier(t_parsing *info, int *count_id, char *line,
+		int identifier)
+{
+	int	index;
+	int	texture_len;
+
+	index = start_of_texture(line);
+	texture_len = len_of_texture(&line[index]);
+	init_data(info, &line[index], identifier, texture_len);
+	(*count_id)++;
+}
+
 static bool	init_texture_and_color(t_parsing *info, int fd)
 {
 	char	*line;
 	int		identifier;
-	int		index;
 	int		count_id;
 
 	identifier = 0;
@@ -26,12 +37,8 @@ static bool	init_texture_and_color(t_parsing *info, int fd)
 	{
 		identifier = is_start_with_id(line);
 		if (identifier)
-		{
-			index = start_of_texture(line);
-			init_data(info, &line[index], identifier,
-				len_of_texture(&line[index]));
-			count_id++;
-		}
+			load_identifier(info, &count_id, line, identifier);
+		free_n_set_null(line);
 		if (count_id == 6)
 			break ;
 		line = get_next_line(fd, 0);

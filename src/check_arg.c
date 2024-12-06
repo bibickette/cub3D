@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:56:11 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/06 12:08:21 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/06 14:16:21 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ bool	is_invalid_file_format(char *path, char *format)
 	while (path[i] != '.')
 		i++;
 	if (ft_strncmp(format, &path[len - 4], 4))
-	{
-		printf("Wrong file format, file format must be %s \n", format);
-		return (true);
-	}
+		return (print_error(FORMAT_ERR, format), true);
 	return (false);
 }
 
@@ -35,11 +32,10 @@ bool	is_file_readable(char *file_name)
 		return (true);
 	if (errno == EACCES)
 		print_error(PERM_ERR, file_name);
-	// printf("Permission refusée pour lire le fichier '%s'.\n", file_name);
 	else if (errno == ENOENT)
-		printf("Le fichier '%s' n'existe pas.\n", file_name);
+		print_error(FILE_NOT_EXIST, file_name);
 	else
-		printf("Erreur inconnue lors de l'accès au fichier '%s'.\n", file_name);
+		print_error(UNKNOWN_FILE_ERR, file_name);
 	return (false);
 }
 
