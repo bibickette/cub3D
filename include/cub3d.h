@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fanfan <fanfan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/06 15:02:35 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/07 17:17:27 by fanfan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 // error dinput
 # define ARG_ERR "This program takes one argument, no more no less"
-# define PERM_ERR "Permission refusée pour lire le fichier : "
+# define PERM_ERR "Permission denied to read file : "
 # define END_MSG ".\n"
 
 // error map
@@ -49,6 +49,7 @@ typedef enum e_direction
 	SOUTH = 8,
 	FLOOR = 16,
 	CEILING = 32,
+	COMPLETE = 63
 }				t_direction;
 
 typedef struct s_wall

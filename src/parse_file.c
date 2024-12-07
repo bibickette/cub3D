@@ -3,17 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fanfan <fanfan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:13:44 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/06 14:33:39 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/07 17:52:48 by fanfan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	load_identifier(t_parsing *info, int *count_id, char *line,
-		int identifier)
+static bool	is_double_identifier(int *count_id, int identifier)
+{
+	if (*count_id & identifier)
+	{
+		print_error(ID_ERR, NULL);
+		return (true);
+	}
+	*count_id |= identifier;
+	return (false);
+}
+
+static void	load_identifier(t_parsing *info, char *line, int identifier)
 {
 	int	index;
 	int	texture_len;
@@ -21,7 +31,6 @@ static void	load_identifier(t_parsing *info, int *count_id, char *line,
 	index = start_of_texture(line);
 	texture_len = len_of_texture(&line[index]);
 	init_data(info, &line[index], identifier, texture_len);
-	(*count_id)++;
 }
 
 static bool	init_texture_and_color(t_parsing *info, int fd)
@@ -36,14 +45,16 @@ static bool	init_texture_and_color(t_parsing *info, int fd)
 	while (line)
 	{
 		identifier = is_start_with_id(line);
+		if (identifier && is_double_identifier(&count_id, identifier))
+			return (free(line), false);
 		if (identifier)
-			load_identifier(info, &count_id, line, identifier);
+			load_identifier(info, line, identifier);
 		free_n_set_null(line);
-		if (count_id == 6)
+		if (count_id == COMPLETE)
 			break ;
 		line = get_next_line(fd, 0);
 	}
-	if (count_id != 6)
+	if (count_id != COMPLETE)
 		return (print_error(ID_ERR, NULL), false);
 	return (is_valid_file_and_rgb(info));
 }
