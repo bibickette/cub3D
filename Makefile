@@ -1,3 +1,4 @@
+
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
@@ -21,8 +22,6 @@ INCLUDE_LIBFT = LIBFT
 
 LIBFT = LIBFT/libft.a
 
-
-
 # Source directories
 SRC_DIR = src
 OBJ_DIR = obj
@@ -44,6 +43,9 @@ SRC = \
 		$(SRC_DIR)/init_texture.c \
 		$(SRC_DIR)/error.c \
 		$(SRC_DIR)/apocalypse.c \
+		$(SRC_DIR)/utils.c \
+		$(SRC_DIR)/print_debug.c \
+		$(SRC_DIR)/get_map.c \
 			
 
 OBJ	= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

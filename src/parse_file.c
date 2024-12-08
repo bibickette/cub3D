@@ -6,7 +6,7 @@
 /*   By: fanfan <fanfan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:13:44 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/07 17:52:48 by fanfan           ###   ########.fr       */
+/*   Updated: 2024/12/08 12:30:24 by fanfan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,17 @@ static void	load_identifier(t_parsing *info, char *line, int identifier)
 	index = start_of_texture(line);
 	texture_len = len_of_texture(&line[index]);
 	init_data(info, &line[index], identifier, texture_len);
+}
+
+static bool	init_map(t_parsing *info, int fd)
+{
+	get_map(info, fd);
+	if (!info->map)
+		return (false);
+	print_map(info->map);
+	// if (!is_valid_map(info))
+		// return (print_error(MAP_ERR, NULL), false);
+	return (true);
 }
 
 static bool	init_texture_and_color(t_parsing *info, int fd)
@@ -66,7 +77,7 @@ bool	is_valid_data(t_parsing *info, char *filename)
 	fd = open(filename, O_RDONLY);
 	if (!init_texture_and_color(info, fd))
 		return (false);
-	// if (!init_map(info))
-	// 	return (false);
+	if (!init_map(info, fd))
+		return (false);
 	return (true);
 }

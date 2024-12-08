@@ -1,46 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   apocalypse.c                                       :+:      :+:    :+:   */
+/*   print_debug.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fanfan <fanfan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 13:55:43 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/08 12:39:19 by fanfan           ###   ########.fr       */
+/*   Created: 2024/12/07 19:52:00 by fanfan            #+#    #+#             */
+/*   Updated: 2024/12/08 12:18:39 by fanfan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_tab(char **tab)
-{
-	int	i;
 
-	i = -1;
-	while (tab[++i])
-		if (tab[i])
-			free(tab[i]);
-	free(tab);
-}
-
-void	free_n_set_null(char *to_free)
+void print_map(char **map)
 {
-	if (to_free)
+	int i = 0;
+
+	while (map[i])
 	{
-		free(to_free);
-		to_free = 0;
+		printf("%s", map[i]);
+		i++;
 	}
+	printf("\n");
 }
 
-void	apocalypse_parsing(t_parsing *info)
+void	print_texture(t_parsing *info)
 {
 	int	i;
 
 	i = -1;
-	get_next_line(0, 1);
 	while (++i < 4)
-		if (info->textures.walls[i].path_to_img)
-			free_n_set_null(info->textures.walls[i].path_to_img);
-	if (info->map)
-		free_tab(info->map);
+	{
+		printf("path : %s\n", info->textures.walls[i].path_to_img);
+		printf("id : %d\n", info->textures.walls[i].id);
+	}
 }

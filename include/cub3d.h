@@ -6,7 +6,7 @@
 /*   By: fanfan <fanfan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/07 17:17:27 by fanfan           ###   ########.fr       */
+/*   Updated: 2024/12/08 12:25:41 by fanfan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@
 
 # define ERROR "Error\n"
 
+// error malloc
+# define MALLOC_ERR "Malloc error"
+
 // error dinput
 # define ARG_ERR "This program takes one argument, no more no less"
 # define PERM_ERR "Permission denied to read file : "
@@ -39,7 +42,9 @@
 # define FILE_NOT_EXIST "File doesn't exist : "
 # define UNKNOWN_FILE_ERR "File access unknown error : "
 
-# define RGB_VALUE "RGB value must be between 0 and 255, and contains 3 values separate by space or coma"
+# define RGB_VALUE "RGB value must be between 0 and 255 and contains 3 values separate by space or coma"
+
+# define MAP_ERR "Map is not valid"
 
 typedef enum e_direction
 {
@@ -49,7 +54,7 @@ typedef enum e_direction
 	SOUTH = 8,
 	FLOOR = 16,
 	CEILING = 32,
-	COMPLETE = 63
+	COMPLETE = 63,
 }				t_direction;
 
 typedef struct s_wall
@@ -98,6 +103,9 @@ bool			is_valid_data(t_parsing *info, char *filename);
 int				is_start_with_id(char *line);
 bool			is_valid_file_and_rgb(t_parsing *info);
 
+
+// get_map
+void	get_map(t_parsing *info, int fd);
 // init_texture
 int				start_of_texture(char *line);
 int				len_of_texture(char *line);
@@ -108,11 +116,17 @@ void			init_floor_ceiling(t_parsing *info, char *line, int ID);
 void			print_error(char *msg, char *arg);
 
 // free
-void	apocalypse_parsing(t_parsing *info);
-void	free_n_set_null(char *to_free);
+void			apocalypse_parsing(t_parsing *info);
+void			free_n_set_null(char *to_free);
+void			free_tab(char **tab);
 
-// print
-void	print_texture(t_parsing *info);
+// print debug
 
+void			print_map(char **map);
+void			print_texture(t_parsing *info);
+
+// utils
+void	*ft_realloc_map(void *ptr, size_t new_size, size_t old_size);
+bool			is_white_space_line(char *line);
 
 #endif
