@@ -6,11 +6,16 @@
 /*   By: fanfan <fanfan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 19:23:14 by fanfan            #+#    #+#             */
-/*   Updated: 2024/12/08 12:38:12 by fanfan           ###   ########.fr       */
+/*   Updated: 2024/12/08 12:49:11 by fanfan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// ces fonctions recupere la map dan sun tableau et s'arrete lorsque elle croise un eligne vide si elle a commence a lire de la map 
+//permet d'eviter les lignes vides dans la map car on considere que la map sarrete des quon trouve une ligne full vide 
+//et on ne prend pas en compte les lignes vides avant la map
+//le realloc etaot hyper galere mais ca a lair de marcher :*
 
 char	**add_line_to_tab(char **map, char *line, int i)
 {
