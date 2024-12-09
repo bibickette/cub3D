@@ -26,26 +26,27 @@ LIBFT = LIBFT/libft.a
 SRC_DIR = src
 OBJ_DIR = obj
 
-# SIMU_DIR = $(SRC_DIR)/simulation
-# SIMU_FILES = \
-# 		dead_or_full.c \
-# 		eat_fork.c \
-# 		getters.c \
-# 		start_monitoring.c \
-# 		routine.c
-# SIMULATION = $(addprefix $(SIMU_DIR)/, $(SIMU_FILES))				
+PARSING_DIR = $(SRC_DIR)/parsing
+PARSING_FILES = \
+		check_arg.c \
+		check_texture.c \
+		get_map.c \
+		init_texture.c \
+		parse_file.c 
+PARSING = $(addprefix $(PARSING_DIR)/, $(PARSING_FILES))				
+
+UTILS_DIR = $(SRC_DIR)/utils
+UTILS_FILES = \
+		apocalypse.c \
+		error.c \
+		print_debug.c \
+		utils.c 
+UTILS = $(addprefix $(UTILS_DIR)/, $(UTILS_FILES))	
 
 SRC = \
-		$(SRC_DIR)/main.c \
-		$(SRC_DIR)/check_arg.c \
-		$(SRC_DIR)/parse_file.c \
-		$(SRC_DIR)/check_texture.c \
-		$(SRC_DIR)/init_texture.c \
-		$(SRC_DIR)/error.c \
-		$(SRC_DIR)/apocalypse.c \
-		$(SRC_DIR)/utils.c \
-		$(SRC_DIR)/print_debug.c \
-		$(SRC_DIR)/get_map.c \
+		$(PARSING) \
+		$(UTILS) \
+		$(SRC_DIR)/main.c
 			
 
 OBJ	= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
