@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanfan <fanfan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/08 12:25:41 by fanfan           ###   ########.fr       */
+/*   Updated: 2024/12/09 16:11:16 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@
 # define WE 3
 
 # define ERROR "Error\n"
-
-// error malloc
-# define MALLOC_ERR "Malloc error"
 
 // error dinput
 # define ARG_ERR "This program takes one argument, no more no less"

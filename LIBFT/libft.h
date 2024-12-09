@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:15:40 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/09 13:14:12 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/09 16:12:44 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 Malloc in function char_add_back_tab\n"
 
 bool				char_add_back_tab(char ***original_tab, char *to_add);
+void				free_double_char(char ***array);
 bool				int_overflow_check(char *str);
 
 int					find_next_prime(int nb);
