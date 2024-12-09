@@ -15,7 +15,7 @@ NAME = cub3d
 
 CC = cc
 INCLUDE = include
-CFLAGS = -Wall -Wextra -Werror -I$(INCLUDE) -I$(INCLUDE_LIBFT) -g3
+CFLAGS = -Wall -Wextra -I$(INCLUDE) -I$(INCLUDE_LIBFT) -g3
 
 MINILIBX_FLAGS = -Lminilibx-linux -lmlx_Linux -lXext -lX11 -lm -lz
 INCLUDE_LIBFT = LIBFT
@@ -32,7 +32,8 @@ PARSING_FILES = \
 		check_texture.c \
 		get_map.c \
 		init_texture.c \
-		parse_file.c 
+		parse_file.c \
+		check_valid_map.c
 PARSING = $(addprefix $(PARSING_DIR)/, $(PARSING_FILES))				
 
 UTILS_DIR = $(SRC_DIR)/utils

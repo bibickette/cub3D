@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/09 16:11:16 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/09 17:30:49 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@
 
 # define RGB_VALUE "RGB value must be between 0 and 255 and contains 3 values separate by space or coma"
 
-# define MAP_ERR "Map is not valid"
+# define MAP_ERR "Map is not valid : "
+# define WALL_ERR "must be surrounded by walls"
+# define MINIMAL_SIZE_MAP " must be at least 3 lines"
 
 typedef enum e_direction
 {
@@ -103,6 +105,8 @@ bool			is_valid_file_and_rgb(t_parsing *info);
 
 // get_map
 void	get_map(t_parsing *info, int fd);
+bool is_valid_map(t_parsing *info);
+
 // init_texture
 int				start_of_texture(char *line);
 int				len_of_texture(char *line);

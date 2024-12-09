@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 19:23:14 by fanfan            #+#    #+#             */
-/*   Updated: 2024/12/09 13:08:34 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/09 17:10:34 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 //permet d'eviter les lignes vides dans la map car on considere que la map sarrete des quon trouve une ligne full vide 
 //et on ne prend pas en compte les lignes vides avant la map
 //le realloc etaot hyper galere mais ca a lair de marcher :*
+
+
+// fonction char_add_back_tab fait le meme taf si ca marche pas bien
+// mais tas lair de 100fois lavoir mieux codé que moi, gg de fouuuu
 
 char	**add_line_to_tab(char **map, char *line, int i)
 {

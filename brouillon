@@ -1,14 +1,16 @@
 
+is valid map
+si mon premier est 1 ou 0 ou N S E W; 
+ET apres la lettre cest pas une autre lettre NI un espace
 
 
+comment une map est valide ?
+la premiere et derniere ligne sont des 1 OK
+// 11111111111111
+premier et dernier char de chaque ligne sont des 1 :
+// 111100000111 111100000001
 
-// veirife si les 6 ok 
-// si non error 
-// si oui 
-// mettre tout dans un double char
+si je suis un 0 alors je dois avoir quelque chose autour de moi
 
-
-// is valid map
-// si mon premier est 1 ou 0 ou N S E W; ET apres la lettre cest pas une autre lettre NI un espace
-
+seulement 1  N S E W
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanfan <fanfan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:13:44 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/08 12:30:24 by fanfan           ###   ########.fr       */
+/*   Updated: 2024/12/09 17:12:47 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static bool	init_map(t_parsing *info, int fd)
 	if (!info->map)
 		return (false);
 	print_map(info->map);
-	// if (!is_valid_map(info))
-		// return (print_error(MAP_ERR, NULL), false);
+	if (!is_valid_map(info))
+		return (false);
 	return (true);
 }
 

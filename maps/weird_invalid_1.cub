@@ -1,0 +1,13 @@
+NO ./textures/examples0.xpm
+SO ./textures/examples1.xpm
+WE ./textures/examples2.xpm
+EA ./textures/examples3.xpm
+
+F 1,0,0
+C 225,30,0
+
+                           1111111111
+                        000000000
+                 11111 111111111111
+
+gros pouet
