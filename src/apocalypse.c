@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apocalypse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanfan <fanfan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:55:43 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/08 12:39:19 by fanfan           ###   ########.fr       */
+/*   Updated: 2024/12/09 12:54:22 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	free_tab(char **tab)
 	i = -1;
 	while (tab[++i])
 		if (tab[i])
-			free(tab[i]);
+			free_n_set_null(tab[i]);
 	free(tab);
+	tab = 0;
 }
 
 void	free_n_set_null(char *to_free)

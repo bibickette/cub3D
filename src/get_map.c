@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanfan <fanfan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 19:23:14 by fanfan            #+#    #+#             */
-/*   Updated: 2024/12/08 12:49:11 by fanfan           ###   ########.fr       */
+/*   Updated: 2024/12/09 13:08:34 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ void	get_map(t_parsing *info, int fd)
 		if (!is_white_space_line(line))
 		{
 			map = add_line_to_tab(map, line, i);
+			// jenleve le return free map sinon double free vu que tu free dans la fonction
 			if (!map)
-				return (free_tab(map));
+				return ;
 			i++;
 		}
 		else if (is_white_space_line(line))

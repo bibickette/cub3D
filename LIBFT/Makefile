@@ -6,7 +6,7 @@
 #    By: phwang <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 13:04:16 by phwang            #+#    #+#              #
-#    Updated: 2024/11/23 00:29:01 by phwang           ###   ########.fr        #
+#    Updated: 2024/12/09 13:13:09 by phwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ OBJ_DIR = obj
 
 #SRC FILES AND OBJECTS FILES, ALL FILES with the command : find . -name "ft_*.c"
 SRC =  \
+	char_add_back_tab.c \
 	int_overflow_check.c \
 	countwords.c \
 	strjoin_wfree.c \

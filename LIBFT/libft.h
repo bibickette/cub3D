@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:15:40 by phwang            #+#    #+#             */
-/*   Updated: 2024/11/23 00:31:22 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/09 13:14:12 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,18 @@
 # include <string.h>
 # include <unistd.h>
 
+/* malloc errors */
+# define MALLOC_ERR "Error : Malloc\n"
+# define SPLIT_ERR "Error : Malloc Split\n"
+# define STRJOIN_ERR "Error : Malloc Strjoin\n"
+# define STRDUP_ERR "Error : Malloc Strdup\n"
+# define LSTNEW_ERR "Error : Malloc Lstnew\n"
+# define ADD_BACK_TAB_ERR "Error : \
+Malloc in function char_add_back_tab\n"
+
+bool				char_add_back_tab(char ***original_tab, char *to_add);
 bool				int_overflow_check(char *str);
+
 int					find_next_prime(int nb);
 int					power_nb(int nb, int power);
 int					nb_sqrt(int nb);
