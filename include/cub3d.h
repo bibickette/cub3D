@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/10 16:48:32 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/10 16:55:00 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include "cub3d_struct.h"
 
 // DEBUG
-
-void	print_info(t_parsing *info);
 
 // PARSING
 
