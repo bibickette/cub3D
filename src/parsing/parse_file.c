@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:13:44 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/10 14:04:42 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/10 16:42:30 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static bool	init_map(t_parsing *info, int fd)
 	print_map(info->map);
 	if (!is_valid_map(info))
 		return (false);
+	print_map(info->map);
+	print_player_info(info->player);
 	return (true);
 }
 

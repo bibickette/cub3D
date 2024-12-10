@@ -33,7 +33,8 @@ PARSING_FILES = \
 		get_map.c \
 		init_texture.c \
 		parse_file.c \
-		check_valid_map.c
+		is_valid_map.c \
+		is_valid_map_utils.c 
 PARSING = $(addprefix $(PARSING_DIR)/, $(PARSING_FILES))				
 
 UTILS_DIR = $(SRC_DIR)/utils

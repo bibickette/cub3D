@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 19:23:14 by fanfan            #+#    #+#             */
-/*   Updated: 2024/12/10 14:12:49 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/10 16:44:37 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,20 @@ char	**add_line_to_tab(char **map, char *line, int i)
 	return (map);
 }
 
+static void	replace_enter_by_space(char **line)
+{
+	int	i;
+
+	i = ft_strlen(*line) - 1;
+	if ((*line)[i] == '\n')
+		(*line)[i] = ' ';
+}
+
 static bool	convert_n_add(char ***map, char *line, int *i)
 {
 	if (!convert_tab_in_space(&line))
 		return (free_tab(*map), false);
+	replace_enter_by_space(&line);
 	*map = add_line_to_tab(*map, line, *i);
 	if (!*map)
 		return (false);
