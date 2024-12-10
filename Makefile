@@ -41,7 +41,8 @@ UTILS_FILES = \
 		apocalypse.c \
 		error.c \
 		print_debug.c \
-		utils.c 
+		utils.c \
+		convert_tab_in_space.c
 UTILS = $(addprefix $(UTILS_DIR)/, $(UTILS_FILES))	
 
 SRC = \

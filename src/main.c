@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanfan <fanfan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:55:58 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/07 19:52:12 by fanfan           ###   ########.fr       */
+/*   Updated: 2024/12/10 14:05:30 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void init_info(t_parsing *info)
+void	init_info(t_parsing *info)
 {
 	ft_memset(info, 0, sizeof(t_parsing));
 	ft_memset(info->textures.floor_rgb, -1, sizeof(int) * 3);

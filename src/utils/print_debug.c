@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   print_debug.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanfan <fanfan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 19:52:00 by fanfan            #+#    #+#             */
-/*   Updated: 2024/12/08 12:18:39 by fanfan           ###   ########.fr       */
+/*   Updated: 2024/12/10 14:05:20 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-void print_map(char **map)
+void	print_map(char **map)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (map[i])
 	{
 		printf("%s", map[i]);

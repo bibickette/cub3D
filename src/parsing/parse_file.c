@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:13:44 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/09 17:12:47 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/10 14:04:42 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static void	load_identifier(t_parsing *info, char *line, int identifier)
 
 static bool	init_map(t_parsing *info, int fd)
 {
-	get_map(info, fd);
+	if (!get_map(info, fd))
+		return (false);
 	if (!info->map)
 		return (false);
 	print_map(info->map);

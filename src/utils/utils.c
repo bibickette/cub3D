@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanfan <fanfan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 19:16:46 by fanfan            #+#    #+#             */
-/*   Updated: 2024/12/08 12:34:52 by fanfan           ###   ########.fr       */
+/*   Updated: 2024/12/10 14:05:04 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*ft_realloc_map(void *ptr, size_t new_size, size_t old_size)
 
 bool	is_white_space_line(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line && line[i])
