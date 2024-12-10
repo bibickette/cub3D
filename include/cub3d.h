@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/09 17:30:49 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/10 14:09:08 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,10 @@ bool			is_valid_data(t_parsing *info, char *filename);
 int				is_start_with_id(char *line);
 bool			is_valid_file_and_rgb(t_parsing *info);
 
-
 // get_map
-void	get_map(t_parsing *info, int fd);
-bool is_valid_map(t_parsing *info);
+bool			get_map(t_parsing *info, int fd);
+bool	convert_tab_in_space(char **line);
+bool			is_valid_map(t_parsing *info);
 
 // init_texture
 int				start_of_texture(char *line);
@@ -127,7 +127,7 @@ void			print_map(char **map);
 void			print_texture(t_parsing *info);
 
 // utils
-void	*ft_realloc_map(void *ptr, size_t new_size, size_t old_size);
+void			*ft_realloc_map(void *ptr, size_t new_size, size_t old_size);
 bool			is_white_space_line(char *line);
 
 #endif
