@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/10 16:55:00 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/10 16:56:59 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 # include "cub3d_struct.h"
 
 // DEBUG
+// print debug
+void	print_map(char **map);
+void	print_texture(t_parsing *info);
+void	print_player_info(t_player player);
 
 // PARSING
-
 // check_args
 bool	is_valid_arguments(int argc, char **argv);
 bool	is_file_readable(char *file_name);
@@ -26,6 +29,7 @@ bool	is_invalid_file_format(char *path, char *format);
 
 // parse_file
 bool	is_valid_data(t_parsing *info, char *filename);
+
 // check_texture
 int		is_start_with_id(char *line);
 bool	is_valid_file_and_rgb(t_parsing *info);
@@ -54,12 +58,6 @@ void	print_error(char *msg, char *arg);
 void	apocalypse_parsing(t_parsing *info);
 void	free_n_set_null(char *to_free);
 void	free_tab(char **tab);
-
-// print debug
-
-void	print_map(char **map);
-void	print_texture(t_parsing *info);
-void	print_player_info(t_player player);
 
 // utils
 void	*ft_realloc_map(void *ptr, size_t new_size, size_t old_size);
