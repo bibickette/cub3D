@@ -51,12 +51,12 @@ bool	is_valid_map(t_parsing *info)
 	int	last_tab;
 
 	last_tab = 0;
+	if (!check_player_pos(info->map, &info->player))
+		return (false);
 	if (!check_first_last_line(info->map, &last_tab))
 		return (false);
 	if (!is_everything_surrounded(info->map, last_tab))
 		return (false);
 	create_corner_walls(info->map, last_tab);
-	if (!check_player_pos(info->map, &info->player))
-		return (false);
 	return (true);
 }
