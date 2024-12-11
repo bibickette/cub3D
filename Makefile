@@ -51,7 +51,7 @@ SRC = \
 		$(PARSING) \
 		$(UTILS) \
 		$(SRC_DIR)/main.c \
-		$(SRC_DIR)/cross_exit.c
+		$(SRC_DIR)/fonction_for_mlx.c
 			
 
 OBJ	= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

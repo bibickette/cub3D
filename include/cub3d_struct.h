@@ -6,15 +6,15 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/11 13:40:35 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/11 15:34:21 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_STRUCT_H
 # define CUB3D_STRUCT_H
 
-# include "libft.h"
 # include "../minilibx-linux/mlx.h"
+# include "libft.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <errno.h>
@@ -49,9 +49,11 @@
 # define MINIMAL_SIZE_MAP " must be at least 3 lines"
 # define PLAYER_NB "must be one player"
 
-// error mlx
+// mlx
 # define MLX_INIT_ERR "mlx_init() failed"
 # define MLX_NEW_WIN_ERR "mlx_new_window() failed"
+# define CROSS_MSG "Cross has been clicked !\n"
+# define ESC_MSG "(ESC) key has been pressed ! bye\n"
 
 typedef enum e_direction
 {
@@ -92,10 +94,11 @@ typedef struct s_mlx
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-}	t_mlx;
+}				t_mlx;
 
 typedef struct s_parsing
 {
+	t_mlx		mlx;
 	t_texture	textures;
 	t_player	player;
 	char		**map;

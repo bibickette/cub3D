@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:23:45 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/11 13:44:02 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/11 15:29:05 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,29 @@
 static void	init_info(t_parsing *info)
 {
 	ft_memset(info, 0, sizeof(t_parsing));
+	ft_memset(&info->mlx, 0, sizeof(t_mlx));
 	ft_memset(info->textures.floor_rgb, -1, sizeof(int) * 3);
 	ft_memset(info->textures.ceiling_rgb, -1, sizeof(int) * 3);
 }
 
-bool initialization_all(t_parsing *info, int argc, char **argv)
+bool	initialization_all(t_parsing *info, int argc, char **argv)
 {
 	init_info(info);
 	if (!is_valid_arguments(argc, argv))
 		return (false);
 	if (!is_valid_data(info, argv[1]))
 		return (apocalypse_parsing(info), false);
+	return (true);
+}
+
+bool	init_mlx(t_mlx *mlx)
+{
+	mlx->mlx_ptr = mlx_init();
+	if (!mlx->mlx_ptr)
+		return (print_error(MLX_INIT_ERR, NULL), false);
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, 500, 500,
+			"The Legend of pour linstant jvais caner");
+	if (!mlx->win_ptr)
+		return (print_error(MLX_NEW_WIN_ERR, NULL), false);
 	return (true);
 }
