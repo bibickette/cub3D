@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/10 16:26:55 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/11 13:40:35 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define CUB3D_STRUCT_H
 
 # include "libft.h"
+# include "../minilibx-linux/mlx.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <stdbool.h>
@@ -45,6 +48,10 @@
 # define WALL_ERR "must be surrounded by walls"
 # define MINIMAL_SIZE_MAP " must be at least 3 lines"
 # define PLAYER_NB "must be one player"
+
+// error mlx
+# define MLX_INIT_ERR "mlx_init() failed"
+# define MLX_NEW_WIN_ERR "mlx_new_window() failed"
 
 typedef enum e_direction
 {
@@ -80,6 +87,12 @@ typedef struct s_player
 	// dsl jsp comment utiliser le enum pour mon code
 	t_direction	orientation;
 }				t_player;
+
+typedef struct s_mlx
+{
+	void		*mlx_ptr;
+	void		*win_ptr;
+}	t_mlx;
 
 typedef struct s_parsing
 {

@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/10 16:56:59 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/11 13:44:47 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	print_texture(t_parsing *info);
 void	print_player_info(t_player player);
 
 // PARSING
+// initialization
+bool initialization_all(t_parsing *info, int argc, char **argv);
+
 // check_args
 bool	is_valid_arguments(int argc, char **argv);
 bool	is_file_readable(char *file_name);
@@ -62,5 +65,10 @@ void	free_tab(char **tab);
 // utils
 void	*ft_realloc_map(void *ptr, size_t new_size, size_t old_size);
 bool	is_white_space_line(char *line);
+
+// MLX HANDLING
+int cross_exit(t_parsing *info);
+void destroy_mlx(t_mlx *mlx);
+
 
 #endif

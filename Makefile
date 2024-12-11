@@ -34,7 +34,8 @@ PARSING_FILES = \
 		init_texture.c \
 		parse_file.c \
 		is_valid_map.c \
-		is_valid_map_utils.c 
+		is_valid_map_utils.c \
+		initialization.c
 PARSING = $(addprefix $(PARSING_DIR)/, $(PARSING_FILES))				
 
 UTILS_DIR = $(SRC_DIR)/utils
@@ -49,7 +50,8 @@ UTILS = $(addprefix $(UTILS_DIR)/, $(UTILS_FILES))
 SRC = \
 		$(PARSING) \
 		$(UTILS) \
-		$(SRC_DIR)/main.c
+		$(SRC_DIR)/main.c \
+		$(SRC_DIR)/cross_exit.c
 			
 
 OBJ	= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
