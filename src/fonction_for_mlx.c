@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:00:08 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/13 15:13:30 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/13 16:25:48 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	handle_key(int keysym, t_parsing *info)
 		destroy_mlx(&info->mlx);
 		exit(0);
 	}
+	info->player.last_pix_x = info->player.pix_x;
+	info->player.last_pix_y = info->player.pix_y;
 	draw_player(&info->mlx, &info->player, GREY, REPLACE_BCKGRND);
 	if (keysym == XK_z || keysym == XK_Up || keysym == XK_w)
 		info->player.pix_y -= 5;
@@ -48,6 +50,7 @@ int	handle_key(int keysym, t_parsing *info)
 
 int	display(t_parsing *info)
 {
+	// draw_map(info, 0);
 	draw_player(&info->mlx, &info->player, YELLOW, 0);
 	mlx_put_image_to_window(info->mlx.mlx_ptr, info->mlx.win_ptr,
 		info->mlx.background.mlx_img, 0, 0);

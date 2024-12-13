@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:23:45 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/13 15:13:56 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/13 16:15:12 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,18 @@ bool	initialization_all(t_parsing *info, int argc, char **argv)
 	return (true);
 }
 
-bool	init_mlx(t_mlx *mlx)
+bool	init_mlx(t_parsing *info)
 {
-	mlx->mlx_ptr = mlx_init();
-	if (!mlx->mlx_ptr)
+	info->mlx.mlx_ptr = mlx_init();
+	if (!info->mlx.mlx_ptr)
 		return (print_error(MLX_INIT_ERR, NULL), false);
-	if (!create_background(mlx))
+	if (!create_background(&info->mlx))
 		return (printf("pouet\n"), false);
-	if (!create_backup(mlx))
+	draw_map(info, 0);
+	if (!create_backup(&info->mlx))
 		return (printf("pouet\n"), false);
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, SIZE_X, SIZE_Y, TITLE);
-	if (!mlx->win_ptr)
+	info->mlx.win_ptr = mlx_new_window(info->mlx.mlx_ptr, SIZE_X, SIZE_Y, TITLE);
+	if (!info->mlx.win_ptr)
 		return (print_error(MLX_NEW_WIN_ERR, NULL), false);
 	return (true);
 }

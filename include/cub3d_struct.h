@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/13 15:13:02 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/13 16:12:19 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@
 # define SIZE_X 1024
 # define SIZE_Y 512
 # define GREY 0x808080
+# define BLACK 0x000000
+# define WHITE 0xFFFFFF
+# define YELLOW 0xFFFF00
 
 // player
-# define YELLOW 0xFFFF00
 # define MINI_PLAYER_SIZE 5
 # define PIX 300
 # define REPLACE_BCKGRND 1
@@ -100,6 +102,8 @@ typedef struct s_player
 	int			y;
 	int pix_x;
 	int pix_y;
+	int last_pix_x;
+	int last_pix_y;
 	char		direction;
 	// dsl jsp comment utiliser le enum pour mon code
 	t_direction	orientation;
@@ -129,6 +133,8 @@ typedef struct s_parsing
 	t_texture	textures;
 	t_player	player;
 	char		**map;
+	int max_x;
+	int max_y;
 
 }				t_parsing;
 

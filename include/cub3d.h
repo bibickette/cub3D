@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/13 15:14:05 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/13 16:15:28 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	print_player_info(t_player player);
 // PARSING
 // initialization
 bool	initialization_all(t_parsing *info, int argc, char **argv);
-bool	init_mlx(t_mlx *mlx);
+bool	init_mlx(t_parsing *info);
+
 // check_args
 bool	is_valid_arguments(int argc, char **argv);
 bool	is_file_readable(char *file_name);
@@ -80,5 +81,6 @@ void	my_mlx_pixel_put(t_img img, int y, int x, unsigned int color);
 bool	create_background(t_mlx *mlx);
 bool	create_backup(t_mlx *mlx);
 
+void	draw_map(t_parsing *info, unsigned int color);
 
 #endif

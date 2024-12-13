@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:07:29 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/13 14:01:26 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/13 15:42:23 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,24 @@ static bool	check_player_pos(char **map, t_player *player)
 	return (true);
 }
 
+static void set_max_map(t_parsing *info)
+{
+	int x;
+	int y;
+
+	y = -1;
+	while(info->map[++y])
+	{
+		x = -1;
+		while (info->map[y][++x])
+		{
+			if (x > info->max_x)
+				info->max_x = x;
+		}
+	}
+	info->max_y = y;
+}
+
 bool	is_valid_map(t_parsing *info)
 {
 	int	last_tab;
@@ -60,5 +78,6 @@ bool	is_valid_map(t_parsing *info)
 	if (!is_everything_surrounded(info->map, last_tab))
 		return (false);
 	create_corner_walls(info->map, last_tab);
+	set_max_map(info);
 	return (true);
 }
