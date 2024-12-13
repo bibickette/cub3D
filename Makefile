@@ -51,6 +51,8 @@ SRC = \
 		$(PARSING) \
 		$(UTILS) \
 		$(SRC_DIR)/main.c \
+		$(SRC_DIR)/draw_pixel.c \
+		$(SRC_DIR)/background.c \
 		$(SRC_DIR)/fonction_for_mlx.c
 			
 

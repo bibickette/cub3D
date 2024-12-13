@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/13 14:01:20 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/13 15:13:02 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,12 @@
 # define SIZE_X 1024
 # define SIZE_Y 512
 # define GREY 0x808080
+
+// player
 # define YELLOW 0xFFFF00
 # define MINI_PLAYER_SIZE 5
 # define PIX 300
+# define REPLACE_BCKGRND 1
 
 // error dinput
 # define ARG_ERR "This program takes one argument, no more no less"

@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:23:45 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/13 13:02:08 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/13 15:13:56 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,17 @@ bool	initialization_all(t_parsing *info, int argc, char **argv)
 	return (true);
 }
 
-// bool	init_mlx(t_mlx *mlx)
-// {
-// 	mlx->mlx_ptr = mlx_init();
-// 	if (!mlx->mlx_ptr)
-// 		return (print_error(MLX_INIT_ERR, NULL), false);
-// 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, SIZE_X, SIZE_Y,
-// 			TITLE);
-// 	if (!mlx->win_ptr)
-// 		return (print_error(MLX_NEW_WIN_ERR, NULL), false);
-// 	return (true);
-// }
+bool	init_mlx(t_mlx *mlx)
+{
+	mlx->mlx_ptr = mlx_init();
+	if (!mlx->mlx_ptr)
+		return (print_error(MLX_INIT_ERR, NULL), false);
+	if (!create_background(mlx))
+		return (printf("pouet\n"), false);
+	if (!create_backup(mlx))
+		return (printf("pouet\n"), false);
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, SIZE_X, SIZE_Y, TITLE);
+	if (!mlx->win_ptr)
+		return (print_error(MLX_NEW_WIN_ERR, NULL), false);
+	return (true);
+}
