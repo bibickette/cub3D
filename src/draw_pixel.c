@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:05:45 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/13 16:47:02 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/13 18:03:32 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,25 @@ void	draw_line(t_img img, int x, int y, int size, int flag)
 		i++;
 	}
 }
+
+void	draw_mini_line(t_img img, int x, int y, int height, int width)
+{
+	int	i;
+	int j;
+
+	i = 0;
+	while (i < height)
+	{
+		j = 0;
+		while(j < width)
+		{
+			my_mlx_pixel_put(img, y + i, x + j, YELLOW);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	draw_map(t_parsing *info, unsigned int color)
 {
 	int	x;
@@ -103,4 +122,5 @@ void	draw_player(t_mlx *mlx, t_player *player, unsigned int color,
 				+ player->pix_x, color);
 		}
 	}
+	draw_mini_line(mlx->background, player->pix_x + MINI_PLAYER_SIZE / 2 - 1 , player->pix_y + MINI_PLAYER_SIZE/2, 30, 2);
 }

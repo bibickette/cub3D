@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:00:08 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/13 16:25:48 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/13 17:37:33 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,33 @@ int	handle_key(int keysym, t_parsing *info)
 	info->player.last_pix_y = info->player.pix_y;
 	draw_player(&info->mlx, &info->player, GREY, REPLACE_BCKGRND);
 	if (keysym == XK_z || keysym == XK_Up || keysym == XK_w)
-		info->player.pix_y -= 5;
+	{
+
+		info->player.pix_y -= MINI_PLAYER_SIZE;
+	}
 	else if (keysym == XK_s || keysym == XK_Down)
-		info->player.pix_y += 5;
+	{
+
+		info->player.pix_y += MINI_PLAYER_SIZE;
+	}
 	else if (keysym == XK_q || keysym == XK_Left || keysym == XK_a)
-		info->player.pix_x -= 5;
+	{
+		info->player.angle -= 0.1;
+		if(info->player.angle < 0)
+			info->player.angle += 2 * PI;
+		info->player.d_x = cos(info->player.angle) * MINI_PLAYER_SIZE;
+		info->player.d_y = sin(info->player.angle) * MINI_PLAYER_SIZE;
+		info->player.pix_x -= MINI_PLAYER_SIZE;
+	}
 	else if (keysym == XK_d || keysym == XK_Right)
-		info->player.pix_x += 5;
+	{
+		info->player.angle += 0.1;
+		if(info->player.angle > 2 * PI)
+			info->player.angle -= 2 * PI;
+		info->player.d_x = cos(info->player.angle) * MINI_PLAYER_SIZE;
+		info->player.d_y = sin(info->player.angle) * MINI_PLAYER_SIZE;
+		info->player.pix_x += MINI_PLAYER_SIZE;
+	}
 	return (0);
 }
 

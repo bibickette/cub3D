@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/13 16:37:35 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/13 18:01:26 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <math.h>
 
 # define NO 0
 # define SO 1
@@ -40,10 +41,12 @@
 # define WHITE 0xFFFFFF
 # define YELLOW 0xFFFF00
 
+# define PI 3.1415926535
+
 #define HORIZONTAL 0
 #define VERTICAL 1
 // player
-# define MINI_PLAYER_SIZE 5
+# define MINI_PLAYER_SIZE 10
 # define PIX 300
 # define REPLACE_BCKGRND 1
 
@@ -109,6 +112,11 @@ typedef struct s_player
 	char		direction;
 	// dsl jsp comment utiliser le enum pour mon code
 	t_direction	orientation;
+
+	float d_x;
+	float d_y;
+	float angle;
+	
 }				t_player;
 typedef struct s_image
 {

@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:23:45 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/13 16:15:12 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/13 17:34:35 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	init_info(t_parsing *info)
 {
 	ft_memset(info, 0, sizeof(t_parsing));
+	ft_memset(&info->player, 0, sizeof(t_player));
 	ft_memset(&info->mlx, 0, sizeof(t_mlx));
 	ft_memset(info->textures.floor_rgb, -1, sizeof(int) * 3);
 	ft_memset(info->textures.ceiling_rgb, -1, sizeof(int) * 3);
