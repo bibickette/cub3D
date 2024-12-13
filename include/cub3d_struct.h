@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/13 18:01:26 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/13 18:57:04 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ typedef struct s_player
 	// dsl jsp comment utiliser le enum pour mon code
 	t_direction	orientation;
 
+	float pos_x;
+	float pos_y;
 	float d_x;
 	float d_y;
 	float angle;
