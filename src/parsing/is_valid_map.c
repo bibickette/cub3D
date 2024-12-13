@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:07:29 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/10 16:46:01 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/13 14:01:26 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ static bool	check_player_pos(char **map, t_player *player)
 		{
 			if (is_player(map[j][i]))
 			{
-				player->x = j;
-				player->y = i;
+				player->x = i;
+				player->y = j;
+				player->pix_x = PIX;
+				player->pix_y = PIX;
 				player->direction = map[j][i];
 				player_count++;
 			}

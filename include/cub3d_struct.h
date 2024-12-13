@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/11 15:34:21 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/13 14:01:20 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@
 
 # define ERROR "Error\n"
 
+# define TITLE "The Legend of Jvais caner pour linstant"
+
+# define SIZE_X 1024
+# define SIZE_Y 512
+# define GREY 0x808080
+# define YELLOW 0xFFFF00
+# define MINI_PLAYER_SIZE 5
+# define PIX 300
+
 // error dinput
 # define ARG_ERR "This program takes one argument, no more no less"
 # define PERM_ERR "Permission denied to read file : "
@@ -52,6 +61,7 @@
 // mlx
 # define MLX_INIT_ERR "mlx_init() failed"
 # define MLX_NEW_WIN_ERR "mlx_new_window() failed"
+# define MLX_IMG_ERR "mlx_new_image() failed"
 # define CROSS_MSG "Cross has been clicked !\n"
 # define ESC_MSG "(ESC) key has been pressed ! bye\n"
 
@@ -85,15 +95,29 @@ typedef struct s_player
 {
 	int			x;
 	int			y;
+	int pix_x;
+	int pix_y;
 	char		direction;
 	// dsl jsp comment utiliser le enum pour mon code
 	t_direction	orientation;
 }				t_player;
+typedef struct s_image
+{
+	void					*mlx_img;
+	char					*addr;
+	int						bpp;
+	int						line_len;
+	int						endian;
+}							t_img;
 
 typedef struct s_mlx
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
+	t_img background;
+	t_img backup;
+	t_img player;
+	
 }				t_mlx;
 
 typedef struct s_parsing

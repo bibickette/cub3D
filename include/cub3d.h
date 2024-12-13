@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/11 15:34:18 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/13 14:32:06 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void	print_player_info(t_player player);
 // PARSING
 // initialization
 bool	initialization_all(t_parsing *info, int argc, char **argv);
-bool	init_mlx(t_mlx *mlx);
-
+bool	init_mlx(t_mlx *mlx, t_player player);
 // check_args
 bool	is_valid_arguments(int argc, char **argv);
 bool	is_file_readable(char *file_name);
@@ -71,5 +70,10 @@ bool	is_white_space_line(char *line);
 int		cross_exit(t_parsing *info);
 int		handle_key(int keysym, t_parsing *info);
 void	destroy_mlx(t_mlx *mlx);
+
+
+// move player
+void	draw_player(t_mlx *mlx, t_player *player, unsigned int color);
+// void	put_backup_player(t_mlx *mlx, int where_x, int where_y); 
 
 #endif
