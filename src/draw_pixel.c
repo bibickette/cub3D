@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:05:45 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/13 16:30:09 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/13 16:47:02 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	my_mlx_pixel_put(t_img img, int y, int x, unsigned int color)
 	*(unsigned int *)pixel = color;
 }
 
-void put_cube(t_img img, int x, int y, int size, unsigned int color)
+void	put_cube(t_img img, int x, int y, int size, unsigned int color)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < size)
@@ -37,30 +37,52 @@ void put_cube(t_img img, int x, int y, int size, unsigned int color)
 		i++;
 	}
 }
+void	draw_line(t_img img, int x, int y, int size, int flag)
+{
+	int	i;
 
+	i = 0;
+	while (i < size)
+	{
+		if (flag == HORIZONTAL && y != 0 && y != size - 1)
+			my_mlx_pixel_put(img, y, x + i, GREY);
+		else if (flag == VERTICAL && x != 0 && x != size - 1)
+			my_mlx_pixel_put(img, y + i, x , GREY);
+		i++;
+	}
+}
 void	draw_map(t_parsing *info, unsigned int color)
 {
 	int	x;
 	int	y;
 
 	y = -1;
+	x = 0;
 	while (++y < info->max_y)
 	{
-		x = -1;
-		while (++x < info->max_x)
+		while (x < info->max_x)
 		{
 			if (info->map[y][x] == '1')
-				put_cube(info->mlx.background, x * (SIZE_X / 2 / info->max_x), y * (SIZE_Y / info->max_y), SIZE_X / 2 / info->max_x , WHITE);
-			else if(info->map[y][x] == '0')
-				put_cube(info->mlx.background, x * (SIZE_X / 2 / info->max_x), y * (SIZE_Y / info->max_y), SIZE_X / 2 / info->max_x , BLACK);
-			else 
-				put_cube(info->mlx.background, x * (SIZE_X / 2 / info->max_x), y * (SIZE_Y / info->max_y), SIZE_X / 2 / info->max_x , BLACK);
-			
+				put_cube(info->mlx.background, x * (SIZE_X / 2 / info->max_x), y
+					* (SIZE_Y / info->max_y), SIZE_X / 2 / info->max_x, WHITE);
+			else if (info->map[y][x] == '0')
+				put_cube(info->mlx.background, x * (SIZE_X / 2 / info->max_x), y
+					* (SIZE_Y / info->max_y), SIZE_X / 2 / info->max_x, BLACK);
+			else
+				put_cube(info->mlx.background, x * (SIZE_X / 2 / info->max_x), y
+					* (SIZE_Y / info->max_y), SIZE_X / 2 / info->max_x, BLACK);
+			draw_line(info->mlx.background, x * (SIZE_X / 2 / info->max_x), y
+				* (SIZE_Y / info->max_y), SIZE_Y / info->max_y, VERTICAL);
+			x++;
 		}
+		x = 0;
+		draw_line(info->mlx.background, x * (SIZE_X / 2 / info->max_x), y * (SIZE_Y / info->max_y), SIZE_X,
+				HORIZONTAL);
 	}
 }
 
-void	draw_player(t_mlx *mlx, t_player *player, unsigned int color, int replace)
+void	draw_player(t_mlx *mlx, t_player *player, unsigned int color,
+		int replace)
 {
 	int	x;
 	int	y;
@@ -73,12 +95,12 @@ void	draw_player(t_mlx *mlx, t_player *player, unsigned int color, int replace)
 		{
 			if (replace)
 			{
-				color = *(unsigned int *)(mlx->backup.addr + (y +player->last_pix_y)
-					* mlx->backup.line_len + (x + player->last_pix_x) * (mlx->backup.bpp / 8));
+				color = *(unsigned int *)(mlx->backup.addr + (y
+							+ player->last_pix_y) * mlx->backup.line_len + (x
+							+ player->last_pix_x) * (mlx->backup.bpp / 8));
 			}
 			my_mlx_pixel_put(mlx->background, y + player->pix_y, x
 				+ player->pix_x, color);
-			
 		}
 	}
 }
