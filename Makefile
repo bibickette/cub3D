@@ -35,7 +35,8 @@ PARSING_FILES = \
 		parse_file.c \
 		is_valid_map.c \
 		is_valid_map_utils.c \
-		initialization.c
+		initialization.c \
+		init_player.c
 PARSING = $(addprefix $(PARSING_DIR)/, $(PARSING_FILES))				
 
 UTILS_DIR = $(SRC_DIR)/utils
@@ -51,7 +52,8 @@ SRC = \
 		$(PARSING) \
 		$(UTILS) \
 		$(SRC_DIR)/main.c \
-		$(SRC_DIR)/draw_pixel.c \
+		$(SRC_DIR)/draw_player_map.c \
+		$(SRC_DIR)/draw_line.c \
 		$(SRC_DIR)/background.c \
 		$(SRC_DIR)/fonction_for_mlx.c
 			

@@ -6,57 +6,19 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:07:29 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/13 19:45:04 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/16 19:00:12 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	is_player(char c)
+static void	set_max_map(t_parsing *info)
 {
-	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-		return (true);
-	return (false);
-}
-
-static bool	check_player_pos(char **map, t_player *player)
-{
-	int	i;
-	int	j;
-	int	player_count;
-
-	player_count = 0;
-	j = -1;
-	while (map[++j])
-	{
-		i = -1;
-		while (map[j][++i])
-		{
-			if (is_player(map[j][i]))
-			{
-				player->x = i;
-				player->y = j;
-				// player->pix_x = PIX;
-				// player->pix_y = PIX;
-				player->pos_x = PIX;
-				player->pos_y = PIX;
-				player->direction = map[j][i];
-				player_count++;
-			}
-		}
-	}
-	if (player_count != 1)
-		return (print_error(MAP_ERR, PLAYER_NB), false);
-	return (true);
-}
-
-static void set_max_map(t_parsing *info)
-{
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = -1;
-	while(info->map[++y])
+	while (info->map[++y])
 	{
 		x = -1;
 		while (info->map[y][++x])
@@ -73,7 +35,7 @@ bool	is_valid_map(t_parsing *info)
 	int	last_tab;
 
 	last_tab = 0;
-	if (!check_player_pos(info->map, &info->player))
+	if (!init_player(info->map, &info->player))
 		return (false);
 	if (!check_first_last_line(info->map, &last_tab))
 		return (false);

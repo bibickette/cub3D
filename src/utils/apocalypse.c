@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:55:43 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/11 14:22:19 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/16 14:27:58 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	free_n_set_null(char *to_free)
 	}
 }
 
-void	apocalypse_parsing(t_parsing *info)
+void	destroy_info(t_parsing *info)
 {
 	int	i;
 

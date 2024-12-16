@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/13 18:57:04 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/16 19:06:46 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include <X11/keysym.h>
 # include <errno.h>
 # include <fcntl.h>
+# include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <math.h>
 
 # define NO 0
 # define SO 1
@@ -32,23 +32,29 @@
 
 # define ERROR "Error\n"
 
+// screen options
 # define TITLE "The Legend of Jvais caner pour linstant"
-
 # define SIZE_X 1024
 # define SIZE_Y 512
+
+# define PI 3.1415926535
+
+// draw map handling
+# define REPLACE_BCKGRND 1
+# define HORIZONTAL 0
+# define VERTICAL 1
+
 # define GREY 0x808080
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
 # define YELLOW 0xFFFF00
 
-# define PI 3.1415926535
-
-#define HORIZONTAL 0
-#define VERTICAL 1
 // player
 # define MINI_PLAYER_SIZE 10
-# define PIX 300
-# define REPLACE_BCKGRND 1
+
+# define MINI_MAP_SIZE 20  // size of each square
+# define MINI_MAP_LOC_X 50 // decalage en pixel position X et Y
+# define MINI_MAP_LOC_Y 50
 
 // error dinput
 # define ARG_ERR "This program takes one argument, no more no less"
@@ -105,38 +111,33 @@ typedef struct s_player
 {
 	int			x;
 	int			y;
-	int pix_x;
-	int pix_y;
-	int last_pix_x;
-	int last_pix_y;
-	char		direction;
-	// dsl jsp comment utiliser le enum pour mon code
-	t_direction	orientation;
 
-	float pos_x;
-	float pos_y;
-	float d_x;
-	float d_y;
-	float angle;
-	
+	int			last_pos_x;
+	int			last_pos_y;
+	float		pos_x;
+	float		pos_y;
+	float		d_x;
+	float		d_y;
+	float 		angle; // il est set lors de linit du player
+
 }				t_player;
 typedef struct s_image
 {
-	void					*mlx_img;
-	char					*addr;
-	int						bpp;
-	int						line_len;
-	int						endian;
-}							t_img;
+	void		*mlx_img;
+	char		*addr;
+	int			bpp;
+	int			line_len;
+	int			endian;
+}				t_img;
 
 typedef struct s_mlx
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	t_img background;
-	t_img backup;
-	t_img player;
-	
+	t_img		background;
+	t_img		backup;
+	t_img		player;
+
 }				t_mlx;
 
 typedef struct s_parsing
@@ -145,8 +146,8 @@ typedef struct s_parsing
 	t_texture	textures;
 	t_player	player;
 	char		**map;
-	int max_x;
-	int max_y;
+	int			max_x;
+	int			max_y;
 
 }				t_parsing;
 
