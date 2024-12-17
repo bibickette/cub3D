@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:35:38 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/16 19:01:08 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/17 14:13:05 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	is_player(char c)
 static void	set_angle_player(char c, t_player *player)
 {
 	// alors je sais pas pk mais ca tourne dans le sens 
-	// anti horaire avec les vraies valeurs
+	// horaire avec les vraies valeurs
 	// donc jai mis en negatif et ca marche wtf
 	if (c == 'N')
 		player->angle = -(PI / 2);

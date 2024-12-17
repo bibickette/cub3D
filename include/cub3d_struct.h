@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/16 19:06:46 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/17 16:43:14 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 # define SIZE_Y 512
 
 # define PI 3.1415926535
+# define PI2 PI/2
+# define PI3 3*PI/2
 
 // draw map handling
 # define REPLACE_BCKGRND 1
@@ -48,13 +50,15 @@
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
 # define YELLOW 0xFFFF00
+# define RED 0xFF0000
+# define GREEN 0x00FF00
 
 // player
 # define MINI_PLAYER_SIZE 10
 
-# define MINI_MAP_SIZE 20  // size of each square
-# define MINI_MAP_LOC_X 50 // decalage en pixel position X et Y
-# define MINI_MAP_LOC_Y 50
+# define MINI_MAP_SIZE 20 // size of each square
+# define MINI_MAP_LOC_X 0 // decalage en pixel position X et Y
+# define MINI_MAP_LOC_Y 0
 
 // error dinput
 # define ARG_ERR "This program takes one argument, no more no less"
@@ -92,6 +96,21 @@ typedef enum e_direction
 	COMPLETE = 63,
 }				t_direction;
 
+typedef struct s_ray
+{
+	int			r;
+	int			mx;
+	int			my;
+	int			mp;
+	int			dof;
+	float		rx;
+	float		ry;
+	float		xo;
+	float		yo;
+	float		ra;
+
+}				t_ray;
+
 typedef struct s_wall
 {
 	int			id;
@@ -118,7 +137,7 @@ typedef struct s_player
 	float		pos_y;
 	float		d_x;
 	float		d_y;
-	float 		angle; // il est set lors de linit du player
+	float angle; // il est set lors de linit du player
 
 }				t_player;
 typedef struct s_image
@@ -145,6 +164,7 @@ typedef struct s_parsing
 	t_mlx		mlx;
 	t_texture	textures;
 	t_player	player;
+	t_ray		ray;
 	char		**map;
 	int			max_x;
 	int			max_y;

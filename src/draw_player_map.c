@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_map.c                                         :+:      :+:    :+:   */
+/*   draw_player_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:05:45 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/16 19:05:17 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/17 16:50:59 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	draw_map(t_parsing *info)
 					WHITE);
 			}
 			else if (x < len_max_x && (info->map[y][x] == '0'
-				|| is_player(info->map[y][x])))
+					|| is_player(info->map[y][x])))
 			{
 				draw_mini_map_square(info->mlx.background, x * MINI_MAP_SIZE
 					+ MINI_MAP_LOC_X, y * MINI_MAP_SIZE + MINI_MAP_LOC_Y,
@@ -72,8 +72,101 @@ void	draw_map(t_parsing *info)
 	}
 }
 
-void	draw_player(t_mlx *mlx, t_player *player, unsigned int color,
-		int replace)
+void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
+{
+	float	aTan;
+	float	nTan;
+
+	ray->ra = player->angle;
+	ray->r = 0;
+	// HORIZONTAL RAY-GRID INTERSECTION CODE
+	while (ray->r++ < 1)
+	{
+		ray->dof = 0;
+		aTan = -1 / tan(ray->ra);
+		if (ray->ra > PI)
+		{
+			ray->ry = (((int)player->pos_y >> 6) << 6) - 0.0001;
+			ray->rx = (player->pos_y - ray->ry) * aTan + player->pos_x;
+			ray->yo = -64;
+			ray->xo = -ray->yo * aTan;
+		}
+		if (ray->ra < PI)
+		{
+			ray->ry = (((int)player->pos_y >> 6) << 6) + 64;
+			ray->rx = (player->pos_y - ray->ry) * aTan + player->pos_x;
+			ray->yo = 64;
+			ray->xo = -ray->yo * aTan;
+		}
+		if (ray->ra == 0 || ray->ra == PI)
+		{
+			ray->rx = player->pos_x;
+			ray->ry = player->pos_y;
+			ray->dof = 8;
+		}
+		while (ray->dof < 8)
+		{
+			ray->mx = (int)(ray->rx) >> 6;
+			ray->my = (int)(ray->ry) >> 6;
+			ray->mp = ray->my * info->max_x + ray->mx;
+			if (ray->mp < info->max_x * info->max_y
+				&& info->map[ray->my][ray->mx] == '1')
+			{
+				ray->dof = 8;
+			}
+			else
+			{
+				ray->rx += ray->xo;
+				ray->ry += ray->yo;
+				ray->dof += 1;
+			}
+		}
+		draw_mini_line(info, RED, replace);
+		// VERICAL RAY-GRID INTERSECTION CODE
+		// ray->dof = 0;
+		// nTan = -tan(ray->ra);
+		// if (ray->ra > PI2 && ray->ra < PI3)
+		// {
+		// 	ray->rx = (((int)player->pos_x >> 6) << 6) - 0.0001;
+		// 	ray->ry = (player->pos_x - ray->rx) * nTan + player->pos_y;
+		// 	ray->xo = -64;
+		// 	ray->yo = -ray->xo * nTan;
+		// }
+		// if (ray->ra < PI2 || ray->ra > PI3)
+		// {
+		// 	ray->rx = (((int)player->pos_x >> 6) << 6) + 64;
+		// 	ray->ry = (player->pos_x - ray->rx) * nTan + player->pos_y;
+		// 	ray->xo = 64;
+		// 	ray->yo = -ray->xo * nTan;
+		// }
+		// if (ray->ra == 0 || ray->ra == PI)
+		// {
+		// 	ray->rx = player->pos_x;
+		// 	ray->ry = player->pos_y;
+		// 	ray->dof = 8;
+		// }
+		// while (ray->dof < 8)
+		// {
+		// 	ray->mx = (int)(ray->rx) >> 6;
+		// 	ray->my = (int)(ray->ry) >> 6;
+		// 	ray->mp = ray->my * info->max_x + ray->mx;
+		// 	if (ray->mp < info->max_x * info->max_y
+		// 		&& info->map[ray->my][ray->mx] == '1')
+		// 	{
+		// 		ray->dof = 8;
+		// 	}
+		// 	else
+		// 	{
+		// 		ray->rx += ray->xo;
+		// 		ray->ry += ray->yo;
+		// 		ray->dof += 1;
+		// 	}
+		// }
+		// draw_mini_line(info, GREEN, replace);
+	}
+}
+
+void	draw_player(t_parsing *info, unsigned int color, int replace)
 {
 	int	x;
 	int	y;
@@ -85,17 +178,19 @@ void	draw_player(t_mlx *mlx, t_player *player, unsigned int color,
 		while (++x < MINI_PLAYER_SIZE)
 		{
 			// protection anti hors de lecran
-			if (y + player->pos_y < 0 || y + player->pos_y >= SIZE_Y || x
-				+ player->pos_x < 0 || x + player->pos_x >= SIZE_X)
+			if (y + info->player.pos_y < 0 || y + info->player.pos_y >= SIZE_Y
+				|| x + info->player.pos_x < 0 || x
+				+ info->player.pos_x >= SIZE_X)
 				break ;
 			if (replace)
 			{
-				color = get_backup_color(mlx->backup, x + player->last_pos_x, y
-						+ player->last_pos_y);
+				color = get_backup_color(info->mlx.backup, x
+						+ info->player.last_pos_x, y + info->player.last_pos_y);
 			}
-			my_mlx_pixel_put(mlx->background, y + player->pos_y, x
-				+ player->pos_x, color);
+			my_mlx_pixel_put(info->mlx.background, y + info->player.pos_y, x
+				+ info->player.pos_x, color);
 		}
 	}
-	draw_mini_line(mlx, player, color, replace);
+	draw_rays(&info->player, &info->ray, info, replace);
+	// draw_mini_line(mlx, player, color, replace);
 }

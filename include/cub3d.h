@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/16 19:06:37 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/17 14:57:29 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,15 @@ void			destroy_mlx(t_mlx *mlx);
 int				display(t_parsing *info);
 
 // draw map _n player
-void			draw_player(t_mlx *mlx, t_player *player, unsigned int color,
-					int replace);
+void			draw_player(t_parsing *info, unsigned int color, int replace);
 void			draw_map(t_parsing *info);
 void			my_mlx_pixel_put(t_img img, int y, int x, unsigned int color);
 unsigned int	get_backup_color(t_img img, int x, int y);
 
 // draw line
 void			draw_line_on_map(t_parsing *info, t_img img);
-void			draw_mini_line(t_mlx *mlx, t_player *player, unsigned int color,
-					int replace);
+void	draw_mini_line(t_parsing *info, unsigned int color,
+		int replace);
 
 // background
 bool			create_background(t_mlx *mlx);
