@@ -3,61 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:03:00 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/17 16:27:31 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/18 15:26:25 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// void	draw_rays(t_player *player, t_ray *ray, t_parsing *info)
-// {
-// 	float	aTan;
-
-// 	ray->ra = player->angle;
-// 	ray->r = 0;
-// 	//HORIZONTAL RAY-GRID INTERSECTION CODE
-// 	while (ray->r++ < 1)
-// 	{
-// 		ray->dof = 0;
-// 		aTan = (-1) / tan(ray->ra);
-// 		if (ray->ra > PI)
-// 		{
-// 			ray->ry = (((int)player->pos_y >> 6) << 6) - 0.0001;
-// 			ray->rx = (player->pos_y - ray->ry) * aTan + player->pos_x;
-// 			ray->yo = -64;
-// 			ray->xo = -ray->yo * aTan;
-// 		}
-// 		if (ray->ra < PI)
-// 		{
-// 			ray->ry = (((int)player->pos_y >> 6) << 6) + 64;
-// 			ray->rx = (player->pos_y - ray->ry) * aTan + player->pos_x;
-// 			ray->yo = 64;
-// 			ray->xo = -ray->yo * aTan;
-// 		}
-// 		if (ray->ra == 0 || ray->ra == PI)
-// 		{
-// 			while (ray->dof < 0)
-// 			{
-// 				ray->mx = (int)(ray->rx) >> 6;
-// 				ray->my = (int)(ray->ry) >> 6;
-// 				ray->mp = ray->my * info->max_x + ray->mx;
-// 				if (info->map[ray->my][ray->mx] == '1')
-// 				{
-// 					ray->dof = 8;
-// 				}
-// 				else
-// 				{
-// 					ray->rx += ray->xo;
-// 					ray->ry += ray->yo;
-// 					ray->dof += 1;
-// 				}
-// 			}
-// 		}
-// 	}
-// }
 
 // dessine un cadrillage en fonction de la taille dun carré
 // defini par MINI_MAP_SIZE
@@ -93,19 +46,26 @@ void	draw_line(t_img img, int x, int y, int flag)
 	}
 }
 
+int	get_line_length_int(float px, float py, float rx, float ry)
+{
+	return (int)round(sqrt((rx - px) * (rx - px) + (ry - py) * (ry - py)));
+}
+
 void	draw_mini_line(t_parsing *info, unsigned int color, int replace)
 {
 	int	i;
 	int	x;
 	int	y;
+	int	line_len;
 
+	line_len = get_line_length_int(info->player.pos_x, info->player.pos_y,
+			info->ray.rx, info->ray.ry);
+	// line_len = 100;
 	i = 0;
-	x = info->player.pos_x + MINI_PLAYER_SIZE / 2 + i
-			* cos(info->player.angle);
-	y = info->player.pos_y + MINI_PLAYER_SIZE / 2 + i
-			* sin(info->player.angle);
+	x = info->player.pos_x + MINI_PLAYER_SIZE / 2 + i * cos(info->player.angle);
+	y = info->player.pos_y + MINI_PLAYER_SIZE / 2 + i * sin(info->player.angle);
 	// ecrit une ligne jusqua cquelle rencontre un mur OU le bord de lecran
-	while (info->ray.rx < x || info->ray.ry < y)
+	while (i < line_len)
 	{
 		x = info->player.pos_x + MINI_PLAYER_SIZE / 2 + i
 			* cos(info->player.angle);
@@ -122,8 +82,6 @@ void	draw_mini_line(t_parsing *info, unsigned int color, int replace)
 		my_mlx_pixel_put(info->mlx.background, y, x, color);
 		i++;
 	}
-	// printf("x = %d, y = %d\n", x, y);
-	// printf("info->ray.rx = %f, info->ray.ry = %f\n", info->ray.rx, info->ray.ry);
 }
 
 // dessine les lignes si besoin

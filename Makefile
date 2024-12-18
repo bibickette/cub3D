@@ -45,7 +45,8 @@ UTILS_FILES = \
 		error.c \
 		print_debug.c \
 		utils.c \
-		convert_tab_in_space.c
+		convert_tab_in_space.c \
+		convert_to_tab_int.c 
 UTILS = $(addprefix $(UTILS_DIR)/, $(UTILS_FILES))	
 
 SRC = \

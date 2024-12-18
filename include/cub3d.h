@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/17 14:57:29 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/18 12:22:29 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void			free_tab(char **tab);
 // utils
 void			*ft_realloc_map(void *ptr, size_t new_size, size_t old_size);
 bool			is_white_space_line(char *line);
+int				*convert_to_int_tab(t_parsing *info, char **map);
 
 // MLX HANDLING
 int				cross_exit(t_parsing *info);
@@ -83,8 +84,8 @@ unsigned int	get_backup_color(t_img img, int x, int y);
 
 // draw line
 void			draw_line_on_map(t_parsing *info, t_img img);
-void	draw_mini_line(t_parsing *info, unsigned int color,
-		int replace);
+void			draw_mini_line(t_parsing *info, unsigned int color,
+					int replace);
 
 // background
 bool			create_background(t_mlx *mlx);

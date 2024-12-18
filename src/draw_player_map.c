@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:05:45 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/17 16:50:59 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/18 15:27:12 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,11 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 	float	aTan;
 	float	nTan;
 
+	ft_memset(ray, 0, sizeof(t_ray));
 	ray->ra = player->angle;
 	ray->r = 0;
 	// HORIZONTAL RAY-GRID INTERSECTION CODE
-	while (ray->r++ < 1)
+	while (ray->r < 1)
 	{
 		ray->dof = 0;
 		aTan = -1 / tan(ray->ra);
@@ -109,8 +110,8 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 			ray->mx = (int)(ray->rx) >> 6;
 			ray->my = (int)(ray->ry) >> 6;
 			ray->mp = ray->my * info->max_x + ray->mx;
-			if (ray->mp < info->max_x * info->max_y
-				&& info->map[ray->my][ray->mx] == '1')
+			if (ray->mp >= 0 &&  ray->mp < info->max_x * info->max_y
+				&& info->int_map[ray->mp] == '1')
 			{
 				ray->dof = 8;
 			}
@@ -123,46 +124,47 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 		}
 		draw_mini_line(info, RED, replace);
 		// VERICAL RAY-GRID INTERSECTION CODE
-		// ray->dof = 0;
-		// nTan = -tan(ray->ra);
-		// if (ray->ra > PI2 && ray->ra < PI3)
-		// {
-		// 	ray->rx = (((int)player->pos_x >> 6) << 6) - 0.0001;
-		// 	ray->ry = (player->pos_x - ray->rx) * nTan + player->pos_y;
-		// 	ray->xo = -64;
-		// 	ray->yo = -ray->xo * nTan;
-		// }
-		// if (ray->ra < PI2 || ray->ra > PI3)
-		// {
-		// 	ray->rx = (((int)player->pos_x >> 6) << 6) + 64;
-		// 	ray->ry = (player->pos_x - ray->rx) * nTan + player->pos_y;
-		// 	ray->xo = 64;
-		// 	ray->yo = -ray->xo * nTan;
-		// }
-		// if (ray->ra == 0 || ray->ra == PI)
-		// {
-		// 	ray->rx = player->pos_x;
-		// 	ray->ry = player->pos_y;
-		// 	ray->dof = 8;
-		// }
-		// while (ray->dof < 8)
-		// {
-		// 	ray->mx = (int)(ray->rx) >> 6;
-		// 	ray->my = (int)(ray->ry) >> 6;
-		// 	ray->mp = ray->my * info->max_x + ray->mx;
-		// 	if (ray->mp < info->max_x * info->max_y
-		// 		&& info->map[ray->my][ray->mx] == '1')
-		// 	{
-		// 		ray->dof = 8;
-		// 	}
-		// 	else
-		// 	{
-		// 		ray->rx += ray->xo;
-		// 		ray->ry += ray->yo;
-		// 		ray->dof += 1;
-		// 	}
-		// }
-		// draw_mini_line(info, GREEN, replace);
+		ray->dof = 0;
+		nTan = -tan(ray->ra);
+		if (ray->ra > PI2 && ray->ra < PI3)
+		{
+			ray->rx = (((int)player->pos_x >> 6) << 6) - 0.0001;
+			ray->ry = (player->pos_x - ray->rx) * nTan + player->pos_y;
+			ray->xo = -64;
+			ray->yo = -ray->xo * nTan;
+		}
+		if (ray->ra < PI2 || ray->ra > PI3)
+		{
+			ray->rx = (((int)player->pos_x >> 6) << 6) + 64;
+			ray->ry = (player->pos_x - ray->rx) * nTan + player->pos_y;
+			ray->xo = 64;
+			ray->yo = -ray->xo * nTan;
+		}
+		if (ray->ra == 0 || ray->ra == PI)
+		{
+			ray->rx = player->pos_x;
+			ray->ry = player->pos_y;
+			ray->dof = 8;
+		}
+		while (ray->dof < 8)
+		{
+			ray->mx = (int)(ray->rx) >> 6;
+			ray->my = (int)(ray->ry) >> 6;
+			ray->mp = ray->my * info->max_x + ray->mx;
+			if (ray->mp >= 0 &&  ray->mp < info->max_x * info->max_y
+				&& info->int_map[ray->mp] == '1')
+			{
+				ray->dof = 8;
+			}
+			else
+			{
+				ray->rx += ray->xo;
+				ray->ry += ray->yo;
+				ray->dof += 1;
+			}
+		}
+		draw_mini_line(info, GREEN, replace);
+		ray->r++;
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:23:45 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/17 14:58:25 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/18 14:40:12 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	init_create_mlx(t_parsing *info)
 	if (!create_background(&info->mlx))
 		return (false);
 	draw_map(info);
-	// draw_line_on_map(info, info->mlx.background);
+	draw_line_on_map(info, info->mlx.background);
 	if (!create_backup(&info->mlx))
 		return (false);
 	info->mlx.win_ptr = mlx_new_window(info->mlx.mlx_ptr, SIZE_X, SIZE_Y,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/17 16:43:14 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/18 13:48:04 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@
 // player
 # define MINI_PLAYER_SIZE 10
 
-# define MINI_MAP_SIZE 20 // size of each square
+# define MINI_MAP_SIZE 64 // size of each square
 # define MINI_MAP_LOC_X 0 // decalage en pixel position X et Y
 # define MINI_MAP_LOC_Y 0
 
@@ -166,6 +166,7 @@ typedef struct s_parsing
 	t_player	player;
 	t_ray		ray;
 	char		**map;
+	int			*int_map;
 	int			max_x;
 	int			max_y;
 
