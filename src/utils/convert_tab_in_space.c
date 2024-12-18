@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_tab_in_space.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 14:08:31 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/10 16:39:14 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/18 15:30:46 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	replace_tab_by_space(char **line, char **new_line)
 		else
 			(*new_line)[++j] = (*line)[i];
 	}
-	free_n_set_null(*line);
+	free_n_set_null(line);
 	*line = *new_line;
 }
 

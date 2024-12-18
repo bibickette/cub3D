@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:13:44 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/18 12:27:39 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:30:37 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static bool	init_texture_and_color(t_parsing *info, int fd)
 			return (free(line), false);
 		if (identifier)
 			load_identifier(info, line, identifier);
-		free_n_set_null(line);
+		free_n_set_null(&line);
 		if (count_id == COMPLETE)
 			break ;
 		line = get_next_line(fd, 0);

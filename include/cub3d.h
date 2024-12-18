@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/18 12:22:29 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:30:22 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void			print_error(char *msg, char *arg);
 // free
 void			destroy_info(t_parsing *info);
 void			destroy_mlx(t_mlx *mlx);
-void			free_n_set_null(char *to_free);
+void			free_n_set_null(char **to_free);
 void			free_tab(char **tab);
 
 // utils
