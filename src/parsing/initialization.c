@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:23:45 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/18 14:40:12 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:55:03 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static void	init_info(t_parsing *info)
 {
+	
 	ft_memset(info, 0, sizeof(t_parsing));
+	info->int_map = NULL;
 	ft_memset(&info->player, 0, sizeof(t_player));
 	ft_memset(&info->mlx, 0, sizeof(t_mlx));
 	ft_memset(&info->ray, 0, sizeof(t_ray));

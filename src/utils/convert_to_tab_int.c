@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 12:09:27 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/18 13:47:20 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/18 16:57:58 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	*convert_to_int_tab(t_parsing *info, char **map)
 	size = 0;
 	i = 0;
 	size = info->max_x * info->max_y;
-	int_tab = ft_calloc(sizeof(int), size);
+	int_tab = ft_calloc(size, sizeof(int));
 	if (!int_tab)
 		return (print_error(MALLOC_ERR, NULL), NULL);
 	while (y < info->max_y)

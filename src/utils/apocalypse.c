@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:55:43 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/18 15:31:05 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:35:50 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	free_tab(char **tab)
 
 void	free_n_set_null(char **to_free)
 {
-	if (to_free)
+	if (*to_free)
 	{
-		free(to_free);
+		free(*to_free);
 		*to_free = 0;
 	}
 }
