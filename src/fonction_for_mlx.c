@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:00:08 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/19 14:39:57 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:17:58 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	handle_key(int keysym, t_parsing *info)
 	}
 	else if (keysym == XK_q || keysym == XK_Left || keysym == XK_a)
 	{
-		info->player.angle -= 0.01;
+		info->player.angle -= 0.1;
 		if (info->player.angle < 0)
 			info->player.angle += 2 * PI;
 		info->player.d_x = cos(info->player.angle) * 5;
@@ -56,7 +56,7 @@ int	handle_key(int keysym, t_parsing *info)
 	}
 	else if (keysym == XK_d || keysym == XK_Right)
 	{
-		info->player.angle += 0.01;
+		info->player.angle += 0.1;
 		if (info->player.angle > 2 * PI)
 			info->player.angle -= 2 * PI;
 		info->player.d_x = cos(info->player.angle) * 5;

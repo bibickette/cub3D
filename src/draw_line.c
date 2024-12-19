@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:03:00 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/19 14:29:45 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:23:29 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	draw_line(t_img img, int x, int y, int flag)
 				* MINI_MAP_SIZE + MINI_MAP_LOC_X, GREY);
 	}
 }
+// total des hypothenus de chaque ligne
 
 int	get_line_length_int(float px, float py, float rx, float ry)
 {
