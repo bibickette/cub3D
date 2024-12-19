@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:03:00 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/19 15:23:29 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:54:58 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ int	get_line_length_int(float px, float py, float rx, float ry)
 	return (int)round(sqrt((rx - px) * (rx - px) + (ry - py) * (ry - py)));
 }
 
-void	draw_mini_line(t_parsing *info, unsigned int color, int replace)
+void	draw_mini_line(t_parsing *info, unsigned int color, int replace, int line_length)
 {
 	int	i;
 	int	x;
 	int	y;
-	int	line_len;
+	// int	line_len;
 
-	line_len = get_line_length_int(info->player.pos_x + MINI_PLAYER_SIZE / 2, info->player.pos_y + MINI_PLAYER_SIZE / 2,
-			info->ray.rx, info->ray.ry);
+	// line_len = get_line_length_int(info->player.pos_x + MINI_PLAYER_SIZE / 2, info->player.pos_y + MINI_PLAYER_SIZE / 2,
+	// 		info->ray.rx, info->ray.ry);
 	i = 0;
 	x = info->player.pos_x + MINI_PLAYER_SIZE / 2 + i
 		* cos(info->player.angle);
@@ -68,7 +68,7 @@ void	draw_mini_line(t_parsing *info, unsigned int color, int replace)
 		* sin(info->player.angle);
 
 	// ecrit une ligne jusqua cquelle rencontre un mur OU le bord de lecran
-	while (i < line_len)
+	while (i < line_length)
 	{
 		x = info->player.pos_x + MINI_PLAYER_SIZE / 2 + i
 			* cos(info->player.angle);

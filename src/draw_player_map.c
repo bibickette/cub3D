@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:05:45 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/19 15:20:59 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:29:02 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,12 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 {
 	float	aTan;
 	float	nTan;
-
+	int horizontal_len;
+	int vertical_len;
+	
 	ft_memset(ray, 0, sizeof(t_ray));
+	horizontal_len = 0;
+	vertical_len = 0;
 	ray->ra = player->angle;
 	ray->r = 0;
 	// printf("angle %f\n", ray->ra);
@@ -88,22 +92,26 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 		aTan = -1 / tan(ray->ra);
 		if (ray->ra > PI)
 		{
-			ray->ry = (((int)(player->pos_y + MINI_PLAYER_SIZE / 2 ) >> 6) << 6) - 0.0001;
-			ray->rx = ((player->pos_y + MINI_PLAYER_SIZE / 2 ) - ray->ry) * aTan + player->pos_x + MINI_PLAYER_SIZE / 2 ;
+			ray->ry = (((int)(player->pos_y + MINI_PLAYER_SIZE / 2) >> 6) << 6)
+				- 0.0001; // ca fait diviser par 64 et multiplier par 64
+			ray->rx = ((player->pos_y + MINI_PLAYER_SIZE / 2) - ray->ry) * aTan
+				+ player->pos_x + MINI_PLAYER_SIZE / 2;
 			ray->yo = -64;
 			ray->xo = -ray->yo * aTan;
 		}
-		if (ray->ra < PI) 
+		if (ray->ra < PI)
 		{
-			ray->ry = (((int)(player->pos_y + MINI_PLAYER_SIZE / 2 ) >> 6) << 6) + 64;
-			ray->rx = ((player->pos_y + MINI_PLAYER_SIZE / 2 ) - ray->ry) * aTan + player->pos_x + MINI_PLAYER_SIZE / 2 ;
+			ray->ry = (((int)(player->pos_y + MINI_PLAYER_SIZE / 2) >> 6) << 6)
+				+ 64;
+			ray->rx = ((player->pos_y + MINI_PLAYER_SIZE / 2) - ray->ry) * aTan
+				+ player->pos_x + MINI_PLAYER_SIZE / 2;
 			ray->yo = 64;
 			ray->xo = -ray->yo * aTan;
 		}
-		if (ray->ra == 0 ||  ray->ra == PI)
+		if (ray->ra == 0 || ray->ra == PI)
 		{
-			ray->rx = (player->pos_x + MINI_PLAYER_SIZE / 2 );
-			ray->ry = (player->pos_y + MINI_PLAYER_SIZE / 2 );
+			ray->rx = (player->pos_x + MINI_PLAYER_SIZE / 2);
+			ray->ry = (player->pos_y + MINI_PLAYER_SIZE / 2);
 			ray->dof = 8;
 		}
 		while (ray->dof < 8)
@@ -116,7 +124,7 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 			if (ray->mp < info->max_x * info->max_y
 				&& info->int_map[ray->mp] == 1)
 			{
-				ray->dof = 8;
+				ray->dof = 8; // cest le max x
 			}
 			else
 			{
@@ -125,50 +133,67 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 				ray->dof += 1;
 			}
 		}
-		draw_mini_line(info, RED, replace);
-		// VERICAL RAY-GRID INTERSECTION CODE
-		// ray->dof = 0;
-		// nTan = -tan(ray->ra);
-		// if (ray->ra > PI2 && ray->ra < PI3)
-		// {
-		// 	ray->rx = (((int)player->pos_x >> 6) << 6) - 0.0001;
-		// 	ray->ry = (player->pos_x - ray->rx) * nTan + player->pos_y;
-		// 	ray->xo = -64;
-		// 	ray->yo = -ray->xo * nTan;
-		// }
-		// if (ray->ra < PI2 || ray->ra > PI3)
-		// {
-		// 	ray->rx = (((int)player->pos_x >> 6) << 6) + 64;
-		// 	ray->ry = (player->pos_x - ray->rx) * nTan + player->pos_y;
-		// 	ray->xo = 64;
-		// 	ray->yo = -ray->xo * nTan;
-		// }
-		// if (ray->ra == 0 || ray->ra == PI)
-		// {
-		// 	ray->rx = player->pos_x;
-		// 	ray->ry = player->pos_y;
-		// 	ray->dof = 8;
-		// }
-		// while (ray->dof < 8)
-		// {
-		// 	ray->mx = (int)(ray->rx) >> 6;
-		// 	ray->my = (int)(ray->ry) >> 6;
-		// 	ray->mp = ray->my * info->max_x + ray->mx;
-		// 	if (ray->mp < 0)
-		// 		printf("mp %d\n", ray->mp);
-		// 	if (ray->mp < info->max_x * info->max_y
-		// 		&& info->int_map[ray->mp] == 1)
-		// 	{
-		// 		ray->dof = 8;
-		// 	}
-		// 	else
-		// 	{
-		// 		ray->rx += ray->xo;
-		// 		ray->ry += ray->yo;
-		// 		ray->dof += 1;
-		// 	}
-		// }
-		// draw_mini_line(info, GREEN, replace);
+		horizontal_len = get_line_length_int(player->pos_x + MINI_PLAYER_SIZE / 2, player->pos_y + MINI_PLAYER_SIZE / 2,
+			ray->rx, ray->ry);
+		// draw_mini_line(info, YELLOW, replace, horizontal_len);
+		// VERTICAL RAY-GRID INTERSECTION CODE
+		ray->dof = 0;
+		nTan = -tan(ray->ra);
+		if (ray->ra > PI2 && ray->ra < PI3)
+		{
+			ray->rx = (((int)(player->pos_x + MINI_PLAYER_SIZE / 2) >> 6) << 6)
+				- 0.0001;
+			ray->ry = ((player->pos_x + MINI_PLAYER_SIZE / 2) - ray->rx) * nTan
+				+ player->pos_y + MINI_PLAYER_SIZE / 2;
+			ray->xo = -64;
+			ray->yo = -ray->xo * nTan;
+		}
+		if (ray->ra < PI2 || ray->ra > PI3)
+		{
+			ray->rx = (((int)(player->pos_x + MINI_PLAYER_SIZE / 2) >> 6) << 6)
+				+ 64; 
+			ray->ry = ((player->pos_x + MINI_PLAYER_SIZE / 2) - ray->rx) * nTan
+				+ player->pos_y + MINI_PLAYER_SIZE / 2;
+			ray->xo = 64; // 64 cest la taille dun carre, MINIMAPSIZE
+			ray->yo = -ray->xo * nTan;
+		}
+		if (ray->ra == PI3 || ray->ra == PI2)
+		{
+			ray->rx = (player->pos_x + MINI_PLAYER_SIZE / 2);
+			ray->ry = (player->pos_y + MINI_PLAYER_SIZE / 2);
+			ray->dof = 8;
+		}
+		while (ray->dof < 8)
+		{
+			ray->mx = (int)(ray->rx) >> 6; // cest comme si on divise par 64
+			ray->my = (int)(ray->ry) >> 6;
+			ray->mp = ray->my * info->max_x + ray->mx;
+			if (ray->mp < 0)
+				ray->mp = 0;
+			if (ray->mp < info->max_x * info->max_y
+				&& info->int_map[ray->mp] == 1)
+			{
+				ray->dof = 8; // 8 cest le max y
+			}
+			else
+			{
+				ray->rx += ray->xo;
+				ray->ry += ray->yo;
+				ray->dof += 1;
+			}
+		}
+		vertical_len = get_line_length_int(player->pos_x + MINI_PLAYER_SIZE / 2, player->pos_y + MINI_PLAYER_SIZE / 2,
+			ray->rx, ray->ry);
+			// printf("ray->rx %f\n", ray->rx);
+			// printf("ray->ry %f\n", ray->ry);
+		printf("horizontal_len %d\n", horizontal_len);
+		printf("vertical_len %d\n", vertical_len);
+		if ((horizontal_len != 0 && horizontal_len <= vertical_len )|| vertical_len <= 0)
+			draw_mini_line(info, GREEN, replace, horizontal_len);
+		else
+			draw_mini_line(info, RED, replace, vertical_len);
+		// line_len = get_line_length_int(info->player.pos_x + MINI_PLAYER_SIZE / 2, info->player.pos_y + MINI_PLAYER_SIZE / 2,
+	// 		info->ray.rx, info->ray.ry);
 		ray->r++;
 	}
 }

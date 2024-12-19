@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/18 15:30:22 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:56:35 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,9 @@ unsigned int	get_backup_color(t_img img, int x, int y);
 
 // draw line
 void			draw_line_on_map(t_parsing *info, t_img img);
-void			draw_mini_line(t_parsing *info, unsigned int color,
-					int replace);
+void			draw_mini_line(t_parsing *info, unsigned int color, int replace,
+					int line_lenght);
+int				get_line_length_int(float px, float py, float rx, float ry);
 
 // background
 bool			create_background(t_mlx *mlx);
