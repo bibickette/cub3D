@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/18 13:48:04 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/19 21:47:56 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@
 // player
 # define MINI_PLAYER_SIZE 10
 
-# define MINI_MAP_SIZE 64 // size of each square
+# define MINI_MAP_SIZE 20 // size of each square
 # define MINI_MAP_LOC_X 0 // decalage en pixel position X et Y
 # define MINI_MAP_LOC_Y 0
 
@@ -98,17 +98,27 @@ typedef enum e_direction
 
 typedef struct s_ray
 {
+	float	arc_tan;
+	float	tan;
 	int			r;
+	//permet de calculer de trouver quelle case du tableau de map on est
 	int			mx;
 	int			my;
 	int			mp;
+	// pour moi cest le mur sur lequel je suis
 	int			dof;
+	
+	//donc cque jcomprends c que r_x r_y
+	// cest les coordonnées finales du rayon
 	float		rx;
 	float		ry;
+	
 	float		xo;
 	float		yo;
-	float		ra;
-
+	
+	float		angle;
+	int player_posx;
+	int player_posy;
 }				t_ray;
 
 typedef struct s_wall
