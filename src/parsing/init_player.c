@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:35:38 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/17 14:13:05 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/19 12:20:35 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ static void	set_angle_player(char c, t_player *player)
 	// horaire avec les vraies valeurs
 	// donc jai mis en negatif et ca marche wtf
 	if (c == 'N')
-		player->angle = -(PI / 2);
+		player->angle = (3 * PI / 2);
 	else if (c == 'S')
-		player->angle = -(3 * PI / 2);
+		player->angle = (PI / 2);
 	else if (c == 'E')
 		player->angle = 0;
 	else if (c == 'W')
-		player->angle = -(PI);
+		player->angle = (PI);
 }
 
 static void	player_setting(char **map, t_player *player, int pos_x, int pos_y)

@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:05:45 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/18 17:58:26 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/19 14:39:30 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 	ft_memset(ray, 0, sizeof(t_ray));
 	ray->ra = player->angle;
 	ray->r = 0;
+	printf("angle %f\n", ray->ra);
 	// HORIZONTAL RAY-GRID INTERSECTION CODE
 	while (ray->r < 1)
 	{
@@ -87,24 +88,30 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 		aTan = -1 / tan(ray->ra);
 		if (ray->ra > PI)
 		{
-			ray->ry = (((int)player->pos_y >> 6) << 6) - 0.0001;
-			ray->rx = (player->pos_y - ray->ry) * aTan + player->pos_x;
+			ray->ry = (((int)(player->pos_y + MINI_PLAYER_SIZE / 2 ) >> 6) << 6) - 0.0001;
+			ray->rx = ((player->pos_y + MINI_PLAYER_SIZE / 2 ) - ray->ry) * aTan + player->pos_x + MINI_PLAYER_SIZE / 2 ;
 			ray->yo = -64;
 			ray->xo = -ray->yo * aTan;
+			printf("je regarder vers le haut\n");
 		}
 		if (ray->ra < PI)
 		{
-			ray->ry = (((int)player->pos_y >> 6) << 6) + 64;
-			ray->rx = (player->pos_y - ray->ry) * aTan + player->pos_x;
+			ray->ry = (((int)(player->pos_y + MINI_PLAYER_SIZE / 2 ) >> 6) << 6) + 64;
+			ray->rx = ((player->pos_y + MINI_PLAYER_SIZE / 2 ) - ray->ry) * aTan + player->pos_x + MINI_PLAYER_SIZE / 2 ;
 			ray->yo = 64;
 			ray->xo = -ray->yo * aTan;
+			printf("je regarde vers le bas\n");
 		}
 		if (ray->ra == 0 || ray->ra == PI)
 		{
-			ray->rx = player->pos_x;
-			ray->ry = player->pos_y;
+			ray->rx = (player->pos_x + MINI_PLAYER_SIZE / 2 );
+			ray->ry = (player->pos_y + MINI_PLAYER_SIZE / 2 );
 			ray->dof = 8;
+			printf("je regarde vers la droite ou la gauche\n");
 		}
+		printf("rx %f ry %f\n", ray->rx, ray->ry);
+		printf("player pos x %f player pos y %f\n", player->pos_x,
+			player->pos_y);
 		while (ray->dof < 8)
 		{
 			ray->mx = (int)(ray->rx) >> 6;
@@ -115,14 +122,19 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 			if (ray->mp < info->max_x * info->max_y
 				&& info->int_map[ray->mp] == 1)
 			{
+				// printf("jai trouve un mur a l'index mp %d\n", ray->mp);
 				ray->dof = 8;
 			}
 			else
 			{
+				my_mlx_pixel_put(info->mlx.background, ray->ry, ray->rx, GREEN);
+				// printf("je nai pas trouve de mur a l'index mp %d\n",
+				//	ray->mp);
 				ray->rx += ray->xo;
 				ray->ry += ray->yo;
 				ray->dof += 1;
 			}
+			printf("doof %d\n", ray->dof);
 		}
 		draw_mini_line(info, RED, replace);
 		// VERICAL RAY-GRID INTERSECTION CODE
@@ -161,7 +173,7 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 		// 		ray->dof = 8;
 		// 	}
 		// 	else
-		// 	{ 
+		// 	{
 		// 		ray->rx += ray->xo;
 		// 		ray->ry += ray->yo;
 		// 		ray->dof += 1;

@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:03:00 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/18 17:56:08 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/19 14:29:45 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,14 @@ void	draw_mini_line(t_parsing *info, unsigned int color, int replace)
 	int	y;
 	int	line_len;
 
-	line_len = get_line_length_int(info->player.pos_x, info->player.pos_y,
+	line_len = get_line_length_int(info->player.pos_x + MINI_PLAYER_SIZE / 2, info->player.pos_y + MINI_PLAYER_SIZE / 2,
 			info->ray.rx, info->ray.ry);
-	// printf("line_len %d\n", line_len);
-	//line_len += MINI_PLAYER_SIZE / 2;
 	i = 0;
-	x = info->player.pos_x + MINI_PLAYER_SIZE / 2 + i * cos(info->player.angle);
-	y = info->player.pos_y + MINI_PLAYER_SIZE / 2 + i * sin(info->player.angle);
+	x = info->player.pos_x + MINI_PLAYER_SIZE / 2 + i
+		* cos(info->player.angle);
+	y = info->player.pos_y + MINI_PLAYER_SIZE / 2 + i
+		* sin(info->player.angle);
+
 	// ecrit une ligne jusqua cquelle rencontre un mur OU le bord de lecran
 	while (i < line_len)
 	{
