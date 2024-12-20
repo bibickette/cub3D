@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/20 16:22:54 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:51:44 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define ERROR "Error\n"
 
 // screen options
-# define TITLE "The Legend of Jvais caner pour linstant"
+# define TITLE "The Legend of on cane moins quavant"
 # define SIZE_X 1024
 # define SIZE_Y 512
 
