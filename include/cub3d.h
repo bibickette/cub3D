@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/19 21:49:45 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/20 11:59:49 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 // DEBUG
 // print debug
 void			print_map(char **map);
+void			print_map_int(int *map, int max_x, int max_y);
 void			print_texture(t_parsing *info);
 void			print_player_info(t_player player);
 
@@ -86,15 +87,16 @@ unsigned int	get_backup_color(t_img img, int x, int y);
 void			draw_line_on_map(t_parsing *info, t_img img);
 void			draw_mini_line(t_parsing *info, unsigned int color, int replace,
 					int line_lenght);
-void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace);
+void			draw_rays(t_player *player, t_ray *ray, t_parsing *info,
+					int replace);
 
 // background
 bool			create_background(t_mlx *mlx);
 bool			create_backup(t_mlx *mlx);
 
 // draw utils
-void	my_mlx_pixel_put(t_img img, int y, int x, unsigned int color);
+void			my_mlx_pixel_put(t_img img, int y, int x, unsigned int color);
 unsigned int	get_backup_color(t_img img, int x, int y);
-int	get_line_length_int(float px, float py, float rx, float ry);
+int				get_line_length_int(float px, float py, float rx, float ry);
 
 #endif

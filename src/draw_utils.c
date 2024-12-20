@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 18:55:18 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/19 18:56:03 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/20 11:49:54 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ unsigned int	get_backup_color(t_img img, int x, int y)
 // get la longueur a dessiner
 int	get_line_length_int(float px, float py, float rx, float ry)
 {
-	return (int)round(sqrt((rx - px) * (rx - px) + (ry - py) * (ry - py)));
+	return ((int)round(sqrt((rx - px) * (rx - px) + (ry - py) * (ry - py))));
 }

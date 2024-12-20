@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_debug.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 19:52:00 by fanfan            #+#    #+#             */
-/*   Updated: 2024/12/16 18:19:19 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/20 12:04:25 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,33 @@ void	print_map(char **map)
 	int	i;
 
 	i = 0;
+	printf("CHAR MAP :\n");
 	while (map[i])
 	{
 		printf("%s\n", map[i]);
 		i++;
 	}
 	printf("\n");
+}
+
+void	print_map_int(int *map, int max_x, int max_y)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	printf("INT MAP :\n");
+	while (i < max_y)
+	{
+		j = 0;
+		while (j < max_x)
+		{
+			printf("%d", map[i * max_x + j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }
 
 void	print_texture(t_parsing *info)
@@ -39,6 +60,6 @@ void	print_texture(t_parsing *info)
 
 void	print_player_info(t_player player)
 {
-	printf("pos x : %d\n", player.x);
-	printf("pos y : %d\n", player.y);
+	printf("player first pos x : %d\n", player.x);
+	printf("player first pos y : %d\n", player.y);
 }

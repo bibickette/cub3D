@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:13:44 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/18 15:30:37 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/20 12:01:37 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,11 @@ static bool	init_map(t_parsing *info, int fd)
 		return (false);
 	if (!info->map)
 		return (false);
-	print_map(info->map);
 	if (!is_valid_map(info))
 		return (false);
 	info->int_map = convert_to_int_tab(info, info->map);
 	if (!info->int_map)
 		return (false);
-	print_map(info->map);
-	print_player_info(info->player);
 	return (true);
 }
 

@@ -56,6 +56,7 @@ SRC = \
 		$(SRC_DIR)/draw_player_map.c \
 		$(SRC_DIR)/draw_line.c \
 		$(SRC_DIR)/background.c \
+		$(SRC_DIR)/handle_key.c \
 		$(SRC_DIR)/fonction_for_mlx.c \
 		$(SRC_DIR)/draw_utils.c \
 		$(SRC_DIR)/draw_ray.c 
