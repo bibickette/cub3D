@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 11:44:33 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/20 11:49:33 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/20 13:29:14 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,18 @@ static void	rotate_player_left(t_parsing *info)
 	info->player.d_y = sin(info->player.angle) * 5;
 }
 
+static void	moove_player_up(t_parsing *info)
+{
+	info->player.pos_x += info->player.d_x;
+	info->player.pos_y += info->player.d_y;
+}
+
+static void	moove_player_down(t_parsing *info)
+{
+	info->player.pos_x -= info->player.d_x;
+	info->player.pos_y -= info->player.d_y;
+}
+
 int	handle_key(int keysym, t_parsing *info)
 {
 	if (keysym == XK_Escape)
@@ -47,13 +59,11 @@ int	handle_key(int keysym, t_parsing *info)
 	draw_player(info, GREY, REPLACE_BCKGRND);
 	if (keysym == XK_z || keysym == XK_Up || keysym == XK_w)
 	{
-		info->player.pos_x += info->player.d_x;
-		info->player.pos_y += info->player.d_y;
+		moove_player_up(info);
 	}
 	else if (keysym == XK_s || keysym == XK_Down)
 	{
-		info->player.pos_x -= info->player.d_x;
-		info->player.pos_y -= info->player.d_y;
+		moove_player_down(info);
 	}
 	else if (keysym == XK_q || keysym == XK_Left || keysym == XK_a)
 	{

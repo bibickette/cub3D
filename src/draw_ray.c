@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/19 21:52:48 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/20 13:24:49 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,9 +134,17 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 	int	horizontal_len;
 	int	vertical_len;
 
-	ray->angle = player->angle;
+	ray->angle = player->angle - DR * 30;
+	if (ray->angle < 0)
+	{
+		ray->angle += 2 * PI;
+	}
+	if (ray->angle > 2 * PI)
+	{
+		ray->angle -= 2 * PI;
+	}
 	ray->r = 0;
-	while (ray->r < 1)
+	while (ray->r < 60)
 	{
 		// HORIZONTAL RAY-GRID INTERSECTION CODE
 		horizontal_len = ray_horizon_plan_len(player, ray, info);
@@ -148,5 +156,14 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 		else
 			draw_mini_line(info, RED, replace, vertical_len);
 		ray->r++;
+		ray->angle += DR;
+		if (ray->angle < 0)
+		{
+			ray->angle += 2 * PI;
+		}
+		if (ray->angle > 2 * PI)
+		{
+			ray->angle -= 2 * PI;
+		}
 	}
 }

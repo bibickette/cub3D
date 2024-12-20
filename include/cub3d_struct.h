@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/19 21:47:56 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/20 13:18:11 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define PI 3.1415926535
 # define PI2 PI/2
 # define PI3 3*PI/2
+# define DR 0.0174533 // 1 degre en radiant 
 
 // draw map handling
 # define REPLACE_BCKGRND 1
@@ -56,7 +57,7 @@
 // player
 # define MINI_PLAYER_SIZE 10
 
-# define MINI_MAP_SIZE 20 // size of each square
+# define MINI_MAP_SIZE 64 // size of each square
 # define MINI_MAP_LOC_X 0 // decalage en pixel position X et Y
 # define MINI_MAP_LOC_Y 0
 

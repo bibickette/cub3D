@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:03:00 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/20 12:05:06 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/20 13:24:22 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ void	draw_mini_line(t_parsing *info, unsigned int color, int replace,
 	while (i < line_length)
 	{
 		x = info->player.pos_x + MINI_PLAYER_SIZE / 2 + i
-			* cos(info->player.angle);
+			* cos(info->ray.angle);
 		y = info->player.pos_y + MINI_PLAYER_SIZE / 2 + i
-			* sin(info->player.angle);
+			* sin(info->ray.angle);
 		// protection anti ecrire hors de lecran,
 		// utils seulement si on sort de la minimap
 		if (y < 0 || y >= SIZE_Y || x < 0 || x >= SIZE_X)
