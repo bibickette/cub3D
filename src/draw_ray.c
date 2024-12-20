@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/20 13:24:49 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:43:10 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 	int	horizontal_len;
 	int	vertical_len;
 
-	ray->angle = player->angle - DR * 30;
+	ray->angle = player->angle - (DR * FOV) / 2;
 	if (ray->angle < 0)
 	{
 		ray->angle += 2 * PI;
@@ -144,7 +144,7 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 		ray->angle -= 2 * PI;
 	}
 	ray->r = 0;
-	while (ray->r < 60)
+	while (ray->r < FOV)
 	{
 		// HORIZONTAL RAY-GRID INTERSECTION CODE
 		horizontal_len = ray_horizon_plan_len(player, ray, info);

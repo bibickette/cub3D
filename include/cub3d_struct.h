@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/20 13:18:11 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:41:32 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define PI2 PI/2
 # define PI3 3*PI/2
 # define DR 0.0174533 // 1 degre en radiant 
-
+# define FOV 60
 // draw map handling
 # define REPLACE_BCKGRND 1
 # define HORIZONTAL 0
