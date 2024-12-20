@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/20 14:43:10 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:16:31 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,20 +129,59 @@ int	ray_vertical_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 			ray->ry));
 }
 
+void	draw_rectangle(int x, int y, int height, int width, unsigned int color,
+		t_parsing *info, int replace)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < height)
+	{
+		j = 0;
+		while (j < width)
+		{
+			if (y + i < 0 || y + i >= SIZE_Y || x + j < 0 || x + j >= SIZE_X)
+				break ;
+			if (replace)
+				color = get_backup_color(info->mlx.backup, x, y);
+			my_mlx_pixel_put(info->mlx.background, y + i, x + j, color);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	draw_big_line(t_parsing *info, t_ray *ray, unsigned int color,
+		int replace, int lineO, int lineH)
+{
+	int	i;
+	int	x;
+	int	y;
+	int	line_length;
+	int	epaisseur;
+
+	epaisseur = 0;
+	i = 0;
+	x = ray->r * 8 + 530; // 8 max x et 530 decalage pour pas ecrire sur minimap
+	y = lineO;
+	line_length = get_line_length_int(x, y, x, y + lineH);
+	// ecrit une ligne jusqua cquelle rencontre un mur OU le bord de lecran
+	draw_rectangle(x, y, line_length, 8, color, info, replace);
+}
 void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 {
-	int	horizontal_len;
-	int	vertical_len;
+	int		horizontal_len;
+	int		vertical_len;
+	int		distT;
+	float	lineH;
+	float	lineO;
 
 	ray->angle = player->angle - (DR * FOV) / 2;
 	if (ray->angle < 0)
-	{
 		ray->angle += 2 * PI;
-	}
-	if (ray->angle > 2 * PI)
-	{
+	else if (ray->angle > 2 * PI)
 		ray->angle -= 2 * PI;
-	}
 	ray->r = 0;
 	while (ray->r < FOV)
 	{
@@ -152,18 +191,27 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 		vertical_len = ray_vertical_plan_len(player, ray, info);
 		if ((horizontal_len != 0 && horizontal_len <= vertical_len)
 			|| vertical_len <= 0)
+		{
 			draw_mini_line(info, GREEN, replace, horizontal_len);
+			distT = horizontal_len;
+		}
 		else
+		{
 			draw_mini_line(info, RED, replace, vertical_len);
-		ray->r++;
+			distT = vertical_len;
+		}
+		// try draw wall
+		lineH = ((info->max_x * info->max_y) * 320) / distT;
+		if (lineH > 320)
+			lineH = 320;
+		lineO = 160 - lineH / 2;
+		draw_big_line(info, ray, BLUE, replace, lineO, lineH);
+		// la il dessine
 		ray->angle += DR;
 		if (ray->angle < 0)
-		{
 			ray->angle += 2 * PI;
-		}
-		if (ray->angle > 2 * PI)
-		{
+		else if (ray->angle > 2 * PI)
 			ray->angle -= 2 * PI;
-		}
+		ray->r++;
 	}
 }

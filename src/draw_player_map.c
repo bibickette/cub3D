@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:05:45 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/20 12:06:23 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:45:14 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	draw_player(t_parsing *info, unsigned int color, int replace)
 	int	y;
 
 	y = -1;
+	draw_rays(&info->player, &info->ray, info, replace);
 	while (++y < MINI_PLAYER_SIZE)
 	{
 		x = -1;
@@ -85,5 +86,4 @@ void	draw_player(t_parsing *info, unsigned int color, int replace)
 				+ info->player.pos_x, color);
 		}
 	}
-	draw_rays(&info->player, &info->ray, info, replace);
 }
