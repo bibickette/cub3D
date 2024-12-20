@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/20 16:16:31 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:34:39 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,9 +159,7 @@ void	draw_big_line(t_parsing *info, t_ray *ray, unsigned int color,
 	int	x;
 	int	y;
 	int	line_length;
-	int	epaisseur;
 
-	epaisseur = 0;
 	i = 0;
 	x = ray->r * 8 + 530; // 8 max x et 530 decalage pour pas ecrire sur minimap
 	y = lineO;
@@ -171,11 +169,14 @@ void	draw_big_line(t_parsing *info, t_ray *ray, unsigned int color,
 }
 void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 {
-	int		horizontal_len;
-	int		vertical_len;
-	int		distT;
-	float	lineH;
-	float	lineO;
+	int				horizontal_len;
+	int				vertical_len;
+	int				distT;
+	float			lineH;
+	float			lineO;
+	unsigned int	color_wall;
+	int				flag;
+	float			ca;
 
 	ray->angle = player->angle - (DR * FOV) / 2;
 	if (ray->angle < 0)
@@ -183,29 +184,57 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 	else if (ray->angle > 2 * PI)
 		ray->angle -= 2 * PI;
 	ray->r = 0;
+	flag = 0;
 	while (ray->r < FOV)
 	{
 		// HORIZONTAL RAY-GRID INTERSECTION CODE
 		horizontal_len = ray_horizon_plan_len(player, ray, info);
 		// VERTICAL RAY-GRID INTERSECTION CODE
 		vertical_len = ray_vertical_plan_len(player, ray, info);
-		if ((horizontal_len != 0 && horizontal_len <= vertical_len)
+		if ((horizontal_len == vertical_len) && horizontal_len != 0)
+		{
+			if (flag == HORIZONTAL)
+			{
+				draw_mini_line(info, GREEN, replace, horizontal_len);
+				distT = horizontal_len;
+				color_wall = BLUE;
+				flag = HORIZONTAL;
+			}
+			else
+			{
+				draw_mini_line(info, RED, replace, vertical_len);
+				distT = vertical_len;
+				color_wall = DARK_BLUE;
+				flag = VERTICAL;
+			}
+		}
+		else if ((horizontal_len != 0 && horizontal_len < vertical_len)
 			|| vertical_len <= 0)
 		{
 			draw_mini_line(info, GREEN, replace, horizontal_len);
 			distT = horizontal_len;
+			color_wall = BLUE;
+			flag = HORIZONTAL;
 		}
 		else
 		{
 			draw_mini_line(info, RED, replace, vertical_len);
 			distT = vertical_len;
+			color_wall = DARK_BLUE;
+			flag = VERTICAL;
 		}
 		// try draw wall
+		ca = player->angle - ray->angle;
+		if (ca < 0)
+			ca += 2 * PI;
+		else if (ca > 2 * PI)
+			ca -= 2 * PI;
+		distT = distT * cos(ca);
 		lineH = ((info->max_x * info->max_y) * 320) / distT;
 		if (lineH > 320)
 			lineH = 320;
 		lineO = 160 - lineH / 2;
-		draw_big_line(info, ray, BLUE, replace, lineO, lineH);
+		draw_big_line(info, ray, color_wall, replace, lineO, lineH);
 		// la il dessine
 		ray->angle += DR;
 		if (ray->angle < 0)
