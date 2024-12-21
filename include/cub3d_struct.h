@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/20 16:51:44 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/21 16:27:11 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@
 # define SIZE_Y 512
 
 # define PI 3.1415926535
-# define PI2 PI/2
-# define PI3 3*PI/2
-# define DR 0.0174533 // 1 degre en radiant 
+# define PI2 PI / 2
+# define PI3 3 * PI / 2
+# define DR 0.0174533 // 1 degre en radiant
 # define FOV 60
 // draw map handling
 # define REPLACE_BCKGRND 1
@@ -53,8 +53,8 @@
 # define YELLOW 0xFFFF00
 # define RED 0xFF0000
 # define GREEN 0x00FF00
-# define BLUE 0x0000FF
-# define DARK_BLUE 0x000080
+# define BLUE 0x000080
+# define DARK_BLUE 0x00008F
 
 // player
 # define MINI_PLAYER_SIZE 10
@@ -97,92 +97,107 @@ typedef enum e_direction
 	FLOOR = 16,
 	CEILING = 32,
 	COMPLETE = 63,
-}				t_direction;
+}					t_direction;
+
+/*
+mx et my sont les coordonnées de la case de la map dans laquelle on est.
+mp est lindex pour notre map int calculer grace a mx et my.
+dof = degree of freedom, combien de pas peut on faire avant les limites de la map.
+rx et ry sont les coordonnées finales du rayon.
+xo et yo sont les valeurs d'incrementation pour avancer jusqua la prochaine case de la map.
+arc_tan est la tangente de l'angle du rayon.
+angle est l'angle du rayon.
+r est le compteur de rayon.
+lineH est la longueur du rayon.
+lineO est la longueur de l'intersection.
+ca est le cosinus de l'angle du rayon.
+last_ray indique si le dernier rayon a dabord frappe un mur horizontaement ou verticalement.
+ */
 
 typedef struct s_ray
 {
-	float	arc_tan;
-	float	tan;
-	int			r;
-	//permet de calculer de trouver quelle case du tableau de map on est
-	int			mx;
-	int			my;
-	int			mp;
-	// pour moi cest le mur sur lequel je suis
-	int			dof;
-	
-	//donc cque jcomprends c que r_x r_y
-	// cest les coordonnées finales du rayon
-	float		rx;
-	float		ry;
-	
-	float		xo;
-	float		yo;
-	
-	float		angle;
-	int player_posx;
-	int player_posy;
-}				t_ray;
+	float			arc_tan;
+	float			tan;
+	int				r;
+	int				mx;
+	int				my;
+	int				mp;
+	int				dof;
+	float			rx;
+	float			ry;
+	float			xo;
+	float			yo;
+	float			angle;
+	int				player_posx;
+	int				player_posy;
+	int				distT;
+	float			lineH;
+	float			lineO;
+	float			ca;
+	int				last_ray;
+
+}					t_ray;
 
 typedef struct s_wall
 {
-	int			id;
-	char		*path_to_img;
+	int				id;
+	char			*path_to_img;
+	unsigned int	color;
 
-}				t_wall;
+}					t_wall;
 
 typedef struct s_texture
 {
-	t_wall		walls[4];
-	int			floor_rgb[3];
-	int			ceiling_rgb[3];
-}				t_texture;
+	t_wall			walls[4];
+	int				floor_rgb[3];
+	int				ceiling_rgb[3];
+}					t_texture;
 
 // player[x][y] orientation
 typedef struct s_player
 {
-	int			x;
-	int			y;
+	int				x;
+	int				y;
 
-	int			last_pos_x;
-	int			last_pos_y;
-	float		pos_x;
-	float		pos_y;
-	float		d_x;
-	float		d_y;
+	int				last_pos_x;
+	int				last_pos_y;
+	float			pos_x;
+	float			pos_y;
+	float			d_x;
+	float			d_y;
 	float angle; // il est set lors de linit du player
 
-}				t_player;
+}					t_player;
 typedef struct s_image
 {
-	void		*mlx_img;
-	char		*addr;
-	int			bpp;
-	int			line_len;
-	int			endian;
-}				t_img;
+	void			*mlx_img;
+	char			*addr;
+	int				bpp;
+	int				line_len;
+	int				endian;
+}					t_img;
 
 typedef struct s_mlx
 {
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_img		background;
-	t_img		backup;
-	t_img		player;
+	void			*mlx_ptr;
+	void			*win_ptr;
+	t_img			background;
+	t_img			backup;
+	t_img			player;
 
-}				t_mlx;
+}					t_mlx;
 
 typedef struct s_parsing
 {
-	t_mlx		mlx;
-	t_texture	textures;
-	t_player	player;
-	t_ray		ray;
-	char		**map;
-	int			*int_map;
-	int			max_x;
-	int			max_y;
+	t_mlx			mlx;
+	t_texture		textures;
+	t_player		player;
+	t_ray			ray;
+	char			**map;
+	int				*int_map;
+	int				max_x;
+	int				max_y;
 
-}				t_parsing;
+}					t_parsing;
 
 #endif

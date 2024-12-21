@@ -6,241 +6,76 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/20 16:34:39 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/21 17:12:41 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	hzplan_find_intersection(t_ray *ray, t_parsing *info)
+/*
+Si les longueurs sont égales et non nulles, on privilégie le dernier rayon.
+ Si la longueur horizontale est valide et
+				-> soit inférieure à la verticale,
+				-> soit si la longueur verticale est invalide (négative ou nulle)
+ Alors on privilégie le rayon horizontal.
+ dans les autres cas on previligie le rayon vertical.
+ */
+static bool	is_horizontal_line_hit_first(int last_ray, int horizontal_len,
+		int vertical_len)
 {
-	ray->arc_tan = -1 / tan(ray->angle);
-	if (ray->angle > PI)
+	if (horizontal_len == vertical_len && horizontal_len != 0)
+		return (last_ray == HORIZONTAL);
+	if (horizontal_len > 0 && (horizontal_len < vertical_len
+			|| vertical_len <= 0))
+		return (true);
+	return (false);
+}
+
+/* verifie quel est le rayon qui a frappé en premier le mur et le dessine */
+
+static void	draw_smallest_ray(t_ray *ray, t_parsing *info, int replace,
+		int horizontal_len, int vertical_len)
+{
+	if (is_horizontal_line_hit_first(ray->last_ray, horizontal_len,
+			vertical_len))
 	{
-		ray->ry = (((int)ray->player_posy / MINI_MAP_SIZE) * MINI_MAP_SIZE)
-			- 0.0001;
-		ray->rx = (ray->player_posy - ray->ry) * ray->arc_tan
-			+ ray->player_posx;
-		ray->yo = -MINI_MAP_SIZE;
-		ray->xo = -ray->yo * ray->arc_tan;
+		draw_mini_line(info, GREEN, replace, horizontal_len);
+		ray->distT = horizontal_len;
+		ray->last_ray = HORIZONTAL;
 	}
-	if (ray->angle < PI)
+	else
 	{
-		ray->ry = (((int)ray->player_posy / MINI_MAP_SIZE) * MINI_MAP_SIZE)
-			+ MINI_MAP_SIZE;
-		ray->rx = (ray->player_posy - ray->ry) * ray->arc_tan
-			+ ray->player_posx;
-		ray->yo = MINI_MAP_SIZE;
-		ray->xo = -ray->yo * ray->arc_tan;
-	}
-	if (ray->angle == 0 || ray->angle == PI)
-	{
-		ray->rx = ray->player_posx;
-		ray->ry = ray->player_posy;
-		ray->dof = info->max_x;
+		draw_mini_line(info, RED, replace, vertical_len);
+		ray->distT = vertical_len;
+		ray->last_ray = VERTICAL;
 	}
 }
 
-int	ray_horizon_plan_len(t_player *player, t_ray *ray, t_parsing *info)
-{
-	ray->player_posx = player->pos_x + MINI_PLAYER_SIZE / 2;
-	ray->player_posy = player->pos_y + MINI_PLAYER_SIZE / 2;
-	ray->dof = 0;
-	hzplan_find_intersection(ray, info);
-	// tant que je depasse pas la taille x max de la map
-	// pour moi dof est seulement un iterateur mais
-	// je sais pas si ca sert a autre chose,
-	// si useless, je changerai pour iterateur normal, et sortir dof++ du else
-	while (ray->dof < info->max_x)
-	{
-		ray->mx = (int)(ray->rx) / MINI_MAP_SIZE;
-		ray->my = (int)(ray->ry) / MINI_MAP_SIZE;
-		ray->mp = ray->my * info->max_x + ray->mx;
-		if (ray->mp < 0) // protection anti chercher une valeur negative
-			ray->mp = 0;
-		// si jai un mur jarrete de chercher
-		if (ray->mp < info->max_x * info->max_y && info->int_map[ray->mp] == 1)
-			break ;
-		else
-		{
-			ray->rx += ray->xo;
-			ray->ry += ray->yo;
-			ray->dof++;
-		}
-	}
-	return (get_line_length_int(ray->player_posx, ray->player_posy, ray->rx,
-			ray->ry));
-}
-
-void	vtplan_find_intersection(t_ray *ray, t_parsing *info)
-{
-	ray->tan = -tan(ray->angle);
-	if (ray->angle > PI2 && ray->angle < PI3)
-	{
-		ray->rx = (((int)ray->player_posx / MINI_MAP_SIZE) * MINI_MAP_SIZE)
-			- 0.0001;
-		ray->ry = (ray->player_posx - ray->rx) * ray->tan + ray->player_posy;
-		ray->xo = -MINI_MAP_SIZE;
-		ray->yo = -ray->xo * ray->tan;
-	}
-	if (ray->angle < PI2 || ray->angle > PI3)
-	{
-		ray->rx = (((int)ray->player_posx / MINI_MAP_SIZE) * MINI_MAP_SIZE)
-			+ MINI_MAP_SIZE;
-		ray->ry = (ray->player_posx - ray->rx) * ray->tan + ray->player_posy;
-		ray->xo = MINI_MAP_SIZE;
-		ray->yo = -ray->xo * ray->tan;
-	}
-	if (ray->angle == PI3 || ray->angle == PI2)
-	{
-		ray->rx = ray->player_posx;
-		ray->ry = ray->player_posy;
-		ray->dof = info->max_y;
-	}
-}
-
-int	ray_vertical_plan_len(t_player *player, t_ray *ray, t_parsing *info)
-{
-	ray->player_posx = player->pos_x + MINI_PLAYER_SIZE / 2;
-	ray->player_posy = player->pos_y + MINI_PLAYER_SIZE / 2;
-	ray->dof = 0;
-	vtplan_find_intersection(ray, info);
-	// jai trouve la longueur de chaque coté opposé a langle
-	// jadditionne ces cotés jusqua trouver un mur
-	// while tous les murs
-	while (ray->dof < info->max_y)
-	{
-		ray->mx = (int)(ray->rx) / MINI_MAP_SIZE;
-		ray->my = (int)(ray->ry) / MINI_MAP_SIZE;
-		ray->mp = ray->my * info->max_x + ray->mx;
-		if (ray->mp < 0)
-			ray->mp = 0;
-		// ca equivaut a un break ray->dof = info->max_y; // 8 cest le max y
-		if (ray->mp < info->max_x * info->max_y && info->int_map[ray->mp] == 1)
-			break ;
-		else
-		{
-			ray->rx += ray->xo;
-			ray->ry += ray->yo;
-			ray->dof++;
-		}
-	}
-	return (get_line_length_int(ray->player_posx, ray->player_posy, ray->rx,
-			ray->ry));
-}
-
-void	draw_rectangle(int x, int y, int height, int width, unsigned int color,
-		t_parsing *info, int replace)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < height)
-	{
-		j = 0;
-		while (j < width)
-		{
-			if (y + i < 0 || y + i >= SIZE_Y || x + j < 0 || x + j >= SIZE_X)
-				break ;
-			if (replace)
-				color = get_backup_color(info->mlx.backup, x, y);
-			my_mlx_pixel_put(info->mlx.background, y + i, x + j, color);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	draw_big_line(t_parsing *info, t_ray *ray, unsigned int color,
-		int replace, int lineO, int lineH)
-{
-	int	i;
-	int	x;
-	int	y;
-	int	line_length;
-
-	i = 0;
-	x = ray->r * 8 + 530; // 8 max x et 530 decalage pour pas ecrire sur minimap
-	y = lineO;
-	line_length = get_line_length_int(x, y, x, y + lineH);
-	// ecrit une ligne jusqua cquelle rencontre un mur OU le bord de lecran
-	draw_rectangle(x, y, line_length, 8, color, info, replace);
-}
+/* 
+Trace des rayons en fonction de la position du joueur et de son angle de vue
+Dessine ensuite des murs en perspective 3d grace a longueur des rayons.
+*/
 void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 {
-	int				horizontal_len;
-	int				vertical_len;
-	int				distT;
-	float			lineH;
-	float			lineO;
-	unsigned int	color_wall;
-	int				flag;
-	float			ca;
+	int	horizontal_len;
+	int	vertical_len;
+	int	color_wall;
 
 	ray->angle = player->angle - (DR * FOV) / 2;
-	if (ray->angle < 0)
-		ray->angle += 2 * PI;
-	else if (ray->angle > 2 * PI)
-		ray->angle -= 2 * PI;
+	ray->angle = protect_angle_trigo_value(ray->angle);
 	ray->r = 0;
-	flag = 0;
 	while (ray->r < FOV)
 	{
-		// HORIZONTAL RAY-GRID INTERSECTION CODE
 		horizontal_len = ray_horizon_plan_len(player, ray, info);
-		// VERTICAL RAY-GRID INTERSECTION CODE
 		vertical_len = ray_vertical_plan_len(player, ray, info);
-		if ((horizontal_len == vertical_len) && horizontal_len != 0)
-		{
-			if (flag == HORIZONTAL)
-			{
-				draw_mini_line(info, GREEN, replace, horizontal_len);
-				distT = horizontal_len;
-				color_wall = BLUE;
-				flag = HORIZONTAL;
-			}
-			else
-			{
-				draw_mini_line(info, RED, replace, vertical_len);
-				distT = vertical_len;
-				color_wall = DARK_BLUE;
-				flag = VERTICAL;
-			}
-		}
-		else if ((horizontal_len != 0 && horizontal_len < vertical_len)
-			|| vertical_len <= 0)
-		{
-			draw_mini_line(info, GREEN, replace, horizontal_len);
-			distT = horizontal_len;
+		draw_smallest_ray(ray, info, replace, horizontal_len, vertical_len);
+		if (ray->last_ray == HORIZONTAL)
 			color_wall = BLUE;
-			flag = HORIZONTAL;
-		}
 		else
-		{
-			draw_mini_line(info, RED, replace, vertical_len);
-			distT = vertical_len;
 			color_wall = DARK_BLUE;
-			flag = VERTICAL;
-		}
-		// try draw wall
-		ca = player->angle - ray->angle;
-		if (ca < 0)
-			ca += 2 * PI;
-		else if (ca > 2 * PI)
-			ca -= 2 * PI;
-		distT = distT * cos(ca);
-		lineH = ((info->max_x * info->max_y) * 320) / distT;
-		if (lineH > 320)
-			lineH = 320;
-		lineO = 160 - lineH / 2;
-		draw_big_line(info, ray, color_wall, replace, lineO, lineH);
-		// la il dessine
+		draw_3d_wall(ray, info, replace, color_wall);
 		ray->angle += DR;
-		if (ray->angle < 0)
-			ray->angle += 2 * PI;
-		else if (ray->angle > 2 * PI)
-			ray->angle -= 2 * PI;
+		ray->angle = protect_angle_trigo_value(ray->angle);
 		ray->r++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 11:44:33 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/20 13:29:14 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/21 14:15:23 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ static void	escape_exit(t_parsing *info)
 static void	rotate_player_right(t_parsing *info)
 {
 	info->player.angle += 0.1;
-	if (info->player.angle > 2 * PI)
-		info->player.angle -= 2 * PI;
+	info->player.angle = protect_angle_trigo_value(info->player.angle);
 	info->player.d_x = cos(info->player.angle) * 5;
 	info->player.d_y = sin(info->player.angle) * 5;
 }
@@ -32,8 +31,7 @@ static void	rotate_player_right(t_parsing *info)
 static void	rotate_player_left(t_parsing *info)
 {
 	info->player.angle -= 0.1;
-	if (info->player.angle < 0)
-		info->player.angle += 2 * PI;
+	info->player.angle = protect_angle_trigo_value(info->player.angle);
 	info->player.d_x = cos(info->player.angle) * 5;
 	info->player.d_y = sin(info->player.angle) * 5;
 }
