@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_3d_walls.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:14:22 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/21 17:18:12 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/23 18:35:04 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	draw_rectangle(int x, int y,
 	while (i < line_length)
 	{
 		j = 0;
-		while (j < 8)
+		while (j < (SIZE_X / FOV))
 		{
 			if (y + i < 0 || y + i >= SIZE_Y || x + j < 0 || x + j >= SIZE_X)
 				break ;
@@ -40,12 +40,10 @@ static void	draw_rectangle(int x, int y,
 static void	draw_big_line(t_parsing *info, t_ray *ray, unsigned int color,
 		int replace)
 {
-	int	i;
 	int	x;
 	int	y;
 
-	i = 0;
-	x = ray->r * 8 + 530;
+	x = ray->r * (SIZE_X / FOV);
 	// 8 max x et 530 dercalage pour pas ecrire sur minimap
 	y = ray->lineO;
 	draw_rectangle(x, y, color, info, replace);
@@ -54,13 +52,17 @@ static void	draw_big_line(t_parsing *info, t_ray *ray, unsigned int color,
 void	draw_3d_wall(t_ray *ray, t_parsing *info, int replace,
 		int color_wall)
 {
+	int x;
+	int y;
+	x = SIZE_X / 2;
+	y = SIZE_Y / 2;
 	ray->ca = info->player.angle - ray->angle;
 	ray->ca = protect_angle_trigo_value(ray->ca);
 	ray->distT = ray->distT * cos(ray->ca);
-	ray->lineH = ((info->max_x * info->max_y) * 320) / ray->distT;
-	if (ray->lineH > 320)
-		ray->lineH = 320;
-	ray->lineO = 160 - ray->lineH / 2;
+	ray->lineH = ((info->max_x * info->max_y) * x) / ray->distT;
+	if (ray->lineH > x)
+		ray->lineH = x;
+	ray->lineO = y - ray->lineH / 2 ;
 	draw_big_line(info, ray, color_wall, replace);
 }
 /* jai compris quon avait une fenetre de 320 par 160 du coup

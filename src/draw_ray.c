@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/21 17:12:41 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/23 18:34:45 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 		if (ray->last_ray == HORIZONTAL)
 			color_wall = BLUE;
 		else
-			color_wall = DARK_BLUE;
+			color_wall = RED;
 		draw_3d_wall(ray, info, replace, color_wall);
 		ray->angle += DR;
 		ray->angle = protect_angle_trigo_value(ray->angle);

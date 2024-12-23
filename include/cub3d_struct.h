@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/21 16:27:11 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/23 18:34:22 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,19 @@
 
 // screen options
 # define TITLE "The Legend of on cane moins quavant"
+// la taille size X doit etre un multiple de FOV
+// la taille size Y doit etre la moitié de size X
 # define SIZE_X 1024
-# define SIZE_Y 512
+# define SIZE_Y SIZE_X / 2
 
 # define PI 3.1415926535
 # define PI2 PI / 2
 # define PI3 3 * PI / 2
+
 # define DR 0.0174533 // 1 degre en radiant
-# define FOV 60
+# define FOV 64
 // draw map handling
+# define NO_REPLACE 0
 # define REPLACE_BCKGRND 1
 # define HORIZONTAL 0
 # define VERTICAL 1
