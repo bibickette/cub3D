@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:07:29 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/17 16:34:23 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/24 14:00:12 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ static void	set_max_map(t_parsing *info)
 		}
 	}
 	info->max_y = y;
+	if(info->max_x > info->max_y)
+		info->ray.make_distance = info->max_x;
+	else
+		info->ray.make_distance = info->max_y;
 }
 
 bool	is_valid_map(t_parsing *info)

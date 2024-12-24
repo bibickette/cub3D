@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_to_tab_int.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 12:09:27 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/20 11:57:59 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/24 13:50:08 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	ft_atoi_char(char c)
 {
 	if (is_player(c))
 		return (0);
+	else if (c == ' ')
+		return (2);
 	return (c - '0');
 }
 

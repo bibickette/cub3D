@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/23 18:34:22 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/24 13:58:52 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,21 @@
 
 // screen options
 # define TITLE "The Legend of on cane moins quavant"
-// la taille size X doit etre un multiple de FOV
+// la taille size X doit etre un multiple de FOV si on veut que ca couvre tout lecran
 // la taille size Y doit etre la moitié de size X
 # define SIZE_X 1024
-# define SIZE_Y SIZE_X / 2
+# define SIZE_Y (SIZE_X / 2)
 
 # define PI 3.1415926535
-# define PI2 PI / 2
-# define PI3 3 * PI / 2
+# define PI2 (PI / 2)
+# define PI3 (3 * PI / 2)
 
 # define DR 0.0174533 // 1 degre en radiant
 # define FOV 64
+// je mets des parentheses sinon ca fausse le calcule plus tard
+# define NB_RAYS (FOV * 2)
+# define DR_PRECISION (DR / 2)
+
 // draw map handling
 # define NO_REPLACE 0
 # define REPLACE_BCKGRND 1
@@ -62,8 +66,8 @@
 
 // player
 # define MINI_PLAYER_SIZE 10
-
-# define MINI_MAP_SIZE 64 // size of each square
+# define RAPPORT_MINI_MAP_BIG_MAP 5
+# define MINI_MAP_SIZE 20 // size of each square
 # define MINI_MAP_LOC_X 0 // decalage en pixel position X et Y
 # define MINI_MAP_LOC_Y 0
 
@@ -139,7 +143,7 @@ typedef struct s_ray
 	float			lineO;
 	float			ca;
 	int				last_ray;
-
+	int make_distance;
 }					t_ray;
 
 typedef struct s_wall

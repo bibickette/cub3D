@@ -6,14 +6,14 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:14:22 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/23 18:35:04 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/24 14:01:19 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	draw_rectangle(int x, int y,
-		unsigned int color, t_parsing *info, int replace)
+static void	draw_rectangle(int x, int y, unsigned int color, t_parsing *info,
+		int replace)
 {
 	int	i;
 	int	j;
@@ -24,7 +24,7 @@ static void	draw_rectangle(int x, int y,
 	while (i < line_length)
 	{
 		j = 0;
-		while (j < (SIZE_X / FOV))
+		while (j < (SIZE_X / NB_RAYS))
 		{
 			if (y + i < 0 || y + i >= SIZE_Y || x + j < 0 || x + j >= SIZE_X)
 				break ;
@@ -43,26 +43,25 @@ static void	draw_big_line(t_parsing *info, t_ray *ray, unsigned int color,
 	int	x;
 	int	y;
 
-	x = ray->r * (SIZE_X / FOV);
-	// 8 max x et 530 dercalage pour pas ecrire sur minimap
+	x = ray->r * (SIZE_X / NB_RAYS);
 	y = ray->lineO;
 	draw_rectangle(x, y, color, info, replace);
 }
 
-void	draw_3d_wall(t_ray *ray, t_parsing *info, int replace,
-		int color_wall)
+void	draw_3d_wall(t_ray *ray, t_parsing *info, int replace, int color_wall)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
+
 	x = SIZE_X / 2;
 	y = SIZE_Y / 2;
 	ray->ca = info->player.angle - ray->angle;
 	ray->ca = protect_angle_trigo_value(ray->ca);
-	ray->distT = ray->distT * cos(ray->ca);
+	ray->distT = (ray->distT) * cos(ray->ca);
 	ray->lineH = ((info->max_x * info->max_y) * x) / ray->distT;
 	if (ray->lineH > x)
 		ray->lineH = x;
-	ray->lineO = y - ray->lineH / 2 ;
+	ray->lineO = y - ray->lineH / 2;
 	draw_big_line(info, ray, color_wall, replace);
 }
 /* jai compris quon avait une fenetre de 320 par 160 du coup

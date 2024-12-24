@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/23 18:34:45 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/24 13:59:06 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,24 @@ static bool	is_horizontal_line_hit_first(int last_ray, int horizontal_len,
 static void	draw_smallest_ray(t_ray *ray, t_parsing *info, int replace,
 		int horizontal_len, int vertical_len)
 {
+	int make_distance;
+
+// la ddistance sera en rapport avec qui est le + grand
 	if (is_horizontal_line_hit_first(ray->last_ray, horizontal_len,
 			vertical_len))
 	{
 		draw_mini_line(info, GREEN, replace, horizontal_len);
-		ray->distT = horizontal_len;
+		// le * 5 permet de seloigner du mur, sinon on est trop proche
+		// cest le rapport ed minimap size et la taille de la ou on est
+		// si tu mets *3 tes + proche du mur
+		// jsp comment decrire ca en propre mais ca marche woula
+		ray->distT = horizontal_len * ray->make_distance;
 		ray->last_ray = HORIZONTAL;
 	}
 	else
 	{
 		draw_mini_line(info, RED, replace, vertical_len);
-		ray->distT = vertical_len;
+		ray->distT = vertical_len * ray->make_distance;
 		ray->last_ray = VERTICAL;
 	}
 }
@@ -64,7 +71,9 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 	ray->angle = player->angle - (DR * FOV) / 2;
 	ray->angle = protect_angle_trigo_value(ray->angle);
 	ray->r = 0;
-	while (ray->r < FOV)
+	// en gros la cest le nombre de rayon, donc + de precision = + de rayon
+	// + de precision = DR est plus petit donc + de rayon
+	while (ray->r < NB_RAYS)
 	{
 		horizontal_len = ray_horizon_plan_len(player, ray, info);
 		vertical_len = ray_vertical_plan_len(player, ray, info);
@@ -72,9 +81,11 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 		if (ray->last_ray == HORIZONTAL)
 			color_wall = BLUE;
 		else
-			color_wall = RED;
+			color_wall = YELLOW;
+		// en gros on calcule sur la minimap then a la fin on va convertir les valeurs
+		// en + grand pour avoir une 3d map de taille normale
 		draw_3d_wall(ray, info, replace, color_wall);
-		ray->angle += DR;
+		ray->angle += DR_PRECISION;
 		ray->angle = protect_angle_trigo_value(ray->angle);
 		ray->r++;
 	}
