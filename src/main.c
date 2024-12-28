@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:55:58 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/28 16:34:27 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:03:53 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	main(int argc, char **argv)
 
 	if (!initialization_all(&info, argc, argv))
 		return (1);
-	printf("%s\n", info.map[0]);
 	if (!init_create_mlx(&info))
 		return (destroy_mlx(&info.mlx), destroy_info(&info), 1);
 	print_map(info.map);

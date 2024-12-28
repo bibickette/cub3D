@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:14:22 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/28 17:01:06 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/28 17:52:32 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	draw_rectangle(int x, int y, unsigned int color, t_parsing *info,
 		while (j < (SIZE_X / NB_RAYS))
 		{
 			if (y + i < 0 || y + i >= SIZE_Y || x + j < 0 || x + j >= SIZE_X)
-				break ;
+				continue;
 			if (replace)
 				color = get_backup_color(info->mlx.backup, x + j, y + i);
 			if (!is_on_minimap(x + j, y + i, info))	

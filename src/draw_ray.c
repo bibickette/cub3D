@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/28 16:47:00 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:08:47 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static bool	is_horizontal_line_hit_first(int last_ray, int horizontal_len,
 static void	draw_smallest_ray(t_ray *ray, t_parsing *info, int replace,
 		int horizontal_len, int vertical_len)
 {
-	int	make_distance;
 
 	// la ddistance sera en rapport avec qui est le + grand
 	if (is_horizontal_line_hit_first(ray->last_ray, horizontal_len,
@@ -68,7 +67,7 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 	int	vertical_len;
 	int	color_wall;
 
-	ray->angle = player->angle - (DR * FOV) / 2;
+	ray->angle = player->angle - (DR * FOV / 2);
 	ray->angle = protect_angle_trigo_value(ray->angle);
 	ray->r = 0;
 	// en gros la cest le nombre de rayon, donc + de precision = + de rayon
