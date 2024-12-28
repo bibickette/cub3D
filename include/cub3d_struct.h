@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/24 13:58:52 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/28 14:31:04 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@
 # define WHITE 0xFFFFFF
 # define YELLOW 0xFFFF00
 # define RED 0xFF0000
+# define DARK_RED 0x8B0000
+# define ORANGE 0xFFA500
 # define GREEN 0x00FF00
+# define CYAN 0x00FFFF
 # define BLUE 0x000080
 # define DARK_BLUE 0x00008F
 
@@ -110,7 +113,8 @@ typedef enum e_direction
 /*
 mx et my sont les coordonnées de la case de la map dans laquelle on est.
 mp est lindex pour notre map int calculer grace a mx et my.
-dof = degree of freedom, combien de pas peut on faire avant les limites de la map.
+dof = degree of freedom,
+	combien de pas peut on faire avant les limites de la map.
 rx et ry sont les coordonnées finales du rayon.
 xo et yo sont les valeurs d'incrementation pour avancer jusqua la prochaine case de la map.
 arc_tan est la tangente de l'angle du rayon.
@@ -143,7 +147,7 @@ typedef struct s_ray
 	float			lineO;
 	float			ca;
 	int				last_ray;
-	int make_distance;
+	int				make_distance;
 }					t_ray;
 
 typedef struct s_wall

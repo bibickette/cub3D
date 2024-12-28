@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   background.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 12:43:26 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/13 15:07:48 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/28 14:31:45 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,17 @@ bool	create_background(t_mlx *mlx)
 			&mlx->background.bpp, &mlx->background.line_len,
 			&mlx->background.endian);
 	y = -1;
+	while (++y < SIZE_Y / 2)
+	{
+		x = -1;
+		while (++x < SIZE_X)
+			my_mlx_pixel_put(mlx->background, y, x, CYAN);
+	}
 	while (++y < SIZE_Y)
 	{
 		x = -1;
 		while (++x < SIZE_X)
-			my_mlx_pixel_put(mlx->background, y, x, GREY);
+			my_mlx_pixel_put(mlx->background, y, x, GREEN);
 	}
 	return (true);
 }

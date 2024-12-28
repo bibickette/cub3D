@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 18:55:18 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/21 14:15:55 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/28 14:04:51 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	my_mlx_pixel_put(t_img img, int y, int x, unsigned int color)
 
 unsigned int	get_backup_color(t_img img, int x, int y)
 {
-	return (*(unsigned int *)(img.addr + y * img.line_len + x * (img.bpp / 8)));
+	return (*(unsigned int *)(img.addr + y * img.line_len + x * (img.bpp/ 8)));
 }
 
 // total des hypothenus de chaque ligne

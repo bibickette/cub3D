@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/24 13:59:06 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/28 14:30:07 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static bool	is_horizontal_line_hit_first(int last_ray, int horizontal_len,
 static void	draw_smallest_ray(t_ray *ray, t_parsing *info, int replace,
 		int horizontal_len, int vertical_len)
 {
-	int make_distance;
+	int	make_distance;
 
-// la ddistance sera en rapport avec qui est le + grand
+	// la ddistance sera en rapport avec qui est le + grand
 	if (is_horizontal_line_hit_first(ray->last_ray, horizontal_len,
 			vertical_len))
 	{
@@ -58,7 +58,7 @@ static void	draw_smallest_ray(t_ray *ray, t_parsing *info, int replace,
 	}
 }
 
-/* 
+/*
 Trace des rayons en fonction de la position du joueur et de son angle de vue
 Dessine ensuite des murs en perspective 3d grace a longueur des rayons.
 */
@@ -79,9 +79,9 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 		vertical_len = ray_vertical_plan_len(player, ray, info);
 		draw_smallest_ray(ray, info, replace, horizontal_len, vertical_len);
 		if (ray->last_ray == HORIZONTAL)
-			color_wall = BLUE;
+			color_wall = RED;
 		else
-			color_wall = YELLOW;
+			color_wall = DARK_RED;
 		// en gros on calcule sur la minimap then a la fin on va convertir les valeurs
 		// en + grand pour avoir une 3d map de taille normale
 		draw_3d_wall(ray, info, replace, color_wall);
