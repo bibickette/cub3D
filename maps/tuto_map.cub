@@ -3,8 +3,8 @@ SO ./textures/examples1.xpm
 WE ./textures/examples2.xpm
 EA ./textures/examples3.xpm
 
-F 1,0,0
-C 225,30,0
+F 34,139,34
+C 135,206,235
 
 11111111
 10100001

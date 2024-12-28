@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/28 14:31:04 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/28 14:36:37 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,8 @@ typedef struct s_texture
 	t_wall			walls[4];
 	int				floor_rgb[3];
 	int				ceiling_rgb[3];
+	unsigned int 	floor_color;
+	unsigned int 	ceiling_color;
 }					t_texture;
 
 // player[x][y] orientation

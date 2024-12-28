@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/21 17:12:50 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/28 14:39:49 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void			draw_3d_wall(t_ray *ray, t_parsing *info,
 					int replace, int color_wall);
 
 // background
-bool			create_background(t_mlx *mlx);
+bool			create_background(t_mlx *mlx, unsigned int floor_color, unsigned int ceiling_color);
 bool			create_backup(t_mlx *mlx);
 
 // draw utils

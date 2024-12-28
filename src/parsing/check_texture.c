@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 09:35:35 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/10 14:04:13 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/28 14:38:24 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ static bool	is_valid_rgb_value(int rgb[3])
 	return (true);
 }
 
+static unsigned int rgb_to_uint(int rgb[3])
+{
+	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
+}
+
 bool	is_valid_file_and_rgb(t_parsing *info)
 {
 	int	i;
@@ -56,6 +61,8 @@ bool	is_valid_file_and_rgb(t_parsing *info)
 	if (!is_valid_rgb_value(info->textures.floor_rgb)
 		|| !is_valid_rgb_value(info->textures.ceiling_rgb))
 		return (false);
+	info->textures.floor_color = rgb_to_uint(info->textures.floor_rgb);
+	info->textures.ceiling_color = rgb_to_uint(info->textures.ceiling_rgb);
 	while (++i < 4)
 	{
 		if (is_invalid_file_format(info->textures.walls[i].path_to_img, ".xpm")

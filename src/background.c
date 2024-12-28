@@ -6,13 +6,13 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 12:43:26 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/28 14:31:45 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/28 14:40:11 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	create_background(t_mlx *mlx)
+bool	create_background(t_mlx *mlx, unsigned int floor_color, unsigned int ceiling_color)
 {
 	int	x;
 	int	y;
@@ -28,13 +28,13 @@ bool	create_background(t_mlx *mlx)
 	{
 		x = -1;
 		while (++x < SIZE_X)
-			my_mlx_pixel_put(mlx->background, y, x, CYAN);
+			my_mlx_pixel_put(mlx->background, y, x, ceiling_color);
 	}
 	while (++y < SIZE_Y)
 	{
 		x = -1;
 		while (++x < SIZE_X)
-			my_mlx_pixel_put(mlx->background, y, x, GREEN);
+			my_mlx_pixel_put(mlx->background, y, x, floor_color);
 	}
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:23:45 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/28 14:24:54 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/28 14:40:46 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ bool	init_create_mlx(t_parsing *info)
 	info->mlx.mlx_ptr = mlx_init();
 	if (!info->mlx.mlx_ptr)
 		return (print_error(MLX_INIT_ERR, NULL), false);
-	if (!create_background(&info->mlx))
+	if (!create_background(&info->mlx, info->textures.floor_color,
+			info->textures.ceiling_color))
 		return (false);
 	draw_map(info);
 	draw_line_on_map(info, info->mlx.background);
