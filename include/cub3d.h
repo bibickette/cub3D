@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/28 14:39:49 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/28 16:43:48 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,10 @@ void			my_mlx_pixel_put(t_img img, int y, int x, unsigned int color);
 unsigned int	get_backup_color(t_img img, int x, int y);
 int				get_line_length_int(float px, float py, float rx, float ry);
 float			protect_angle_trigo_value(float angle);
+
+
+//draw game
+void			draw_game(t_parsing *info);
+
 
 #endif

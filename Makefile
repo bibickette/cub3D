@@ -62,7 +62,8 @@ SRC = \
 		$(SRC_DIR)/draw_ray.c \
 		$(SRC_DIR)/draw_3d_walls.c \
 		$(SRC_DIR)/horizontal_ray.c \
-		$(SRC_DIR)/vertical_ray.c 
+		$(SRC_DIR)/vertical_ray.c \
+		$(SRC_DIR)/draw_game.c
 			
 
 OBJ	= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

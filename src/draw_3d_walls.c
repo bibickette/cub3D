@@ -6,11 +6,19 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:14:22 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/28 14:26:41 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/28 17:01:06 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static bool is_on_minimap(int x, int y, t_parsing *info)
+{
+	if (x >= MINI_MAP_LOC_X && x < MINI_MAP_LOC_X + MINI_MAP_SIZE * info->max_x
+		&& y >= MINI_MAP_LOC_Y && y < MINI_MAP_LOC_Y + MINI_MAP_SIZE * info->max_y)
+		return (true);
+	return (false);
+}
 
 static void	draw_rectangle(int x, int y, unsigned int color, t_parsing *info,
 		int replace)
@@ -30,7 +38,8 @@ static void	draw_rectangle(int x, int y, unsigned int color, t_parsing *info,
 				break ;
 			if (replace)
 				color = get_backup_color(info->mlx.backup, x + j, y + i);
-			my_mlx_pixel_put(info->mlx.background, y + i, x + j, color);
+			if (!is_on_minimap(x + j, y + i, info))	
+				my_mlx_pixel_put(info->mlx.background, y + i, x + j, color);
 			j++;
 		}
 		i++;

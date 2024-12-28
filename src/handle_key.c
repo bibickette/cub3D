@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_key.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 11:44:33 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/23 16:57:21 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/28 16:43:36 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	handle_key(int keysym, t_parsing *info)
 	info->player.last_pos_x = info->player.pos_x;
 	info->player.last_pos_y = info->player.pos_y;
 	draw_player(info, GREY, REPLACE_BCKGRND);
+	draw_rays(&info->player, &info->ray, info, REPLACE_BCKGRND);
 	if (keysym == XK_z || keysym == XK_Up || keysym == XK_w)
 	{
 		move_player_up(info);
