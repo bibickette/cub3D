@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/31 14:20:26 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/31 15:20:35 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,12 @@
 # define YELLOW 0xFFFF00
 # define RED 0xFF0000
 # define DARK_RED 0x8B0000
+# define PURPLE 0x800080
+# define PINK 0xFFC0CB
 # define ORANGE 0xFFA500
 # define GREEN 0x00FF00
 # define CYAN 0x00FFFF
-# define BLUE 0x000080
+# define BLUE 0x000050
 # define DARK_BLUE 0x00008F
 
 // player

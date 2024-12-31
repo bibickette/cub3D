@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/31 14:27:17 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/31 14:48:52 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static bool	is_horizontal_line_hit_first(int last_ray, float horizontal_len,
 static void	draw_smallest_ray(t_ray *ray, t_parsing *info, int replace,
 		float horizontal_len, float vertical_len)
 {
-
 	// la distance sera en rapport avec qui est le + grand
 	if (is_horizontal_line_hit_first(ray->last_ray, horizontal_len,
 			vertical_len))
@@ -67,7 +66,7 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 {
 	float	horizontal_len;
 	float	vertical_len;
-	int	color_wall;
+	int		color_wall;
 
 	ray->angle = player->angle - (((PI / 180) * FOV) / 2);
 	ray->angle = protect_angle_trigo_value(ray->angle);
@@ -80,9 +79,19 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 		vertical_len = ray_vertical_plan_len(player, ray, info);
 		draw_smallest_ray(ray, info, replace, horizontal_len, vertical_len);
 		if (ray->last_ray == HORIZONTAL)
-			color_wall = RED;
+		{
+			if (ray->angle > PI && ray->angle < 2 * PI)
+				color_wall = BLUE;
+			else
+				color_wall = RED;
+		}
 		else
-			color_wall = DARK_RED;
+		{
+			if (ray->angle > PI2 && ray->angle < 3 * PI / 2)
+				color_wall = DARK_RED;
+			else
+				color_wall = DARK_BLUE;
+		}
 		// en gros on calcule sur la minimap then a la fin on va convertir les valeurs
 		// en + grand pour avoir une 3d map de taille normale
 		draw_3d_wall(ray, info, replace, color_wall);
