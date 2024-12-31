@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   horizontal_ray.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:00:57 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/24 13:15:52 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/31 13:47:03 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ Cette fonction  appelle `hzplan_find_intersection` pour trouver la première int
 Ensuite, elle parcourt la grille ligne par ligne,en avançant jusqu'à rencontrer un mur ou atteindre la limite maximale de recherche (dof).
 La distance à l'intersection est finalement calculée et retournée.
 */
-int	ray_horizon_plan_len(t_player *player, t_ray *ray, t_parsing *info)
+float	ray_horizon_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 {
 	ray->player_posx = player->pos_x + MINI_PLAYER_SIZE / 2;
 	ray->player_posy = player->pos_y + MINI_PLAYER_SIZE / 2;

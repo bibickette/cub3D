@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vertical_ray.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:06:55 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/24 13:16:56 by phwang           ###   ########.fr       */
+/*   Updated: 2024/12/31 13:47:13 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ La distance à l'intersection est finalement calculée et retournée.
 // jadditionne ces cotés jusqua trouver un mur
 // while tous les murs
 
-int	ray_vertical_plan_len(t_player *player, t_ray *ray, t_parsing *info)
+float	ray_vertical_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 {
 	ray->player_posx = player->pos_x + MINI_PLAYER_SIZE / 2;
 	ray->player_posy = player->pos_y + MINI_PLAYER_SIZE / 2;

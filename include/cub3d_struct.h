@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/28 17:35:00 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/31 13:55:55 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define PI3 (3 * PI / 2)
 
 # define DR 0.0174533 // 1 degre en radiant
-# define FOV 64
+# define FOV 60
 // je mets des parentheses sinon ca fausse le calcule plus tard
 # define NB_RAYS (FOV * 2)
 # define DR_PRECISION (DR / 2)
@@ -70,7 +70,7 @@
 // player
 # define MINI_PLAYER_SIZE 10
 # define RAPPORT_MINI_MAP_BIG_MAP 5
-# define MINI_MAP_SIZE 20 // size of each square
+# define MINI_MAP_SIZE 64 // size of each square
 # define MINI_MAP_LOC_X 0 // decalage en pixel position X et Y
 # define MINI_MAP_LOC_Y 0
 
@@ -140,9 +140,9 @@ typedef struct s_ray
 	float			xo;
 	float			yo;
 	float			angle;
-	int				player_posx;
-	int				player_posy;
-	int				distT;
+	float			player_posx;
+	float			player_posy;
+	float				distT;
 	float			lineH;
 	float			lineO;
 	float			ca;
@@ -163,8 +163,8 @@ typedef struct s_texture
 	t_wall			walls[4];
 	int				floor_rgb[3];
 	int				ceiling_rgb[3];
-	unsigned int 	floor_color;
-	unsigned int 	ceiling_color;
+	unsigned int	floor_color;
+	unsigned int	ceiling_color;
 }					t_texture;
 
 // player[x][y] orientation

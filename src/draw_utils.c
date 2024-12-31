@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 18:55:18 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/28 14:04:51 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/31 13:43:51 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ unsigned int	get_backup_color(t_img img, int x, int y)
 
 // total des hypothenus de chaque ligne
 // get la longueur a dessiner
-int	get_line_length_int(float px, float py, float rx, float ry)
+float	get_line_length_int(float px, float py, float rx, float ry)
 {
-	return ((int)round(sqrt((rx - px) * (rx - px) + (ry - py) * (ry - py))));
+	return (sqrt((rx - px) * (rx - px) + (ry - py) * (ry - py)));
 }
 
 /*

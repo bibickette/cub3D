@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:14:22 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/28 17:52:32 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/31 13:59:24 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ static bool is_on_minimap(int x, int y, t_parsing *info)
 static void	draw_rectangle(int x, int y, unsigned int color, t_parsing *info,
 		int replace)
 {
-	int	i;
+	float	i;
 	int	j;
-	int	line_length;
+	float	line_length;
 
 	i = 0;
 	line_length = get_line_length_int(x, y, x, y + info->ray.lineH);
 	while (i < line_length)
 	{
 		j = 0;
-		while (j < (SIZE_X / NB_RAYS))
+		while (j < 8)
 		{
 			if (y + i < 0 || y + i >= SIZE_Y || x + j < 0 || x + j >= SIZE_X)
 				continue;
@@ -52,7 +52,7 @@ static void	draw_big_line(t_parsing *info, t_ray *ray, unsigned int color,
 	int	x;
 	int	y;
 
-	x = ray->r * (SIZE_X / NB_RAYS);
+	x = ray->r * 8 + 530;
 	y = ray->lineO;
 	draw_rectangle(x, y, color, info, replace);
 }
@@ -62,8 +62,10 @@ void	draw_3d_wall(t_ray *ray, t_parsing *info, int replace, int color_wall)
 	int	x;
 	int	y;
 
-	x = SIZE_X / 2;
-	y = SIZE_Y / 2;
+	// x = SIZE_X / 2;
+	// y = SIZE_Y / 2;
+	x = 320;
+	y = 160;
 	ray->ca = info->player.angle - ray->angle;
 	ray->ca = protect_angle_trigo_value(ray->ca);
 	ray->distT = (ray->distT) * cos(ray->ca);

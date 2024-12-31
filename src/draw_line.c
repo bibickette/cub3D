@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:03:00 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/28 16:33:47 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/31 13:54:03 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ void	draw_line_on_map(t_parsing *info, t_img img)
 }
 
 void	draw_mini_line(t_parsing *info, unsigned int color, int replace,
-		int line_length)
+		float line_length)
 {
-	int	i;
+	float	i;
 	int	x;
 	int	y;
 

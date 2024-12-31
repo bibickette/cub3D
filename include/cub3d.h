@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/28 16:43:48 by fsalomon         ###   ########.fr       */
+/*   Updated: 2024/12/31 13:54:00 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			init_data(t_parsing *info, char *line, int ID, int texture_len);
 
 //							UTILS
 // error
-void	print_error(char *msg, char *arg);
+void			print_error(char *msg, char *arg);
 
 // apocalypse
 void			destroy_info(t_parsing *info);
@@ -89,36 +89,35 @@ unsigned int	get_backup_color(t_img img, int x, int y);
 // draw line
 void			draw_line_on_map(t_parsing *info, t_img img);
 void			draw_mini_line(t_parsing *info, unsigned int color, int replace,
-					int line_lenght);
+					float line_lenght);
 
 // draw rays
 void			draw_rays(t_player *player, t_ray *ray, t_parsing *info,
 					int replace);
 // horizontal ray
-int				ray_horizon_plan_len(t_player *player, t_ray *ray,
+float			ray_horizon_plan_len(t_player *player, t_ray *ray,
 					t_parsing *info);
 
 // vertical ray
-int				ray_vertical_plan_len(t_player *player, t_ray *ray,
+float			ray_vertical_plan_len(t_player *player, t_ray *ray,
 					t_parsing *info);
 
 // draw walls
-void			draw_3d_wall(t_ray *ray, t_parsing *info,
-					int replace, int color_wall);
+void			draw_3d_wall(t_ray *ray, t_parsing *info, int replace,
+					int color_wall);
 
 // background
-bool			create_background(t_mlx *mlx, unsigned int floor_color, unsigned int ceiling_color);
+bool			create_background(t_mlx *mlx, unsigned int floor_color,
+					unsigned int ceiling_color);
 bool			create_backup(t_mlx *mlx);
 
 // draw utils
 void			my_mlx_pixel_put(t_img img, int y, int x, unsigned int color);
 unsigned int	get_backup_color(t_img img, int x, int y);
-int				get_line_length_int(float px, float py, float rx, float ry);
+float			get_line_length_int(float px, float py, float rx, float ry);
 float			protect_angle_trigo_value(float angle);
 
-
-//draw game
+// draw game
 void			draw_game(t_parsing *info);
-
 
 #endif
