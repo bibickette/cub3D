@@ -71,7 +71,6 @@
 
 // player
 # define MINI_PLAYER_SIZE 10
-# define RAPPORT_MINI_MAP_BIG_MAP 5
 # define MINI_MAP_SIZE 64 // size of each square
 # define MINI_MAP_LOC_X 0 // decalage en pixel position X et Y
 # define MINI_MAP_LOC_Y 0
