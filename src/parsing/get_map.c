@@ -53,7 +53,7 @@ static bool	convert_n_add(char ***map, char *line, int *i)
 {
 	if (!convert_tab_in_space(&line))
 		return (free_tab(*map), false);
-	replace_enter_by_space(&line);
+	// replace_enter_by_space(&line);
 	*map = add_line_to_tab(*map, line, *i);
 	if (!*map)
 		return (false);

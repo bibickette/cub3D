@@ -16,6 +16,8 @@ void	my_mlx_pixel_put(t_img img, int y, int x, unsigned int color)
 {
 	char	*pixel;
 
+	if (y < 0 || y >= SIZE_Y || x < 0 || x >= SIZE_X)
+		return ;
 	pixel = img.addr + y * img.line_len + x * (img.bpp / 8);
 	*(unsigned int *)pixel = color;
 }
@@ -27,7 +29,7 @@ unsigned int	get_backup_color(t_img img, int x, int y)
 
 // total des hypothenus de chaque ligne
 // get la longueur a dessiner
-float	get_line_length_int(float px, float py, float rx, float ry)
+float	get_distance(float px, float py, float rx, float ry)
 {
 	return (sqrt((rx - px) * (rx - px) + (ry - py) * (ry - py)));
 }

@@ -54,7 +54,7 @@ int	handle_key(int keysym, t_parsing *info)
 		escape_exit(info);
 	info->player.last_pos_x = info->player.pos_x;
 	info->player.last_pos_y = info->player.pos_y;
-	draw_player(info, GREY, REPLACE_BCKGRND);
+	// draw_player(info, GREY, REPLACE_BCKGRND);
 	draw_rays(&info->player, &info->ray, info, REPLACE_BCKGRND);
 	if (keysym == XK_z || keysym == XK_Up || keysym == XK_w)
 	{

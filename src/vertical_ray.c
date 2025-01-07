@@ -67,13 +67,13 @@ float	ray_vertical_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 	vtplan_find_intersection(ray, info);
 	while (ray->dof < info->max_y)
 	{
-		ray->mx = (int)(ray->rx) / MINI_MAP_SIZE;
-		ray->my = (int)(ray->ry) / MINI_MAP_SIZE;
-		ray->mp = ray->my * info->max_x + ray->mx;
-		if (ray->mp < 0)
-			ray->mp = 0;
+		ray->map_x = (int)(ray->rx) / MINI_MAP_SIZE;
+		ray->map_y = (int)(ray->ry) / MINI_MAP_SIZE;
+		ray->map_pos = ray->map_y * info->max_x + ray->map_x;
+		if (ray->map_pos < 0)
+			ray->map_pos = 0;
 		// ca equivaut a un break ray->dof = info->max_y; // 8 cest le max y
-		if (ray->mp < info->max_x * info->max_y && info->int_map[ray->mp] == 1)
+		if (ray->map_pos < info->max_x * info->max_y && info->int_map[ray->map_pos] == 1)
 			break ;
 		else
 		{
@@ -82,6 +82,6 @@ float	ray_vertical_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 			ray->dof++;
 		}
 	}
-	return (get_line_length_int(ray->player_posx, ray->player_posy, ray->rx,
+	return (get_distance(ray->player_posx, ray->player_posy, ray->rx,
 			ray->ry));
 }

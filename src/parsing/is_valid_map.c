@@ -23,15 +23,21 @@ static void	set_max_map(t_parsing *info)
 		x = -1;
 		while (info->map[y][++x])
 		{
-			if (x > info->max_x)
-				info->max_x = x;
+			if (info->map[y][x] == '1' && x + 1 > info->max_x)
+				info->max_x = x + 1;
 		}
 	}
 	info->max_y = y;
-	if(info->max_x > info->max_y)
-		info->ray.make_distance = info->max_x;
-	else
-		info->ray.make_distance = info->max_y;
+
+// info->ray.make_distance = (float)(( 20.000 * 8.000) / 1024) * 8;
+// printf("distance = %f\n", info->ray.make_distance);
+	// if(info->max_x > info->max_y)
+	// 	info->ray.make_distance = info->max_x;
+	// else
+	// 	info->ray.make_distance = info->max_y;
+	printf("x = %d\n", info->max_x);
+	printf("y = %d\n", info->max_y);
+	// info->ray.make_distance = info->ray.make_distance / 4;
 }
 
 bool	is_valid_map(t_parsing *info)

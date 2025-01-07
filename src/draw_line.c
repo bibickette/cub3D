@@ -83,8 +83,8 @@ void	draw_mini_line(t_parsing *info, unsigned int color, int replace,
 			* sin(info->ray.angle);
 		// protection anti ecrire hors de lecran,
 		// utils seulement si on sort de la minimap
-		if (y < 0 || y >= SIZE_Y || x < 0 || x >= SIZE_X)
-			break ;
+		// if (y < 0 || y >= SIZE_Y || x < 0 || x >= SIZE_X)
+		// 	break ;
 		// check si on est sur un mur
 		// if (get_backup_color(info->mlx.backup, x, y) == WHITE)
 		// 	break ;

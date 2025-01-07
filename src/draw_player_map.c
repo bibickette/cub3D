@@ -72,10 +72,10 @@ void	draw_player(t_parsing *info, unsigned int color, int replace)
 		{
 			// protection anti hors de lecran,
 			// utile seuleemt si on sort de la minimap
-			if (y + info->player.pos_y < 0 || y + info->player.pos_y >= SIZE_Y
-				|| x + info->player.pos_x < 0 || x
-				+ info->player.pos_x >= SIZE_X)
-				break ;
+			// if (y + info->player.pos_y < 0 || y + info->player.pos_y >= SIZE_Y
+			// 	|| x + info->player.pos_x < 0 || x
+			// 	+ info->player.pos_x >= SIZE_X)
+			// 	break ;
 			if (replace)
 			{
 				color = get_backup_color(info->mlx.backup, x

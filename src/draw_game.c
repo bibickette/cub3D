@@ -14,6 +14,6 @@
 
 void	draw_game(t_parsing *info)
 {
-	draw_player(info, YELLOW, NO_REPLACE);
+	// draw_player(info, YELLOW, NO_REPLACE);
 	draw_rays(&info->player, &info->ray, info, NO_REPLACE);
 }

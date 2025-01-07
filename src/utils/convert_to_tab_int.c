@@ -18,7 +18,11 @@ static int	ft_atoi_char(char c)
 		return (0);
 	else if (c == ' ')
 		return (2);
-	return (c - '0');
+	else if (c == '1')
+		return (1);
+	else if (c == '0')
+		return (0);
+	return (2);
 }
 
 static int	*init_int_tab(int *tab, char **map, int max_x, int max_y)
@@ -26,16 +30,19 @@ static int	*init_int_tab(int *tab, char **map, int max_x, int max_y)
 	int	y;
 	int	x;
 	int	i;
+	int flag;
 
 	y = 0;
-	x = 0;
 	i = 0;
 	while (y < max_y)
 	{
 		x = 0;
+		flag = 0;
 		while (x < max_x)
 		{
-			if (!map[y][x])
+			if(map[y][x] && map[y][x] == '\n')
+				flag = 1;
+			if (!map[y][x] || flag)
 				tab[i] = 2;
 			else
 				tab[i] = ft_atoi_char(map[y][x]);

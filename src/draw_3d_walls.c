@@ -24,24 +24,20 @@ static void	draw_rectangle(int x, int y, unsigned int color, t_parsing *info,
 		int replace)
 {
 	float	i;
-	int	j;
 	float	line_length;
 
 	i = 0;
-	line_length = get_line_length_int(x, y, x, y + info->ray.lineH);
+	line_length = get_distance(x, y, x, y + info->ray.height_l);
 	while (i < line_length)
 	{
-		j = 0;
-		// while (j < 8)
-		// {
-			if (y + i < 0 || y + i >= SIZE_Y || x + j < 0 || x + j >= SIZE_X)
-				continue;
+
+			// if (y + i < 0 || y + i >= SIZE_Y || x < 0 || x >= SIZE_X)
+			// 	break;
 			if (replace)
-				color = get_backup_color(info->mlx.backup, x + j, y + i);
-			if (!is_on_minimap(x + j, y + i, info))	
-				my_mlx_pixel_put(info->mlx.background, y + i, x + j, color);
-		// 	j++;
-		// }
+				color = get_backup_color(info->mlx.backup, x, y + i);
+			// if (!is_on_minimap(x + j, y + i, info))	
+			my_mlx_pixel_put(info->mlx.background, y + i, x, color);
+
 		i++;
 	}
 }
@@ -53,7 +49,7 @@ static void	draw_big_line(t_parsing *info, t_ray *ray, unsigned int color,
 	int	y;
 
 	x = ray->r;
-	y = ray->lineO;
+	y = ray->opposite_l;
 	draw_rectangle(x, y, color, info, replace);
 }
 
@@ -66,13 +62,15 @@ void	draw_3d_wall(t_ray *ray, t_parsing *info, int replace, int color_wall)
 	y = SIZE_Y / 2;
 	// x = 320;
 	// y = 160;
-	ray->ca = info->player.angle - ray->angle;
-	ray->ca = protect_angle_trigo_value(ray->ca);
-	ray->distT = (ray->distT) * cos(ray->ca);
-	ray->lineH = ((info->max_x * info->max_y) * x) / ray->distT;
-	if (ray->lineH > x)
-		ray->lineH = x;
-	ray->lineO = y - ray->lineH / 2;
+	ray->cos_angle = info->player.angle - ray->angle;
+	ray->cos_angle = protect_angle_trigo_value(ray->cos_angle);
+	ray->distT = (ray->distT) * cos(ray->cos_angle);
+	ray->height_l = (MINI_MAP_SIZE * x) / ray->distT;
+	if (ray->height_l > x)
+		ray->height_l = x; 
+	ray->opposite_l = y - ray->height_l / 2;
+	if(ray->opposite_l < 0)
+		ray->opposite_l = 0;
 	draw_big_line(info, ray, color_wall, replace);
 }
 /* jai compris quon avait une fenetre de 320 par 160 du coup

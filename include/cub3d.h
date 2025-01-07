@@ -82,7 +82,7 @@ int				display(t_parsing *info);
 
 // draw map n player
 void			draw_player(t_parsing *info, unsigned int color, int replace);
-void			draw_map(t_parsing *info);
+void			draw_mini_map(t_parsing *info);
 void			my_mlx_pixel_put(t_img img, int y, int x, unsigned int color);
 unsigned int	get_backup_color(t_img img, int x, int y);
 
@@ -114,7 +114,7 @@ bool			create_backup(t_mlx *mlx);
 // draw utils
 void			my_mlx_pixel_put(t_img img, int y, int x, unsigned int color);
 unsigned int	get_backup_color(t_img img, int x, int y);
-float			get_line_length_int(float px, float py, float rx, float ry);
+float			get_distance(float px, float py, float rx, float ry);
 float			protect_angle_trigo_value(float angle);
 
 // draw game

@@ -40,20 +40,20 @@ static void	draw_smallest_ray(t_ray *ray, t_parsing *info, int replace,
 	if (is_horizontal_line_hit_first(ray->last_ray, horizontal_len,
 			vertical_len))
 	{
-		draw_mini_line(info, GREEN, replace, horizontal_len);
+		// draw_mini_line(info, GREEN, replace, horizontal_len);
 		// le * 5 permet de seloigner du mur, sinon on est trop proche
 		// cest le rapport ed minimap size et la taille de la ou on est
 		// si tu mets *3 tes + proche du mur
 		// jsp comment decrire ca en propre mais ca marche woula
-		// ray->distT = horizontal_len * ray->make_distance;
-		ray->distT = horizontal_len * 3;
+		ray->distT = horizontal_len;
+		// ray->distT = horizontal_len ;
 		ray->last_ray = HORIZONTAL;
 	}
 	else
 	{
-		draw_mini_line(info, RED, replace, vertical_len);
-		// ray->distT = vertical_len * ray->make_distance;
-		ray->distT = vertical_len * 3;
+		// draw_mini_line(info, RED, replace, vertical_len);
+		ray->distT = vertical_len;
+		// ray->distT = vertical_len ;
 		ray->last_ray = VERTICAL;
 	}
 }

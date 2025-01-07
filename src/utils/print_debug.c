@@ -20,7 +20,7 @@ void	print_map(char **map)
 	printf("CHAR MAP :\n");
 	while (map[i])
 	{
-		printf("%s\n", map[i]);
+		printf("%s", map[i]);
 		i++;
 	}
 	printf("\n");
@@ -39,6 +39,7 @@ void	print_map_int(int *map, int max_x, int max_y)
 		while (j < max_x)
 		{
 			printf("%d", map[i * max_x + j]);
+			// printf(" char = %c", map[i * max_x + j]);
 			j++;
 		}
 		printf("\n");

@@ -42,8 +42,8 @@ bool	init_create_mlx(t_parsing *info)
 	if (!create_background(&info->mlx, info->textures.floor_color,
 			info->textures.ceiling_color))
 		return (false);
-	draw_map(info);
-	draw_line_on_map(info, info->mlx.background);
+	// draw_map(info);
+	// draw_line_on_map(info, info->mlx.background);
 	if (!create_backup(&info->mlx))
 		return (false);
 	info->mlx.win_ptr = mlx_new_window(info->mlx.mlx_ptr, SIZE_X, SIZE_Y,

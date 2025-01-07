@@ -37,7 +37,7 @@
 // la taille size X doit etre un multiple de FOV si on veut que ca couvre tout lecran
 // la taille size Y doit etre la moitié de size X
 # define SIZE_X 1024
-# define SIZE_Y (SIZE_X / 2)
+# define SIZE_Y 512
 
 # define PI 3.1415926535
 # define PI2 (PI / 2)
@@ -72,7 +72,7 @@
 // player
 # define MINI_PLAYER_SIZE 10
 # define RAPPORT_MINI_MAP_BIG_MAP 5
-# define MINI_MAP_SIZE 20 // size of each square
+# define MINI_MAP_SIZE 64 // size of each square
 # define MINI_MAP_LOC_X 0 // decalage en pixel position X et Y
 # define MINI_MAP_LOC_Y 0
 
@@ -100,6 +100,8 @@
 # define MLX_IMG_ERR "mlx_new_image() failed"
 # define CROSS_MSG "Cross has been clicked !\n"
 # define ESC_MSG "(ESC) key has been pressed ! bye\n"
+
+#define SCALE_FACTOR (float)(SIZE_X / (info->max_x * MINI_MAP_SIZE))
 
 typedef enum e_direction
 {
@@ -133,9 +135,9 @@ typedef struct s_ray
 	float			arc_tan;
 	float			tan;
 	int				r;
-	int				mx;
-	int				my;
-	int				mp;
+	int				map_x;
+	int				map_y;
+	int				map_pos;
 	int				dof;
 	float			rx;
 	float			ry;
@@ -145,11 +147,11 @@ typedef struct s_ray
 	float			player_posx;
 	float			player_posy;
 	float				distT;
-	float			lineH;
-	float			lineO;
-	float			ca;
+	float			height_l;
+	float			opposite_l;
+	float			cos_angle;
 	int				last_ray;
-	int				make_distance;
+	float				make_distance;
 }					t_ray;
 
 typedef struct s_wall
