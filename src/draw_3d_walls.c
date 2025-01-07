@@ -65,7 +65,7 @@ void	draw_3d_wall(t_ray *ray, t_parsing *info, int replace, int color_wall)
 	ray->cos_angle = info->player.angle - ray->angle;
 	ray->cos_angle = protect_angle_trigo_value(ray->cos_angle);
 	ray->distT = (ray->distT) * cos(ray->cos_angle);
-	ray->height_l = (MINI_MAP_SIZE * x) / ray->distT;
+	ray->height_l = (MINI_MAP_SIZE / ray->distT) * (x / tan(((PI / 180) * FOV) / 2));
 	if (ray->height_l > x)
 		ray->height_l = x; 
 	ray->opposite_l = y - ray->height_l / 2;
