@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/08 16:14:16 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/08 16:20:36 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ bool			is_valid_data(t_parsing *info, char *filename);
 void			init_texture(t_parsing *info, char *line, int ID,
 					int texture_len);
 bool			is_valid_file_and_rgb(t_parsing *info);
-bool	is_invalid_file_format(char *path, char *format);
-bool	is_file_readable(char *file_name);
-bool	is_valid_arguments(int argc, char **argv);
-int	is_start_with_id(char *line);
-int	len_of_texture(char *line);
-int	start_of_texture(char *line);
+bool			is_invalid_file_format(char *path, char *format);
+bool			is_file_readable(char *file_name);
+bool			is_valid_arguments(int argc, char **argv);
+int				is_start_with_id(char *line);
+int				len_of_texture(char *line);
+int				start_of_texture(char *line);
 
 // init_map_player_mlx
 bool			init_map(t_parsing *info, int fd);
@@ -50,10 +50,10 @@ void			draw_mini_map(t_parsing *info);
 // keysim_handling
 int				cross_exit(t_parsing *info);
 int				handle_key(int keysym, t_parsing *info);
-void	move_player_up(t_parsing *info);
-void	move_player_down(t_parsing *info);
-void	move_player_left(t_parsing *info);
-void	move_player_right(t_parsing *info);
+void			move_player_up(t_parsing *info);
+void			move_player_down(t_parsing *info);
+void			move_player_left(t_parsing *info);
+void			move_player_right(t_parsing *info);
 
 // display
 int				display(t_parsing *info);
