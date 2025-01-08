@@ -6,12 +6,11 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:14:22 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/08 15:58:50 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/08 16:18:15 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 static void	draw_rectangle(int x, int y, unsigned int color, t_parsing *info,
 		int replace)
@@ -25,7 +24,6 @@ static void	draw_rectangle(int x, int y, unsigned int color, t_parsing *info,
 	{
 		if (replace)
 			color = get_backup_color(info->mlx.backup, x, y + i);
-		// if (!is_on_minimap(x, y + i, info))
 		my_mlx_pixel_put(info->mlx.background, y + i, x, color);
 		i++;
 	}
@@ -63,4 +61,5 @@ void	draw_3d_wall(t_ray *ray, t_parsing *info, int replace, int color_wall)
 }
 
 /* jai compris quon avait une fenetre de 320 par 160 du coup
- pour le resultat 3d mais jarrive pas a changer les valeurs sans que ca segfault */
+ pour le resultat 3d mais jarrive pas a changer les valeurs
+ sans que ca segfault */

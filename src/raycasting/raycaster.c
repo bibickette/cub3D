@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/08 16:00:46 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/08 16:11:39 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	find_smallest_ray(t_ray *ray, float horizontal_len,
 	{
 		ray->distance = vertical_len;
 		ray->last_ray = VERTICAL;
-		if (ray->angle > PI2 && ray->angle < 3 * PI / 2)
+		if (ray->angle > ray->pi2 && ray->angle < ray->pi3)
 			*color_wall = DARK_RED;
 		else
 			*color_wall = DARK_BLUE;
@@ -67,7 +67,7 @@ void	raycaster(t_player *player, t_ray *ray, t_parsing *info, int replace)
 	float	vertical_len;
 	int		color_wall;
 
-	ray->angle = player->angle - (((PI / 180) * FOV) / 2);
+	ray->angle = player->angle - (ray->rad_value / 2);
 	ray->angle = protect_angle_trigo_value(ray->angle);
 	ray->r = 0;
 	while (ray->r < SIZE_X)
@@ -76,7 +76,7 @@ void	raycaster(t_player *player, t_ray *ray, t_parsing *info, int replace)
 		vertical_len = ray_vertical_plan_len(player, ray, info);
 		find_smallest_ray(ray, horizontal_len, vertical_len, &color_wall);
 		draw_3d_wall(ray, info, replace, color_wall);
-		ray->angle += ((PI / 180) * FOV) / SIZE_X;
+		ray->angle += ray->rad_value / SIZE_X;
 		ray->angle = protect_angle_trigo_value(ray->angle);
 		ray->r++;
 	}

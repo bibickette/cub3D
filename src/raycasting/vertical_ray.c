@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:06:55 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/08 15:03:57 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/08 16:15:38 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Les cas particuliers gèrent les rayons parfaitement verticaux en plaçant l'int
 static void	vtplan_find_intersection(t_ray *ray, t_parsing *info)
 {
 	ray->tan = -tan(ray->angle);
-	if (ray->angle > PI2 && ray->angle < PI3)
+	if (ray->angle > ray->pi2 && ray->angle < ray->pi3)
 	{
 		ray->rx = (((int)ray->player_posx / MINI_MAP_SIZE) * MINI_MAP_SIZE)
 			- 0.0001;
@@ -32,7 +32,7 @@ static void	vtplan_find_intersection(t_ray *ray, t_parsing *info)
 		ray->xo = -MINI_MAP_SIZE;
 		ray->yo = -ray->xo * ray->tan;
 	}
-	if (ray->angle < PI2 || ray->angle > PI3)
+	if (ray->angle < ray->pi2 || ray->angle > ray->pi3)
 	{
 		ray->rx = (((int)ray->player_posx / MINI_MAP_SIZE) * MINI_MAP_SIZE)
 			+ MINI_MAP_SIZE;
@@ -40,7 +40,7 @@ static void	vtplan_find_intersection(t_ray *ray, t_parsing *info)
 		ray->xo = MINI_MAP_SIZE;
 		ray->yo = -ray->xo * ray->tan;
 	}
-	if (ray->angle == PI3 || ray->angle == PI2)
+	if (ray->angle == ray->pi3 || ray->angle == ray->pi2)
 	{
 		ray->rx = ray->player_posx;
 		ray->ry = ray->player_posy;
@@ -73,7 +73,8 @@ float	ray_vertical_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 		if (ray->map_pos < 0)
 			ray->map_pos = 0;
 		// ca equivaut a un break ray->dof = info->max_y; // 8 cest le max y
-		if (ray->map_pos < info->max_x * info->max_y && info->int_map[ray->map_pos] == 1)
+		if (ray->map_pos < info->max_x * info->max_y
+			&& info->int_map[ray->map_pos] == 1)
 			break ;
 		else
 		{
@@ -82,6 +83,5 @@ float	ray_vertical_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 			ray->dist_to_wall++;
 		}
 	}
-	return (get_distance(ray->player_posx, ray->player_posy, ray->rx,
-			ray->ry));
+	return (get_distance(ray->player_posx, ray->player_posy, ray->rx, ray->ry));
 }

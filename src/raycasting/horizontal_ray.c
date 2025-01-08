@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:00:57 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/08 15:03:57 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/08 16:20:11 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ Calcule la première intersection du rayon avec les lignes horizontales de la gr
 En fonction de l'angle du rayon,
  cette fonction détermine :
  le point d'intersection initial (`ray->rx`,`ray->ry`)
- et les incréments de pas (`ray->xo`, `ray->yo`) pour avancer vers la prochaine ligne de la grille.
+ et les incréments de pas (`ray->xo`,
+	`ray->yo`) pour avancer vers la prochaine ligne de la grille.
 Les cas particuliers gèrent les rayons parfaitement horizontaux en plaçant l'intersection à la position du joueur.
  */
 static void	hzplan_find_intersection(t_ray *ray, t_parsing *info)
@@ -52,7 +53,8 @@ static void	hzplan_find_intersection(t_ray *ray, t_parsing *info)
 /*
 Calcule la distance entre le joueur et la première intersection horizontale avec un mur.
 Cette fonction  appelle `hzplan_find_intersection` pour trouver la première intersection horizontale.
-Ensuite, elle parcourt la grille ligne par ligne,en avançant jusqu'à rencontrer un mur ou atteindre la limite maximale de recherche (dof).
+Ensuite,
+	elle parcourt la grille ligne par ligne,en avançant jusqu'à rencontrer un mur ou atteindre la limite maximale de recherche (dof).
 La distance à l'intersection est finalement calculée et retournée.
 */
 float	ray_horizon_plan_len(t_player *player, t_ray *ray, t_parsing *info)
@@ -66,10 +68,10 @@ float	ray_horizon_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 		ray->map_x = (int)(ray->rx) / MINI_MAP_SIZE;
 		ray->map_y = (int)(ray->ry) / MINI_MAP_SIZE;
 		ray->map_pos = ray->map_y * info->max_x + ray->map_x;
-		if (ray->map_pos < 0) // protection anti chercher une valeur negative
+		if (ray->map_pos < 0)
 			ray->map_pos = 0;
-		// si jai un mur jarrete de chercher
-		if (ray->map_pos < info->max_x * info->max_y && info->int_map[ray->map_pos] == 1)
+		if (ray->map_pos < info->max_x * info->max_y
+			&& info->int_map[ray->map_pos] == 1)
 			break ;
 		else
 		{
@@ -78,6 +80,5 @@ float	ray_horizon_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 			ray->dist_to_wall++;
 		}
 	}
-	return (get_distance(ray->player_posx, ray->player_posy, ray->rx,
-			ray->ry));
+	return (get_distance(ray->player_posx, ray->player_posy, ray->rx, ray->ry));
 }

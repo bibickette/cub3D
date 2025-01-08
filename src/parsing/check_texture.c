@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 09:35:35 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/28 16:32:50 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/08 16:15:10 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static bool	is_valid_rgb_value(int rgb[3])
 	return (true);
 }
 
-static unsigned int rgb_to_uint(int rgb[3])
+static unsigned int	rgb_to_uint(int rgb[3])
 {
 	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 }

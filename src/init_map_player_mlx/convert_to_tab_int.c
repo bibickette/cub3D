@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 12:09:27 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/24 13:50:08 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/08 16:14:33 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	*init_int_tab(int *tab, char **map, int max_x, int max_y)
 	int	y;
 	int	x;
 	int	i;
-	int flag;
+	int	flag;
 
 	y = 0;
 	i = 0;
@@ -40,7 +40,7 @@ static int	*init_int_tab(int *tab, char **map, int max_x, int max_y)
 		flag = 0;
 		while (x < max_x)
 		{
-			if(map[y][x] && map[y][x] == '\n')
+			if (map[y][x] && map[y][x] == '\n')
 				flag = 1;
 			if (!map[y][x] || flag)
 				tab[i] = 2;

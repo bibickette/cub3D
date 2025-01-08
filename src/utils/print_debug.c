@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_debug.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 19:52:00 by fanfan            #+#    #+#             */
-/*   Updated: 2024/12/20 12:04:25 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/08 16:19:35 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	print_map_int(int *map, int max_x, int max_y)
 		while (j < max_x)
 		{
 			printf("%d", map[i * max_x + j]);
-			// printf(" char = %c", map[i * max_x + j]);
 			j++;
 		}
 		printf("\n");

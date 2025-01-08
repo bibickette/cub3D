@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:05:45 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/08 15:16:53 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/08 16:17:21 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@ void	draw_mini_map(t_parsing *info)
 	while (info->map[++y])
 	{
 		x = -1;
-		// -1 car on ne veut pas dessiner une colonne vide
 		while (++x < info->max_x)
 		{
-			// dessine en fonction de la taille du carré
 			len_max_x = ft_strlen(info->map[y]);
 			if (x < len_max_x && info->map[y][x] == '1')
 			{
@@ -70,12 +68,6 @@ void	draw_player_on_minimap(t_parsing *info, unsigned int color, int replace)
 		x = -1;
 		while (++x < MINI_PLAYER_SIZE)
 		{
-			// protection anti hors de lecran,
-			// utile seuleemt si on sort de la minimap
-			// if (y + info->player.pos_y < 0 || y + info->player.pos_y >= SIZE_Y
-			// 	|| x + info->player.pos_x < 0 || x
-			// 	+ info->player.pos_x >= SIZE_X)
-			// 	break ;
 			if (replace)
 			{
 				color = get_backup_color(info->mlx.backup, x

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_utils.c                                       :+:      :+:    :+:   */
+/*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 18:55:18 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/08 15:05:24 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/08 16:18:58 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	my_mlx_pixel_put(t_img img, int y, int x, unsigned int color)
 
 unsigned int	get_backup_color(t_img img, int x, int y)
 {
-	return (*(unsigned int *)(img.addr + y * img.line_len + x * (img.bpp/ 8)));
+	return (*(unsigned int *)(img.addr + y * img.line_len + x * (img.bpp / 8)));
 }
 
 // total des hypothenus de chaque ligne
@@ -35,7 +35,8 @@ float	get_distance(float px, float py, float rx, float ry)
 }
 
 /*
- Assure que l'angle de ray reste toujours dans les valeurs trigonometric dun cercle ( entre 0 et 2PI )
+ Assure que l'angle de ray reste toujours 
+ dans les valeurs trigonometric dun cercle ( entre 0 et 2PI )
 */
 float	protect_angle_trigo_value(float angle)
 {

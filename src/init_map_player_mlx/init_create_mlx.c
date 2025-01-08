@@ -6,13 +6,14 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:29:01 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/08 14:29:47 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/08 16:14:30 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static bool	create_background(t_mlx *mlx, unsigned int floor_color, unsigned int ceiling_color)
+static bool	create_background(t_mlx *mlx, unsigned int floor_color,
+		unsigned int ceiling_color)
 {
 	int	x;
 	int	y;
@@ -80,4 +81,3 @@ bool	init_create_mlx(t_parsing *info)
 		return (print_error(MLX_NEW_WIN_ERR, NULL), false);
 	return (true);
 }
-

@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/08 15:58:22 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/08 16:14:16 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ void			draw_mini_map(t_parsing *info);
 // keysim_handling
 int				cross_exit(t_parsing *info);
 int				handle_key(int keysym, t_parsing *info);
+void	move_player_up(t_parsing *info);
+void	move_player_down(t_parsing *info);
+void	move_player_left(t_parsing *info);
+void	move_player_right(t_parsing *info);
 
 // display
 int				display(t_parsing *info);

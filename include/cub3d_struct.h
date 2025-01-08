@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/08 15:03:57 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/08 16:13:19 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,7 @@
 # define SIZE_Y 512
 
 # define PI 3.1415926535
-# define PI2 (PI / 2)
-# define PI3 (3 * PI / 2)
-
-# define DR 0.0174533 // 1 degre en radiant
 # define FOV 60.00000
-// je mets des parentheses sinon ca fausse le calcule plus tard
-# define NB_RAYS (FOV * 2)
-# define DR_PRECISION (DR / 2)
 
 // draw map handling
 # define NO_REPLACE 0
@@ -129,24 +122,27 @@ last_ray indique si le dernier rayon a dabord frappe un mur horizontaement ou ve
 
 typedef struct s_ray
 {
+	double			angle;
+	double			rad_value;
+	double			pi2;
+	double			pi3;
 	float			arc_tan;
 	float			tan;
-	int				r;
-	int				map_x;
-	int				map_y;
-	int				map_pos;
-	int				dist_to_wall;
 	float			rx;
 	float			ry;
 	float			xo;
 	float			yo;
-	double			angle;
 	float			player_posx;
 	float			player_posy;
 	float			distance;
 	float			height_l;
 	float			offset_l;
 	float			cos_angle;
+	int				dist_to_wall;
+	int				r;
+	int				map_x;
+	int				map_y;
+	int				map_pos;
 	int				last_ray;
 }					t_ray;
 
@@ -170,16 +166,15 @@ typedef struct s_texture
 // player[x][y] orientation
 typedef struct s_player
 {
-	int				x;
-	int				y;
-
-	int				last_pos_x;
-	int				last_pos_y;
 	float			pos_x;
 	float			pos_y;
 	float			d_x;
 	float			d_y;
 	float			angle;
+	int				x;
+	int				y;
+	int				last_pos_x;
+	int				last_pos_y;
 }					t_player;
 typedef struct s_image
 {

@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:13:44 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/08 14:37:46 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/08 16:15:20 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	load_identifier(t_parsing *info, char *line, int identifier)
 	texture_len = len_of_texture(&line[index]);
 	init_texture(info, &line[index], identifier, texture_len);
 }
-
 
 static bool	init_texture_and_color(t_parsing *info, int fd)
 {
