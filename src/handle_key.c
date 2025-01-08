@@ -48,14 +48,48 @@ static void	move_player_down(t_parsing *info)
 	info->player.pos_y -= info->player.d_y;
 }
 
+static void move_player_left(t_parsing *info)
+{
+	info->player.pos_y += -cos(info->player.angle) * 5;
+	info->player.pos_x += sin(info->player.angle) * 5;
+}
+
+static void move_player_right(t_parsing *info)
+{
+	info->player.pos_y += cos(info->player.angle) * 5;
+	info->player.pos_x += -sin(info->player.angle) * 5;
+}
+
+static void replace_background(t_parsing *info)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < SIZE_Y / 2)
+	{
+		x = -1;
+		while (++x < SIZE_X)
+			my_mlx_pixel_put(info->mlx.background, y, x, info->textures.ceiling_color);
+	}
+	while (++y < SIZE_Y)
+	{
+		x = -1;
+		while (++x < SIZE_X)
+			my_mlx_pixel_put(info->mlx.background, y, x, info->textures.floor_color);
+	}
+}
 int	handle_key(int keysym, t_parsing *info)
 {
+
+
 	if (keysym == XK_Escape)
 		escape_exit(info);
 	info->player.last_pos_x = info->player.pos_x;
 	info->player.last_pos_y = info->player.pos_y;
 	// draw_player(info, GREY, REPLACE_BCKGRND);
-	draw_rays(&info->player, &info->ray, info, REPLACE_BCKGRND);
+	// draw_rays(&info->player, &info->ray, info, REPLACE_BCKGRND);
+	replace_background(info);
 	if (keysym == XK_z || keysym == XK_Up || keysym == XK_w)
 	{
 		move_player_up(info);
@@ -64,13 +98,22 @@ int	handle_key(int keysym, t_parsing *info)
 	{
 		move_player_down(info);
 	}
-	else if (keysym == XK_q || keysym == XK_Left || keysym == XK_a)
+	else if (keysym == XK_Left)
 	{
 		rotate_player_left(info);
 	}
-	else if (keysym == XK_d || keysym == XK_Right)
+	else if (keysym == XK_Right)
 	{
 		rotate_player_right(info);
 	}
+	else if (keysym == XK_q || keysym == XK_a)
+	{
+		move_player_left(info);
+	}
+	else if (keysym == XK_d)
+	{
+		move_player_right(info);
+	}
+	display(info);
 	return (0);
 }

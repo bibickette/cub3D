@@ -37,9 +37,10 @@ int	main(int argc, char **argv)
 	print_map(info.map);
 	print_map_int(info.int_map, info.max_x, info.max_y);
 	print_player_info(info.player);
+	display(&info);
 	mlx_hook(info.mlx.win_ptr, KeyPress, KeyPressMask, &handle_key, &info);
 	mlx_hook(info.mlx.win_ptr, DestroyNotify, 0, &cross_exit, &info);
-	mlx_loop_hook(info.mlx.mlx_ptr, &display, &info);
+	// mlx_loop_hook(info.mlx.mlx_ptr, &display, &info);
 	mlx_loop(info.mlx.mlx_ptr);
 	return (0);
 }

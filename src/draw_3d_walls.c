@@ -33,8 +33,8 @@ static void	draw_rectangle(int x, int y, unsigned int color, t_parsing *info,
 
 			// if (y + i < 0 || y + i >= SIZE_Y || x < 0 || x >= SIZE_X)
 			// 	break;
-			if (replace)
-				color = get_backup_color(info->mlx.backup, x, y + i);
+			// if (replace)
+			// 	color = get_backup_color(info->mlx.backup, x, y + i);
 			// if (!is_on_minimap(x + j, y + i, info))	
 			my_mlx_pixel_put(info->mlx.background, y + i, x, color);
 
