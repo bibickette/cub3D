@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_file.c                                       :+:      :+:    :+:   */
+/*   is_valid_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:13:44 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/20 12:01:37 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:37:46 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,9 @@ static void	load_identifier(t_parsing *info, char *line, int identifier)
 
 	index = start_of_texture(line);
 	texture_len = len_of_texture(&line[index]);
-	init_data(info, &line[index], identifier, texture_len);
+	init_texture(info, &line[index], identifier, texture_len);
 }
 
-static bool	init_map(t_parsing *info, int fd)
-{
-	if (!get_map(info, fd))
-		return (false);
-	if (!info->map)
-		return (false);
-	if (!is_valid_map(info))
-		return (false);
-	info->int_map = convert_to_int_tab(info, info->map);
-	if (!info->int_map)
-		return (false);
-	return (true);
-}
 
 static bool	init_texture_and_color(t_parsing *info, int fd)
 {

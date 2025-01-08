@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   background.c                                       :+:      :+:    :+:   */
+/*   init_create_mlx.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/13 12:43:26 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/28 14:40:11 by fsalomon         ###   ########.fr       */
+/*   Created: 2025/01/08 14:29:01 by phwang            #+#    #+#             */
+/*   Updated: 2025/01/08 14:29:47 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	create_background(t_mlx *mlx, unsigned int floor_color, unsigned int ceiling_color)
+static bool	create_background(t_mlx *mlx, unsigned int floor_color, unsigned int ceiling_color)
 {
 	int	x;
 	int	y;
@@ -39,7 +39,7 @@ bool	create_background(t_mlx *mlx, unsigned int floor_color, unsigned int ceilin
 	return (true);
 }
 
-bool	create_backup(t_mlx *mlx)
+static bool	create_backup(t_mlx *mlx)
 {
 	int				y;
 	int				x;
@@ -63,3 +63,21 @@ bool	create_backup(t_mlx *mlx)
 	}
 	return (true);
 }
+
+bool	init_create_mlx(t_parsing *info)
+{
+	info->mlx.mlx_ptr = mlx_init();
+	if (!info->mlx.mlx_ptr)
+		return (print_error(MLX_INIT_ERR, NULL), false);
+	if (!create_background(&info->mlx, info->textures.floor_color,
+			info->textures.ceiling_color))
+		return (false);
+	if (!create_backup(&info->mlx))
+		return (false);
+	info->mlx.win_ptr = mlx_new_window(info->mlx.mlx_ptr, SIZE_X, SIZE_Y,
+			TITLE);
+	if (!info->mlx.win_ptr)
+		return (print_error(MLX_NEW_WIN_ERR, NULL), false);
+	return (true);
+}
+

@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
+/*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/07 19:23:14 by fanfan            #+#    #+#             */
-/*   Updated: 2024/12/18 15:30:32 by fsalomon         ###   ########.fr       */
+/*   Created: 2025/01/08 14:31:45 by phwang            #+#    #+#             */
+/*   Updated: 2025/01/08 14:35:12 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// ces fonctions recupere la map dan sun tableau et
-// s'arrete lorsquelle croise un eligne vide si elle a commence a lire de la map
-// permet d'eviter les lignes vides dans la map
-// car on considere que la map sarrete des quon trouve une ligne full vide
-// et on ne prend pas en compte les lignes vides avant la map
-// le realloc etaot hyper galere mais ca a lair de marcher :*
-
-// fonction char_add_back_tab fait le meme taf si ca marche pas bien
-// mais tas lair de 100fois lavoir mieux codé que moi, gg de fouuuu
-
-// je change le return de get_map car pour moi tout doit sarreter si ca foire
-
-char	**add_line_to_tab(char **map, char *line, int i)
+static char	**add_line_to_tab(char **map, char *line, int i)
 {
 	map = ft_realloc_map(map, sizeof(char *) * (i + 1), sizeof(char *) * i);
 	if (!map)
@@ -53,7 +41,6 @@ static bool	convert_n_add(char ***map, char *line, int *i)
 {
 	if (!convert_tab_in_space(&line))
 		return (free_tab(*map), false);
-	// replace_enter_by_space(&line);
 	*map = add_line_to_tab(*map, line, *i);
 	if (!*map)
 		return (false);
@@ -61,8 +48,7 @@ static bool	convert_n_add(char ***map, char *line, int *i)
 	return (true);
 }
 
-// ne respecte pas le single jsp quoi xD LOL
-bool	get_map(t_parsing *info, int fd)
+static bool	get_map(t_parsing *info, int fd)
 {
 	char	*line;
 	char	**map;
@@ -87,5 +73,19 @@ bool	get_map(t_parsing *info, int fd)
 		line = get_next_line(fd, 0);
 	}
 	info->map = map;
+	return (true);
+}
+
+bool	init_map(t_parsing *info, int fd)
+{
+	if (!get_map(info, fd))
+		return (false);
+	if (!info->map)
+		return (false);
+	if (!is_valid_map(info))
+		return (false);
+	info->int_map = convert_to_int_tab(info, info->map);
+	if (!info->int_map)
+		return (false);
 	return (true);
 }

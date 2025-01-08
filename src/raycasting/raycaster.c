@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_ray.c                                         :+:      :+:    :+:   */
+/*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/31 14:48:52 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:04:46 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,18 @@ static bool	is_horizontal_line_hit_first(int last_ray, float horizontal_len,
 
 /* verifie quel est le rayon qui a frappé en premier le mur et le dessine */
 
-static void	draw_smallest_ray(t_ray *ray, t_parsing *info, int replace,
+static void	find_smallest_ray(t_ray *ray, t_parsing *info, int replace,
 		float horizontal_len, float vertical_len)
 {
-	// la distance sera en rapport avec qui est le + grand
 	if (is_horizontal_line_hit_first(ray->last_ray, horizontal_len,
 			vertical_len))
 	{
-		// draw_mini_line(info, GREEN, replace, horizontal_len);
-		// le * 5 permet de seloigner du mur, sinon on est trop proche
-		// cest le rapport ed minimap size et la taille de la ou on est
-		// si tu mets *3 tes + proche du mur
-		// jsp comment decrire ca en propre mais ca marche woula
-		ray->distT = horizontal_len;
-		// ray->distT = horizontal_len ;
+		ray->distance = horizontal_len;
 		ray->last_ray = HORIZONTAL;
 	}
 	else
 	{
-		// draw_mini_line(info, RED, replace, vertical_len);
-		ray->distT = vertical_len;
-		// ray->distT = vertical_len ;
+		ray->distance = vertical_len;
 		ray->last_ray = VERTICAL;
 	}
 }
@@ -62,7 +53,7 @@ static void	draw_smallest_ray(t_ray *ray, t_parsing *info, int replace,
 Trace des rayons en fonction de la position du joueur et de son angle de vue
 Dessine ensuite des murs en perspective 3d grace a longueur des rayons.
 */
-void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
+void	raycaster(t_player *player, t_ray *ray, t_parsing *info, int replace)
 {
 	float	horizontal_len;
 	float	vertical_len;
@@ -77,7 +68,7 @@ void	draw_rays(t_player *player, t_ray *ray, t_parsing *info, int replace)
 	{
 		horizontal_len = ray_horizon_plan_len(player, ray, info);
 		vertical_len = ray_vertical_plan_len(player, ray, info);
-		draw_smallest_ray(ray, info, replace, horizontal_len, vertical_len);
+		find_smallest_ray(ray, info, replace, horizontal_len, vertical_len);
 		if (ray->last_ray == HORIZONTAL)
 		{
 			if (ray->angle > PI && ray->angle < 2 * PI)

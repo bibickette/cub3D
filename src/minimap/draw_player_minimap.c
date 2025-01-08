@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_player_map.c                                  :+:      :+:    :+:   */
+/*   draw_player_minimap.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:05:45 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/28 16:58:12 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:16:53 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_mini_map_square(t_img img, int x, int y, unsigned int color)
+static void	draw_mini_map_square(t_img img, int x, int y, unsigned int color)
 {
 	int	i;
 	int	j;
@@ -26,7 +26,7 @@ void	draw_mini_map_square(t_img img, int x, int y, unsigned int color)
 	}
 }
 
-void	draw_map(t_parsing *info)
+void	draw_mini_map(t_parsing *info)
 {
 	int	x;
 	int	y;
@@ -59,7 +59,7 @@ void	draw_map(t_parsing *info)
 	}
 }
 
-void	draw_player(t_parsing *info, unsigned int color, int replace)
+void	draw_player_on_minimap(t_parsing *info, unsigned int color, int replace)
 {
 	int	x;
 	int	y;

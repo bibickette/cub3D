@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:07:29 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/28 17:44:46 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:32:08 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,6 @@ static void	set_max_map(t_parsing *info)
 		}
 	}
 	info->max_y = y;
-
-// info->ray.make_distance = (float)(( 20.000 * 8.000) / 1024) * 8;
-// printf("distance = %f\n", info->ray.make_distance);
-	// if(info->max_x > info->max_y)
-	// 	info->ray.make_distance = info->max_x;
-	// else
-	// 	info->ray.make_distance = info->max_y;
-	printf("x = %d\n", info->max_x);
-	printf("y = %d\n", info->max_y);
-	// info->ray.make_distance = info->ray.make_distance / 4;
 }
 
 bool	is_valid_map(t_parsing *info)

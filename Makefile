@@ -26,44 +26,66 @@ LIBFT = LIBFT/libft.a
 SRC_DIR = src
 OBJ_DIR = obj
 
+INIT_MAP_PLAYER_DIR = $(SRC_DIR)/init_map_player_mlx
+INIT_MAP_PLAYER_FILES = \
+		convert_to_tab_int.c \
+		init_create_mlx.c \
+		init_map.c \
+		init_player.c \
+		is_valid_map.c \
+		is_valid_map_utils.c
+INIT_MAP_PLAYER = $(addprefix $(INIT_MAP_PLAYER_DIR)/, $(INIT_MAP_PLAYER_FILES))
+
+KEYSIM_DIR = $(SRC_DIR)/keysim_handling
+KEYSIM_FILES = \
+		cross_exit.c \
+		handle_key_utils.c \
+		handle_key.c
+KEYSIM = $(addprefix $(KEYSIM_DIR)/, $(KEYSIM_FILES))
+
+MINIMAP_DIR = $(SRC_DIR)/minimap
+MINIMAP_FILES = \
+		draw_line_minimap.c \
+		draw_player_minimap.c
+MINIMAP = $(addprefix $(MINIMAP_DIR)/, $(MINIMAP_FILES))
+
 PARSING_DIR = $(SRC_DIR)/parsing
 PARSING_FILES = \
-		check_arg.c \
 		check_texture.c \
-		get_map.c \
+		init_arg_data.c \
 		init_texture.c \
-		parse_file.c \
-		is_valid_map.c \
-		is_valid_map_utils.c \
-		initialization.c \
-		init_player.c
+		is_valid_arg.c \
+		is_valid_data.c
 PARSING = $(addprefix $(PARSING_DIR)/, $(PARSING_FILES))				
+
+RAYCASTER_DIR = $(SRC_DIR)/raycasting
+RAYCASTER_FILES = \
+		draw_3d_walls.c \
+		horizontal_ray.c \
+		vertical_ray.c \
+		raycaster.c \
+		raycasting_utils.c
+RAYCASTER = $(addprefix $(RAYCASTER_DIR)/, $(RAYCASTER_FILES))
 
 UTILS_DIR = $(SRC_DIR)/utils
 UTILS_FILES = \
 		apocalypse.c \
-		error.c \
+		print_error.c \
 		print_debug.c \
 		utils.c \
-		convert_tab_in_space.c \
-		convert_to_tab_int.c 
+		convert_tab_in_space.c 
 UTILS = $(addprefix $(UTILS_DIR)/, $(UTILS_FILES))	
 
 SRC = \
+		$(INIT_MAP_PLAYER) \
+		$(KEYSIM) \
+		$(MINIMAP) \
 		$(PARSING) \
+		$(RAYCASTER) \
 		$(UTILS) \
 		$(SRC_DIR)/main.c \
-		$(SRC_DIR)/draw_player_map.c \
-		$(SRC_DIR)/draw_line.c \
-		$(SRC_DIR)/background.c \
-		$(SRC_DIR)/handle_key.c \
-		$(SRC_DIR)/fonction_for_mlx.c \
-		$(SRC_DIR)/draw_utils.c \
-		$(SRC_DIR)/draw_ray.c \
-		$(SRC_DIR)/draw_3d_walls.c \
-		$(SRC_DIR)/horizontal_ray.c \
-		$(SRC_DIR)/vertical_ray.c \
-		$(SRC_DIR)/draw_game.c
+		$(SRC_DIR)/display.c \
+		$(SRC_DIR)/might_be_useless.c
 			
 
 OBJ	= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

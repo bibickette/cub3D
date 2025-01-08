@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/31 15:20:35 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:03:57 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,6 @@
 # define CROSS_MSG "Cross has been clicked !\n"
 # define ESC_MSG "(ESC) key has been pressed ! bye\n"
 
-#define SCALE_FACTOR (float)(SIZE_X / (info->max_x * MINI_MAP_SIZE))
-
 typedef enum e_direction
 {
 	NORTH = 1,
@@ -137,7 +135,7 @@ typedef struct s_ray
 	int				map_x;
 	int				map_y;
 	int				map_pos;
-	int				dof;
+	int				dist_to_wall;
 	float			rx;
 	float			ry;
 	float			xo;
@@ -145,12 +143,11 @@ typedef struct s_ray
 	double			angle;
 	float			player_posx;
 	float			player_posy;
-	float				distT;
+	float			distance;
 	float			height_l;
-	float			opposite_l;
+	float			offset_l;
 	float			cos_angle;
 	int				last_ray;
-	float				make_distance;
 }					t_ray;
 
 typedef struct s_wall
@@ -182,8 +179,7 @@ typedef struct s_player
 	float			pos_y;
 	float			d_x;
 	float			d_y;
-	float angle; // il est set lors de linit du player
-
+	float			angle;
 }					t_player;
 typedef struct s_image
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:23:45 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/28 17:02:14 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/08 14:29:14 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,5 @@ bool	initialization_all(t_parsing *info, int argc, char **argv)
 		return (false);
 	if (!is_valid_data(info, argv[1]))
 		return (destroy_info(info), false);
-	return (true);
-}
-
-bool	init_create_mlx(t_parsing *info)
-{
-	info->mlx.mlx_ptr = mlx_init();
-	if (!info->mlx.mlx_ptr)
-		return (print_error(MLX_INIT_ERR, NULL), false);
-	if (!create_background(&info->mlx, info->textures.floor_color,
-			info->textures.ceiling_color))
-		return (false);
-	// draw_map(info);
-	// draw_line_on_map(info, info->mlx.background);
-	if (!create_backup(&info->mlx))
-		return (false);
-	info->mlx.win_ptr = mlx_new_window(info->mlx.mlx_ptr, SIZE_X, SIZE_Y,
-			TITLE);
-	if (!info->mlx.win_ptr)
-		return (print_error(MLX_NEW_WIN_ERR, NULL), false);
 	return (true);
 }

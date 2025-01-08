@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 09:33:40 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/28 16:32:56 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:11:58 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	parse_rgb(char *line, int rgb[3])
 	}
 }
 
-void	init_floor_ceiling(t_parsing *info, char *line, int ID)
+static void	init_floor_ceiling(t_parsing *info, char *line, int ID)
 {
 	if (ID == FLOOR)
 	{
@@ -83,7 +83,7 @@ void	init_floor_ceiling(t_parsing *info, char *line, int ID)
 	}
 }
 
-void	init_data(t_parsing *info, char *line, int ID, int texture_len)
+void	init_texture(t_parsing *info, char *line, int ID, int texture_len)
 {
 	if (ID == NORTH)
 	{

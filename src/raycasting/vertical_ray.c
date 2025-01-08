@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vertical_ray.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:06:55 by fsalomon          #+#    #+#             */
-/*   Updated: 2024/12/31 13:47:13 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:03:57 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	vtplan_find_intersection(t_ray *ray, t_parsing *info)
 	{
 		ray->rx = ray->player_posx;
 		ray->ry = ray->player_posy;
-		ray->dof = info->max_y;
+		ray->dist_to_wall = info->max_y;
 	}
 }
 
@@ -63,9 +63,9 @@ float	ray_vertical_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 {
 	ray->player_posx = player->pos_x + MINI_PLAYER_SIZE / 2;
 	ray->player_posy = player->pos_y + MINI_PLAYER_SIZE / 2;
-	ray->dof = 0;
+	ray->dist_to_wall = 0;
 	vtplan_find_intersection(ray, info);
-	while (ray->dof < info->max_y)
+	while (ray->dist_to_wall < info->max_y)
 	{
 		ray->map_x = (int)(ray->rx) / MINI_MAP_SIZE;
 		ray->map_y = (int)(ray->ry) / MINI_MAP_SIZE;
@@ -79,7 +79,7 @@ float	ray_vertical_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 		{
 			ray->rx += ray->xo;
 			ray->ry += ray->yo;
-			ray->dof++;
+			ray->dist_to_wall++;
 		}
 	}
 	return (get_distance(ray->player_posx, ray->player_posy, ray->rx,
