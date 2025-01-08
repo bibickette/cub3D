@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/08 15:30:35 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/08 15:58:22 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ bool			is_valid_file_and_rgb(t_parsing *info);
 bool	is_invalid_file_format(char *path, char *format);
 bool	is_file_readable(char *file_name);
 bool	is_valid_arguments(int argc, char **argv);
+int	is_start_with_id(char *line);
+int	len_of_texture(char *line);
+int	start_of_texture(char *line);
 
 // init_map_player_mlx
 bool			init_map(t_parsing *info, int fd);

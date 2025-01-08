@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/08 15:04:46 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/08 16:00:46 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,27 @@ static bool	is_horizontal_line_hit_first(int last_ray, float horizontal_len,
 
 /* verifie quel est le rayon qui a frappé en premier le mur et le dessine */
 
-static void	find_smallest_ray(t_ray *ray, t_parsing *info, int replace,
-		float horizontal_len, float vertical_len)
+static void	find_smallest_ray(t_ray *ray, float horizontal_len,
+		float vertical_len, int *color_wall)
 {
 	if (is_horizontal_line_hit_first(ray->last_ray, horizontal_len,
 			vertical_len))
 	{
 		ray->distance = horizontal_len;
 		ray->last_ray = HORIZONTAL;
+		if (ray->angle > PI && ray->angle < 2 * PI)
+			*color_wall = BLUE;
+		else
+			*color_wall = RED;
 	}
 	else
 	{
 		ray->distance = vertical_len;
 		ray->last_ray = VERTICAL;
+		if (ray->angle > PI2 && ray->angle < 3 * PI / 2)
+			*color_wall = DARK_RED;
+		else
+			*color_wall = DARK_BLUE;
 	}
 }
 
@@ -62,29 +70,11 @@ void	raycaster(t_player *player, t_ray *ray, t_parsing *info, int replace)
 	ray->angle = player->angle - (((PI / 180) * FOV) / 2);
 	ray->angle = protect_angle_trigo_value(ray->angle);
 	ray->r = 0;
-	// en gros la cest le nombre de rayon, donc + de precision = + de rayon
-	// + de precision = DR est plus petit donc + de rayon
 	while (ray->r < SIZE_X)
 	{
 		horizontal_len = ray_horizon_plan_len(player, ray, info);
 		vertical_len = ray_vertical_plan_len(player, ray, info);
-		find_smallest_ray(ray, info, replace, horizontal_len, vertical_len);
-		if (ray->last_ray == HORIZONTAL)
-		{
-			if (ray->angle > PI && ray->angle < 2 * PI)
-				color_wall = BLUE;
-			else
-				color_wall = RED;
-		}
-		else
-		{
-			if (ray->angle > PI2 && ray->angle < 3 * PI / 2)
-				color_wall = DARK_RED;
-			else
-				color_wall = DARK_BLUE;
-		}
-		// en gros on calcule sur la minimap then a la fin on va convertir les valeurs
-		// en + grand pour avoir une 3d map de taille normale
+		find_smallest_ray(ray, horizontal_len, vertical_len, &color_wall);
 		draw_3d_wall(ray, info, replace, color_wall);
 		ray->angle += ((PI / 180) * FOV) / SIZE_X;
 		ray->angle = protect_angle_trigo_value(ray->angle);

@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:31:45 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/08 14:35:12 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/08 15:57:50 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,6 @@ static char	**add_line_to_tab(char **map, char *line, int i)
 	}
 	map[i + 1] = NULL;
 	return (map);
-}
-
-static void	replace_enter_by_space(char **line)
-{
-	int	i;
-
-	i = ft_strlen(*line) - 1;
-	if ((*line)[i] == '\n')
-		(*line)[i] = ' ';
 }
 
 static bool	convert_n_add(char ***map, char *line, int *i)
