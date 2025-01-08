@@ -73,5 +73,6 @@ void	draw_3d_wall(t_ray *ray, t_parsing *info, int replace, int color_wall)
 		ray->opposite_l = 0;
 	draw_big_line(info, ray, color_wall, replace);
 }
+
 /* jai compris quon avait une fenetre de 320 par 160 du coup
  pour le resultat 3d mais jarrive pas a changer les valeurs sans que ca segfault */
