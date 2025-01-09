@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/09 15:26:50 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:40:15 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ typedef struct s_image
 {
 	void			*mlx_img;
 	char			*addr;
+	int				*int_addr;
 	int				bpp;
 	int				line_len;
 	int				endian;

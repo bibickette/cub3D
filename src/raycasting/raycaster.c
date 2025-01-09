@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/09 15:22:51 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/09 16:09:07 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static bool	is_horizontal_line_hit_first(int last_ray, float horizontal_len,
 	return (false);
 }
 
-
 static void	find_smallest_ray(t_ray *ray, float horizontal_len,
 		float vertical_len, int *color_wall)
 {
@@ -53,6 +52,7 @@ static void	find_smallest_ray(t_ray *ray, float horizontal_len,
 			*color_wall = DARK_RED;
 		else
 			*color_wall = DARK_BLUE;
+		// Conserve seulement la fraction
 	}
 }
 
