@@ -44,7 +44,7 @@ int	handle_key(int keysym, t_parsing *info)
 	info->player.last_pos_y = info->player.pos_y;
 	raycaster(&info->player, &info->ray, info, REPLACE_BCKGRND);
 	if (keysym == XK_z || keysym == XK_Up || keysym == XK_w)
-		move_player_up(info);
+		move_player_up(info); // 
 	else if (keysym == XK_s || keysym == XK_Down)
 		move_player_down(info);
 	else if (keysym == XK_Left)

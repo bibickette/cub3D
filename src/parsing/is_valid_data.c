@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:13:44 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/08 16:15:20 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/09 13:55:56 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,16 @@ static bool	is_double_identifier(int *count_id, int identifier)
 	return (false);
 }
 
-static void	load_identifier(t_parsing *info, char *line, int identifier)
+static bool	load_identifier(t_parsing *info, char *line, int identifier)
 {
 	int	index;
 	int	texture_len;
 
 	index = start_of_texture(line);
 	texture_len = len_of_texture(&line[index]);
-	init_texture(info, &line[index], identifier, texture_len);
+	if(!init_texture(info, &line[index], identifier, texture_len))
+		return(false);
+	return(true);
 }
 
 static bool	init_texture_and_color(t_parsing *info, int fd)
@@ -46,9 +48,10 @@ static bool	init_texture_and_color(t_parsing *info, int fd)
 	{
 		identifier = is_start_with_id(line);
 		if (identifier && is_double_identifier(&count_id, identifier))
-			return (free(line), false);
+			return (free_n_set_null(&line), false);
 		if (identifier)
-			load_identifier(info, line, identifier);
+			if(!load_identifier(info, line, identifier))
+				return(free_n_set_null(&line),false);
 		free_n_set_null(&line);
 		if (count_id == COMPLETE)
 			break ;

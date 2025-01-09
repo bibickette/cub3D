@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/08 16:13:19 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/09 15:26:50 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@
 # define MLX_INIT_ERR "mlx_init() failed"
 # define MLX_NEW_WIN_ERR "mlx_new_window() failed"
 # define MLX_IMG_ERR "mlx_new_image() failed"
+# define MLX_GET_DATA_ADDR_ERR "mlx_get_data_addr() failed"
+# define MLX_FILE_TO_IMG_ERR "mlx_xpm_file_to_image() failed"
 # define CROSS_MSG "Cross has been clicked !\n"
 # define ESC_MSG "(ESC) key has been pressed ! bye\n"
 
@@ -146,12 +148,23 @@ typedef struct s_ray
 	int				last_ray;
 }					t_ray;
 
+typedef struct s_image
+{
+	void			*mlx_img;
+	char			*addr;
+	int				bpp;
+	int				line_len;
+	int				endian;
+}					t_img;
+
 typedef struct s_wall
 {
 	int				id;
 	char			*path_to_img;
 	unsigned int	color;
-
+	t_img			img;
+	int 			width;
+	int 			height;
 }					t_wall;
 
 typedef struct s_texture
@@ -163,7 +176,7 @@ typedef struct s_texture
 	unsigned int	ceiling_color;
 }					t_texture;
 
-// player[x][y] orientation
+// player[y][x] orientation
 typedef struct s_player
 {
 	float			pos_x;
@@ -176,14 +189,6 @@ typedef struct s_player
 	int				last_pos_x;
 	int				last_pos_y;
 }					t_player;
-typedef struct s_image
-{
-	void			*mlx_img;
-	char			*addr;
-	int				bpp;
-	int				line_len;
-	int				endian;
-}					t_img;
 
 typedef struct s_mlx
 {

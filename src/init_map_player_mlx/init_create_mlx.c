@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_create_mlx.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:29:01 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/08 16:14:30 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/09 14:19:58 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static bool	create_background(t_mlx *mlx, unsigned int floor_color,
 	mlx->background.addr = mlx_get_data_addr(mlx->background.mlx_img,
 			&mlx->background.bpp, &mlx->background.line_len,
 			&mlx->background.endian);
+	if(!mlx->background.addr)
+		return (print_error(MLX_GET_DATA_ADDR_ERR, NULL), false);
 	y = -1;
 	while (++y < SIZE_Y / 2)
 	{
@@ -51,6 +53,8 @@ static bool	create_backup(t_mlx *mlx)
 		return (print_error(MLX_IMG_ERR, NULL), false);
 	mlx->backup.addr = mlx_get_data_addr(mlx->backup.mlx_img, &mlx->backup.bpp,
 			&mlx->backup.line_len, &mlx->backup.endian);
+	if(!mlx->backup.addr)
+		return (print_error(MLX_GET_DATA_ADDR_ERR, NULL), false);
 	y = -1;
 	while (++y < SIZE_Y)
 	{
@@ -79,5 +83,7 @@ bool	init_create_mlx(t_parsing *info)
 			TITLE);
 	if (!info->mlx.win_ptr)
 		return (print_error(MLX_NEW_WIN_ERR, NULL), false);
+	if(!load_texture(info))
+		return (false);
 	return (true);
 }

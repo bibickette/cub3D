@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialization.c                                   :+:      :+:    :+:   */
+/*   init_arg_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:23:45 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/08 14:29:14 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/09 14:08:31 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	init_info(t_parsing *info)
 	ft_memset(&info->textures, 0, sizeof(t_texture));
 	ft_memset(info->textures.floor_rgb, -1, sizeof(int) * 3);
 	ft_memset(info->textures.ceiling_rgb, -1, sizeof(int) * 3);
+	ft_memset(info->textures.walls, 0, sizeof(t_wall) * 4);
 }
 
 bool	initialization_all(t_parsing *info, int argc, char **argv)

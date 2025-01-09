@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:55:58 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/08 16:16:20 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/09 14:18:44 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,4 @@ int	main(int argc, char **argv)
 	mlx_loop(info.mlx.mlx_ptr);
 	return (0);
 }
-	// mlx_loop_hook(info.mlx.mlx_ptr, &display, &info);
-	// pk on garde pas ce mlx loop hook ? pk ya pas besoin ?
+

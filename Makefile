@@ -56,7 +56,8 @@ PARSING_FILES = \
 		init_arg_data.c \
 		init_texture.c \
 		is_valid_arg.c \
-		is_valid_data.c
+		is_valid_data.c \
+		load_texture.c
 PARSING = $(addprefix $(PARSING_DIR)/, $(PARSING_FILES))				
 
 RAYCASTER_DIR = $(SRC_DIR)/raycasting

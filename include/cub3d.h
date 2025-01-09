@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/08 16:20:36 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/09 14:06:14 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 bool			initialization_all(t_parsing *info, int argc, char **argv);
 bool			is_valid_arguments(int argc, char **argv);
 bool			is_valid_data(t_parsing *info, char *filename);
-void			init_texture(t_parsing *info, char *line, int ID,
+bool			init_texture(t_parsing *info, char *line, int ID,
 					int texture_len);
 bool			is_valid_file_and_rgb(t_parsing *info);
 bool			is_invalid_file_format(char *path, char *format);
@@ -28,6 +28,8 @@ bool			is_valid_arguments(int argc, char **argv);
 int				is_start_with_id(char *line);
 int				len_of_texture(char *line);
 int				start_of_texture(char *line);
+
+bool	load_texture(t_parsing *info);
 
 // init_map_player_mlx
 bool			init_map(t_parsing *info, int fd);

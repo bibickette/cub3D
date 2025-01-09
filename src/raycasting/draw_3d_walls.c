@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_3d_walls.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:14:22 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/08 16:18:15 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/09 15:44:33 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,27 @@ static void	draw_rectangle(int x, int y, unsigned int color, t_parsing *info,
 	}
 }
 
+
+
 static void	draw_big_line(t_parsing *info, t_ray *ray, unsigned int color,
 		int replace)
 {
 	int	x;
 	int	y;
-
+	int id;
+	
+	if (color == DARK_RED)
+		id = 0;
+	else if (color == DARK_BLUE)
+		id = 1;
+	else if (color == RED)
+		id = 2;
+	else
+		id = 3;
+	
 	x = ray->r;
 	y = ray->offset_l;
+
 	draw_rectangle(x, y, color, info, replace);
 }
 
