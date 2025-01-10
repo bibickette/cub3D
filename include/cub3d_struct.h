@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/10 15:54:43 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:04:35 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define ERROR "Error\n"
 
 // screen options
-# define TITLE "The Legend of on cane moins quavant"
+# define TITLE "The Legend of omg les textures"
 // la taille size X doit etre un multiple de FOV si on veut que ca couvre tout lecran
 // la taille size Y doit etre la moitié de size X
 # define SIZE_X 1024
