@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:14:22 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/10 15:57:33 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:25:48 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,47 +63,26 @@ static void	draw_rectangle(int x, int y, unsigned int color, t_parsing *info,
 	float	line_length;
 	int		tex_x;
 	int		tex_y;
-	float	step;
-	float	tex_pos;
-	float size_y = 512.000;
 
 	line_length = get_distance(x, y, x, y + info->ray.height_l);
 	info->ray.wall_bottom = y + line_length;
 	info->ray.wall_top = y;
-	step = (float)info->textures.walls[id].height / info->ray.height_l;
 	// Position initiale dans la texture
-	tex_pos = (info->ray.wall_top - size_y / 2 + info->ray.height_l / 2) * step;
-	// tex_pos = fabs((info->ray.wall_top - SIZE_Y / 2 + info->ray.height_l / 2) * step);
-if (tex_pos < 0) {
-    tex_pos = 0;  // ou une autre valeur par défaut
-}
-	// printf("tex pos %f\n", tex_pos);
-	// printf("step %f\n", step);
-	// tex_x = get_texture_x(color, &info->ray, info->textures.walls);
 	// pour calculer le tex x il faut prendre le wall hit et le faire protportionnellement a la largeur de la texture
 	tex_x = (int)(info->ray.wall_hit * info->textures.walls[id].width);
-	// if ((info->ray.last_ray == VERTICAL && info->ray.rx > 0)
-	// 	|| (info->ray.last_ray == HORIZONTAL && info->ray.ry < 0))
-	// {
-	// 	tex_x = info->textures.walls[id].width - tex_x - 1;
-	// }
 	i = 0;
-		// a mettre avec le rapport de limage
-	// tex y cest proportionellement bottom
-		//+ i par rapport a la hauteur de limage
 	while (i < line_length)
 	{
-		// tex_y = get_texture_y(i, info->textures.walls[id].height,
-				//info->ray.height_l);
 		tex_y = (int)((i / line_length) * TEXTURE_SIZE);
-		// tex_y = (int)tex_pos & (info->textures.walls[id].height - 1);
 		if (replace)
-			color = get_backup_color(info->mlx.backup, x, y + i);
+		{
+			if(x < SIZE_X  && x > 0 && y + i < SIZE_Y && y + i > 0)
+				color = get_backup_color(info->mlx.backup, x, y + i);
+		}
 		else
 			color = get_color_pixel_texture(info, tex_x, tex_y, id);
 		my_mlx_pixel_put(info->mlx.background, y + i, x, color);
 		i++;
-		// tex_pos += step;
 	}
 }
 
@@ -137,13 +116,8 @@ void	draw_3d_wall(t_ray *ray, t_parsing *info, int replace, int color_wall)
 	info->ray.cos_angle = info->player.angle - info->ray.angle;
 	info->ray.cos_angle = protect_angle_trigo_value(info->ray.cos_angle);
 	info->ray.distance = (info->ray.distance) * cos(info->ray.cos_angle);
-	info->ray.height_l = (MINI_MAP_SIZE / info->ray.distance) * (x / tan(((PI
-						/ 180) * FOV) / 2));
-	if (info->ray.height_l > x)
-		info->ray.height_l = x;
+	info->ray.height_l = (MINI_MAP_SIZE / info->ray.distance) * (x / tan(ray->rad_value / 2));
 	info->ray.offset_l = y - info->ray.height_l / 2;
-	if (info->ray.offset_l < 0)
-		info->ray.offset_l = 0;
 	draw_big_line(info, ray, color_wall, replace);
 }
 

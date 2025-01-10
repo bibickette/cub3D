@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player_minimap.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:05:45 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/08 16:17:21 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/10 16:23:18 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,9 @@ void	draw_player_on_minimap(t_parsing *info, unsigned int color, int replace)
 		{
 			if (replace)
 			{
-				color = get_backup_color(info->mlx.backup, x
-						+ info->player.last_pos_x, y + info->player.last_pos_y);
+				if(info->player.last_pos_x + x < SIZE_X && info->player.last_pos_x + x > 0 && info->player.last_pos_y + y < SIZE_Y && info->player.last_pos_y + y > 0)
+					color = get_backup_color(info->mlx.backup, info->player.last_pos_x
+						+ x, info->player.last_pos_y + y);
 			}
 			my_mlx_pixel_put(info->mlx.background, y + info->player.pos_y, x
 				+ info->player.pos_x, color);

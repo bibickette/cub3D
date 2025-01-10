@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/10 16:03:25 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:11:31 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ static void	find_smallest_ray(t_ray *ray, float horizontal_len,
 			*color_wall = RED;
 		// ray->wall_hit = fmod(ray->rx, 64.0) / 64.0;
 		// printf("ray rx %f\n", ray->rx);
-    // ray->wall_hit = ray->player_posx + ray->distance * ray->rx;
-	ray->wall_hit = fmod(ray->hx, 64.0) / 64.0;
-			ray->rx = ray->hx;
-			ray->ry = ray->hy;
+		// ray->wall_hit = ray->player_posx + ray->distance * ray->rx;
+		ray->wall_hit = fmod(ray->hx, 64.0) / 64.0; // lui oci mnt il est bon
+		ray->rx = ray->hx;
+		ray->ry = ray->hy;
 	}
 	else
 	{
@@ -61,12 +61,12 @@ static void	find_smallest_ray(t_ray *ray, float horizontal_len,
 		// printf("ray wall hit %f\n", ray->wall_hit);
 		ray->wall_hit = fmod(ray->vy, 64.0) / 64.0; // lui il est bon
 		// printf("ray ry %f\n", ray->ry);
-    // ray->wall_hit = ray->player_posy + ray->distance * ray->ry;
+		// ray->wall_hit = ray->player_posy + ray->distance * ray->ry;
 		// Conserve seulement la fraction
 		ray->ry = ray->vy;
 		ray->rx = ray->vx;
 	}
-ray->wall_hit -= floor(ray->wall_hit);
+	ray->wall_hit -= floor(ray->wall_hit);
 	// printf("ray wall hit %f\n", ray->wall_hit);
 }
 
