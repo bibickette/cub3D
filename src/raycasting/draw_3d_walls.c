@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:14:22 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/09 16:47:53 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/10 13:18:38 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static unsigned int	get_color_pixel_texture(t_parsing *info, int x, int y, int i
 	unsigned int	color;
 	char			*dst;
 
-	dst = info->textures.walls[id].img.int_addr + (y
+	dst = info->textures.walls[id].img.addr + (y
 			* info->textures.walls[id].img.line_len + x
 			* (info->textures.walls[id].img.bpp / 8));
 	color = *(unsigned int *)dst;
@@ -58,13 +58,23 @@ static void	draw_rectangle(int x, int y, unsigned int color, t_parsing *info,
 	float	line_length;
 	int		tex_x;
 	int		tex_y;
+	float	ecran_y;
 
-	tex_x = get_texture_x(color, &info->ray, info->textures.walls);
+	ecran_y = 512.00;
+
+	// tex_x = get_texture_x(color, &info->ray, info->textures.walls);
+	// pour calculer le tex x il faut prendre le wall hit et le faire protportionnellement a la largeur de la texture 
+	tex_x = (int)(info->ray.wall_hit * TEXTURE_SIZE);
 	i = 0;
 	line_length = get_distance(x, y, x, y + info->ray.height_l);
+	info->ray.wall_bottom = y + line_length;// a mettre avec le rapport de limage 
+	info->ray.wall_top = y;
+	// tex y cest proportionellement bottom + i par rapport a la hauteur de limage
+	
 	while (i < line_length)
 	{
-		tex_y = get_texture_y(i, info->textures.walls[id].height, info->ray.height_l);
+		// tex_y = get_texture_y(i, info->textures.walls[id].height, info->ray.height_l);
+		tex_y =  ((y + i) * TEXTURE_SIZE) / ecran_y;
 		if (replace)
 			color = get_backup_color(info->mlx.backup, x, y + i);
 		else

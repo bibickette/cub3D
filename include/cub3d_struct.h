@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/09 16:40:15 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/10 13:24:13 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define PI 3.1415926535
 # define FOV 60.00000
 
+#define TEXTURE_SIZE 64.0000f
 // draw map handling
 # define NO_REPLACE 0
 # define REPLACE_BCKGRND 1
@@ -64,7 +65,7 @@
 
 // player
 # define MINI_PLAYER_SIZE 10
-# define MINI_MAP_SIZE 20 // size of each square
+# define MINI_MAP_SIZE 64// size of each square
 # define MINI_MAP_LOC_X 0 // decalage en pixel position X et Y
 # define MINI_MAP_LOC_Y 0
 
@@ -140,6 +141,9 @@ typedef struct s_ray
 	float			height_l;
 	float			offset_l;
 	float			cos_angle;
+	float			wall_hit;
+	float			wall_bottom;
+	float			wall_top;
 	int				dist_to_wall;
 	int				r;
 	int				map_x;

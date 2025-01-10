@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/09 16:09:07 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/10 13:17:52 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static void	find_smallest_ray(t_ray *ray, float horizontal_len,
 			*color_wall = BLUE;
 		else
 			*color_wall = RED;
+		ray->wall_hit = fmod(ray->rx, 64.0) / 64.0;
+		
 	}
 	else
 	{
@@ -52,8 +54,10 @@ static void	find_smallest_ray(t_ray *ray, float horizontal_len,
 			*color_wall = DARK_RED;
 		else
 			*color_wall = DARK_BLUE;
+		ray->wall_hit = fmod(ray->ry, 64.0) / 64.0;
 		// Conserve seulement la fraction
 	}
+	// printf("ray wall hit %f\n", ray->wall_hit);
 }
 
 /*
