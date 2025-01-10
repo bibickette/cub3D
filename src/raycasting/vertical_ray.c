@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vertical_ray.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:06:55 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/08 16:15:38 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/10 16:01:35 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,24 @@ static void	vtplan_find_intersection(t_ray *ray, t_parsing *info)
 	ray->tan = -tan(ray->angle);
 	if (ray->angle > ray->pi2 && ray->angle < ray->pi3)
 	{
-		ray->rx = (((int)ray->player_posx / MINI_MAP_SIZE) * MINI_MAP_SIZE)
+		ray->vx = (((int)ray->player_posx / MINI_MAP_SIZE) * MINI_MAP_SIZE)
 			- 0.0001;
-		ray->ry = (ray->player_posx - ray->rx) * ray->tan + ray->player_posy;
+		ray->vy = (ray->player_posx - ray->vx) * ray->tan + ray->player_posy;
 		ray->xo = -MINI_MAP_SIZE;
 		ray->yo = -ray->xo * ray->tan;
 	}
 	if (ray->angle < ray->pi2 || ray->angle > ray->pi3)
 	{
-		ray->rx = (((int)ray->player_posx / MINI_MAP_SIZE) * MINI_MAP_SIZE)
+		ray->vx = (((int)ray->player_posx / MINI_MAP_SIZE) * MINI_MAP_SIZE)
 			+ MINI_MAP_SIZE;
-		ray->ry = (ray->player_posx - ray->rx) * ray->tan + ray->player_posy;
+		ray->vy = (ray->player_posx - ray->vx) * ray->tan + ray->player_posy;
 		ray->xo = MINI_MAP_SIZE;
 		ray->yo = -ray->xo * ray->tan;
 	}
 	if (ray->angle == ray->pi3 || ray->angle == ray->pi2)
 	{
-		ray->rx = ray->player_posx;
-		ray->ry = ray->player_posy;
+		ray->vx = ray->player_posx;
+		ray->vy = ray->player_posy;
 		ray->dist_to_wall = info->max_y;
 	}
 }
@@ -67,8 +67,8 @@ float	ray_vertical_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 	vtplan_find_intersection(ray, info);
 	while (ray->dist_to_wall < info->max_y)
 	{
-		ray->map_x = (int)(ray->rx) / MINI_MAP_SIZE;
-		ray->map_y = (int)(ray->ry) / MINI_MAP_SIZE;
+		ray->map_x = (int)(ray->vx) / MINI_MAP_SIZE;
+		ray->map_y = (int)(ray->vy) / MINI_MAP_SIZE;
 		ray->map_pos = ray->map_y * info->max_x + ray->map_x;
 		if (ray->map_pos < 0)
 			ray->map_pos = 0;
@@ -78,10 +78,10 @@ float	ray_vertical_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 			break ;
 		else
 		{
-			ray->rx += ray->xo;
-			ray->ry += ray->yo;
+			ray->vx += ray->xo;
+			ray->vy += ray->yo;
 			ray->dist_to_wall++;
 		}
 	}
-	return (get_distance(ray->player_posx, ray->player_posy, ray->rx, ray->ry));
+	return (get_distance(ray->player_posx, ray->player_posy, ray->vx, ray->vy));
 }

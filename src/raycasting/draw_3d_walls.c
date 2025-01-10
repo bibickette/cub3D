@@ -6,13 +6,14 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 13:14:22 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/10 13:18:38 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/10 15:57:33 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static unsigned int	get_color_pixel_texture(t_parsing *info, int x, int y, int id)
+static unsigned int	get_color_pixel_texture(t_parsing *info, int x, int y,
+		int id)
 {
 	unsigned int	color;
 	char			*dst;
@@ -24,63 +25,85 @@ static unsigned int	get_color_pixel_texture(t_parsing *info, int x, int y, int i
 	return (color);
 }
 
-static int	get_texture_x(unsigned int color, t_ray *ray, t_wall *wall)
+static int	get_texture_x(unsigned int color, t_ray *ray, t_wall *wall,
+		t_parsing *info)
 {
-	int tex_x;
+	int	tex_x;
+
 	if (color == BLUE || color == RED)
 	{
 		if (color == BLUE)
-			tex_x = (int)((ray->rx - floor(ray->rx)) * wall[EA].width);
+			tex_x = (int)((info->ray.rx - floor(info->ray.rx))
+					* wall[EA].width);
 		else
-			tex_x = (int)((ray->rx - floor(ray->rx)) * wall[WE].width);
-
+			tex_x = (int)((info->ray.rx - floor(info->ray.rx))
+					* wall[WE].width);
 	}
 	else
 	{
 		if (color == DARK_RED)
-			tex_x = (int)((ray->ry - floor(ray->ry)) * wall[NO].width);
+			tex_x = (int)((info->ray.ry - floor(info->ray.ry))
+					* wall[NO].width);
 		else
-			tex_x = (int)((ray->ry - floor(ray->ry)) * wall[SO].width);
-		
+			tex_x = (int)((info->ray.ry - floor(info->ray.ry))
+					* wall[SO].width);
 	}
-	return(tex_x);
+	return (tex_x);
 }
 
-int get_texture_y(int y, int wall_height, int screen_height)
+int	get_texture_y(int y, int wall_height, int screen_height)
 {
-    return ((y * wall_height) / screen_height);
+	return ((y * wall_height) / screen_height);
 }
 
 static void	draw_rectangle(int x, int y, unsigned int color, t_parsing *info,
-		int replace,int id)
+		int replace, int id)
 {
 	float	i;
 	float	line_length;
 	int		tex_x;
 	int		tex_y;
-	float	ecran_y;
+	float	step;
+	float	tex_pos;
+	float size_y = 512.000;
 
-	ecran_y = 512.00;
-
-	// tex_x = get_texture_x(color, &info->ray, info->textures.walls);
-	// pour calculer le tex x il faut prendre le wall hit et le faire protportionnellement a la largeur de la texture 
-	tex_x = (int)(info->ray.wall_hit * TEXTURE_SIZE);
-	i = 0;
 	line_length = get_distance(x, y, x, y + info->ray.height_l);
-	info->ray.wall_bottom = y + line_length;// a mettre avec le rapport de limage 
+	info->ray.wall_bottom = y + line_length;
 	info->ray.wall_top = y;
-	// tex y cest proportionellement bottom + i par rapport a la hauteur de limage
-	
+	step = (float)info->textures.walls[id].height / info->ray.height_l;
+	// Position initiale dans la texture
+	tex_pos = (info->ray.wall_top - size_y / 2 + info->ray.height_l / 2) * step;
+	// tex_pos = fabs((info->ray.wall_top - SIZE_Y / 2 + info->ray.height_l / 2) * step);
+if (tex_pos < 0) {
+    tex_pos = 0;  // ou une autre valeur par défaut
+}
+	// printf("tex pos %f\n", tex_pos);
+	// printf("step %f\n", step);
+	// tex_x = get_texture_x(color, &info->ray, info->textures.walls);
+	// pour calculer le tex x il faut prendre le wall hit et le faire protportionnellement a la largeur de la texture
+	tex_x = (int)(info->ray.wall_hit * info->textures.walls[id].width);
+	// if ((info->ray.last_ray == VERTICAL && info->ray.rx > 0)
+	// 	|| (info->ray.last_ray == HORIZONTAL && info->ray.ry < 0))
+	// {
+	// 	tex_x = info->textures.walls[id].width - tex_x - 1;
+	// }
+	i = 0;
+		// a mettre avec le rapport de limage
+	// tex y cest proportionellement bottom
+		//+ i par rapport a la hauteur de limage
 	while (i < line_length)
 	{
-		// tex_y = get_texture_y(i, info->textures.walls[id].height, info->ray.height_l);
-		tex_y =  ((y + i) * TEXTURE_SIZE) / ecran_y;
+		// tex_y = get_texture_y(i, info->textures.walls[id].height,
+				//info->ray.height_l);
+		tex_y = (int)((i / line_length) * TEXTURE_SIZE);
+		// tex_y = (int)tex_pos & (info->textures.walls[id].height - 1);
 		if (replace)
 			color = get_backup_color(info->mlx.backup, x, y + i);
 		else
 			color = get_color_pixel_texture(info, tex_x, tex_y, id);
 		my_mlx_pixel_put(info->mlx.background, y + i, x, color);
 		i++;
+		// tex_pos += step;
 	}
 }
 
@@ -92,15 +115,15 @@ static void	draw_big_line(t_parsing *info, t_ray *ray, unsigned int color,
 	int	id;
 
 	if (color == DARK_RED)
-		id = 0;
+		id = WE;
 	else if (color == DARK_BLUE)
-		id = 1;
+		id = EA;
 	else if (color == RED)
-		id = 2;
+		id = SO;
 	else
-		id = 3;
-	x = ray->r;
-	y = ray->offset_l;
+		id = NO;
+	x = info->ray.r;
+	y = info->ray.offset_l;
 	draw_rectangle(x, y, color, info, replace, id);
 }
 
@@ -111,16 +134,16 @@ void	draw_3d_wall(t_ray *ray, t_parsing *info, int replace, int color_wall)
 
 	x = SIZE_X / 2;
 	y = SIZE_Y / 2;
-	ray->cos_angle = info->player.angle - ray->angle;
-	ray->cos_angle = protect_angle_trigo_value(ray->cos_angle);
-	ray->distance = (ray->distance) * cos(ray->cos_angle);
-	ray->height_l = (MINI_MAP_SIZE / ray->distance) * (x / tan(((PI / 180)
-					* FOV) / 2));
-	if (ray->height_l > x)
-		ray->height_l = x;
-	ray->offset_l = y - ray->height_l / 2;
-	if (ray->offset_l < 0)
-		ray->offset_l = 0;
+	info->ray.cos_angle = info->player.angle - info->ray.angle;
+	info->ray.cos_angle = protect_angle_trigo_value(info->ray.cos_angle);
+	info->ray.distance = (info->ray.distance) * cos(info->ray.cos_angle);
+	info->ray.height_l = (MINI_MAP_SIZE / info->ray.distance) * (x / tan(((PI
+						/ 180) * FOV) / 2));
+	if (info->ray.height_l > x)
+		info->ray.height_l = x;
+	info->ray.offset_l = y - info->ray.height_l / 2;
+	if (info->ray.offset_l < 0)
+		info->ray.offset_l = 0;
 	draw_big_line(info, ray, color_wall, replace);
 }
 

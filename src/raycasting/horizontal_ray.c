@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   horizontal_ray.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:00:57 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/08 16:20:11 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/10 16:01:07 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,26 @@ static void	hzplan_find_intersection(t_ray *ray, t_parsing *info)
 	ray->arc_tan = -1 / tan(ray->angle);
 	if (ray->angle > PI)
 	{
-		ray->ry = (((int)ray->player_posy / MINI_MAP_SIZE) * MINI_MAP_SIZE)
+		ray->hy = (((int)ray->player_posy / MINI_MAP_SIZE) * MINI_MAP_SIZE)
 			- 0.0001;
-		ray->rx = (ray->player_posy - ray->ry) * ray->arc_tan
+		ray->hx = (ray->player_posy - ray->hy) * ray->arc_tan
 			+ ray->player_posx;
 		ray->yo = -MINI_MAP_SIZE;
 		ray->xo = -ray->yo * ray->arc_tan;
 	}
 	if (ray->angle < PI)
 	{
-		ray->ry = (((int)ray->player_posy / MINI_MAP_SIZE) * MINI_MAP_SIZE)
+		ray->hy = (((int)ray->player_posy / MINI_MAP_SIZE) * MINI_MAP_SIZE)
 			+ MINI_MAP_SIZE;
-		ray->rx = (ray->player_posy - ray->ry) * ray->arc_tan
+		ray->hx = (ray->player_posy - ray->hy) * ray->arc_tan
 			+ ray->player_posx;
 		ray->yo = MINI_MAP_SIZE;
 		ray->xo = -ray->yo * ray->arc_tan;
 	}
 	if (ray->angle == 0 || ray->angle == PI)
 	{
-		ray->rx = ray->player_posx;
-		ray->ry = ray->player_posy;
+		ray->hx = ray->player_posx;
+		ray->hy = ray->player_posy;
 		ray->dist_to_wall = info->max_x;
 	}
 }
@@ -65,8 +65,8 @@ float	ray_horizon_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 	hzplan_find_intersection(ray, info);
 	while (ray->dist_to_wall < info->max_x)
 	{
-		ray->map_x = (int)(ray->rx) / MINI_MAP_SIZE;
-		ray->map_y = (int)(ray->ry) / MINI_MAP_SIZE;
+		ray->map_x = (int)(ray->hx) / MINI_MAP_SIZE;
+		ray->map_y = (int)(ray->hy) / MINI_MAP_SIZE;
 		ray->map_pos = ray->map_y * info->max_x + ray->map_x;
 		if (ray->map_pos < 0)
 			ray->map_pos = 0;
@@ -75,10 +75,10 @@ float	ray_horizon_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 			break ;
 		else
 		{
-			ray->rx += ray->xo;
-			ray->ry += ray->yo;
+			ray->hx += ray->xo;
+			ray->hy += ray->yo;
 			ray->dist_to_wall++;
 		}
 	}
-	return (get_distance(ray->player_posx, ray->player_posy, ray->rx, ray->ry));
+	return (get_distance(ray->player_posx, ray->player_posy, ray->hx, ray->hy));
 }

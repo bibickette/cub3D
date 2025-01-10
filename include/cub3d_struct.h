@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/10 13:24:13 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/10 15:54:43 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,10 @@ typedef struct s_ray
 	double			pi3;
 	float			arc_tan;
 	float			tan;
+	float			hy;
+	float			hx;
+	float			vy;
+	float			vx;
 	float			rx;
 	float			ry;
 	float			xo;
