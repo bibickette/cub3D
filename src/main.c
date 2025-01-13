@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:55:58 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/09 14:18:44 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:15:41 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,3 @@ int	main(int argc, char **argv)
 	mlx_loop(info.mlx.mlx_ptr);
 	return (0);
 }
-

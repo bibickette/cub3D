@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 09:35:35 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/08 16:15:10 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/13 16:42:45 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,5 @@ bool	is_valid_file_and_rgb(t_parsing *info)
 			|| !is_file_readable(info->textures.walls[i].path_to_img))
 			return (false);
 	}
-	// check size xpm;
 	return (true);
 }

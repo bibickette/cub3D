@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/10 16:30:11 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:44:47 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@
 
 // screen options
 # define TITLE "The Legend of omg les textures"
-// la taille size X doit etre un multiple de FOV si on veut que ca couvre tout lecran
+// la taille size X doit etre un multiple de FOV si on veut 
+// que ca couvre tout lecran
 // la taille size Y doit etre la moitié de size X
 # define SIZE_X 1024
 # define SIZE_Y 512
@@ -42,7 +43,7 @@
 # define PI 3.1415926535
 # define FOV 60.00000
 
-#define TEXTURE_SIZE 64.0000f
+# define TEXTURE_SIZE 64.0000f
 // draw map handling
 # define NO_REPLACE 0
 # define REPLACE_BCKGRND 1
@@ -65,7 +66,8 @@
 
 // player
 # define MINI_PLAYER_SIZE 10
-# define MINI_MAP_SIZE 64 // size of each square and have to be the size of texture
+# define MINI_MAP_SIZE 64
+	// size of each square and have to be the size of texture
 # define MINI_MAP_LOC_X 0 // decalage en pixel position X et Y
 # define MINI_MAP_LOC_Y 0
 
@@ -80,7 +82,8 @@
 # define FILE_NOT_EXIST "File doesn't exist : "
 # define UNKNOWN_FILE_ERR "File access unknown error : "
 
-# define RGB_VALUE "RGB value must be between 0 and 255 and contains 3 values separate by space or coma"
+# define RGB_VALUE "RGB value must be between 0 and 255\
+ and contains 3 values separate by space or coma"
 
 # define MAP_ERR "Map is not valid : "
 # define WALL_ERR "must be surrounded by walls"
@@ -113,14 +116,16 @@ mp est lindex pour notre map int calculer grace a mx et my.
 dof = degree of freedom,
 	combien de pas peut on faire avant les limites de la map.
 rx et ry sont les coordonnées finales du rayon.
-xo et yo sont les valeurs d'incrementation pour avancer jusqua la prochaine case de la map.
+xo et yo sont les valeurs d'incrementation pour avancer 
+jusqua la prochaine case de la map.
 arc_tan est la tangente de l'angle du rayon.
 angle est l'angle du rayon.
 r est le compteur de rayon.
 lineH est la longueur du rayon.
 lineO est la longueur de l'intersection.
 ca est le cosinus de l'angle du rayon.
-last_ray indique si le dernier rayon a dabord frappe un mur horizontaement ou verticalement.
+last_ray indique si le dernier rayon a dabord frappe 
+un mur horizontaement ou verticalement.
  */
 
 typedef struct s_ray
@@ -146,8 +151,8 @@ typedef struct s_ray
 	float			offset_l;
 	float			cos_angle;
 	float			wall_hit;
-	float			wall_bottom;
-	float			wall_top;
+	int				start_x;
+	int				start_y;
 	int				dist_to_wall;
 	int				r;
 	int				map_x;
@@ -172,8 +177,8 @@ typedef struct s_wall
 	char			*path_to_img;
 	unsigned int	color;
 	t_img			img;
-	int 			width;
-	int 			height;
+	int				width;
+	int				height;
 }					t_wall;
 
 typedef struct s_texture

@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 11:44:33 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/08 16:18:44 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/13 16:16:11 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	handle_key(int keysym, t_parsing *info)
 	info->player.last_pos_y = info->player.pos_y;
 	raycaster(&info->player, &info->ray, info, REPLACE_BCKGRND);
 	if (keysym == XK_z || keysym == XK_Up || keysym == XK_w)
-		move_player_up(info); // 
+		move_player_up(info);
 	else if (keysym == XK_s || keysym == XK_Down)
 		move_player_down(info);
 	else if (keysym == XK_Left)

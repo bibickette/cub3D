@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:13:44 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/09 13:55:56 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:37:21 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static bool	load_identifier(t_parsing *info, char *line, int identifier)
 
 	index = start_of_texture(line);
 	texture_len = len_of_texture(&line[index]);
-	if(!init_texture(info, &line[index], identifier, texture_len))
-		return(false);
-	return(true);
+	if (!init_texture(info, &line[index], identifier, texture_len))
+		return (false);
+	return (true);
 }
 
 static bool	init_texture_and_color(t_parsing *info, int fd)
@@ -50,8 +50,8 @@ static bool	init_texture_and_color(t_parsing *info, int fd)
 		if (identifier && is_double_identifier(&count_id, identifier))
 			return (free_n_set_null(&line), false);
 		if (identifier)
-			if(!load_identifier(info, line, identifier))
-				return(free_n_set_null(&line),false);
+			if (!load_identifier(info, line, identifier))
+				return (free_n_set_null(&line), false);
 		free_n_set_null(&line);
 		if (count_id == COMPLETE)
 			break ;

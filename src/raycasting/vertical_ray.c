@@ -3,24 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   vertical_ray.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:06:55 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/10 16:01:35 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:36:22 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
-Calcule la première intersection du rayon avec les lignes verticale de la grille de la map.
+Calcule la première intersection du rayon avec les lignes verticale
+ de la grille de la map.
 En fonction de l'angle du rayon,
  cette fonction détermine :
  le point d'intersection initial (`ray->rx`,`ray->ry`)
  et les incréments de pas (`ray->xo`,
 	`ray->yo`) pour avancer vers la prochaine ligne de la grille.
-Les cas particuliers gèrent les rayons parfaitement verticaux en plaçant l'intersection à la position du joueur.
+Les cas particuliers gèrent les rayons parfaitement verticaux en 
+plaçant l'intersection à la position du joueur.
  */
+
+void	init_vertical_value(t_ray *ray, float ray_len, int *color_wall)
+{
+	ray->distance = ray_len;
+	ray->last_ray = VERTICAL;
+	if (ray->angle > ray->pi2 && ray->angle < ray->pi3)
+		*color_wall = DARK_RED;
+	else
+		*color_wall = DARK_BLUE;
+	ray->wall_hit = fmod(ray->vy, 64.0) / 64.0;
+	ray->ry = ray->vy;
+	ray->rx = ray->vx;
+}
+
 static void	vtplan_find_intersection(t_ray *ray, t_parsing *info)
 {
 	ray->tan = -tan(ray->angle);
@@ -49,10 +65,13 @@ static void	vtplan_find_intersection(t_ray *ray, t_parsing *info)
 }
 
 /*
-Calcule la distance entre le joueur et la première intersection verticale avec un mur.
-Cette fonction  appelle `vtplan_find_intersection` pour trouver la première intersection verticale.
+Calcule la distance entre le joueur et la première intersection verticale 
+avec un mur.
+Cette fonction  appelle `vtplan_find_intersection` pour trouver la première
+ intersection verticale.
 Ensuite,
-	elle parcourt la grille colonne par colonne,en avançant jusqu'à rencontrer un mur ou atteindre la limite maximale de recherche (dof).
+	elle parcourt la grille colonne par colonne,en avançant jusqu'à 
+	rencontrer un mur ou atteindre la limite maximale de recherche (dof).
 La distance à l'intersection est finalement calculée et retournée.
 */
 // jai trouve la longueur de chaque coté opposé a langle
@@ -72,7 +91,6 @@ float	ray_vertical_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 		ray->map_pos = ray->map_y * info->max_x + ray->map_x;
 		if (ray->map_pos < 0)
 			ray->map_pos = 0;
-		// ca equivaut a un break ray->dof = info->max_y; // 8 cest le max y
 		if (ray->map_pos < info->max_x * info->max_y
 			&& info->int_map[ray->map_pos] == 1)
 			break ;

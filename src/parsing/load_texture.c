@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 13:43:55 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/10 13:19:36 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:39:54 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 
 bool	load_texture(t_parsing *info)
 {
-	int	i;
+	int		i;
+	t_wall	*walls;
 
+	walls = info->textures.walls;
 	i = 0;
 	while (i < 4)
 	{
-		info->textures.walls[i].img.mlx_img = mlx_xpm_file_to_image(info->mlx.mlx_ptr,
-				info->textures.walls[i].path_to_img, &info->textures.walls[i].width, &info->textures.walls[i].height);
-		if (!info->textures.walls[i].img.mlx_img)
-			return (print_error(MLX_FILE_TO_IMG_ERR,
-					info->textures.walls[i].path_to_img), false);
-		info->textures.walls[i].img.addr = mlx_get_data_addr(info->textures.walls[i].img.mlx_img,
-				&info->textures.walls[i].img.bpp,
-				&info->textures.walls[i].img.line_len,
-				&info->textures.walls[i].img.endian);
-		if (!info->textures.walls[i].img.addr)
+		walls[i].img.mlx_img = mlx_xpm_file_to_image(info->mlx.mlx_ptr,
+				walls[i].path_to_img, &walls[i].width, &walls[i].height);
+		if (!walls[i].img.mlx_img)
+			return (print_error(MLX_FILE_TO_IMG_ERR, walls[i].path_to_img),
+				false);
+		// check img size
+		walls[i].img.addr = mlx_get_data_addr(walls[i].img.mlx_img,
+				&walls[i].img.bpp, &walls[i].img.line_len,
+				&walls[i].img.endian);
+		if (!walls[i].img.addr)
 			return (print_error(MLX_GET_DATA_ADDR_ERR, NULL), false);
 		i++;
 	}

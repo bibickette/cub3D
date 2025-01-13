@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/09 14:06:14 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:59:49 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int				is_start_with_id(char *line);
 int				len_of_texture(char *line);
 int				start_of_texture(char *line);
 
-bool	load_texture(t_parsing *info);
+bool			load_texture(t_parsing *info);
 
 // init_map_player_mlx
 bool			init_map(t_parsing *info, int fd);
@@ -65,8 +65,11 @@ void			raycaster(t_player *player, t_ray *ray, t_parsing *info,
 					int replace);
 float			ray_horizon_plan_len(t_player *player, t_ray *ray,
 					t_parsing *info);
+void			init_horizontal_value(t_ray *ray, float ray_len,
+					int *color_wall);
 float			ray_vertical_plan_len(t_player *player, t_ray *ray,
 					t_parsing *info);
+void			init_vertical_value(t_ray *ray, float ray_len, int *color_wall);
 void			draw_3d_wall(t_ray *ray, t_parsing *info, int replace,
 					int color_wall);
 float			protect_angle_trigo_value(float angle);

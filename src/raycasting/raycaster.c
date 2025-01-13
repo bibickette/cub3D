@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/10 16:11:31 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:59:27 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,38 +36,10 @@ static void	find_smallest_ray(t_ray *ray, float horizontal_len,
 {
 	if (is_horizontal_line_hit_first(ray->last_ray, horizontal_len,
 			vertical_len))
-	{
-		ray->distance = horizontal_len;
-		ray->last_ray = HORIZONTAL;
-		if (ray->angle > PI && ray->angle < 2 * PI)
-			*color_wall = BLUE;
-		else
-			*color_wall = RED;
-		// ray->wall_hit = fmod(ray->rx, 64.0) / 64.0;
-		// printf("ray rx %f\n", ray->rx);
-		// ray->wall_hit = ray->player_posx + ray->distance * ray->rx;
-		ray->wall_hit = fmod(ray->hx, 64.0) / 64.0; // lui oci mnt il est bon
-		ray->rx = ray->hx;
-		ray->ry = ray->hy;
-	}
+		init_horizontal_value(ray, horizontal_len, color_wall);
 	else
-	{
-		ray->distance = vertical_len;
-		ray->last_ray = VERTICAL;
-		if (ray->angle > ray->pi2 && ray->angle < ray->pi3)
-			*color_wall = DARK_RED;
-		else
-			*color_wall = DARK_BLUE;
-		// printf("ray wall hit %f\n", ray->wall_hit);
-		ray->wall_hit = fmod(ray->vy, 64.0) / 64.0; // lui il est bon
-		// printf("ray ry %f\n", ray->ry);
-		// ray->wall_hit = ray->player_posy + ray->distance * ray->ry;
-		// Conserve seulement la fraction
-		ray->ry = ray->vy;
-		ray->rx = ray->vx;
-	}
+		init_vertical_value(ray, vertical_len, color_wall);
 	ray->wall_hit -= floor(ray->wall_hit);
-	// printf("ray wall hit %f\n", ray->wall_hit);
 }
 
 /*

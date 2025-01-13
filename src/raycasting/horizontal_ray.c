@@ -3,24 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   horizontal_ray.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:00:57 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/10 16:01:07 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:35:39 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 /*
-Calcule la première intersection du rayon avec les lignes horizontales de la grille de la map.
+Calcule la première intersection du rayon avec les lignes horizontales de 
+la grille de la map.
 En fonction de l'angle du rayon,
  cette fonction détermine :
  le point d'intersection initial (`ray->rx`,`ray->ry`)
  et les incréments de pas (`ray->xo`,
 	`ray->yo`) pour avancer vers la prochaine ligne de la grille.
-Les cas particuliers gèrent les rayons parfaitement horizontaux en plaçant l'intersection à la position du joueur.
+Les cas particuliers gèrent les rayons parfaitement horizontaux
+en plaçant l'intersection à la position du joueur.
  */
+
+void	init_horizontal_value(t_ray *ray, float ray_len, int *color_wall)
+{
+	ray->distance = ray_len;
+	ray->last_ray = HORIZONTAL;
+	if (ray->angle > PI && ray->angle < 2 * PI)
+		*color_wall = BLUE;
+	else
+		*color_wall = RED;
+	ray->wall_hit = fmod(ray->hx, 64.0) / 64.0;
+	ray->rx = ray->hx;
+	ray->ry = ray->hy;
+}
+
 static void	hzplan_find_intersection(t_ray *ray, t_parsing *info)
 {
 	ray->arc_tan = -1 / tan(ray->angle);
@@ -51,10 +67,13 @@ static void	hzplan_find_intersection(t_ray *ray, t_parsing *info)
 }
 
 /*
-Calcule la distance entre le joueur et la première intersection horizontale avec un mur.
-Cette fonction  appelle `hzplan_find_intersection` pour trouver la première intersection horizontale.
+Calcule la distance entre le joueur et la première intersection horizontale 
+avec un mur.
+Cette fonction  appelle `hzplan_find_intersection` pour trouver 
+la première intersection horizontale.
 Ensuite,
-	elle parcourt la grille ligne par ligne,en avançant jusqu'à rencontrer un mur ou atteindre la limite maximale de recherche (dof).
+	elle parcourt la grille ligne par ligne,en avançant jusqu'à 
+	rencontrer un mur ou atteindre la limite maximale de recherche (dof).
 La distance à l'intersection est finalement calculée et retournée.
 */
 float	ray_horizon_plan_len(t_player *player, t_ray *ray, t_parsing *info)

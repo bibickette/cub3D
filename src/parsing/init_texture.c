@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 09:33:40 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/09 14:17:17 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:40:06 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,5 @@ bool	init_texture(t_parsing *info, char *line, int ID, int texture_len)
 		info->textures.walls[WE].id = ID;
 	}
 	init_floor_ceiling(info, line, ID);
-	return(true);
+	return (true);
 }
