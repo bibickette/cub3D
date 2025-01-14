@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_create_mlx.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:29:01 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/13 16:16:25 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/14 10:19:06 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ static bool	create_backup(t_mlx *mlx)
 
 bool	init_create_mlx(t_parsing *info)
 {
+	int	screen_width;
+	int	screen_height;
+
 	info->mlx.mlx_ptr = mlx_init();
 	if (!info->mlx.mlx_ptr)
 		return (print_error(MLX_INIT_ERR, NULL), false);
@@ -79,6 +82,9 @@ bool	init_create_mlx(t_parsing *info)
 		return (false);
 	if (!create_backup(&info->mlx))
 		return (false);
+	mlx_get_screen_size(info->mlx.mlx_ptr, &screen_width, &screen_height);
+	if (SIZE_X > screen_width || SIZE_Y > screen_height)
+		return (print_error(SCREEN_SIZE_ERR, NULL), false);
 	info->mlx.win_ptr = mlx_new_window(info->mlx.mlx_ptr, SIZE_X, SIZE_Y,
 			TITLE);
 	if (!info->mlx.win_ptr)

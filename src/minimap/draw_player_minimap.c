@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player_minimap.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:05:45 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/13 16:48:09 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/14 11:09:54 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@ void	draw_player_on_minimap(t_parsing *info, unsigned int color, int replace)
 	}
 }
 
+// static void	draw_mini_map_square(t_img img, int x, int y,
+// 		unsigned int color)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = -1;
+// 	while (++i < MINI_MAP_SIZE)
+// 	{
+// 		j = -1;
+// 		while (++j < MINI_MAP_SIZE)
+// 			my_mlx_pixel_put(img, y + i, x + j, color);
+// 	}
+// }
+
 // void	draw_mini_map(t_parsing *info)
 // {
 // 	int	x;
@@ -67,20 +82,5 @@ void	draw_player_on_minimap(t_parsing *info, unsigned int color, int replace)
 // 					BLACK);
 // 			}
 // 		}
-// 	}
-// }
-
-// static void	draw_mini_map_square(t_img img, int x, int y,
-//		unsigned int color)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = -1;
-// 	while (++i < MINI_MAP_SIZE)
-// 	{
-// 		j = -1;
-// 		while (++j < MINI_MAP_SIZE)
-// 			my_mlx_pixel_put(img, y + i, x + j, color);
 // 	}
 // }

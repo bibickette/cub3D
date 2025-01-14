@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_arg_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:23:45 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/13 16:43:26 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/14 10:16:17 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,5 @@ bool	initialization_all(t_parsing *info, int argc, char **argv)
 		return (false);
 	if (!is_valid_data(info, argv[1]))
 		return (destroy_info(info), false);
-	// check SIZE X et SIZE Y que ca depasse pas la taille de lecran sur
-	// lequel on joue
 	return (true);
 }

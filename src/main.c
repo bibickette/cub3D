@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:55:58 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/13 16:15:41 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/14 11:08:06 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	if (!initialization_all(&info, argc, argv))
 		return (1);
 	if (!init_create_mlx(&info))
-		return (destroy_mlx(&info.mlx), destroy_info(&info), 1);
+		return (destroy_info(&info), destroy_mlx(&info.mlx), 1);
 	init_ray(&info.ray);
 	print_map(info.map);
 	print_map_int(info.int_map, info.max_x, info.max_y);

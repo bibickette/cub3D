@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/13 15:59:49 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/14 09:56:14 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ void			print_map(char **map);
 // might be useless
 void			draw_mini_line(t_parsing *info, unsigned int color, int replace,
 					float line_length);
+bool			is_on_minimap(int x, int y, t_parsing *info);
 
 #endif

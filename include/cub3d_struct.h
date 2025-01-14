@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/13 16:44:47 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/14 11:13:32 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@
 # define DARK_BLUE 0x00008F
 
 // player
-# define MINI_PLAYER_SIZE 10
-# define MINI_MAP_SIZE 64
+# define MINI_PLAYER_SIZE 2
+# define MINI_MAP_SIZE 32
 	// size of each square and have to be the size of texture
 # define MINI_MAP_LOC_X 0 // decalage en pixel position X et Y
 # define MINI_MAP_LOC_Y 0
@@ -98,6 +98,8 @@
 # define MLX_FILE_TO_IMG_ERR "mlx_xpm_file_to_image() failed"
 # define CROSS_MSG "Cross has been clicked !\n"
 # define ESC_MSG "(ESC) key has been pressed ! bye\n"
+# define SCREEN_SIZE_ERR "SIZE_X or SIZE_Y is bigger than screen size"
+# define IMG_SIZE_ERR "Image size is not 64x64 :"
 
 typedef enum e_direction
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 13:43:55 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/13 16:39:54 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/14 11:13:51 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ bool	load_texture(t_parsing *info)
 		if (!walls[i].img.mlx_img)
 			return (print_error(MLX_FILE_TO_IMG_ERR, walls[i].path_to_img),
 				false);
-		// check img size
+		if (walls[i].width != (int)TEXTURE_SIZE
+			|| walls[i].height != (int)TEXTURE_SIZE)
+			return (print_error(IMG_SIZE_ERR, walls[i].path_to_img), false);
 		walls[i].img.addr = mlx_get_data_addr(walls[i].img.mlx_img,
 				&walls[i].img.bpp, &walls[i].img.line_len,
 				&walls[i].img.endian);

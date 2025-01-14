@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_to_tab_int.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 12:09:27 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/08 16:14:33 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/14 11:04:05 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,24 @@ static int	ft_atoi_char(char c)
 
 static int	*init_int_tab(int *tab, char **map, int max_x, int max_y)
 {
-	int	y;
-	int	x;
-	int	i;
-	int	flag;
+	int		y;
+	int		x;
+	int		i;
+	size_t	line_len;
 
 	y = 0;
 	i = 0;
 	while (y < max_y)
 	{
 		x = 0;
-		flag = 0;
+		if (map[y])
+			line_len = ft_strlen(map[y]);
 		while (x < max_x)
 		{
-			if (map[y][x] && map[y][x] == '\n')
-				flag = 1;
-			if (!map[y][x] || flag)
-				tab[i] = 2;
+			if (x >= (int)line_len || map[y][x] == '\n')
+				tab[i++] = 2;
 			else
-				tab[i] = ft_atoi_char(map[y][x]);
-			i++;
+				tab[i++] = ft_atoi_char(map[y][x]);
 			x++;
 		}
 		y++;

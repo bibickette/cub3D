@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apocalypse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:55:43 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/08 14:40:15 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/14 11:09:21 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,28 @@ void	free_n_set_null(char **to_free)
 	}
 }
 
+void	destroy_textures(t_parsing *info)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 4)
+	{
+		if (info->textures.walls[i].img.mlx_img)
+			mlx_destroy_image(info->mlx.mlx_ptr,
+				info->textures.walls[i].img.mlx_img);
+		if (info->textures.walls[i].path_to_img)
+			free_n_set_null(&info->textures.walls[i].path_to_img);
+	}
+}
+
 void	destroy_info(t_parsing *info)
 {
 	int	i;
 
 	i = -1;
 	get_next_line(0, 1);
-	while (++i < 4)
-		if (info->textures.walls[i].path_to_img)
-			free_n_set_null(&info->textures.walls[i].path_to_img);
+	destroy_textures(info);
 	if (info->map)
 		free_tab(info->map);
 	free(info->int_map);
