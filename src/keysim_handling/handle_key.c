@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_key.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 11:44:33 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/14 14:50:21 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/14 19:13:08 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ int	key_press(int keysym, t_parsing *info)
 {
 	if (keysym == XK_Escape)
 		escape_exit(info);
-	if (keysym == XK_z || keysym == XK_Up || keysym == XK_w)
+	if (keysym == XK_z || keysym == XK_w)
 		info->keys.up = true;
-	else if (keysym == XK_s || keysym == XK_Down)
+	else if (keysym == XK_s)
 		info->keys.down = true;
 	else if (keysym == XK_Left)
 		info->keys.rotate_left = true;
