@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/14 23:47:04 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/15 00:19:36 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Si les longueurs sont égales et non nulles, on privilégie le dernier rayon.
 // 	return (false);
 // }
 
-static void	find_smallest_ray(t_parsing *info, t_ray *ray, float horizontal_len,
+static void	find_smallest_ray(t_ray *ray, float horizontal_len,
 		float vertical_len)
 {
 	if (vertical_len > horizontal_len)
@@ -56,7 +56,7 @@ void	raycaster(t_player *player, t_ray *ray, t_parsing *info)
 	{
 		horizontal_len = ray_horizon_plan_len(player, ray, info);
 		vertical_len = ray_vertical_plan_len(player, ray, info);
-		find_smallest_ray(info, ray, horizontal_len, vertical_len);
+		find_smallest_ray(ray, horizontal_len, vertical_len);
 		draw_3d_wall(ray, info);
 		ray->angle += ray->rad_value / SIZE_X;
 		ray->angle = protect_angle_trigo_value(ray->angle);

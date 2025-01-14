@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:03:00 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/08 16:19:54 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/15 00:19:00 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ static void	draw_line(t_img img, int x, int y, int flag)
 		if (flag == HORIZONTAL && (y * MINI_MAP_SIZE != 0) && (y
 				* MINI_MAP_SIZE != size - 1))
 			my_mlx_pixel_put(img, y * MINI_MAP_SIZE + MINI_MAP_LOC_Y, x
-				* MINI_MAP_SIZE + i + MINI_MAP_LOC_X, GREY);
+				* MINI_MAP_SIZE + i + MINI_MAP_LOC_X, PINK);
 		else if (flag == VERTICAL && (x * MINI_MAP_SIZE != 0) && (x
 				* MINI_MAP_SIZE != MINI_MAP_SIZE - 1))
 			my_mlx_pixel_put(img, y * MINI_MAP_SIZE + i + MINI_MAP_LOC_Y, x
-				* MINI_MAP_SIZE + MINI_MAP_LOC_X, GREY);
+				* MINI_MAP_SIZE + MINI_MAP_LOC_X, RED);
 	}
 }
 
