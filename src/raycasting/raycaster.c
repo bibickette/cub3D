@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/14 18:56:02 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/14 19:22:05 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Si les longueurs sont égales et non nulles, on privilégie le dernier rayon.
 static bool	is_horizontal_line_hit_first(int last_ray, float horizontal_len,
 		float vertical_len)
 {
-	if (vertical_len < horizontal_len)
+	if (vertical_len <= horizontal_len)
 		return (false);
 	else
 		return (true);
