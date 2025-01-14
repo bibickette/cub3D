@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:00:57 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/14 18:54:05 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/14 19:05:37 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init_horizontal_value(t_ray *ray, float ray_len)
 		ray->id = NO;
 	else
 		ray->id = SO;
-	ray->wall_hit = fmod(ray->hx, 64.0) / 64.0;
+	ray->wall_hit = fmod(ray->hx, MINI_MAP_SIZE) / MINI_MAP_SIZE;
 	ray->rx = ray->hx;
 	ray->ry = ray->hy;
 }

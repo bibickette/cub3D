@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/14 18:57:06 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/14 19:09:06 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 # define TITLE "The Legend of omg CEST FLUIDE"
 // la taille size X doit etre un multiple de FOV
 // si on veut que ca couvre tout lecran
-# define SIZE_X 1080
-# define SIZE_Y 720
+# define SIZE_X 1024
+# define SIZE_Y 512
 
 # define PI 3.1415926535
 # define FOV 60.00000

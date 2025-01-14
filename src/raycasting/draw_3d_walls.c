@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:30:57 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/14 19:00:46 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/14 19:11:03 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ static void	draw_ray(t_parsing *info, int id)
 	i = -1;
 	if (ray->start_y < 0)
 	{
-		i = -ray->start_y;
-		ray->start_y = 0;
+		while (ray->start_y + i + 1 < 0)
+			i++;
 	}
 	while (++i < line_length)
 	{
