@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 19:16:46 by fanfan            #+#    #+#             */
-/*   Updated: 2025/01/14 23:46:07 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/15 00:15:10 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	*ft_realloc_map(void *ptr, size_t new_size, size_t old_size)
 	}
 	if (ptr == NULL)
 		return (malloc(new_size));
-		
 	new_ptr = malloc(new_size);
 	if (new_ptr == NULL)
 		return (print_error(MALLOC_ERR, NULL), NULL);

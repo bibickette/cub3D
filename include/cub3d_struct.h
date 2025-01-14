@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/15 00:13:41 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/15 00:14:46 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@
 // for minimap
 # define PINK #420000
 # define RED #E0A59F
-# define OTHER_PINK #FF6987 // pour le faisceau de vision 
+# define OTHER_PINK #FF6987 // pour le faisceau de vision
 
 // player
 # define MINI_PLAYER_SIZE 2
