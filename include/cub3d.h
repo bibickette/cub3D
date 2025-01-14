@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/14 09:56:14 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:50:55 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ void			draw_mini_map(t_parsing *info);
 
 // keysim_handling
 int				cross_exit(t_parsing *info);
-int				handle_key(int keysym, t_parsing *info);
+void			escape_exit(t_parsing *info);
+void			handle_key(t_parsing *info);
+int				key_press(int keysym, t_parsing *info);
+int				key_release(int keysym, t_parsing *info);
 void			move_player_up(t_parsing *info);
 void			move_player_down(t_parsing *info);
 void			move_player_left(t_parsing *info);
@@ -61,8 +64,7 @@ void			move_player_right(t_parsing *info);
 int				display(t_parsing *info);
 
 // raycasting
-void			raycaster(t_player *player, t_ray *ray, t_parsing *info,
-					int replace);
+void			raycaster(t_player *player, t_ray *ray, t_parsing *info);
 float			ray_horizon_plan_len(t_player *player, t_ray *ray,
 					t_parsing *info);
 void			init_horizontal_value(t_ray *ray, float ray_len,
@@ -70,8 +72,7 @@ void			init_horizontal_value(t_ray *ray, float ray_len,
 float			ray_vertical_plan_len(t_player *player, t_ray *ray,
 					t_parsing *info);
 void			init_vertical_value(t_ray *ray, float ray_len, int *color_wall);
-void			draw_3d_wall(t_ray *ray, t_parsing *info, int replace,
-					int color_wall);
+void			draw_3d_wall(t_ray *ray, t_parsing *info, int color_wall);
 float			protect_angle_trigo_value(float angle);
 float			get_distance(float px, float py, float rx, float ry);
 unsigned int	get_backup_color(t_img img, int x, int y);

@@ -6,38 +6,38 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:05:45 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/14 11:09:54 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:39:48 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	draw_player_on_minimap(t_parsing *info, unsigned int color, int replace)
-{
-	int	x;
-	int	y;
+// void	draw_player_on_minimap(t_parsing *info, unsigned int color, int replace)
+// {
+// 	int	x;
+// 	int	y;
 
-	y = -1;
-	while (++y < MINI_PLAYER_SIZE)
-	{
-		x = -1;
-		while (++x < MINI_PLAYER_SIZE)
-		{
-			if (replace)
-			{
-				if (info->player.last_pos_x + x < SIZE_X
-					&& info->player.last_pos_x + x > 0
-					&& info->player.last_pos_y + y < SIZE_Y
-					&& info->player.last_pos_y + y > 0)
-					color = get_backup_color(info->mlx.backup,
-							info->player.last_pos_x + x, info->player.last_pos_y
-							+ y);
-			}
-			my_mlx_pixel_put(info->mlx.background, y + info->player.pos_y, x
-				+ info->player.pos_x, color);
-		}
-	}
-}
+// 	y = -1;
+// 	while (++y < MINI_PLAYER_SIZE)
+// 	{
+// 		x = -1;
+// 		while (++x < MINI_PLAYER_SIZE)
+// 		{
+// 			if (replace)
+// 			{
+// 				if (info->player.last_pos_x + x < SIZE_X
+// 					&& info->player.last_pos_x + x > 0
+// 					&& info->player.last_pos_y + y < SIZE_Y
+// 					&& info->player.last_pos_y + y > 0)
+// 					color = get_backup_color(info->mlx.backup,
+// 							info->player.last_pos_x + x, info->player.last_pos_y
+// 							+ y);
+// 			}
+// 			my_mlx_pixel_put(info->mlx.background, y + info->player.pos_y, x
+// 				+ info->player.pos_x, color);
+// 		}
+// 	}
+// }
 
 // static void	draw_mini_map_square(t_img img, int x, int y,
 // 		unsigned int color)

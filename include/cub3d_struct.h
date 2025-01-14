@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/14 11:13:32 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/14 14:53:07 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# define FRAME_TIME 16.67 // 60fps
+
 # define NO 0
 # define SO 1
 # define EA 2
@@ -33,12 +35,11 @@
 # define ERROR "Error\n"
 
 // screen options
-# define TITLE "The Legend of omg les textures"
-// la taille size X doit etre un multiple de FOV si on veut 
-// que ca couvre tout lecran
-// la taille size Y doit etre la moitié de size X
-# define SIZE_X 1024
-# define SIZE_Y 512
+# define TITLE "The Legend of omg CEST FLUIDE"
+// la taille size X doit etre un multiple de FOV
+// si on veut que ca couvre tout lecran
+# define SIZE_X 1080
+# define SIZE_Y 720
 
 # define PI 3.1415926535
 # define FOV 60.00000
@@ -67,9 +68,12 @@
 // player
 # define MINI_PLAYER_SIZE 2
 # define MINI_MAP_SIZE 32
-	// size of each square and have to be the size of texture
+// size of each square and have to be the size of texture
 # define MINI_MAP_LOC_X 0 // decalage en pixel position X et Y
 # define MINI_MAP_LOC_Y 0
+// plus les valeurs sont grandes plus on avance / tourne vite
+# define MOVE_SPEED 2.5
+# define ROTATE_SPEED 0.04
 
 // error dinput
 # define ARG_ERR "This program takes one argument, no more no less"
@@ -82,7 +86,8 @@
 # define FILE_NOT_EXIST "File doesn't exist : "
 # define UNKNOWN_FILE_ERR "File access unknown error : "
 
-# define RGB_VALUE "RGB value must be between 0 and 255\
+# define RGB_VALUE \
+	"RGB value must be between 0 and 255\
  and contains 3 values separate by space or coma"
 
 # define MAP_ERR "Map is not valid : "
@@ -118,7 +123,7 @@ mp est lindex pour notre map int calculer grace a mx et my.
 dof = degree of freedom,
 	combien de pas peut on faire avant les limites de la map.
 rx et ry sont les coordonnées finales du rayon.
-xo et yo sont les valeurs d'incrementation pour avancer 
+xo et yo sont les valeurs d'incrementation pour avancer
 jusqua la prochaine case de la map.
 arc_tan est la tangente de l'angle du rayon.
 angle est l'angle du rayon.
@@ -126,7 +131,7 @@ r est le compteur de rayon.
 lineH est la longueur du rayon.
 lineO est la longueur de l'intersection.
 ca est le cosinus de l'angle du rayon.
-last_ray indique si le dernier rayon a dabord frappe 
+last_ray indique si le dernier rayon a dabord frappe
 un mur horizontaement ou verticalement.
  */
 
@@ -202,8 +207,6 @@ typedef struct s_player
 	float			angle;
 	int				x;
 	int				y;
-	int				last_pos_x;
-	int				last_pos_y;
 }					t_player;
 
 typedef struct s_mlx
@@ -211,10 +214,21 @@ typedef struct s_mlx
 	void			*mlx_ptr;
 	void			*win_ptr;
 	t_img			background;
-	t_img			backup;
+	t_img			background2;
+	t_img			*current_background;
 	t_img			player;
 
 }					t_mlx;
+
+typedef struct keys
+{
+	bool			up;
+	bool			down;
+	bool			left;
+	bool			right;
+	bool			rotate_left;
+	bool			rotate_right;
+}					t_keys;
 
 typedef struct s_parsing
 {
@@ -226,7 +240,8 @@ typedef struct s_parsing
 	int				*int_map;
 	int				max_x;
 	int				max_y;
-
+	int				nb_frame;
+	t_keys			keys;
 }					t_parsing;
 
 #endif
