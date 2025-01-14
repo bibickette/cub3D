@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_3d_walls.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:30:57 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/14 14:38:53 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:59:11 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static unsigned int	get_color_pixel_texture(t_parsing *info, int x, int y,
 	return (color);
 }
 
-static void	draw_rectangle(unsigned int color, t_parsing *info, int id)
+static void	draw_rectangle(t_parsing *info, int id)
 {
 	float	i;
 	float	line_length;
@@ -36,42 +36,31 @@ static void	draw_rectangle(unsigned int color, t_parsing *info, int id)
 	ray = &info->ray;
 	line_length = get_distance(ray->start_x, ray->start_y, ray->start_x,
 			ray->start_y + ray->height_l);
-	tex_x = (int)(info->ray.wall_hit * info->textures.walls[id].width);
+	tex_x = (int)(info->ray.wall_hit * TEXTURE_SIZE);
 	i = -1;
 	if (ray->start_y < 0)
 	{
-		while (ray->start_y + i + 1 < 0)
-			i++;
+		i = -ray->start_y;
+		ray->start_y = 0;
 	}
 	while (++i < line_length)
 	{
 		tex_y = (int)((i / line_length) * TEXTURE_SIZE);
-		color = get_color_pixel_texture(info, tex_x, tex_y, id);
 		my_mlx_pixel_put(*(info->mlx.current_background), ray->start_y + i,
-			ray->start_x, color);
+			ray->start_x, get_color_pixel_texture(info, tex_x, tex_y, id));
 		if (ray->start_y + i + 1 > SIZE_Y)
 			break ;
 	}
 }
 
-static void	draw_big_line(t_parsing *info, t_ray *ray, unsigned int color)
+static void	draw_big_line(t_parsing *info, t_ray *ray)
 {
-	int	id;
-
-	if (color == DARK_RED)
-		id = WE;
-	else if (color == DARK_BLUE)
-		id = EA;
-	else if (color == RED)
-		id = SO;
-	else
-		id = NO;
 	ray->start_x = ray->r;
 	ray->start_y = ray->offset_l;
-	draw_rectangle(color, info, id);
+	draw_rectangle(info, ray->id);
 }
 
-void	draw_3d_wall(t_ray *ray, t_parsing *info, int color_wall)
+void	draw_3d_wall(t_ray *ray, t_parsing *info)
 {
 	int	x;
 	int	y;
@@ -84,5 +73,5 @@ void	draw_3d_wall(t_ray *ray, t_parsing *info, int color_wall)
 	info->ray.height_l = (MINI_MAP_SIZE / info->ray.distance) * (x
 			/ tan(ray->rad_value / 2));
 	info->ray.offset_l = y - info->ray.height_l / 2;
-	draw_big_line(info, ray, color_wall);
+	draw_big_line(info, ray);
 }

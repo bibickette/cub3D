@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/14 14:50:55 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:54:56 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,11 @@ int				display(t_parsing *info);
 void			raycaster(t_player *player, t_ray *ray, t_parsing *info);
 float			ray_horizon_plan_len(t_player *player, t_ray *ray,
 					t_parsing *info);
-void			init_horizontal_value(t_ray *ray, float ray_len,
-					int *color_wall);
+void			init_horizontal_value(t_ray *ray, float ray_len);
 float			ray_vertical_plan_len(t_player *player, t_ray *ray,
 					t_parsing *info);
-void			init_vertical_value(t_ray *ray, float ray_len, int *color_wall);
-void			draw_3d_wall(t_ray *ray, t_parsing *info, int color_wall);
+void			init_vertical_value(t_ray *ray, float ray_len);
+void			draw_3d_wall(t_ray *ray, t_parsing *info);
 float			protect_angle_trigo_value(float angle);
 float			get_distance(float px, float py, float rx, float ry);
 unsigned int	get_backup_color(t_img img, int x, int y);

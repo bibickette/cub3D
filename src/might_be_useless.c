@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   might_be_useless.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 15:07:28 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/14 13:40:03 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:37:59 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@
 // 			* cos(info->ray.angle);
 // 		y = info->player.pos_y + MINI_PLAYER_SIZE / 2 + i
 // 			* sin(info->ray.angle);
-// 		if (replace)
-// 			color = get_backup_color(info->mlx.backup, x, y);
-// 		my_mlx_pixel_put(info->mlx.background, y, x, color);
+// 		if ((x < 0 || x >= SIZE_X || y < 0 || y >= SIZE_Y))
+// 			break;
+// 		my_mlx_pixel_put(*(info->mlx.current_background), y, x, color);
 // 		i++;
 // 	}
 // }

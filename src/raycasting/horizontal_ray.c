@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:00:57 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/13 16:35:39 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/14 18:54:05 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ Les cas particuliers gèrent les rayons parfaitement horizontaux
 en plaçant l'intersection à la position du joueur.
  */
 
-void	init_horizontal_value(t_ray *ray, float ray_len, int *color_wall)
+void	init_horizontal_value(t_ray *ray, float ray_len)
 {
 	ray->distance = ray_len;
 	ray->last_ray = HORIZONTAL;
 	if (ray->angle > PI && ray->angle < 2 * PI)
-		*color_wall = BLUE;
+		ray->id = NO;
 	else
-		*color_wall = RED;
+		ray->id = SO;
 	ray->wall_hit = fmod(ray->hx, 64.0) / 64.0;
 	ray->rx = ray->hx;
 	ray->ry = ray->hy;

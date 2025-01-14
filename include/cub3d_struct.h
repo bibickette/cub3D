@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/14 14:53:07 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:57:06 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define PI 3.1415926535
 # define FOV 60.00000
 
-# define TEXTURE_SIZE 64.0000f
+# define TEXTURE_SIZE 128.0000f
 // draw map handling
 # define NO_REPLACE 0
 # define REPLACE_BCKGRND 1
@@ -67,7 +67,7 @@
 
 // player
 # define MINI_PLAYER_SIZE 2
-# define MINI_MAP_SIZE 32
+# define MINI_MAP_SIZE 64
 // size of each square and have to be the size of texture
 # define MINI_MAP_LOC_X 0 // decalage en pixel position X et Y
 # define MINI_MAP_LOC_Y 0
@@ -158,6 +158,7 @@ typedef struct s_ray
 	float			offset_l;
 	float			cos_angle;
 	float			wall_hit;
+	int				id;
 	int				start_x;
 	int				start_y;
 	int				dist_to_wall;
@@ -184,8 +185,6 @@ typedef struct s_wall
 	char			*path_to_img;
 	unsigned int	color;
 	t_img			img;
-	int				width;
-	int				height;
 }					t_wall;
 
 typedef struct s_texture

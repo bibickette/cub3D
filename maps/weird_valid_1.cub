@@ -1,7 +1,7 @@
-NO ./textures/examples0.xpm
-SO ./textures/examples1.xpm
-WE ./textures/examples2.xpm
-EA ./textures/examples3.xpm
+NO ./textures/face3_x128.xpm
+SO ./textures/face2_x128.xpm
+WE ./textures/face1_x128.xpm
+EA ./textures/face0_x128.xpm
 
 F 34,139,34
 C 135,206,235

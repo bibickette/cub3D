@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/14 13:35:59 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:56:02 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,21 @@ Si les longueurs sont égales et non nulles, on privilégie le dernier rayon.
 static bool	is_horizontal_line_hit_first(int last_ray, float horizontal_len,
 		float vertical_len)
 {
-	if (horizontal_len == vertical_len && horizontal_len != 0)
-		return (last_ray == HORIZONTAL);
-	if (horizontal_len > 0 && (horizontal_len < vertical_len
-			|| vertical_len <= 0))
+	if (vertical_len < horizontal_len)
+		return (false);
+	else
 		return (true);
 	return (false);
 }
 
-static void	find_smallest_ray(t_ray *ray, float horizontal_len,
-		float vertical_len, int *color_wall)
+static void	find_smallest_ray(t_parsing *info, t_ray *ray, float horizontal_len,
+		float vertical_len)
 {
 	if (is_horizontal_line_hit_first(ray->last_ray, horizontal_len,
 			vertical_len))
-		init_horizontal_value(ray, horizontal_len, color_wall);
+		init_horizontal_value(ray, horizontal_len);
 	else
-		init_vertical_value(ray, vertical_len, color_wall);
+		init_vertical_value(ray, vertical_len);
 	ray->wall_hit -= floor(ray->wall_hit);
 }
 
@@ -50,7 +49,6 @@ void	raycaster(t_player *player, t_ray *ray, t_parsing *info)
 {
 	float	horizontal_len;
 	float	vertical_len;
-	int		color_wall;
 
 	ray->angle = player->angle - (ray->rad_value / 2);
 	ray->angle = protect_angle_trigo_value(ray->angle);
@@ -59,8 +57,8 @@ void	raycaster(t_player *player, t_ray *ray, t_parsing *info)
 	{
 		horizontal_len = ray_horizon_plan_len(player, ray, info);
 		vertical_len = ray_vertical_plan_len(player, ray, info);
-		find_smallest_ray(ray, horizontal_len, vertical_len, &color_wall);
-		draw_3d_wall(ray, info, color_wall);
+		find_smallest_ray(info, ray, horizontal_len, vertical_len);
+		draw_3d_wall(ray, info);
 		ray->angle += ray->rad_value / SIZE_X;
 		ray->angle = protect_angle_trigo_value(ray->angle);
 		ray->r++;

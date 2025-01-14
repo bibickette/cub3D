@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apocalypse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:55:43 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/14 13:39:06 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:58:10 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,6 @@ void	destroy_textures(t_parsing *info)
 
 void	destroy_info(t_parsing *info)
 {
-	int	i;
-
-	i = -1;
 	get_next_line(0, 1);
 	destroy_textures(info);
 	if (info->map)
