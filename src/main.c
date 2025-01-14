@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:55:58 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/14 14:51:04 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/15 00:12:50 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	init_ray(t_ray *ray)
-{
-	ray->rad_value = ((PI / 180) * FOV);
-	ray->pi2 = (PI / 2);
-	ray->pi3 = (3 * PI / 2);
-}
 
 int	main(int argc, char **argv)
 {
@@ -27,7 +20,6 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!init_create_mlx(&info))
 		return (destroy_info(&info), destroy_mlx(&info.mlx), 1);
-	init_ray(&info.ray);
 	print_map(info.map);
 	print_map_int(info.int_map, info.max_x, info.max_y);
 	print_player_info(info.player);

@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/14 19:09:06 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/15 00:12:33 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,14 @@
 # define HORIZONTAL 0
 # define VERTICAL 1
 
-# define GREY 0x808080
-# define BLACK 0x000000
-# define WHITE 0xFFFFFF
-# define YELLOW 0xFFFF00
-# define RED 0xFF0000
-# define DARK_RED 0x8B0000
-# define PURPLE 0x800080
-# define PINK 0xFFC0CB
-# define ORANGE 0xFFA500
-# define GREEN 0x00FF00
-# define CYAN 0x00FFFF
-# define BLUE 0x000050
-# define DARK_BLUE 0x00008F
+// for minimap
+# define PINK #420000
+# define RED #E0A59F
+# define OTHER_PINK #FF6987 // pour le faisceau de vision 
 
 // player
 # define MINI_PLAYER_SIZE 2
-# define MINI_MAP_SIZE 64
+# define MINI_MAP_SIZE 32
 // size of each square and have to be the size of texture
 # define MINI_MAP_LOC_X 0 // decalage en pixel position X et Y
 # define MINI_MAP_LOC_Y 0

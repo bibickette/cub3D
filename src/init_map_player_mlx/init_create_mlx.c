@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_create_mlx.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:29:01 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/14 14:54:12 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/15 00:08:41 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,13 @@ static bool	create_background(t_mlx *mlx, unsigned int floor_color,
 	return (true);
 }
 
+static void	init_ray(t_ray *ray)
+{
+	ray->rad_value = ((PI / 180) * FOV);
+	ray->pi2 = (PI / 2);
+	ray->pi3 = (3 * PI / 2);
+}
+
 bool	init_create_mlx(t_parsing *info)
 {
 	int	screen_width;
@@ -83,5 +90,7 @@ bool	init_create_mlx(t_parsing *info)
 		return (print_error(MLX_NEW_WIN_ERR, NULL), false);
 	if (!load_texture(info))
 		return (false);
+	init_ray(&info->ray);
+	// print intro hihi
 	return (true);
 }

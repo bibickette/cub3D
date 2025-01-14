@@ -1,10 +1,10 @@
-NO ./textures/face3_x64.xpm
-SO ./textures/face2_x64.xpm
-WE ./textures/face1_x64.xpm
-EA ./textures/face0_x64.xpm
+NO ./textures/face3.xpm
+SO ./textures/face2.xpm
+WE ./textures/face1.xpm
+EA ./textures/face0.xpm
 
-F 34,139,34
-C 135,206,235
+F 66, 0, 0
+C 224, 165, 159
 
 
 11111111  
