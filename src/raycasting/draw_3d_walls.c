@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:30:57 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/14 10:10:34 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:35:58 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,20 @@ static void	draw_rectangle(unsigned int color, t_parsing *info, int replace,
 	int		tex_x;
 	int		tex_y;
 	t_ray	*ray;
+	int		tour;
 
+	tour = 0;
 	ray = &info->ray;
 	line_length = get_distance(ray->start_x, ray->start_y, ray->start_x,
 			ray->start_y + ray->height_l);
 	tex_x = (int)(info->ray.wall_hit * info->textures.walls[id].width);
-	i = -1;
-	while (++i < line_length)
+	i = 0;
+	// if (ray->start_y < 0)
+	// {
+	// 	while (ray->start_y + i < 0)
+	// 		i++;
+	// }
+	while (i < line_length)
 	{
 		tex_y = (int)((i / line_length) * TEXTURE_SIZE);
 		if (replace)
@@ -59,7 +66,12 @@ static void	draw_rectangle(unsigned int color, t_parsing *info, int replace,
 			color = get_color_pixel_texture(info, tex_x, tex_y, id);
 		my_mlx_pixel_put(info->mlx.background, ray->start_y + i, ray->start_x,
 			color);
+		// if (ray->start_y + i + 1 > SIZE_Y)
+		// 	break ;
+		tour++;
+		i++;
 	}
+	printf("tour de boucle = %d\n", tour);
 }
 
 static void	draw_big_line(t_parsing *info, t_ray *ray, unsigned int color,
