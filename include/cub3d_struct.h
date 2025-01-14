@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/15 00:12:33 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/15 00:13:41 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define ERROR "Error\n"
 
 // screen options
-# define TITLE "The Legend of omg CEST FLUIDE"
+# define TITLE "The Legend of The Cherry Blossom House"
 // la taille size X doit etre un multiple de FOV
 // si on veut que ca couvre tout lecran
 # define SIZE_X 1024
