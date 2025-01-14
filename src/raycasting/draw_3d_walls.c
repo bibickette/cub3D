@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:30:57 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/14 18:59:11 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/14 19:00:46 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static unsigned int	get_color_pixel_texture(t_parsing *info, int x, int y,
 	return (color);
 }
 
-static void	draw_rectangle(t_parsing *info, int id)
+static void	draw_ray(t_parsing *info, int id)
 {
 	float	i;
 	float	line_length;
@@ -57,7 +57,7 @@ static void	draw_big_line(t_parsing *info, t_ray *ray)
 {
 	ray->start_x = ray->r;
 	ray->start_y = ray->offset_l;
-	draw_rectangle(info, ray->id);
+	draw_ray(info, ray->id);
 }
 
 void	draw_3d_wall(t_ray *ray, t_parsing *info)
