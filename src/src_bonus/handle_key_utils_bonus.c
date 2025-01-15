@@ -6,12 +6,11 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 0020/01/08 00:00:00 by 13:53 by ph       #+#    #+#             */
-/*   Updated: 2025/01/15 16:15:55 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:17:17 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
-
 
 void	move_player_up_bonus(t_parsing *info)
 {
