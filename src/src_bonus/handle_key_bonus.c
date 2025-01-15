@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 11:44:33 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/15 13:21:38 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:20:21 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ int	key_press_bonus(int keysym, t_parsing *info)
 
 int	key_release_bonus(int keysym, t_parsing *info)
 {
-	if (keysym == XK_z || keysym == XK_Up || keysym == XK_w)
+	if (keysym == XK_z || keysym == XK_w)
 		info->keys.up = false;
-	else if (keysym == XK_s || keysym == XK_Down)
+	else if (keysym == XK_s)
 		info->keys.down = false;
 	else if (keysym == XK_Left)
 		info->keys.rotate_left = false;

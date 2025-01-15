@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:55:58 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/15 13:20:44 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:21:19 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	main(int argc, char **argv)
 	print_player_info(info.player);
 	display_bonus(&info);
 	mlx_hook(info.mlx.win_ptr, KeyPress, KeyPressMask, &key_press_bonus, &info);
-	mlx_hook(info.mlx.win_ptr, KeyRelease, KeyReleaseMask, &key_release_bonus, &info);
+	mlx_hook(info.mlx.win_ptr, KeyRelease, KeyReleaseMask, &key_release_bonus,
+		&info);
 	mlx_hook(info.mlx.win_ptr, DestroyNotify, 0, &cross_exit, &info);
 	mlx_loop_hook(info.mlx.mlx_ptr, &display_bonus, &info);
 	mlx_loop(info.mlx.mlx_ptr);
