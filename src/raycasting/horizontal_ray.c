@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   horizontal_ray.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:00:57 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/14 19:18:09 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/15 11:22:50 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ float	ray_horizon_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 	ray->player_posy = player->pos_y + MINI_PLAYER_SIZE / 2;
 	ray->dist_to_wall = 0;
 	hzplan_find_intersection(ray, info);
-	while (ray->dist_to_wall < info->max_x)
+	while (ray->dist_to_wall < info->max_y)
 	{
 		ray->map_x = (int)(ray->hx) / MINI_MAP_SIZE;
 		ray->map_y = (int)(ray->hy) / MINI_MAP_SIZE;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vertical_ray.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:06:55 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/14 19:18:14 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/15 11:22:43 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ float	ray_vertical_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 	ray->player_posy = player->pos_y + MINI_PLAYER_SIZE / 2;
 	ray->dist_to_wall = 0;
 	vtplan_find_intersection(ray, info);
-	while (ray->dist_to_wall < info->max_y)
+	while (ray->dist_to_wall < info->max_x)
 	{
 		ray->map_x = (int)(ray->vx) / MINI_MAP_SIZE;
 		ray->map_y = (int)(ray->vy) / MINI_MAP_SIZE;
