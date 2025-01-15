@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/15 13:04:56 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:24:03 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ and contains 3 values separate by space or coma"
 # define MINIMAL_SIZE_MAP " must be at least 3 lines"
 # define PLAYER_NB "must be one player"
 # define EMPTY_LINE "Map can't contain empty line"
+# define NO_MAP "No map found"
 
 // mlx
 # define MLX_INIT_ERR "mlx_init() failed"

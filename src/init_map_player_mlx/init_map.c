@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:31:45 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/15 11:00:41 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:23:25 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static bool	get_map(int fd, int *end, char ***map)
 
 	i = 0;
 	line = get_next_line(fd, 0);
+	if (!line)
+		return (print_error(MAP_ERR, NO_MAP), false);
 	while (line)
 	{
 		if (!is_white_space_line(line))
@@ -76,7 +78,6 @@ bool	init_map(t_parsing *info, int fd)
 	if (!get_map(fd, &flag, &map))
 		return (false);
 	info->map = map;
-	print_map(info->map);
 	if (!info->map)
 		return (false);
 	if (!is_valid_map(info))
