@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:35:38 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/08 14:32:57 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/15 12:59:57 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static void	player_setting(char **map, t_player *player, int pos_x, int pos_y)
 {
 	player->x = pos_x;
 	player->y = pos_y;
-	player->pos_x = pos_x * MINI_MAP_SIZE + MINI_MAP_LOC_X + MINI_MAP_SIZE / 2
+	player->pos_x = pos_x * SCALE + MINI_MAP_LOC_X + SCALE / 2
 		- MINI_PLAYER_SIZE / 2;
-	player->pos_y = pos_y * MINI_MAP_SIZE + MINI_MAP_LOC_Y + MINI_MAP_SIZE / 2
+	player->pos_y = pos_y * SCALE + MINI_MAP_LOC_Y + SCALE / 2
 		- MINI_PLAYER_SIZE / 2;
 	set_angle_player(map[pos_y][pos_x], player);
 	player->d_x = cos(player->angle) * 5;

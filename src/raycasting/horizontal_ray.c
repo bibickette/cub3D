@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:00:57 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/15 11:22:50 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/15 12:59:57 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	init_horizontal_value(t_ray *ray, float ray_len)
 	ray->distance = ray_len;
 	ray->last_ray = HORIZONTAL;
 	if (ray->angle > PI && ray->angle < 2 * PI)
-		ray->id = NO;
-	else
 		ray->id = SO;
-	ray->wall_hit = fmod(ray->hx, MINI_MAP_SIZE) / MINI_MAP_SIZE;
+	else
+		ray->id = NO;
+	ray->wall_hit = fmod(ray->hx, SCALE) / SCALE;
 	ray->rx = ray->hx;
 	ray->ry = ray->hy;
 }
@@ -42,20 +42,20 @@ static void	hzplan_find_intersection(t_ray *ray, t_parsing *info)
 	ray->arc_tan = -1 / tan(ray->angle);
 	if (ray->angle > PI)
 	{
-		ray->hy = (((int)ray->player_posy / MINI_MAP_SIZE) * MINI_MAP_SIZE)
+		ray->hy = (((int)ray->player_posy / SCALE) * SCALE)
 			- 0.0001;
 		ray->hx = (ray->player_posy - ray->hy) * ray->arc_tan
 			+ ray->player_posx;
-		ray->yo = -MINI_MAP_SIZE;
+		ray->yo = -SCALE;
 		ray->xo = -ray->yo * ray->arc_tan;
 	}
 	if (ray->angle < PI)
 	{
-		ray->hy = (((int)ray->player_posy / MINI_MAP_SIZE) * MINI_MAP_SIZE)
-			+ MINI_MAP_SIZE;
+		ray->hy = (((int)ray->player_posy / SCALE) * SCALE)
+			+ SCALE;
 		ray->hx = (ray->player_posy - ray->hy) * ray->arc_tan
 			+ ray->player_posx;
-		ray->yo = MINI_MAP_SIZE;
+		ray->yo = SCALE;
 		ray->xo = -ray->yo * ray->arc_tan;
 	}
 	if (ray->angle == 0 || ray->angle == PI)
@@ -84,8 +84,8 @@ float	ray_horizon_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 	hzplan_find_intersection(ray, info);
 	while (ray->dist_to_wall < info->max_y)
 	{
-		ray->map_x = (int)(ray->hx) / MINI_MAP_SIZE;
-		ray->map_y = (int)(ray->hy) / MINI_MAP_SIZE;
+		ray->map_x = (int)(ray->hx) / SCALE;
+		ray->map_y = (int)(ray->hy) / SCALE;
 		ray->map_pos = ray->map_y * info->max_x + ray->map_x;
 		if (ray->map_pos < 0)
 			ray->map_pos = 0;

@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:06:55 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/15 11:22:43 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/15 12:59:57 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	init_vertical_value(t_ray *ray, float ray_len)
 	ray->distance = ray_len;
 	ray->last_ray = VERTICAL;
 	if (ray->angle > ray->pi2 && ray->angle < ray->pi3)
-		ray->id = WE;
-	else
 		ray->id = EA;
-	ray->wall_hit = fmod(ray->vy, MINI_MAP_SIZE) / MINI_MAP_SIZE;
+	else
+		ray->id = WE;
+	ray->wall_hit = fmod(ray->vy, SCALE) / SCALE;
 	ray->ry = ray->vy;
 	ray->rx = ray->vx;
 }
@@ -42,18 +42,18 @@ static void	vtplan_find_intersection(t_ray *ray, t_parsing *info)
 	ray->tan = -tan(ray->angle);
 	if (ray->angle > ray->pi2 && ray->angle < ray->pi3)
 	{
-		ray->vx = (((int)ray->player_posx / MINI_MAP_SIZE) * MINI_MAP_SIZE)
+		ray->vx = (((int)ray->player_posx / SCALE) * SCALE)
 			- 0.0001;
 		ray->vy = (ray->player_posx - ray->vx) * ray->tan + ray->player_posy;
-		ray->xo = -MINI_MAP_SIZE;
+		ray->xo = -SCALE;
 		ray->yo = -ray->xo * ray->tan;
 	}
 	if (ray->angle < ray->pi2 || ray->angle > ray->pi3)
 	{
-		ray->vx = (((int)ray->player_posx / MINI_MAP_SIZE) * MINI_MAP_SIZE)
-			+ MINI_MAP_SIZE;
+		ray->vx = (((int)ray->player_posx / SCALE) * SCALE)
+			+ SCALE;
 		ray->vy = (ray->player_posx - ray->vx) * ray->tan + ray->player_posy;
-		ray->xo = MINI_MAP_SIZE;
+		ray->xo = SCALE;
 		ray->yo = -ray->xo * ray->tan;
 	}
 	if (ray->angle == ray->pi3 || ray->angle == ray->pi2)
@@ -86,8 +86,8 @@ float	ray_vertical_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 	vtplan_find_intersection(ray, info);
 	while (ray->dist_to_wall < info->max_x)
 	{
-		ray->map_x = (int)(ray->vx) / MINI_MAP_SIZE;
-		ray->map_y = (int)(ray->vy) / MINI_MAP_SIZE;
+		ray->map_x = (int)(ray->vx) / SCALE;
+		ray->map_y = (int)(ray->vy) / SCALE;
 		ray->map_pos = ray->map_y * info->max_x + ray->map_x;
 		if (ray->map_pos < 0)
 			ray->map_pos = 0;

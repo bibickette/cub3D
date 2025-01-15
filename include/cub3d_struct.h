@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/15 10:35:45 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:04:56 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 # define FOV 60.00000
 
 # define TEXTURE_SIZE 128.0000f
+# define SCALE 32
 // draw map handling
 # define NO_REPLACE 0
 # define REPLACE_BCKGRND 1
@@ -58,7 +59,6 @@
 
 // player
 # define MINI_PLAYER_SIZE 2
-# define MINI_MAP_SIZE 32
 // size of each square and have to be the size of texture
 # define MINI_MAP_LOC_X 0 // decalage en pixel position X et Y
 # define MINI_MAP_LOC_Y 0
@@ -76,9 +76,10 @@
 # define FORMAT_ERR "Wrong file/texture format : must be "
 # define FILE_NOT_EXIST "File doesn't exist : "
 # define UNKNOWN_FILE_ERR "File access unknown error : "
+# define IDPLC_ERR "Identifier must be before the map"
 
-# define RGB_VALUE "RGB value must be between 0 and 255\
- and contains 3 values separate by space or coma"
+# define RGB_VALUE "RGB value must be between 0 and 255 \
+and contains 3 values separate by space or coma"
 
 # define MAP_ERR "Map is not valid : "
 # define WALL_ERR "must be surrounded by walls"

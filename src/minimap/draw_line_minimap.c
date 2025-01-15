@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line_minimap.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:03:00 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/15 00:19:00 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/15 13:00:14 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 // dessine un cadrillage en fonction de la taille dun carré
-// defini par MINI_MAP_SIZE
+// defini par SCALE
 static void	draw_line(t_img img, int x, int y, int flag)
 {
 	int	i;
@@ -22,22 +22,22 @@ static void	draw_line(t_img img, int x, int y, int flag)
 	i = -1;
 	size = 0;
 	if (flag == VERTICAL)
-		size = MINI_MAP_SIZE;
+		size = SCALE;
 	else if (flag == HORIZONTAL)
 	{
-		size = x * MINI_MAP_SIZE;
+		size = x * SCALE;
 		x = 0;
 	}
 	while (++i < size)
 	{
-		if (flag == HORIZONTAL && (y * MINI_MAP_SIZE != 0) && (y
-				* MINI_MAP_SIZE != size - 1))
-			my_mlx_pixel_put(img, y * MINI_MAP_SIZE + MINI_MAP_LOC_Y, x
-				* MINI_MAP_SIZE + i + MINI_MAP_LOC_X, PINK);
-		else if (flag == VERTICAL && (x * MINI_MAP_SIZE != 0) && (x
-				* MINI_MAP_SIZE != MINI_MAP_SIZE - 1))
-			my_mlx_pixel_put(img, y * MINI_MAP_SIZE + i + MINI_MAP_LOC_Y, x
-				* MINI_MAP_SIZE + MINI_MAP_LOC_X, RED);
+		if (flag == HORIZONTAL && (y * SCALE != 0) && (y
+				* SCALE != size - 1))
+			my_mlx_pixel_put(img, y * SCALE + MINI_MAP_LOC_Y, x
+				* SCALE + i + MINI_MAP_LOC_X, PINK);
+		else if (flag == VERTICAL && (x * SCALE != 0) && (x
+				* SCALE != SCALE - 1))
+			my_mlx_pixel_put(img, y * SCALE + i + MINI_MAP_LOC_Y, x
+				* SCALE + MINI_MAP_LOC_X, RED);
 	}
 }
 

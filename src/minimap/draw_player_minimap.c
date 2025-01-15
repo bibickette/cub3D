@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:05:45 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/14 13:39:48 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:00:14 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@
 // 	int	j;
 
 // 	i = -1;
-// 	while (++i < MINI_MAP_SIZE)
+// 	while (++i < SCALE)
 // 	{
 // 		j = -1;
-// 		while (++j < MINI_MAP_SIZE)
+// 		while (++j < SCALE)
 // 			my_mlx_pixel_put(img, y + i, x + j, color);
 // 	}
 // }
@@ -70,15 +70,15 @@
 // 			len_max_x = ft_strlen(info->map[y]);
 // 			if (x < len_max_x && info->map[y][x] == '1')
 // 			{
-// 				draw_mini_map_square(info->mlx.background, x * MINI_MAP_SIZE
-// 					+ MINI_MAP_LOC_X, y * MINI_MAP_SIZE + MINI_MAP_LOC_Y,
+// 				draw_mini_map_square(info->mlx.background, x * SCALE
+// 					+ MINI_MAP_LOC_X, y * SCALE + MINI_MAP_LOC_Y,
 // 					WHITE);
 // 			}
 // 			else if (x < len_max_x && (info->map[y][x] == '0'
 // 				|| is_player(info->map[y][x])))
 // 			{
-// 				draw_mini_map_square(info->mlx.background, x * MINI_MAP_SIZE
-// 					+ MINI_MAP_LOC_X, y * MINI_MAP_SIZE + MINI_MAP_LOC_Y,
+// 				draw_mini_map_square(info->mlx.background, x * SCALE
+// 					+ MINI_MAP_LOC_X, y * SCALE + MINI_MAP_LOC_Y,
 // 					BLACK);
 // 			}
 // 		}

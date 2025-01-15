@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:13:44 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/13 16:37:21 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/15 13:04:46 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static bool	init_texture_and_color(t_parsing *info, int fd)
 		if (identifier)
 			if (!load_identifier(info, line, identifier))
 				return (free_n_set_null(&line), false);
+		if (!identifier && !is_white_space_line(line))
+			return (print_error(IDPLC_ERR, NULL), free_n_set_null(&line), 0);
 		free_n_set_null(&line);
 		if (count_id == COMPLETE)
 			break ;

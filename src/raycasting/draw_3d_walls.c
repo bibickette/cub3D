@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_3d_walls.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:30:57 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/14 19:11:03 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/15 12:59:57 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	draw_3d_wall(t_ray *ray, t_parsing *info)
 	info->ray.cos_angle = info->player.angle - info->ray.angle;
 	info->ray.cos_angle = protect_angle_trigo_value(info->ray.cos_angle);
 	info->ray.distance = (info->ray.distance) * cos(info->ray.cos_angle);
-	info->ray.height_l = (MINI_MAP_SIZE / info->ray.distance) * (x
+	info->ray.height_l = (SCALE / info->ray.distance) * (x
 			/ tan(ray->rad_value / 2));
 	info->ray.offset_l = y - info->ray.height_l / 2;
 	draw_big_line(info, ray);

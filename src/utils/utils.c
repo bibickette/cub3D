@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 19:16:46 by fanfan            #+#    #+#             */
-/*   Updated: 2025/01/15 10:41:37 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:02:14 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	*ft_realloc_map(void *ptr, size_t new_size, size_t old_size)
 	free(ptr);
 	return (new_ptr);
 }
-
 
 bool	is_white_space_line(char *line)
 {
