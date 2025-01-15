@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/15 00:21:02 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/15 10:35:45 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,14 @@
 # define FILE_NOT_EXIST "File doesn't exist : "
 # define UNKNOWN_FILE_ERR "File access unknown error : "
 
-# define RGB_VALUE \
-	"RGB value must be between 0 and 255\
+# define RGB_VALUE "RGB value must be between 0 and 255\
  and contains 3 values separate by space or coma"
 
 # define MAP_ERR "Map is not valid : "
 # define WALL_ERR "must be surrounded by walls"
 # define MINIMAL_SIZE_MAP " must be at least 3 lines"
 # define PLAYER_NB "must be one player"
+# define EMPTY_LINE "Map can't contain empty line"
 
 // mlx
 # define MLX_INIT_ERR "mlx_init() failed"

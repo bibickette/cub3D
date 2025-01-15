@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:31:45 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/08 15:57:50 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/15 11:00:41 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,38 +39,44 @@ static bool	convert_n_add(char ***map, char *line, int *i)
 	return (true);
 }
 
-static bool	get_map(t_parsing *info, int fd)
+static bool	get_map(int fd, int *end, char ***map)
 {
 	char	*line;
-	char	**map;
 	int		i;
 
 	i = 0;
-	map = NULL;
 	line = get_next_line(fd, 0);
 	while (line)
 	{
 		if (!is_white_space_line(line))
 		{
-			if (!convert_n_add(&map, line, &i))
+			if (*end)
+				return (print_error(MAP_ERR, EMPTY_LINE), false);
+			if (!convert_n_add(map, line, &i))
 				return (false);
 		}
 		else if (is_white_space_line(line))
 		{
-			free_n_set_null(&line);
 			if (i != 0)
-				break ;
+				*end = 1;
+			free_n_set_null(&line);
 		}
 		line = get_next_line(fd, 0);
 	}
-	info->map = map;
 	return (true);
 }
 
 bool	init_map(t_parsing *info, int fd)
 {
-	if (!get_map(info, fd))
+	int		flag;
+	char	**map;
+
+	flag = 0;
+	map = NULL;
+	if (!get_map(fd, &flag, &map))
 		return (false);
+	info->map = map;
+	print_map(info->map);
 	if (!info->map)
 		return (false);
 	if (!is_valid_map(info))
