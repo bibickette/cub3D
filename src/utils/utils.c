@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 19:16:46 by fanfan            #+#    #+#             */
-/*   Updated: 2025/01/15 13:02:14 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/17 18:02:13 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,34 @@ bool	is_white_space_line(char *line)
 		i++;
 	}
 	return (true);
+}
+
+int	start_of_texture(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && line[i] == ' ')
+		i++;
+	i += 2;
+	while (line[i] && line[i] == ' ')
+		i++;
+	return (i);
+}
+
+int	len_of_texture(char *line)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = 0;
+	while (line[i] && line[i] == ' ')
+		i++;
+	while (line[i] && (line[i] != ' ' && line[i] != '\n'))
+	{
+		i++;
+		len++;
+	}
+	return (len);
 }
