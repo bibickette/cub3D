@@ -109,6 +109,7 @@ BONUS_SRCS = \
 		$(SRC_BONUS_DIR)/handle_key_bonus.c \
 		$(SRC_BONUS_DIR)/handle_key_utils_bonus.c \
 		$(SRC_BONUS_DIR)/collision.c \
+		$(SRC_BONUS_DIR)/boussole.c \
 		$(SRC_DIR)/might_be_useless.c \
 
 PMANDATORY = $(MANDATORY_SRCS) $(COMMON_SRCS)

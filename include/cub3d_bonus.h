@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:16:29 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/15 16:09:28 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/17 17:06:09 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,9 @@ void	move_player_right_bonus(t_parsing *info);
 // collision
 bool	is_possible_to_move(t_parsing *info, int x, int y);
 bool	is_possible_to_move_in_a_way(char **map, int x, int y);
+bool	is_north(float angle);
+bool	is_south(float angle);
+bool	is_east(float angle, float pi2, float pi3);
+bool	is_west(float angle, float pi2, float pi3);
 
 #endif

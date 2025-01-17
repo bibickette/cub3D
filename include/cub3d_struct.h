@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/15 15:24:03 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/17 12:48:19 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@
 # define PI 3.1415926535
 # define FOV 60.00000
 
+# define MOVE_SPEED 2.5
+# define ROTATE_SPEED 0.04
+
 # define TEXTURE_SIZE 128.0000f
 # define SCALE 32
 // draw map handling
@@ -58,13 +61,11 @@
 # define OTHER_PINK 0xFF6987 // pour le faisceau de vision
 
 // player
-# define MINI_PLAYER_SIZE 2
+# define MINI_PLAYER_SIZE 4
 // size of each square and have to be the size of texture
 # define MINI_MAP_LOC_X 0 // decalage en pixel position X et Y
 # define MINI_MAP_LOC_Y 0
 // plus les valeurs sont grandes plus on avance / tourne vite
-# define MOVE_SPEED 2.5
-# define ROTATE_SPEED 0.04
 
 // error dinput
 # define ARG_ERR "This program takes one argument, no more no less"
