@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/17 12:48:19 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/20 15:32:31 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,9 @@ and contains 3 values separate by space or coma"
 # define PLAYER_NB "must be one player"
 # define EMPTY_LINE "Map can't contain empty line"
 # define NO_MAP "No map found"
+# define LETTER_ERR "Only digits are accepted in RGB"
+# define COMA_ERR "Only 2 comas accepted"
+# define NB_VALUE_RGB_ERR "Only 3 RGB values are accepted"
 
 // mlx
 # define MLX_INIT_ERR "mlx_init() failed"

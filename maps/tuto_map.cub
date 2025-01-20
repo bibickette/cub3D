@@ -2,8 +2,8 @@ NO ./textures/face3.xpm
 SO ./textures/face2.xpm
 
 
-F 66, abc, 0, 0, 0, 0,0,0,0,0
-C 224,  1  65, 255
+F 66, 0, 0
+C 224, 165, 159
 
 WE ./textures/face1.xpm
 EA ./textures/face0.xpm
