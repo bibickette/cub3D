@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:16:29 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/17 17:06:09 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/21 13:50:59 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,7 @@ bool	is_south(float angle);
 bool	is_east(float angle, float pi2, float pi3);
 bool	is_west(float angle, float pi2, float pi3);
 
+// minimap
+void	draw_mini_map(t_parsing *info);
+void	draw_player_arrow(t_parsing *info);
 #endif

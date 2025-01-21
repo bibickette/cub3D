@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/20 15:32:31 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/21 14:05:09 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,19 @@
 # define PINK 0x420000
 # define RED 0xE0A59F
 # define OTHER_PINK 0xFF6987 // pour le faisceau de vision
+# define BLACK 0x000000
 
 // player
 # define MINI_PLAYER_SIZE 4
 // size of each square and have to be the size of texture
-# define MINI_MAP_LOC_X 0 // decalage en pixel position X et Y
-# define MINI_MAP_LOC_Y 0
+# define MINI_MAP_LOC_X 10 // decalage en pixel position X et Y
+# define MINI_MAP_LOC_Y 10
 // plus les valeurs sont grandes plus on avance / tourne vite
+# define MINI_MAP_SIZE 138
+# define MINI_MAP_CENTER 74
+# define MINI_MAP_RAY 64
+# define PLAYER_SIZE_MINIMAP 16           // Longueur de la flèche
+# define PLAYER_ANGLE_WIDTH 0.39269908169 // Largeur en radian PI/ 8
 
 // error dinput
 # define ARG_ERR "This program takes one argument, no more no less"
@@ -131,6 +137,14 @@ ca est le cosinus de l'angle du rayon.
 last_ray indique si le dernier rayon a dabord frappe
 un mur horizontaement ou verticalement.
  */
+
+typedef struct s_player_arrow
+{
+	int				delta_x;
+	int				delta_y;
+	int				step_x;
+	int				step_y;
+}					t_player_arrow;
 
 typedef struct s_ray
 {
@@ -238,6 +252,7 @@ typedef struct s_parsing
 	int				max_y;
 	int				nb_frame;
 	t_keys			keys;
+	t_player_arrow	arrow;
 }					t_parsing;
 
 #endif

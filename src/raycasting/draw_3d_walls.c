@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:30:57 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/15 12:59:57 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/21 10:48:19 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ static void	draw_ray(t_parsing *info, int id)
 	while (++i < line_length)
 	{
 		tex_y = (int)((i / line_length) * TEXTURE_SIZE);
-		my_mlx_pixel_put(*(info->mlx.current_background), ray->start_y + i,
-			ray->start_x, get_color_pixel_texture(info, tex_x, tex_y, id));
+		if (!is_on_minimap(ray->start_y + i, ray->start_x))
+			my_mlx_pixel_put(*(info->mlx.current_background), ray->start_y + i,
+				ray->start_x, get_color_pixel_texture(info, tex_x, tex_y, id));
 		if (ray->start_y + i + 1 > SIZE_Y)
 			break ;
 	}
@@ -70,8 +71,8 @@ void	draw_3d_wall(t_ray *ray, t_parsing *info)
 	info->ray.cos_angle = info->player.angle - info->ray.angle;
 	info->ray.cos_angle = protect_angle_trigo_value(info->ray.cos_angle);
 	info->ray.distance = (info->ray.distance) * cos(info->ray.cos_angle);
-	info->ray.height_l = (SCALE / info->ray.distance) * (x
-			/ tan(ray->rad_value / 2));
+	info->ray.height_l = (SCALE / info->ray.distance) * (x / tan(ray->rad_value
+				/ 2));
 	info->ray.offset_l = y - info->ray.height_l / 2;
 	draw_big_line(info, ray);
 }

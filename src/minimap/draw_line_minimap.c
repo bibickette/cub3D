@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:03:00 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/15 13:00:14 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:51:31 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,13 @@ static void	draw_line(t_img img, int x, int y, int flag)
 	}
 	while (++i < size)
 	{
-		if (flag == HORIZONTAL && (y * SCALE != 0) && (y
-				* SCALE != size - 1))
-			my_mlx_pixel_put(img, y * SCALE + MINI_MAP_LOC_Y, x
-				* SCALE + i + MINI_MAP_LOC_X, PINK);
-		else if (flag == VERTICAL && (x * SCALE != 0) && (x
-				* SCALE != SCALE - 1))
-			my_mlx_pixel_put(img, y * SCALE + i + MINI_MAP_LOC_Y, x
-				* SCALE + MINI_MAP_LOC_X, RED);
+		if (flag == HORIZONTAL && (y * SCALE != 0) && (y * SCALE != size - 1))
+			my_mlx_pixel_put(img, y * SCALE + MINI_MAP_LOC_Y, x * SCALE + i
+				+ MINI_MAP_LOC_X, PINK);
+		else if (flag == VERTICAL && (x * SCALE != 0) && (x * SCALE != SCALE
+				- 1))
+			my_mlx_pixel_put(img, y * SCALE + i + MINI_MAP_LOC_Y, x * SCALE
+				+ MINI_MAP_LOC_X, RED);
 	}
 }
 

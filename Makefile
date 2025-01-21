@@ -48,7 +48,8 @@ MINIMAP_DIR = $(SRC_DIR)/minimap
 MINIMAP_FILES = \
 		draw_line_minimap.c \
 		draw_player_minimap.c \
-		minimap_utils.c
+		minimap_utils.c \
+		draw_circle_minimap.c
 MINIMAP = $(addprefix $(MINIMAP_DIR)/, $(MINIMAP_FILES))
 
 PARSING_DIR = $(SRC_DIR)/parsing

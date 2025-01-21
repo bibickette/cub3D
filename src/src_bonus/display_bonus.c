@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:19:37 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/15 13:32:33 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/21 13:49:57 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ static void	replace_background(t_parsing *info)
 		x = -1;
 		while (++x < SIZE_X)
 		{
-			my_mlx_pixel_put(*(info->mlx.current_background), y, x,
-				info->textures.ceiling_color);
+			if (!is_on_minimap(x, y))
+				my_mlx_pixel_put(*(info->mlx.current_background), y, x,
+					info->textures.ceiling_color);
 		}
 	}
 	while (++y < SIZE_Y)
@@ -32,8 +33,9 @@ static void	replace_background(t_parsing *info)
 		x = -1;
 		while (++x < SIZE_X)
 		{
-			my_mlx_pixel_put(*(info->mlx.current_background), y, x,
-				info->textures.floor_color);
+			if (!is_on_minimap(x, y))
+				my_mlx_pixel_put(*(info->mlx.current_background), y, x,
+					info->textures.floor_color);
 		}
 	}
 }
@@ -44,6 +46,7 @@ int	display_bonus(t_parsing *info)
 	{
 		handle_key_bonus(info);
 		replace_background(info);
+		draw_mini_map(info);
 		raycaster(&info->player, &info->ray, info);
 		mlx_put_image_to_window(info->mlx.mlx_ptr, info->mlx.win_ptr,
 			info->mlx.current_background->mlx_img, 0, 0);
