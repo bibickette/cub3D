@@ -11,7 +11,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
+
+NAME_BONUS = cub3D_bonus
 
 CC = cc
 INCLUDE = include
@@ -138,7 +140,7 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 	@$(eval COMPILED_SRCS=$(shell echo $$(($(COMPILED_SRCS)+1))))
-	@echo -n "$(COLOR_BLUE)Compiling Objects cub3d: $(COLOR_RESET)[$(COLOR_GREEN)"
+	@echo -n "$(COLOR_BLUE)Compiling Objects cub3D: $(COLOR_RESET)[$(COLOR_GREEN)"
 	@for i in $(shell seq 1 25); do \
 		if [ $$i -le $$(($(COMPILED_SRCS)*25/$(TOTAL_SRCS))) ]; then \
 			echo -n "♣"; \
@@ -150,30 +152,31 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 
 $(NAME) : $(M_OBJS)
 	
-	@echo "$(COLOR_BLUE)\nCompiling cub3d...$(COLOR_RESET)"
+	@echo "$(COLOR_BLUE)\nCompiling cub3D...$(COLOR_RESET)"
 	@make -s -C LIBFT
 	@make -s -C minilibx-linux
 	@$(CC) $(CFLAGS) $(M_OBJS) $(MINILIBX_FLAGS) -o $(NAME) $(LIBFT)
-	@echo "$(COLOR_GREEN)cub3d Compilation complete !$(COLOR_RESET)        "
+	@echo "$(COLOR_GREEN)cub3D Compilation complete !$(COLOR_RESET)        "
 
 clean:
 	@make -s -C LIBFT clean
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@echo "$(COLOR_BLUE)✘✘✘ Deleting cub3d... ✘✘✘$(COLOR_RESET)"
+	@echo "$(COLOR_BLUE)✘✘✘ Deleting cub3D... ✘✘✘$(COLOR_RESET)"
 	@make -s -C LIBFT fclean
 	@rm -f $(NAME)
-	@echo "$(COLOR_GREEN)✘✘✘ cub3d fcleaned ! ✘✘✘$(COLOR_RESET)        "
+	@rm -f $(NAME_BONUS)
+	@echo "$(COLOR_GREEN)✘✘✘ cub3D fcleaned ! ✘✘✘$(COLOR_RESET)        "
 
 re: fclean all
 
 bonus : $(B_OBJS)
-	@echo "$(COLOR_BLUE)\nCompiling cub3d bonus...$(COLOR_RESET)"
+	@echo "$(COLOR_BLUE)\nCompiling cub3D bonus...$(COLOR_RESET)"
 	@make -s -C LIBFT
 	@make -s -C minilibx-linux
-	@$(CC) $(CFLAGS) $(B_OBJS) $(MINILIBX_FLAGS) -o $(NAME) $(LIBFT)
-	@echo "$(COLOR_GREEN)cub3d bonus Compilation complete !$(COLOR_RESET)        "
+	@$(CC) $(CFLAGS) $(B_OBJS) $(MINILIBX_FLAGS) -o $(NAME_BONUS) $(LIBFT)
+	@echo "$(COLOR_GREEN)cub3D bonus Compilation complete !$(COLOR_RESET)        "
 
 rebonus : fclean bonus
 
