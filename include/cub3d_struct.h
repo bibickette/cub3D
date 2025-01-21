@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/21 14:05:09 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/21 14:13:40 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@
 # define VERTICAL 1
 
 // for minimap
-# define PINK 0x420000
-# define RED 0xE0A59F
+# define RED 0x420000
+# define PINK 0xE0A59F
 # define OTHER_PINK 0xFF6987 // pour le faisceau de vision
 # define BLACK 0x000000
 
@@ -70,6 +70,7 @@
 # define MINI_MAP_SIZE 138
 # define MINI_MAP_CENTER 74
 # define MINI_MAP_RAY 64
+# define MINI_MAP_RAY_BORDER 68
 # define PLAYER_SIZE_MINIMAP 16           // Longueur de la flèche
 # define PLAYER_ANGLE_WIDTH 0.39269908169 // Largeur en radian PI/ 8
 
