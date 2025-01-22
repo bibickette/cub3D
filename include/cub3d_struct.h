@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/21 14:13:40 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:47:59 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define PI 3.1415926535
 # define FOV 60.00000
 
-# define MOVE_SPEED 2.5
+# define MOVE_SPEED 1
 # define ROTATE_SPEED 0.04
 
 # define TEXTURE_SIZE 128.0000f
