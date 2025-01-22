@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/22 11:47:59 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:46:02 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@
 // player
 # define MINI_PLAYER_SIZE 4
 // size of each square and have to be the size of texture
-# define MINI_MAP_LOC_X 10 // decalage en pixel position X et Y
-# define MINI_MAP_LOC_Y 10
 // plus les valeurs sont grandes plus on avance / tourne vite
 # define MINI_MAP_SIZE 138
 # define MINI_MAP_CENTER 74

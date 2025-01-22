@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/21 14:20:08 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:00:43 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ bool			init_map(t_parsing *info, int fd);
 bool			is_valid_map(t_parsing *info);
 bool			check_first_last_line(char **map, int *last_tab);
 bool			is_everything_surrounded(char **map, int last_tab);
-void			create_corner_walls(char **map, int last_tab);
 int				*convert_to_int_tab(t_parsing *info, char **map);
 
 bool			init_player(char **map, t_player *player);

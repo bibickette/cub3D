@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/21 12:38:26 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/22 11:50:26 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	raycaster(t_player *player, t_ray *ray, t_parsing *info)
 		vertical_len = ray_vertical_plan_len(player, ray, info);
 		find_smallest_ray(ray, horizontal_len, vertical_len);
 		draw_3d_wall(ray, info);
+		// draw_wall_on_minimap(ray, info);
+		
 		ray->angle += ray->rad_value / SIZE_X;
 		ray->angle = protect_angle_trigo_value(ray->angle);
 		ray->r++;

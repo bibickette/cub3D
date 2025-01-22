@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:07:29 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/15 10:41:11 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:00:09 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ bool	is_valid_map(t_parsing *info)
 		return (false);
 	if (!is_everything_surrounded(info->map, last_tab))
 		return (false);
-	create_corner_walls(info->map, last_tab);
 	set_max_map(info);
 	return (true);
 }

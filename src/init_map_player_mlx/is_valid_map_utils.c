@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_map_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:22:54 by phwang            #+#    #+#             */
-/*   Updated: 2024/12/10 16:51:17 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/22 14:00:19 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,6 @@ static void	put_walls_in_corner(char **map, int j, int i)
 		map[j + 1][i - 1] = '1';
 	if (map[j + 1][i + 1] == ' ')
 		map[j + 1][i + 1] = '1';
-}
-
-void	create_corner_walls(char **map, int last_tab)
-{
-	int	i;
-	int	j;
-
-	j = 0;
-	while (++j < last_tab)
-	{
-		i = -1;
-		while (map[j][++i])
-		{
-			if (map[j][i] == '0' || is_player(map[j][i]))
-				put_walls_in_corner(map, j, i);
-		}
-	}
 }
 
 bool	is_everything_surrounded(char **map, int last_tab)
