@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player_minimap.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:05:45 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/21 14:03:25 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:26:02 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	draw_line_arrow(t_parsing *info, int end_x, int end_y)
 	init_delta_step(info, end_x, end_y, &error);
 	while (1)
 	{
-		my_mlx_pixel_put(*info->mlx.current_background, sy, sx, OTHER_PINK);
+		my_mlx_pixel_put(*info->mlx.current_background, sy, sx, WHITE);
 		if (sx == end_x && sy == end_y)
 			break ;
 		double_error = error * 2;
@@ -65,22 +65,22 @@ void	draw_player_arrow(t_parsing *info)
 	int		end_y;
 	float	triangle_dr;
 
-	triangle_dr = -PLAYER_ANGLE_WIDTH;
-	base_offset_end_x = PLAYER_SIZE_MINIMAP * -cos(-info->player.angle
+	triangle_dr = PLAYER_ANGLE_WIDTH;
+	base_offset_end_x = (PLAYER_SIZE_MINIMAP *3) * cos(-info->player.angle
 			+ PLAYER_ANGLE_WIDTH);
-	base_offset_end_y = PLAYER_SIZE_MINIMAP * sin(-info->player.angle
+	base_offset_end_y = (PLAYER_SIZE_MINIMAP *3) * -sin(-info->player.angle
 			+ PLAYER_ANGLE_WIDTH);
 	end_x = MINI_MAP_CENTER + base_offset_end_x;
 	end_y = MINI_MAP_CENTER + base_offset_end_y;
-	while (triangle_dr < PLAYER_ANGLE_WIDTH)
+	while (triangle_dr > -PLAYER_ANGLE_WIDTH)
 	{
 		draw_line_arrow(info, end_x, end_y);
-		base_offset_end_x = PLAYER_SIZE_MINIMAP * -cos(-info->player.angle
+		base_offset_end_x = (PLAYER_SIZE_MINIMAP *3) * cos(-info->player.angle
 				+ triangle_dr);
-		base_offset_end_y = PLAYER_SIZE_MINIMAP * sin(-info->player.angle
+		base_offset_end_y = (PLAYER_SIZE_MINIMAP *3) * -sin(-info->player.angle
 				+ triangle_dr);
 		end_x = MINI_MAP_CENTER + base_offset_end_x;
 		end_y = MINI_MAP_CENTER + base_offset_end_y;
-		triangle_dr += 0.01;
+		triangle_dr -= 0.01;
 	}
 }

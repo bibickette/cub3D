@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/23 15:46:56 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/23 16:40:42 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@
 # define RED 0x420000
 # define PINK 0xE0A59F
 # define OTHER_PINK 0xFF6987 // pour le faisceau de vision
+# define NUDE 0xfce7cd
 # define BLACK 0x000000
 # define WHITE 0xFFFFFF
 
@@ -72,7 +73,7 @@
 # define MINI_MAP_BORDER 4
 # define POS_X 1
 # define POS_Y 0
-# define PLAYER_SIZE_MINIMAP 8           // Longueur de la flèche
+# define PLAYER_SIZE_MINIMAP 4          // Longueur de la flèche
 # define PLAYER_ANGLE_WIDTH 0.39269908169 // Largeur en radian PI/ 8
 
 // error dinput
