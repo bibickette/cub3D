@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/22 13:46:02 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:46:56 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define PI 3.1415926535
 # define FOV 60.00000
 
-# define MOVE_SPEED 1
+# define MOVE_SPEED 5
 # define ROTATE_SPEED 0.04
 
 # define TEXTURE_SIZE 128.0000f
@@ -60,16 +60,19 @@
 # define PINK 0xE0A59F
 # define OTHER_PINK 0xFF6987 // pour le faisceau de vision
 # define BLACK 0x000000
+# define WHITE 0xFFFFFF
 
 // player
 # define MINI_PLAYER_SIZE 4
 // size of each square and have to be the size of texture
 // plus les valeurs sont grandes plus on avance / tourne vite
-# define MINI_MAP_SIZE 138
+# define MINI_MAP_SIZE 16
 # define MINI_MAP_CENTER 74
 # define MINI_MAP_RAY 64
-# define MINI_MAP_RAY_BORDER 68
-# define PLAYER_SIZE_MINIMAP 16           // Longueur de la flèche
+# define MINI_MAP_BORDER 4
+# define POS_X 1
+# define POS_Y 0
+# define PLAYER_SIZE_MINIMAP 8           // Longueur de la flèche
 # define PLAYER_ANGLE_WIDTH 0.39269908169 // Largeur en radian PI/ 8
 
 // error dinput

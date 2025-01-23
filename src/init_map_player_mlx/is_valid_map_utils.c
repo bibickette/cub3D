@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_map_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:22:54 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/22 14:00:19 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:04:55 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static void	put_walls_in_corner(char **map, int j, int i)
-{
-	if (map[j - 1][i - 1] == ' ')
-		map[j - 1][i - 1] = '1';
-	if (map[j - 1][i + 1] == ' ')
-		map[j - 1][i + 1] = '1';
-	if (map[j + 1][i - 1] == ' ')
-		map[j + 1][i - 1] = '1';
-	if (map[j + 1][i + 1] == ' ')
-		map[j + 1][i + 1] = '1';
-}
 
 bool	is_everything_surrounded(char **map, int last_tab)
 {

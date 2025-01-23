@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_3d_walls.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:30:57 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/21 14:20:14 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:42:19 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	draw_ray(t_parsing *info, int id)
 	while (++i < line_length)
 	{
 		tex_y = (int)((i / line_length) * TEXTURE_SIZE);
-		if (!is_on_minimap(ray->start_y + i, ray->start_x))
+		if (!is_on_minimap(ray->start_y + i, ray->start_x, MINI_MAP_RAY + MINI_MAP_BORDER))
 			my_mlx_pixel_put(*(info->mlx.current_background), ray->start_y + i,
 				ray->start_x, get_color_pixel_texture(info, tex_x, tex_y, id));
 		if (ray->start_y + i + 1 > SIZE_Y)

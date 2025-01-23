@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:55:58 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/15 16:21:19 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:21:27 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	main(int argc, char **argv)
 	print_map(info.map);
 	print_map_int(info.int_map, info.max_x, info.max_y);
 	print_player_info(info.player);
+	printf("info max x = %d\n", info.max_x);
+	printf("info max y = %d\n", info.max_y);
 	display_bonus(&info);
 	mlx_hook(info.mlx.win_ptr, KeyPress, KeyPressMask, &key_press_bonus, &info);
 	mlx_hook(info.mlx.win_ptr, KeyRelease, KeyReleaseMask, &key_release_bonus,

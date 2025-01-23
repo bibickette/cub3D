@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/22 14:00:43 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:58:23 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void			draw_line_on_map(t_parsing *info, t_img img);
 void			draw_player_on_minimap(t_parsing *info, unsigned int color,
 					int replace);
 void			draw_mini_map(t_parsing *info);
+void	draw_full_mini_map(t_parsing *info);
 
 // keysim_handling
 int				cross_exit(t_parsing *info);
@@ -93,8 +94,6 @@ void			print_map_int(int *map, int max_x, int max_y);
 void			print_map(char **map);
 
 // might be useless
-void			draw_mini_line(t_parsing *info, unsigned int color, int replace,
-					float line_length);
-bool			is_on_minimap(int x, int y);
+bool			is_on_minimap(int x, int y, int rayon);
 
 #endif

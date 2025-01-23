@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/22 11:50:26 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:03:56 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,26 @@ Si les longueurs sont égales et non nulles, on privilégie le dernier rayon.
 // 		return (true);
 // 	return (false);
 // }
+static void	draw_mini_line(t_parsing *info, unsigned int color,
+		float line_length)
+{
+	float	i;
+	int		x;
+	int		y;
+
+	i = 0;
+	x = MINI_MAP_CENTER + MINI_PLAYER_SIZE / 2 + i * cos(info->player.angle);
+	y = MINI_MAP_CENTER + MINI_PLAYER_SIZE / 2 + i * sin(info->player.angle);
+	while (i < line_length)
+	{
+		x = MINI_MAP_CENTER + MINI_PLAYER_SIZE / 2 + i * cos(info->ray.angle);
+		y = MINI_MAP_CENTER + MINI_PLAYER_SIZE / 2 + i * sin(info->ray.angle);
+		
+		if(is_on_minimap(x, y, MINI_MAP_RAY))
+			my_mlx_pixel_put(*(info->mlx.current_background), y, x, color);
+		i++;
+	}
+}
 
 static void	find_smallest_ray(t_ray *ray, float horizontal_len,
 		float vertical_len)
@@ -57,9 +77,9 @@ void	raycaster(t_player *player, t_ray *ray, t_parsing *info)
 		horizontal_len = ray_horizon_plan_len(player, ray, info);
 		vertical_len = ray_vertical_plan_len(player, ray, info);
 		find_smallest_ray(ray, horizontal_len, vertical_len);
+		draw_mini_line(info, WHITE, ray->distance / 2); // bonus part
 		draw_3d_wall(ray, info);
 		// draw_wall_on_minimap(ray, info);
-		
 		ray->angle += ray->rad_value / SIZE_X;
 		ray->angle = protect_angle_trigo_value(ray->angle);
 		ray->r++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:19:37 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/21 13:49:57 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:59:14 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	replace_background(t_parsing *info)
 		x = -1;
 		while (++x < SIZE_X)
 		{
-			if (!is_on_minimap(x, y))
+			if (!is_on_minimap(x, y, MINI_MAP_RAY + MINI_MAP_BORDER))
 				my_mlx_pixel_put(*(info->mlx.current_background), y, x,
 					info->textures.ceiling_color);
 		}
@@ -33,7 +33,7 @@ static void	replace_background(t_parsing *info)
 		x = -1;
 		while (++x < SIZE_X)
 		{
-			if (!is_on_minimap(x, y))
+			if (!is_on_minimap(x, y, MINI_MAP_RAY + MINI_MAP_BORDER))
 				my_mlx_pixel_put(*(info->mlx.current_background), y, x,
 					info->textures.floor_color);
 		}

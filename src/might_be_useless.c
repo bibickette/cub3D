@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   might_be_useless.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 15:07:28 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/21 13:56:02 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:42:37 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,75 +35,72 @@
 // 	}
 // }
 
-// void	draw_player_on_minimap(t_parsing *info, unsigned int color, int replace)
-// {
-// 	int	x;
-// 	int	y;
+void	draw_player_on_minimap(t_parsing *info, unsigned int color, int replace)
+{
+	int	x;
+	int	y;
 
-// 	y = -1;
-// 	while (++y < MINI_PLAYER_SIZE)
-// 	{
-// 		x = -1;
-// 		while (++x < MINI_PLAYER_SIZE)
-// 		{
-// 			if (replace)
-// 			{
-// 				if (info->player.last_pos_x + x < SIZE_X
-// 					&& info->player.last_pos_x + x > 0
-// 					&& info->player.last_pos_y + y < SIZE_Y
-// 					&& info->player.last_pos_y + y > 0)
-// 					color = get_backup_color(info->mlx.backup,
-// 							info->player.last_pos_x + x, info->player.last_pos_y
-// 							+ y);
-// 			}
-// 			my_mlx_pixel_put(info->mlx.background, y + info->player.pos_y, x
-// 				+ info->player.pos_x, color);
-// 		}
-// 	}
-// }
+	y = -1;
+	while (++y < MINI_PLAYER_SIZE)
+	{
+		x = -1;
+		while (++x < MINI_PLAYER_SIZE)
+		{
+			my_mlx_pixel_put(*(info->mlx.current_background), MINI_MAP_CENTER + y , MINI_MAP_CENTER + x, color);
+		}
+	}
+}
 
-// static void	draw_mini_map_square(t_img img, int x, int y,
-// 		unsigned int color)
-// {
-// 	int	i;
-// 	int	j;
+static void	draw_mini_map_square(t_img img, int x, int y,
+		unsigned int color)
+{
+	int	i;
+	int	j;
 
-// 	i = -1;
-// 	while (++i < SCALE)
-// 	{
-// 		j = -1;
-// 		while (++j < SCALE)
-// 			my_mlx_pixel_put(img, y + i, x + j, color);
-// 	}
-// }
+	i = -1;
+	while (++i < MINI_MAP_SIZE)
+	{
+		j = -1;
+		while (++j < MINI_MAP_SIZE)
+		{
+			if(is_on_minimap(x + j, y + i, MINI_MAP_RAY))
+				my_mlx_pixel_put(img, y + i, x + j, color);
+		}
+	}
+}
 
-// void	draw_mini_map(t_parsing *info)
-// {
-// 	int	x;
-// 	int	y;
-// 	int	len_max_x;
+static int square_pos(t_parsing *info, int pos, int flag)
+{
+	if (flag == POS_X)
+		return (MINI_MAP_CENTER + pos * MINI_MAP_SIZE - (info->player.pos_x - 2) / 2);
+	return (MINI_MAP_CENTER + pos * MINI_MAP_SIZE - (info->player.pos_y - 2) / 2);
+}
 
-// 	y = -1;
-// 	x = 0;
-// 	while (info->map[++y])
-// 	{
-// 		x = -1;
-// 		while (++x < info->max_x)
-// 		{
-// 			len_max_x = ft_strlen(info->map[y]);
-// 			if (x < len_max_x && info->map[y][x] == '1')
-// 			{
-// 				draw_mini_map_square(info->mlx.background, x * SCALE
-// 					+ MINI_MAP_LOC_X, y * SCALE + MINI_MAP_LOC_Y,
-// 					WHITE);
-// 			}
-// 			else if (x < len_max_x && (info->map[y][x] == '0'
-// 				|| is_player(info->map[y][x])))
-// 			{
-// 				draw_mini_map_square(info->mlx.background, x * SCALE
-// 					+ MINI_MAP_LOC_X, y * SCALE + MINI_MAP_LOC_Y,
-// 					BLACK);
-// 			}
-// 		}
-// 	}
-// }
+void	draw_full_mini_map(t_parsing *info)
+{
+	int	x;
+	int	y;
+	int	len_max_x;
+
+	y = -1;
+	x = 0;
+	while (info->map[++y])
+	{
+		x = -1;
+		while (++x < info->max_x)
+		{
+			len_max_x = ft_strlen(info->map[y]);
+			if (x < len_max_x && info->map[y][x] == '1')
+			{
+				draw_mini_map_square(*(info->mlx.current_background),square_pos(info, x, POS_X), square_pos(info, y, POS_Y),
+					info->textures.ceiling_color);
+			}
+			else if (x < len_max_x && (info->map[y][x] == '0'
+				|| is_player(info->map[y][x])))
+			{
+				draw_mini_map_square(*(info->mlx.current_background),square_pos(info, x, POS_X), square_pos(info, y, POS_Y),
+					info->textures.floor_color);
+			}
+		}
+	}
+}

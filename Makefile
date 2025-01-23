@@ -17,7 +17,7 @@ NAME_BONUS = cub3D_bonus
 
 CC = cc
 INCLUDE = include
-CFLAGS = -Wall -Wextra -Werror -I$(INCLUDE) -I$(INCLUDE_LIBFT) -g3
+CFLAGS = -Wall -Wextra -I$(INCLUDE) -I$(INCLUDE_LIBFT) -g3
 
 MINILIBX_FLAGS = -Lminilibx-linux -lmlx_Linux -lXext -lX11 -lm -lz
 INCLUDE_LIBFT = LIBFT

@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 0020/01/08 00:00:00 by 13:53 by ph       #+#    #+#             */
-/*   Updated: 2025/01/20 15:41:30 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/23 12:35:09 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	move_player_up_bonus(t_parsing *info)
 	add_player_size_x = 0;
 	add_player_size_y = 0;
 	if (is_north(info->player.angle))
-		add_player_size_y = -(MINI_PLAYER_SIZE / 2);
+		add_player_size_y = -(MINI_PLAYER_SIZE / 2) - 1;
 	if (is_south(info->player.angle))
-		add_player_size_y = (MINI_PLAYER_SIZE / 2);
+		add_player_size_y = (MINI_PLAYER_SIZE / 2) + 1;
 	if (is_west(info->player.angle, info->ray.pi2, info->ray.pi3))
-		add_player_size_x = -(MINI_PLAYER_SIZE / 2);
+		add_player_size_x = -(MINI_PLAYER_SIZE / 2) - 1;
 	if (is_east(info->player.angle, info->ray.pi2, info->ray.pi3))
-		add_player_size_x = (MINI_PLAYER_SIZE / 2);
+		add_player_size_x = (MINI_PLAYER_SIZE / 2) + 1;
 	futur_x = floorf((info->player.pos_x + add_player_size_x + info->player.d_x)
 			/ SCALE);
 	futur_y = floorf((info->player.pos_y + add_player_size_y + info->player.d_y)
@@ -50,13 +50,13 @@ void	move_player_down_bonus(t_parsing *info)
 	add_player_size_x = 0;
 	add_player_size_y = 0;
 	if (is_north(info->player.angle))
-		add_player_size_y = -(MINI_PLAYER_SIZE / 2);
+		add_player_size_y = -(MINI_PLAYER_SIZE / 2) - 1;
 	if (is_south(info->player.angle))
-		add_player_size_y = (MINI_PLAYER_SIZE / 2);
+		add_player_size_y = (MINI_PLAYER_SIZE / 2) + 1;
 	if (is_west(info->player.angle, info->ray.pi2, info->ray.pi3))
-		add_player_size_x = -(MINI_PLAYER_SIZE / 2);
+		add_player_size_x = -(MINI_PLAYER_SIZE / 2) - 1;
 	if (is_east(info->player.angle, info->ray.pi2, info->ray.pi3))
-		add_player_size_x = (MINI_PLAYER_SIZE / 2);
+		add_player_size_x = (MINI_PLAYER_SIZE / 2) + 1;
 	futur_x = floorf((info->player.pos_x - add_player_size_x - info->player.d_x)
 			/ SCALE);
 	futur_y = floorf((info->player.pos_y - add_player_size_y - info->player.d_y)
@@ -78,13 +78,13 @@ void	move_player_left_bonus(t_parsing *info)
 	add_player_size_x = 0;
 	add_player_size_y = 0;
 	if (is_north(info->player.angle))
-		add_player_size_x = -(MINI_PLAYER_SIZE / 2);
+		add_player_size_x = -(MINI_PLAYER_SIZE / 2) - 1;
 	if (is_south(info->player.angle))
-		add_player_size_x = (MINI_PLAYER_SIZE / 2);
+		add_player_size_x = (MINI_PLAYER_SIZE / 2) + 1;
 	if (is_west(info->player.angle, info->ray.pi2, info->ray.pi3))
-		add_player_size_y = (MINI_PLAYER_SIZE / 2);
+		add_player_size_y = (MINI_PLAYER_SIZE / 2) + 1;
 	if (is_east(info->player.angle, info->ray.pi2, info->ray.pi3))
-		add_player_size_y = -(MINI_PLAYER_SIZE / 2);
+		add_player_size_y = -(MINI_PLAYER_SIZE / 2) - 1;
 	futur_x = floorf(((info->player.pos_x + add_player_size_x)
 				+ sin(info->player.angle) * MOVE_SPEED) / SCALE);
 	futur_y = floorf(((info->player.pos_y + add_player_size_y)
@@ -106,13 +106,13 @@ void	move_player_right_bonus(t_parsing *info)
 	add_player_size_x = 0;
 	add_player_size_y = 0;
 	if (is_north(info->player.angle))
-		add_player_size_x = (MINI_PLAYER_SIZE / 2);
+		add_player_size_x = (MINI_PLAYER_SIZE / 2) + 1;
 	if (is_south(info->player.angle))
-		add_player_size_x = -(MINI_PLAYER_SIZE / 2);
+		add_player_size_x = -(MINI_PLAYER_SIZE / 2) - 1;
 	if (is_west(info->player.angle, info->ray.pi2, info->ray.pi3))
-		add_player_size_y = -(MINI_PLAYER_SIZE / 2);
+		add_player_size_y = -(MINI_PLAYER_SIZE / 2) - 1;
 	if (is_east(info->player.angle, info->ray.pi2, info->ray.pi3))
-		add_player_size_y = (MINI_PLAYER_SIZE / 2);
+		add_player_size_y = (MINI_PLAYER_SIZE / 2) + 1;
 	futur_x = floorf(((info->player.pos_x + add_player_size_x)
 				- sin(info->player.angle) * MOVE_SPEED) / SCALE);
 	futur_y = floorf(((info->player.pos_y + add_player_size_y)

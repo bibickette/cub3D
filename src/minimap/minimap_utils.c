@@ -3,23 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 15:41:34 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/21 14:20:00 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:41:32 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	is_on_minimap(int x, int y)
+bool	is_on_minimap(int x, int y, int rayon)
 {
 	int	dx;
 	int	dy;
 
 	dy = y - MINI_MAP_CENTER;
 	dx = x - MINI_MAP_CENTER;
-	if ((dx * dx + dy * dy) < (MINI_MAP_RAY_BORDER * MINI_MAP_RAY_BORDER))
+	// if (x >= 0 && x <= MINI_MAP_SIZE * 37
+	// 	&& y >= 0 && y <= MINI_MAP_SIZE
+	// 	* 22)
+	// 	return (true);
+	// return (false);
+	if ((dx * dx + dy * dy) < power_nb(rayon, 2) )
 		return (true);
 	return (false);
 }
