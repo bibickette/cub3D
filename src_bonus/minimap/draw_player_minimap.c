@@ -6,11 +6,11 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:05:45 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/23 16:26:02 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 17:25:30 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static int	is_positive_direction(int start, int end)
 {

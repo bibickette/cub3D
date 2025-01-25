@@ -6,13 +6,13 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 13:49:34 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/23 16:40:01 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 17:18:15 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-static void	draw_circle_map(t_parsing *info, int radius, int color)
+void	draw_circle_map(t_parsing *info, int radius, int color)
 {
 	int	x;
 	int	y;
@@ -30,13 +30,4 @@ static void	draw_circle_map(t_parsing *info, int radius, int color)
 		}
 		y++;
 	}
-}
-
-void	draw_mini_map(t_parsing *info)
-{
-	draw_circle_map(info, MINI_MAP_RAY + MINI_MAP_BORDER, NUDE);
-	// draw_circle_map(info, MINI_MAP_RAY, info->textures.floor_color);
-	draw_full_mini_map(info);
-	draw_player_on_minimap(info, OTHER_PINK, 0);
-	// draw_player_arrow(info);
 }

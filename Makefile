@@ -26,7 +26,7 @@ LIBFT = LIBFT/libft.a
 
 # Source directories
 SRC_DIR = src
-SRC_BONUS_DIR = src/src_bonus
+SRC_BONUS_DIR = src_bonus
 OBJ_DIR = obj
 
 INIT_MAP_PLAYER_DIR = $(SRC_DIR)/init_map_player_mlx
@@ -45,14 +45,6 @@ KEYSIM_FILES = \
 		handle_key_utils.c \
 		handle_key.c
 KEYSIM = $(addprefix $(KEYSIM_DIR)/, $(KEYSIM_FILES))
-
-MINIMAP_DIR = $(SRC_DIR)/minimap
-MINIMAP_FILES = \
-		draw_line_minimap.c \
-		draw_player_minimap.c \
-		minimap_utils.c \
-		draw_circle_minimap.c
-MINIMAP = $(addprefix $(MINIMAP_DIR)/, $(MINIMAP_FILES))
 
 PARSING_DIR = $(SRC_DIR)/parsing
 PARSING_FILES = \
@@ -82,6 +74,22 @@ UTILS_FILES = \
 		convert_tab_in_space.c 
 UTILS = $(addprefix $(UTILS_DIR)/, $(UTILS_FILES))	
 
+# BONUS PART SRC
+RAYCASTER_BONUS_DIR = $(SRC_BONUS_DIR)/raycasting_bonus
+RAYCASTER_BONUS_FILES = \
+		draw_3d_walls_bonus.c \
+		raycaster_bonus.c 
+RAYCASTER_BONUS = $(addprefix $(RAYCASTER_BONUS_DIR)/, $(RAYCASTER_BONUS_FILES))
+
+MINIMAP_DIR = $(SRC_BONUS_DIR)/minimap
+MINIMAP_FILES = \
+		draw_mini_map.c \
+		draw_player_minimap.c \
+		minimap_utils.c \
+		draw_circle_minimap.c \
+		might_be_useless.c
+MINIMAP = $(addprefix $(MINIMAP_DIR)/, $(MINIMAP_FILES))
+
 # SRC = \
 # 		$(INIT_MAP_PLAYER) \
 # 		$(KEYSIM) \
@@ -96,24 +104,23 @@ UTILS = $(addprefix $(UTILS_DIR)/, $(UTILS_FILES))
 COMMON_SRCS =  \
 		$(INIT_MAP_PLAYER) \
 		$(KEYSIM) \
-		$(MINIMAP) \
 		$(PARSING) \
 		$(RAYCASTER) \
 		$(UTILS) \
-
 			
 MANDATORY_SRCS = \
 		$(SRC_DIR)/main.c \
 		$(SRC_DIR)/display.c \
 
 BONUS_SRCS = \
+		$(MINIMAP) \
+		$(RAYCASTER_BONUS) \
 		$(SRC_BONUS_DIR)/main_bonus.c \
 		$(SRC_BONUS_DIR)/display_bonus.c \
 		$(SRC_BONUS_DIR)/handle_key_bonus.c \
 		$(SRC_BONUS_DIR)/handle_key_utils_bonus.c \
 		$(SRC_BONUS_DIR)/collision.c \
 		$(SRC_BONUS_DIR)/boussole.c \
-		$(SRC_DIR)/might_be_useless.c \
 
 PMANDATORY = $(MANDATORY_SRCS) $(COMMON_SRCS)
 PBONUS = $(BONUS_SRCS) $(COMMON_SRCS)

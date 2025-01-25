@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/23 15:58:23 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 17:19:04 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,6 @@ int				*convert_to_int_tab(t_parsing *info, char **map);
 bool			init_player(char **map, t_player *player);
 bool			is_player(char c);
 bool			init_create_mlx(t_parsing *info);
-
-// minimap
-void			draw_line_on_map(t_parsing *info, t_img img);
-void			draw_player_on_minimap(t_parsing *info, unsigned int color,
-					int replace);
-void			draw_mini_map(t_parsing *info);
-void	draw_full_mini_map(t_parsing *info);
 
 // keysim_handling
 int				cross_exit(t_parsing *info);
@@ -93,7 +86,5 @@ void			print_texture(t_parsing *info);
 void			print_map_int(int *map, int max_x, int max_y);
 void			print_map(char **map);
 
-// might be useless
-bool			is_on_minimap(int x, int y, int rayon);
 
 #endif

@@ -1,60 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   might_be_useless.c                                 :+:      :+:    :+:   */
+/*   draw_mini_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 15:07:28 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/23 16:13:30 by phwang           ###   ########.fr       */
+/*   Created: 2024/12/16 19:03:00 by phwang            #+#    #+#             */
+/*   Updated: 2025/01/25 17:33:13 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-
-// void	draw_mini_line(t_parsing *info, unsigned int color, int replace,
-// 		float line_length)
-// {
-// 	float	i;
-// 	int		x;
-// 	int		y;
-
-// 	i = 0;
-// 	x = info->player.pos_x + MINI_PLAYER_SIZE / 2 + i * cos(info->player.angle);
-// 	y = info->player.pos_y + MINI_PLAYER_SIZE / 2 + i * sin(info->player.angle);
-// 	while (i < line_length)
-// 	{
-// 		x = info->player.pos_x + MINI_PLAYER_SIZE / 2 + i
-// 			* cos(info->ray.angle);
-// 		y = info->player.pos_y + MINI_PLAYER_SIZE / 2 + i
-// 			* sin(info->ray.angle);
-// 		if ((x < 0 || x >= SIZE_X || y < 0 || y >= SIZE_Y))
-// 			break ;
-// 		my_mlx_pixel_put(*(info->mlx.current_background), y, x, color);
-// 		i++;
-// 	}
-// }
-
-void	draw_player_on_minimap(t_parsing *info, unsigned int color, int replace)
-{
-	int	x;
-	int	y;
-
-	y = -1;
-	while (++y < PLAYER_SIZE_MINIMAP)
-	{
-		x = -1;
-		while (++x < PLAYER_SIZE_MINIMAP)
-		{
-			// printf("x = %d, y = %d\n", MINI_MAP_CENTER
-			// 	- PLAYER_SIZE_MINIMAP / 2 + x, MINI_MAP_CENTER
-			// 	- PLAYER_SIZE_MINIMAP / 2 + y);
-			my_mlx_pixel_put(*(info->mlx.current_background), MINI_MAP_CENTER
-				- PLAYER_SIZE_MINIMAP / 2 + y, MINI_MAP_CENTER
-				- PLAYER_SIZE_MINIMAP / 2 + x, color);
-		}
-	}
-}
+#include "cub3d_bonus.h"
 
 static void	draw_mini_map_square(t_img img, int x, int y, unsigned int color)
 {
@@ -76,13 +32,15 @@ static void	draw_mini_map_square(t_img img, int x, int y, unsigned int color)
 static int	square_pos(t_parsing *info, int pos, int flag)
 {
 	if (flag == POS_X)
-		return (MINI_MAP_CENTER + pos * MINI_MAP_SIZE - (info->player.pos_x - 2)
-			/ 2);
-	return (MINI_MAP_CENTER + pos * MINI_MAP_SIZE - (info->player.pos_y - 2)
-		/ 2);
+		return ((pos * MINI_MAP_SIZE) - ((info->player.pos_x - 2) / 2)
+			+ MINI_MAP_CENTER);
+	return ((pos * MINI_MAP_SIZE) - ((info->player.pos_y - 2) / 2)
+		+ MINI_MAP_CENTER);
 }
 
-void	draw_full_mini_map(t_parsing *info)
+// dessine les murs a la bonne position en fonction du joueur 
+// qui reste a la position MINIMAPCENTER
+static void	draw_actual_mini_map(t_parsing *info)
 {
 	int	x;
 	int	y;
@@ -111,4 +69,13 @@ void	draw_full_mini_map(t_parsing *info)
 			}
 		}
 	}
+}
+
+void	draw_mini_map(t_parsing *info)
+{
+	draw_circle_map(info, MINI_MAP_RAY + MINI_MAP_BORDER, NUDE);
+	// draw_circle_map(info, MINI_MAP_RAY, info->textures.floor_color);
+	draw_actual_mini_map(info);
+	draw_player_on_minimap(info, OTHER_PINK);
+	// draw_player_arrow(info);
 }

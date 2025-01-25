@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:19:37 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/23 15:59:14 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 17:09:39 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	display_bonus(t_parsing *info)
 		handle_key_bonus(info);
 		replace_background(info);
 		draw_mini_map(info);
-		raycaster(&info->player, &info->ray, info);
+		raycaster_bonus(&info->player, &info->ray, info);
 		mlx_put_image_to_window(info->mlx.mlx_ptr, info->mlx.win_ptr,
 			info->mlx.current_background->mlx_img, 0, 0);
 		if (info->mlx.current_background == &info->mlx.background)

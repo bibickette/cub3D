@@ -6,11 +6,11 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 15:41:34 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/23 15:41:32 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 17:25:37 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 bool	is_on_minimap(int x, int y, int rayon)
 {
@@ -19,11 +19,6 @@ bool	is_on_minimap(int x, int y, int rayon)
 
 	dy = y - MINI_MAP_CENTER;
 	dx = x - MINI_MAP_CENTER;
-	// if (x >= 0 && x <= MINI_MAP_SIZE * 37
-	// 	&& y >= 0 && y <= MINI_MAP_SIZE
-	// 	* 22)
-	// 	return (true);
-	// return (false);
 	if ((dx * dx + dy * dy) < power_nb(rayon, 2) )
 		return (true);
 	return (false);

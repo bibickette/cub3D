@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_3d_walls.c                                    :+:      :+:    :+:   */
+/*   draw_3d_walls_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:30:57 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/25 17:11:59 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 17:14:39 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static unsigned int	get_color_pixel_texture(t_parsing *info, int x, int y,
 		int id)
@@ -25,7 +25,7 @@ static unsigned int	get_color_pixel_texture(t_parsing *info, int x, int y,
 	return (color);
 }
 
-static void	draw_ray(t_parsing *info, int id)
+static void	draw_ray_bonus(t_parsing *info, int id)
 {
 	float	i;
 	float	line_length;
@@ -46,21 +46,22 @@ static void	draw_ray(t_parsing *info, int id)
 	while (++i < line_length)
 	{
 		tex_y = (int)((i / line_length) * TEXTURE_SIZE);
-		my_mlx_pixel_put(*(info->mlx.current_background), ray->start_y + i,
-			ray->start_x, get_color_pixel_texture(info, tex_x, tex_y, id));
+		if (!is_on_minimap(ray->start_y + i, ray->start_x, MINI_MAP_RAY + MINI_MAP_BORDER))
+			my_mlx_pixel_put(*(info->mlx.current_background), ray->start_y + i,
+				ray->start_x, get_color_pixel_texture(info, tex_x, tex_y, id));
 		if (ray->start_y + i + 1 > SIZE_Y)
 			break ;
 	}
 }
 
-static void	draw_big_line(t_parsing *info, t_ray *ray)
+static void	draw_big_line_bonus(t_parsing *info, t_ray *ray)
 {
 	ray->start_x = ray->r;
 	ray->start_y = ray->offset_l;
-	draw_ray(info, ray->id);
+	draw_ray_bonus(info, ray->id);
 }
 
-void	draw_3d_wall(t_ray *ray, t_parsing *info)
+void	draw_3d_wall_bonus(t_ray *ray, t_parsing *info)
 {
 	int	x;
 	int	y;
@@ -73,5 +74,5 @@ void	draw_3d_wall(t_ray *ray, t_parsing *info)
 	info->ray.height_l = (SCALE / info->ray.distance) * (x / tan(ray->rad_value
 				/ 2));
 	info->ray.offset_l = y - info->ray.height_l / 2;
-	draw_big_line(info, ray);
+	draw_big_line_bonus(info, ray);
 }
