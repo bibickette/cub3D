@@ -75,6 +75,17 @@ UTILS_FILES = \
 UTILS = $(addprefix $(UTILS_DIR)/, $(UTILS_FILES))	
 
 # BONUS PART SRC
+
+PARSING_BONUS_DIR = $(SRC_BONUS_DIR)/parsing_bonus
+PARSING_BONUS_FILES = \
+		convert_to_tab_int_bonus.c \
+		init_arg_data_bonus.c \
+		init_map_bonus.c \
+		is_valid_data_bonus.c \
+		is_valid_map_bonus.c \
+		is_valid_map_utils_bonus.c
+PARSING_BONUS = $(addprefix $(PARSING_BONUS_DIR)/, $(PARSING_BONUS_FILES))	
+
 RAYCASTER_BONUS_DIR = $(SRC_BONUS_DIR)/raycasting_bonus
 RAYCASTER_BONUS_FILES = \
 		draw_3d_walls_bonus.c \
@@ -113,6 +124,7 @@ MANDATORY_SRCS = \
 		$(SRC_DIR)/display.c \
 
 BONUS_SRCS = \
+		$(PARSING_BONUS) \
 		$(MINIMAP) \
 		$(RAYCASTER_BONUS) \
 		$(SRC_BONUS_DIR)/main_bonus.c \
@@ -120,6 +132,7 @@ BONUS_SRCS = \
 		$(SRC_BONUS_DIR)/handle_key_bonus.c \
 		$(SRC_BONUS_DIR)/handle_key_utils_bonus.c \
 		$(SRC_BONUS_DIR)/collision.c \
+		$(SRC_BONUS_DIR)/load_door.c \
 		$(SRC_BONUS_DIR)/boussole.c \
 
 PMANDATORY = $(MANDATORY_SRCS) $(COMMON_SRCS)

@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:55:58 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/23 12:21:27 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 18:32:32 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ int	main(int argc, char **argv)
 {
 	t_parsing	info;
 
-	if (!initialization_all(&info, argc, argv))
+	if (!initialization_all_bonus(&info, argc, argv))
 		return (1);
 	if (!init_create_mlx(&info))
+		return (destroy_info(&info), destroy_mlx(&info.mlx), 1);
+	if(!load_door(&info))
 		return (destroy_info(&info), destroy_mlx(&info.mlx), 1);
 	print_map(info.map);
 	print_map_int(info.int_map, info.max_x, info.max_y);

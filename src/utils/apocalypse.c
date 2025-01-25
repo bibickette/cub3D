@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   apocalypse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:55:43 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/15 10:16:06 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:31:20 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	destroy_textures(t_parsing *info)
 		if (info->textures.walls[i].path_to_img)
 			free_n_set_null(&info->textures.walls[i].path_to_img);
 	}
+	if (info->door.mlx_img)
+		mlx_destroy_image(info->mlx.mlx_ptr, info->door.mlx_img);
 }
 
 void	destroy_info(t_parsing *info)

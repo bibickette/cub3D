@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/23 16:40:42 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 18:26:48 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,6 @@ typedef struct s_wall
 {
 	int				id;
 	char			*path_to_img;
-	unsigned int	color;
 	t_img			img;
 }					t_wall;
 
@@ -255,6 +254,8 @@ typedef struct s_parsing
 	int				max_y;
 	int				nb_frame;
 	t_keys			keys;
+
+	t_img door;
 	t_player_arrow	arrow;
 }					t_parsing;
 

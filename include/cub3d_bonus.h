@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:16:29 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/25 17:33:20 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 18:30:26 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,23 @@
 # define CUB3D_BONUS_H
 
 # include "cub3d.h"
+
+// parsing
+# define DOOR 'D'
+# define DOOR_INT 3
+# define DOOR_FILE "textures/door.xpm"
+
+// collision
+# define SECURITY_DISTANCE 2
+
+bool	is_valid_map_bonus(t_parsing *info);
+bool	is_everything_surrounded_bonus(char **map, int last_tab);
+bool	init_map_bonus(t_parsing *info, int fd);
+bool	is_valid_data_bonus(t_parsing *info, char *filename);
+bool	initialization_all_bonus(t_parsing *info, int argc, char **argv);
+int		*convert_to_int_tab_bonus(t_parsing *info, char **map);
+
+bool	load_door(t_parsing *info);
 
 int		display_bonus(t_parsing *info);
 int		key_release_bonus(int keysym, t_parsing *info);
@@ -37,11 +54,11 @@ bool	is_west(float angle, float pi2, float pi3);
 void	draw_mini_map(t_parsing *info);
 void	draw_circle_map(t_parsing *info, int radius, int color);
 void	draw_player_arrow(t_parsing *info);
-bool			is_on_minimap(int x, int y, int rayon);
+bool	is_on_minimap(int x, int y, int rayon);
 
 // minimap
-void			draw_line_on_map(t_parsing *info, t_img img);
-void			draw_player_on_minimap(t_parsing *info, unsigned int color);
+void	draw_line_on_map(t_parsing *info, t_img img);
+void	draw_player_on_minimap(t_parsing *info, unsigned int color);
 
 // raycasting
 void	draw_3d_wall_bonus(t_ray *ray, t_parsing *info);
