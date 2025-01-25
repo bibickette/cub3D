@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/25 18:55:55 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 19:26:07 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ Si les longueurs sont égales et non nulles, on privilégie le dernier rayon.
 // 	}
 // }
 
+bool	is_door_or_wall(t_parsing *info, t_ray *ray)
+{
+	return (ray->map_pos < info->max_x * info->max_y
+		&& (info->int_map[ray->map_pos] == 1
+			|| info->int_map[ray->map_pos] == DOOR_INT));
+}
+
 static void	find_smallest_ray_bonus(t_ray *ray, float horizontal_len,
 		float vertical_len)
 {
@@ -82,6 +89,7 @@ void	raycaster_bonus(t_player *player, t_ray *ray, t_parsing *info)
 		// draw_mini_line(info, WHITE, ray->diatance); // bonus part
 		draw_3d_wall_bonus(ray, info);
 		// draw_wall_on_minimap(ray, info);
+		ray->is_door = IS_NOT_DOOR;
 		ray->angle += ray->rad_value / SIZE_X;
 		ray->angle = protect_angle_trigo_value(ray->angle);
 		ray->r++;

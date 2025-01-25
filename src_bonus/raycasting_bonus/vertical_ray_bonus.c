@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:06:55 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/25 18:57:08 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 19:26:40 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init_vertical_value_bonus(t_ray *ray, float ray_len)
 		ray->id = EA;
 	else
 		ray->id = WE;
-	if (ray->is_door == IS_DOOR)
+	if (ray->is_door == IS_DOOR_VERTICAL)
 		ray->id = DOOR_INT;
 	ray->wall_hit = fmod(ray->vy, SCALE) / SCALE;
 	ray->ry = ray->vy;
@@ -92,16 +92,10 @@ float	ray_vertical_plan_len_bonus(t_player *player, t_ray *ray,
 		ray->map_pos = ray->map_y * info->max_x + ray->map_x;
 		if (ray->map_pos < 0)
 			ray->map_pos = 0;
-		if (ray->map_pos < info->max_x * info->max_y
-			&& (info->int_map[ray->map_pos] == 1 || info->int_map[ray->map_pos] == DOOR_INT))
+		if (is_door_or_wall(info, ray))
 		{
-			// if (info->int_map[ray->map_pos] == DOOR_INT)
-			// {
-			// 	printf("map_pos = %d\n", ray->map_pos);
-			// 	ray->is_door = IS_DOOR;
-			// }
-			// else
-			// 	ray->is_door = IS_NOT_DOOR;
+			if (info->int_map[ray->map_pos] == DOOR_INT)
+				ray->is_door = IS_DOOR_VERTICAL;
 			break ;
 		}
 		else

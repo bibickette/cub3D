@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/25 17:19:04 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 19:26:17 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,5 @@ void			print_player_info(t_player player);
 void			print_texture(t_parsing *info);
 void			print_map_int(int *map, int max_x, int max_y);
 void			print_map(char **map);
-
 
 #endif

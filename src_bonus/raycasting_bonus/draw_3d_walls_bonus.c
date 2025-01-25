@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:30:57 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/25 18:54:46 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 19:29:26 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,7 @@ static void	draw_ray_bonus(t_parsing *info, int id)
 	tex_x = (int)(info->ray.wall_hit * TEXTURE_SIZE);
 	i = -1;
 	if (ray->start_y < 0)
-	{
-		while (ray->start_y + i + 1 < 0)
-			i++;
-	}
+		i = -(ray->start_y + 1);
 	while (++i < line_length)
 	{
 		tex_y = (int)((i / line_length) * TEXTURE_SIZE);

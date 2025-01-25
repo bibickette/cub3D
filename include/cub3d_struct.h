@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/25 18:44:14 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 19:22:43 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@
 # define MINI_MAP_BORDER 4
 # define POS_X 1
 # define POS_Y 0
-# define PLAYER_SIZE_MINIMAP 4          // Longueur de la flèche
+# define PLAYER_SIZE_MINIMAP 4            // Longueur de la flèche
 # define PLAYER_ANGLE_WIDTH 0.39269908169 // Largeur en radian PI/ 8
 
 // error dinput
@@ -90,7 +90,8 @@
 # define UNKNOWN_FILE_ERR "File access unknown error : "
 # define IDPLC_ERR "Identifier must be before the map"
 
-# define RGB_VALUE "RGB value must be between 0 and 255 \
+# define RGB_VALUE \
+	"RGB value must be between 0 and 255 \
 and contains 3 values separate by space or coma"
 
 # define MAP_ERR "Map is not valid : "
@@ -174,7 +175,7 @@ typedef struct s_ray
 	float			offset_l;
 	float			cos_angle;
 	float			wall_hit;
-	int is_door;
+	int				is_door;
 	int				id;
 	int				start_x;
 	int				start_y;
@@ -258,7 +259,7 @@ typedef struct s_parsing
 	int				nb_frame;
 	t_keys			keys;
 
-	t_img door;
+	t_img			door;
 	t_player_arrow	arrow;
 }					t_parsing;
 

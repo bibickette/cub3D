@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:03:00 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/25 18:18:54 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 19:31:19 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,28 @@ static int	square_pos(t_parsing *info, int pos, int flag)
 		+ MINI_MAP_CENTER);
 }
 
-// dessine les murs a la bonne position en fonction du joueur 
+static void	choose_which_wall(t_parsing *info, int x, int y)
+{
+	if (info->map[y][x] == '1')
+	{
+		draw_mini_map_square(*(info->mlx.current_background), square_pos(info,
+				x, POS_X), square_pos(info, y, POS_Y),
+			info->textures.ceiling_color);
+	}
+	else if ((info->map[y][x] == '0' || is_player(info->map[y][x])))
+	{
+		draw_mini_map_square(*(info->mlx.current_background), square_pos(info,
+				x, POS_X), square_pos(info, y, POS_Y),
+			info->textures.floor_color);
+	}
+	else if (info->map[y][x] == DOOR)
+	{
+		draw_mini_map_square(*(info->mlx.current_background), square_pos(info,
+				x, POS_X), square_pos(info, y, POS_Y), DOOR_COLOR);
+	}
+}
+
+// dessine les murs a la bonne position en fonction du joueur
 // qui reste a la position MINIMAPCENTER
 static void	draw_actual_mini_map(t_parsing *info)
 {
@@ -54,19 +75,8 @@ static void	draw_actual_mini_map(t_parsing *info)
 		while (++x < info->max_x)
 		{
 			len_max_x = ft_strlen(info->map[y]);
-			if (x < len_max_x && info->map[y][x] == '1')
-			{
-				draw_mini_map_square(*(info->mlx.current_background),
-					square_pos(info, x, POS_X), square_pos(info, y, POS_Y),
-					info->textures.ceiling_color);
-			}
-			else if (x < len_max_x && (info->map[y][x] == '0'
-					|| is_player(info->map[y][x])))
-			{
-				draw_mini_map_square(*(info->mlx.current_background),
-					square_pos(info, x, POS_X), square_pos(info, y, POS_Y),
-					info->textures.floor_color);
-			}
+			if (x < len_max_x)
+				choose_which_wall(info, x, y);
 		}
 	}
 }

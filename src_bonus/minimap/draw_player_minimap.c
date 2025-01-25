@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 15:05:45 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/25 17:56:12 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 19:24:06 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,18 +66,18 @@ void	draw_player_arrow(t_parsing *info)
 	float	triangle_dr;
 
 	triangle_dr = PLAYER_ANGLE_WIDTH;
-	base_offset_end_x = (PLAYER_SIZE_MINIMAP *3) * cos(-info->player.angle
+	base_offset_end_x = (PLAYER_SIZE_MINIMAP * 3) * cos(-info->player.angle
 			+ PLAYER_ANGLE_WIDTH);
-	base_offset_end_y = (PLAYER_SIZE_MINIMAP *3) * -sin(-info->player.angle
+	base_offset_end_y = (PLAYER_SIZE_MINIMAP * 3) * -sin(-info->player.angle
 			+ PLAYER_ANGLE_WIDTH);
 	end_x = MINI_MAP_CENTER + base_offset_end_x;
 	end_y = MINI_MAP_CENTER + base_offset_end_y;
 	while (triangle_dr > -PLAYER_ANGLE_WIDTH)
 	{
 		draw_line_arrow(info, end_x, end_y);
-		base_offset_end_x = (PLAYER_SIZE_MINIMAP *3) * cos(-info->player.angle
+		base_offset_end_x = (PLAYER_SIZE_MINIMAP * 3) * cos(-info->player.angle
 				+ triangle_dr);
-		base_offset_end_y = (PLAYER_SIZE_MINIMAP *3) * -sin(-info->player.angle
+		base_offset_end_y = (PLAYER_SIZE_MINIMAP * 3) * -sin(-info->player.angle
 				+ triangle_dr);
 		end_x = MINI_MAP_CENTER + base_offset_end_x;
 		end_y = MINI_MAP_CENTER + base_offset_end_y;
