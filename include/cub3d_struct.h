@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/25 19:22:43 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 19:36:41 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ and contains 3 values separate by space or coma"
 # define MLX_NEW_WIN_ERR "mlx_new_window() failed"
 # define MLX_IMG_ERR "mlx_new_image() failed"
 # define MLX_GET_DATA_ADDR_ERR "mlx_get_data_addr() failed"
-# define MLX_FILE_TO_IMG_ERR "mlx_xpm_file_to_image() failed"
+# define MLX_FILE_TO_IMG_ERR "mlx_xpm_file_to_image() failed : "
 # define CROSS_MSG "Cross has been clicked !\n"
 # define ESC_MSG "(ESC) key has been pressed ! bye\n"
 # define SCREEN_SIZE_ERR "SIZE_X or SIZE_Y is bigger than screen size"
