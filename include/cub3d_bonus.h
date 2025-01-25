@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:16:29 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/25 18:30:26 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 18:44:52 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 
 // parsing
 # define DOOR 'D'
-# define DOOR_INT 3
+# define DOOR_INT 5
 # define DOOR_FILE "textures/door.xpm"
+# define IS_DOOR 1 // for raycasting detection door
+# define IS_NOT_DOOR 0
 
 // collision
 # define SECURITY_DISTANCE 2
@@ -63,5 +65,10 @@ void	draw_player_on_minimap(t_parsing *info, unsigned int color);
 // raycasting
 void	draw_3d_wall_bonus(t_ray *ray, t_parsing *info);
 void	raycaster_bonus(t_player *player, t_ray *ray, t_parsing *info);
+float	ray_vertical_plan_len_bonus(t_player *player, t_ray *ray, t_parsing *info);
+float	ray_horizon_plan_len_bonus(t_player *player, t_ray *ray, t_parsing *info);
+void	init_vertical_value_bonus(t_ray *ray, float ray_len);
+void	init_horizontal_value_bonus(t_ray *ray, float ray_len);
+
 
 #endif

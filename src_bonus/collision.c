@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collision.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 16:08:30 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/15 16:21:00 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/25 18:58:03 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	is_possible_to_move(t_parsing *info, int x, int y)
 
 bool	is_possible_to_move_in_a_way(char **map, int x, int y)
 {
-	if (map[y][x] && map[y][x] != '1')
+	if (map[y][x] && map[y][x] != '1' && map[y][x] != DOOR)
 		return (true);
 	return (false);
 }

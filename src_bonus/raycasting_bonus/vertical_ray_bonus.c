@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vertical_ray.c                                     :+:      :+:    :+:   */
+/*   vertical_ray_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:06:55 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/25 18:36:44 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 18:57:08 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ En fonction de l'angle du rayon,
  le point d'intersection initial (`ray->rx`,`ray->ry`)
  et les incréments de pas (`ray->xo`,
 	`ray->yo`) pour avancer vers la prochaine ligne de la grille.
-Les cas particuliers gèrent les rayons parfaitement verticaux en 
+Les cas particuliers gèrent les rayons parfaitement verticaux en
 plaçant l'intersection à la position du joueur.
  */
 
-void	init_vertical_value(t_ray *ray, float ray_len)
+void	init_vertical_value_bonus(t_ray *ray, float ray_len)
 {
 	ray->distance = ray_len;
 	ray->last_ray = VERTICAL;
@@ -32,6 +32,8 @@ void	init_vertical_value(t_ray *ray, float ray_len)
 		ray->id = EA;
 	else
 		ray->id = WE;
+	if (ray->is_door == IS_DOOR)
+		ray->id = DOOR_INT;
 	ray->wall_hit = fmod(ray->vy, SCALE) / SCALE;
 	ray->ry = ray->vy;
 	ray->rx = ray->vx;
@@ -42,16 +44,14 @@ static void	vtplan_find_intersection(t_ray *ray, t_parsing *info)
 	ray->tan = -tan(ray->angle);
 	if (ray->angle > ray->pi2 && ray->angle < ray->pi3)
 	{
-		ray->vx = (((int)ray->player_posx / SCALE) * SCALE)
-			- 0.0001;
+		ray->vx = (((int)ray->player_posx / SCALE) * SCALE) - 0.0001;
 		ray->vy = (ray->player_posx - ray->vx) * ray->tan + ray->player_posy;
 		ray->xo = -SCALE;
 		ray->yo = -ray->xo * ray->tan;
 	}
 	if (ray->angle < ray->pi2 || ray->angle > ray->pi3)
 	{
-		ray->vx = (((int)ray->player_posx / SCALE) * SCALE)
-			+ SCALE;
+		ray->vx = (((int)ray->player_posx / SCALE) * SCALE) + SCALE;
 		ray->vy = (ray->player_posx - ray->vx) * ray->tan + ray->player_posy;
 		ray->xo = SCALE;
 		ray->yo = -ray->xo * ray->tan;
@@ -65,12 +65,12 @@ static void	vtplan_find_intersection(t_ray *ray, t_parsing *info)
 }
 
 /*
-Calcule la distance entre le joueur et la première intersection verticale 
+Calcule la distance entre le joueur et la première intersection verticale
 avec un mur.
 Cette fonction  appelle `vtplan_find_intersection` pour trouver la première
  intersection verticale.
 Ensuite,
-	elle parcourt la grille colonne par colonne,en avançant jusqu'à 
+	elle parcourt la grille colonne par colonne,en avançant jusqu'à
 	rencontrer un mur ou atteindre la limite maximale de recherche (dof).
 La distance à l'intersection est finalement calculée et retournée.
 */
@@ -78,7 +78,8 @@ La distance à l'intersection est finalement calculée et retournée.
 // jadditionne ces cotés jusqua trouver un mur
 // while tous les murs
 
-float	ray_vertical_plan_len(t_player *player, t_ray *ray, t_parsing *info)
+float	ray_vertical_plan_len_bonus(t_player *player, t_ray *ray,
+		t_parsing *info)
 {
 	ray->player_posx = player->pos_x + MINI_PLAYER_SIZE / 2;
 	ray->player_posy = player->pos_y + MINI_PLAYER_SIZE / 2;
@@ -92,8 +93,17 @@ float	ray_vertical_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 		if (ray->map_pos < 0)
 			ray->map_pos = 0;
 		if (ray->map_pos < info->max_x * info->max_y
-			&& info->int_map[ray->map_pos] == 1)
+			&& (info->int_map[ray->map_pos] == 1 || info->int_map[ray->map_pos] == DOOR_INT))
+		{
+			// if (info->int_map[ray->map_pos] == DOOR_INT)
+			// {
+			// 	printf("map_pos = %d\n", ray->map_pos);
+			// 	ray->is_door = IS_DOOR;
+			// }
+			// else
+			// 	ray->is_door = IS_NOT_DOOR;
 			break ;
+		}
 		else
 		{
 			ray->vx += ray->xo;

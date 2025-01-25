@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/25 18:26:48 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 18:44:14 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define SO 1
 # define EA 2
 # define WE 3
+
+# define NO_SIGN 42 // quand dans le tab int ya un vide
 
 # define ERROR "Error\n"
 
@@ -172,6 +174,7 @@ typedef struct s_ray
 	float			offset_l;
 	float			cos_angle;
 	float			wall_hit;
+	int is_door;
 	int				id;
 	int				start_x;
 	int				start_y;

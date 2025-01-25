@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:30:57 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/25 17:14:39 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 18:54:46 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,18 @@ static unsigned int	get_color_pixel_texture(t_parsing *info, int x, int y,
 	unsigned int	color;
 	char			*dst;
 
-	dst = info->textures.walls[id].img.addr + (y
-			* info->textures.walls[id].img.line_len + x
-			* (info->textures.walls[id].img.bpp / 8));
+	if (id == DOOR_INT)
+	{
+		dst = info->door.addr + (y * info->door.line_len + x * (info->door.bpp
+					/ 8));
+		color = *(unsigned int *)dst;
+	}
+	else
+	{
+		dst = info->textures.walls[id].img.addr + (y
+				* info->textures.walls[id].img.line_len + x
+				* (info->textures.walls[id].img.bpp / 8));
+	}
 	color = *(unsigned int *)dst;
 	return (color);
 }
@@ -46,7 +55,8 @@ static void	draw_ray_bonus(t_parsing *info, int id)
 	while (++i < line_length)
 	{
 		tex_y = (int)((i / line_length) * TEXTURE_SIZE);
-		if (!is_on_minimap(ray->start_y + i, ray->start_x, MINI_MAP_RAY + MINI_MAP_BORDER))
+		if (!is_on_minimap(ray->start_y + i, ray->start_x, MINI_MAP_RAY
+				+ MINI_MAP_BORDER))
 			my_mlx_pixel_put(*(info->mlx.current_background), ray->start_y + i,
 				ray->start_x, get_color_pixel_texture(info, tex_x, tex_y, id));
 		if (ray->start_y + i + 1 > SIZE_Y)

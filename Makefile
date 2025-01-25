@@ -89,7 +89,9 @@ PARSING_BONUS = $(addprefix $(PARSING_BONUS_DIR)/, $(PARSING_BONUS_FILES))
 RAYCASTER_BONUS_DIR = $(SRC_BONUS_DIR)/raycasting_bonus
 RAYCASTER_BONUS_FILES = \
 		draw_3d_walls_bonus.c \
-		raycaster_bonus.c 
+		raycaster_bonus.c \
+		horizontal_ray_bonus.c \
+		vertical_ray_bonus.c 
 RAYCASTER_BONUS = $(addprefix $(RAYCASTER_BONUS_DIR)/, $(RAYCASTER_BONUS_FILES))
 
 MINIMAP_DIR = $(SRC_BONUS_DIR)/minimap

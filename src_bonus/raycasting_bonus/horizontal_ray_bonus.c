@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   horizontal_ray.c                                   :+:      :+:    :+:   */
+/*   horizontal_ray_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:00:57 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/25 18:45:36 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 18:56:59 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 /*
-Calcule la première intersection du rayon avec les lignes horizontales de 
+Calcule la première intersection du rayon avec les lignes horizontales de
 la grille de la map.
 En fonction de l'angle du rayon,
  cette fonction détermine :
@@ -24,7 +24,7 @@ Les cas particuliers gèrent les rayons parfaitement horizontaux
 en plaçant l'intersection à la position du joueur.
  */
 
-void	init_horizontal_value(t_ray *ray, float ray_len)
+void	init_horizontal_value_bonus(t_ray *ray, float ray_len)
 {
 	ray->distance = ray_len;
 	ray->last_ray = HORIZONTAL;
@@ -32,6 +32,8 @@ void	init_horizontal_value(t_ray *ray, float ray_len)
 		ray->id = SO;
 	else
 		ray->id = NO;
+	if (ray->is_door == IS_DOOR)
+		ray->id = DOOR_INT;
 	ray->wall_hit = fmod(ray->hx, SCALE) / SCALE;
 	ray->rx = ray->hx;
 	ray->ry = ray->hy;
@@ -42,8 +44,7 @@ static void	hzplan_find_intersection(t_ray *ray, t_parsing *info)
 	ray->arc_tan = -1 / tan(ray->angle);
 	if (ray->angle > PI)
 	{
-		ray->hy = (((int)ray->player_posy / SCALE) * SCALE)
-			- 0.0001;
+		ray->hy = (((int)ray->player_posy / SCALE) * SCALE) - 0.0001;
 		ray->hx = (ray->player_posy - ray->hy) * ray->arc_tan
 			+ ray->player_posx;
 		ray->yo = -SCALE;
@@ -51,8 +52,7 @@ static void	hzplan_find_intersection(t_ray *ray, t_parsing *info)
 	}
 	if (ray->angle < PI)
 	{
-		ray->hy = (((int)ray->player_posy / SCALE) * SCALE)
-			+ SCALE;
+		ray->hy = (((int)ray->player_posy / SCALE) * SCALE) + SCALE;
 		ray->hx = (ray->player_posy - ray->hy) * ray->arc_tan
 			+ ray->player_posx;
 		ray->yo = SCALE;
@@ -67,16 +67,17 @@ static void	hzplan_find_intersection(t_ray *ray, t_parsing *info)
 }
 
 /*
-Calcule la distance entre le joueur et la première intersection horizontale 
+Calcule la distance entre le joueur et la première intersection horizontale
 avec un mur.
-Cette fonction  appelle `hzplan_find_intersection` pour trouver 
+Cette fonction  appelle `hzplan_find_intersection` pour trouver
 la première intersection horizontale.
 Ensuite,
-	elle parcourt la grille ligne par ligne,en avançant jusqu'à 
+	elle parcourt la grille ligne par ligne,en avançant jusqu'à
 	rencontrer un mur ou atteindre la limite maximale de recherche (dof).
 La distance à l'intersection est finalement calculée et retournée.
 */
-float	ray_horizon_plan_len(t_player *player, t_ray *ray, t_parsing *info)
+float	ray_horizon_plan_len_bonus(t_player *player, t_ray *ray,
+		t_parsing *info)
 {
 	ray->player_posx = player->pos_x + MINI_PLAYER_SIZE / 2;
 	ray->player_posy = player->pos_y + MINI_PLAYER_SIZE / 2;
@@ -90,8 +91,18 @@ float	ray_horizon_plan_len(t_player *player, t_ray *ray, t_parsing *info)
 		if (ray->map_pos < 0)
 			ray->map_pos = 0;
 		if (ray->map_pos < info->max_x * info->max_y
-			&& info->int_map[ray->map_pos] == 1)
+			&& (info->int_map[ray->map_pos] == 1
+				|| info->int_map[ray->map_pos] == DOOR_INT))
+		{
+			// if (info->int_map[ray->map_pos] == DOOR_INT)
+			// {
+			// 	printf("map_pos = %d\n", ray->map_pos);
+			// 	ray->is_door = IS_DOOR;
+			// }
+			// else
+			// 	ray->is_door = IS_NOT_DOOR;
 			break ;
+		}
 		else
 		{
 			ray->hx += ray->xo;

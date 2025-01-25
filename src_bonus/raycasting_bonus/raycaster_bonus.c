@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/25 17:14:34 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 18:55:55 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ Si les longueurs sont égales et non nulles, on privilégie le dernier rayon.
 // 	}
 // }
 
-static void	find_smallest_ray(t_ray *ray, float horizontal_len,
+static void	find_smallest_ray_bonus(t_ray *ray, float horizontal_len,
 		float vertical_len)
 {
 	if (vertical_len > horizontal_len)
-		init_horizontal_value(ray, horizontal_len);
+		init_horizontal_value_bonus(ray, horizontal_len);
 	if (vertical_len < horizontal_len)
-		init_vertical_value(ray, vertical_len);
+		init_vertical_value_bonus(ray, vertical_len);
 	ray->wall_hit -= floor(ray->wall_hit);
 }
 
@@ -76,9 +76,9 @@ void	raycaster_bonus(t_player *player, t_ray *ray, t_parsing *info)
 	ray->r = 0;
 	while (ray->r < SIZE_X)
 	{
-		horizontal_len = ray_horizon_plan_len(player, ray, info);
-		vertical_len = ray_vertical_plan_len(player, ray, info);
-		find_smallest_ray(ray, horizontal_len, vertical_len);
+		horizontal_len = ray_horizon_plan_len_bonus(player, ray, info);
+		vertical_len = ray_vertical_plan_len_bonus(player, ray, info);
+		find_smallest_ray_bonus(ray, horizontal_len, vertical_len);
 		// draw_mini_line(info, WHITE, ray->diatance); // bonus part
 		draw_3d_wall_bonus(ray, info);
 		// draw_wall_on_minimap(ray, info);

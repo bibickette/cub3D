@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_to_tab_int.c                               :+:      :+:    :+:   */
+/*   convert_to_tab_int_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 12:09:27 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/25 18:15:33 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/25 18:41:45 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_atoi_char(char c)
 		return (0);
 	else if (c == DOOR)
 		return (DOOR_INT);
-	return (2);
+	return (NO_SIGN);
 }
 
 static int	*init_int_tab(int *tab, char **map, int max_x, int max_y)
