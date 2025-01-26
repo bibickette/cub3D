@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_key_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 11:44:33 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/15 16:20:21 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/26 23:59:32 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void	rotate_player_left(t_parsing *info)
 
 void	handle_key_bonus(t_parsing *info)
 {
+	int	door_pos;
+
 	if (info->keys.up)
 		move_player_up_bonus(info);
 	if (info->keys.down)
@@ -42,6 +44,17 @@ void	handle_key_bonus(t_parsing *info)
 		rotate_player_left(info);
 	if (info->keys.rotate_right)
 		rotate_player_right(info);
+	if (info->keys.want_to_open_door)
+	{
+		info->keys.want_to_open_door = false;
+		if (info->ray.can_open_door)
+		{
+			info->ray.can_open_door = false;
+			info->map[info->ray.door_y][info->ray.door_x] = '0';
+			door_pos = info->ray.door_y * info->max_x + info->ray.door_x;
+			info->int_map[door_pos] = 0;
+		}
+	}
 }
 
 int	key_press_bonus(int keysym, t_parsing *info)
@@ -60,6 +73,8 @@ int	key_press_bonus(int keysym, t_parsing *info)
 		info->keys.left = true;
 	else if (keysym == XK_d)
 		info->keys.right = true;
+	else if (keysym == XK_e)
+		info->keys.want_to_open_door = true;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:16:29 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/25 19:26:22 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 00:01:01 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ float	ray_horizon_plan_len_bonus(t_player *player, t_ray *ray,
 void	init_vertical_value_bonus(t_ray *ray, float ray_len);
 void	init_horizontal_value_bonus(t_ray *ray, float ray_len);
 bool	is_door_or_wall(t_parsing *info, t_ray *ray);
+void	door_handling(t_parsing *info, t_ray *ray, int door_flag);
 
 #endif

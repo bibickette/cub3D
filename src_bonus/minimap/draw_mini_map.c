@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:03:00 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/25 19:31:19 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/26 23:58:12 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,13 @@ static void	choose_which_wall(t_parsing *info, int x, int y)
 				x, POS_X), square_pos(info, y, POS_Y),
 			info->textures.floor_color);
 	}
-	else if (info->map[y][x] == DOOR)
+	else if (info->map[info->ray.door_y][info->ray.door_x] == DOOR)
 	{
 		draw_mini_map_square(*(info->mlx.current_background), square_pos(info,
 				x, POS_X), square_pos(info, y, POS_Y), DOOR_COLOR);
+		// faire une fonction qui fait la moyenne de floor color et ceiling pour
+		// creer un door color qui sera la moyenne des deux,
+		//	actuellement c le moyen des deux
 	}
 }
 
@@ -84,7 +87,6 @@ static void	draw_actual_mini_map(t_parsing *info)
 void	draw_mini_map(t_parsing *info)
 {
 	draw_circle_map(info, MINI_MAP_RAY + MINI_MAP_BORDER, NUDE);
-	// draw_circle_map(info, MINI_MAP_RAY, info->textures.floor_color);
 	draw_actual_mini_map(info);
 	draw_player_on_minimap(info, OTHER_PINK);
 	// draw_player_arrow(info);

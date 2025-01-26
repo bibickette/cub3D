@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/25 19:36:41 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/26 23:56:46 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,10 @@ typedef struct s_ray
 	float			cos_angle;
 	float			wall_hit;
 	int				is_door;
+	bool			can_open_door;
+	int				door_x;
+	int				door_y;
+
 	int				id;
 	int				start_x;
 	int				start_y;
@@ -244,6 +248,7 @@ typedef struct keys
 	bool			right;
 	bool			rotate_left;
 	bool			rotate_right;
+	bool			want_to_open_door;
 }					t_keys;
 
 typedef struct s_parsing
