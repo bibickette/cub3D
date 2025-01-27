@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:30:57 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/27 16:17:39 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:24:54 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	draw_3d_wall_bonus(t_parsing *info, t_ray *ray)
 	ray->distance = (ray->distance) * cos(ray->cos_angle);
 	ray->height_l = (SCALE / ray->distance) * (x / tan(ray->rad_value
 				/ 2));
-	ray->offset_l = y - ray->height_l / 2;
+	ray->base_l = y - ray->height_l / 2;
 	ray->start_x = ray->r;
-	ray->start_y = ray->offset_l;
+	ray->start_y = ray->base_l;
 	draw_ray_bonus(info, ray, ray->id);
 }

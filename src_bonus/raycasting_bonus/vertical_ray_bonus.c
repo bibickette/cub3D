@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:06:55 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 15:55:09 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:29:36 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ void	init_vertical_value_bonus(t_ray *ray, float ray_len)
 		}
 	}
 	ray->wall_hit = fmod(ray->vy, SCALE) / SCALE;
-	ray->ry = ray->vy;
-	ray->rx = ray->vx;
 }
 
 static void	vtplan_find_intersection(t_ray *ray, t_parsing *info)

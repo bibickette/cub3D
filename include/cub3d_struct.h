@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/27 16:03:45 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:29:32 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,15 +176,13 @@ typedef struct s_ray
 	float			hx;
 	float			vy;
 	float			vx;
-	float			rx;
-	float			ry;
 	float			xo;
 	float			yo;
 	float			player_posx;
 	float			player_posy;
 	float			distance;
 	float			height_l;
-	float			offset_l;
+	float			base_l;
 	float			cos_angle;
 	float			wall_hit;
 	int				id;

@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:06:55 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/25 18:36:44 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:29:45 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	init_vertical_value(t_ray *ray, float ray_len)
 	else
 		ray->id = WE;
 	ray->wall_hit = fmod(ray->vy, SCALE) / SCALE;
-	ray->ry = ray->vy;
-	ray->rx = ray->vx;
 }
 
 static void	vtplan_find_intersection(t_ray *ray, t_parsing *info)
