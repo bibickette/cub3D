@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 12:09:27 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 14:27:24 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:48:55 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_atoi_char(char c)
 		return (1);
 	else if (c == '0')
 		return (0);
-	else if (c == DOOR)
+	else if (c == DOOR_CLOSED)
 		return (DOOR_CLOSE_INT);
 	return (NO_SIGN);
 }

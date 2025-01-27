@@ -6,31 +6,32 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:20:24 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/27 16:20:41 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:47:14 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void	door_handling(t_parsing *info, t_ray *ray, int door_flag, int direction)
+void	door_handling(t_parsing *info, t_ray *ray, int direction)
 {
 	if (info->int_map[ray->map_pos] == DOOR_CLOSE_INT)
 	{
 		if (direction == HORIZONTAL)
-			ray->door.is_door_horizontal = door_flag;
+			ray->door.is_door_horizontal = IS_DOOR_HORIZONTAL;
 		else
-			ray->door.is_door_vertical = door_flag;
+			ray->door.is_door_vertical = IS_DOOR_VERTICAL;
+		// la porte quon voit au milieu de lecran est la porte quon peut ouvrir
 		if (ray->r == SIZE_X / 2)
 		{
 			if (direction == HORIZONTAL)
 			{
-				ray->door.horizontal_door_x = ray->map_x;
-				ray->door.horizontal_door_y = ray->map_y;
+				ray->door.h_door_closed_x = ray->map_x;
+				ray->door.h_door_closed_y = ray->map_y;
 			}
 			else
 			{
-				ray->door.vertical_door_x = ray->map_x;
-				ray->door.vertical_door_y = ray->map_y;
+				ray->door.v_door_closed_x = ray->map_x;
+				ray->door.v_door_closed_y = ray->map_y;
 			}
 		}
 	}

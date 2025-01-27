@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:06:55 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 16:29:36 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:55:50 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void	init_vertical_value_bonus(t_ray *ray, float ray_len)
 	if (ray->door.is_door_vertical == IS_DOOR_VERTICAL)
 	{
 		ray->id = DOOR_CLOSE_INT;
-		if (ray_len <= SCALE / 2)
+		if (ray_len <= DISTANCE_TO_DOOR)
 		{
 			ray->door.can_open_door = true;
-			ray->door.door_x = ray->door.vertical_door_x;
-			ray->door.door_y = ray->door.vertical_door_y;
+			ray->door.door_x = ray->door.v_door_closed_x;
+			ray->door.door_y = ray->door.v_door_closed_y;
 		}
 	}
 	ray->wall_hit = fmod(ray->vy, SCALE) / SCALE;
@@ -100,7 +100,7 @@ float	ray_vertical_plan_len_bonus(t_player *player, t_ray *ray,
 			ray->map_pos = 0;
 		if (is_door_or_wall(info, ray))
 		{
-			door_handling(info, ray, IS_DOOR_VERTICAL, VERTICAL);
+			door_handling(info, ray, VERTICAL);
 			break ;
 		}
 		else

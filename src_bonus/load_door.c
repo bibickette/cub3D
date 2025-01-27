@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:25:47 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/27 15:58:36 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:40:43 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,8 @@ bool	load_door(t_parsing *info)
 	info->ray.door.can_open_door = false;
 	info->ray.door.is_door_horizontal = IS_NOT_DOOR;
 	info->ray.door.is_door_vertical = IS_NOT_DOOR;
+	// la faire une fonction qui mixe pour une closed door et open door
+	info->ray.door.door_closed_color = DOOR_COLOR;
+	info->ray.door.door_open_color = 0x00FF00;
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/27 16:29:32 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:50:48 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,15 +154,21 @@ typedef struct s_player_arrow
 
 typedef struct s_door
 {
+	bool			can_open_door;
 	int				is_door_horizontal;
 	int				is_door_vertical;
-	bool			can_open_door;
-	int				vertical_door_x;
-	int				vertical_door_y;
-	int				horizontal_door_x;
-	int				horizontal_door_y;
+	int				v_door_closed_x;
+	int				v_door_closed_y;
+	int				h_door_closed_x;
+	int				h_door_closed_y;
+	int				v_door_open_x;
+	int				v_door_open_y;
+	int				h_door_open_x;
+	int				h_door_open_y;
 	int				door_x;
 	int				door_y;
+	unsigned int	door_closed_color;
+	unsigned int	door_open_color;
 }	t_door;
 typedef struct s_ray
 {
@@ -194,7 +200,6 @@ typedef struct s_ray
 	int				map_y;
 	int				map_pos;
 	int				last_ray;
-
 	t_door			door;
 }					t_ray;
 

@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:16:29 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 16:17:51 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:55:35 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 # include "cub3d.h"
 
 // parsing
-# define DOOR 'D'
+# define DOOR_CLOSED 'D'
 # define DOOR_OPEN 'O'
 # define DOOR_CLOSE_INT 5
 # define DOOR_OPEN_INT 6
 # define DOOR_FILE "textures/door.xpm"
-# define DOOR_COLOR 0x91524F
+# define DOOR_COLOR 0x91524F // need to be removed
+# define DISTANCE_TO_DOOR 20 // (SCALE / 2) for now
 
 # define IS_DOOR_HORIZONTAL 1 // for raycasting detection door
 # define IS_DOOR_VERTICAL 2
@@ -77,6 +78,6 @@ float	ray_horizon_plan_len_bonus(t_player *player, t_ray *ray,
 void	init_vertical_value_bonus(t_ray *ray, float ray_len);
 void	init_horizontal_value_bonus(t_ray *ray, float ray_len);
 bool	is_door_or_wall(t_parsing *info, t_ray *ray);
-void	door_handling(t_parsing *info, t_ray *ray, int door_flag,
-			int direction);
+void	door_handling(t_parsing *info, t_ray *ray, int direction);
+
 #endif

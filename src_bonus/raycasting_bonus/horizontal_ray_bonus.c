@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:00:57 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 16:29:40 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:58:11 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void	init_horizontal_value_bonus(t_ray *ray, float ray_len)
 	if (ray->door.is_door_horizontal == IS_DOOR_HORIZONTAL)
 	{
 		ray->id = DOOR_CLOSE_INT;
-		if (ray_len <= SCALE / 2)
+		if (ray_len <= DISTANCE_TO_DOOR)
 		{
 			ray->door.can_open_door = true;
-			ray->door.door_x = ray->door.horizontal_door_x;
-			ray->door.door_y = ray->door.horizontal_door_y;
+			ray->door.door_x = ray->door.h_door_closed_x;
+			ray->door.door_y = ray->door.h_door_closed_y;
 		}
 	}
 	ray->wall_hit = fmod(ray->hx, SCALE) / SCALE;
@@ -82,6 +82,13 @@ Ensuite,
 	rencontrer un mur ou atteindre la limite maximale de recherche (dof).
 La distance à l'intersection est finalement calculée et retournée.
 */
+
+// bool	is_door_or_wall(t_parsing *info, t_ray *ray)
+// {
+// 	return (ray->map_pos < info->max_x * info->max_y
+// 		&& (info->int_map[ray->map_pos] == 1
+// 			|| info->int_map[ray->map_pos] == DOOR_CLOSE_INT));
+// }
 float	ray_horizon_plan_len_bonus(t_player *player, t_ray *ray,
 		t_parsing *info)
 {
@@ -96,9 +103,11 @@ float	ray_horizon_plan_len_bonus(t_player *player, t_ray *ray,
 		ray->map_pos = ray->map_y * info->max_x + ray->map_x;
 		if (ray->map_pos < 0)
 			ray->map_pos = 0;
+		// si mon joueur au premier tour de la boucle NEST PAS sur la porte
+		// si je suis face porte ouverte, register la position de la porte
 		if (is_door_or_wall(info, ray))
 		{
-			door_handling(info, ray, IS_DOOR_HORIZONTAL, HORIZONTAL);
+			door_handling(info, ray, HORIZONTAL);
 			break ;
 		}
 		else

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid_map_utils.c                               :+:      :+:    :+:   */
+/*   is_valid_map_utils_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:22:54 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/25 18:07:18 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:48:55 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	is_everything_surrounded_bonus(char **map, int last_tab)
 		i = -1;
 		while (map[j][++i])
 		{
-			if (map[j][i] == '0' || is_player(map[j][i]) || map[j][i] == DOOR)
+			if (map[j][i] == '0' || is_player(map[j][i]) || map[j][i] == DOOR_CLOSED)
 			{
 				if (map[j][i - 1] == ' ' || map[j][i + 1] == ' ' || map[j
 					- 1][i] == ' ' || map[j + 1][i] == ' ' || map[j][i
