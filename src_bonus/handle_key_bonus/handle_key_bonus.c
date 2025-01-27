@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 11:44:33 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 16:58:03 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 00:05:53 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,30 @@ void	handle_key_bonus(t_parsing *info)
 		rotate_player_left(info);
 	if (info->keys.rotate_right)
 		rotate_player_right(info);
-	if (info->keys.want_to_open_door)
+	if (info->keys.can_interact_w_door)
 	{
-		info->keys.want_to_open_door = false;
+		info->keys.can_interact_w_door = false;
 		if (info->ray.door.can_open_door)
 		{
 			info->ray.door.can_open_door = false;
-			if (info->map[info->ray.door.door_y][info->ray.door.door_x] == DOOR_CLOSED)
+			if (info->map[info->ray.door.door_closed_y][info->ray.door.door_closed_x] == DOOR_CLOSED)
 			{
-				info->map[info->ray.door.door_y][info->ray.door.door_x] = DOOR_OPEN;
-				door_pos = info->ray.door.door_y * info->max_x
-					+ info->ray.door.door_x;
+				info->map[info->ray.door.door_closed_y][info->ray.door.door_closed_x] = DOOR_OPEN;
+				door_pos = info->ray.door.door_closed_y * info->max_x
+					+ info->ray.door.door_closed_x;
 				info->int_map[door_pos] = DOOR_OPEN_INT;
+			}
+		}
+		else if(info->ray.door.can_close_door && (((int)(info->ray.player_posy) / SCALE) != info->ray.door.door_open_y
+			|| ((int)(info->ray.player_posx) / SCALE) != info->ray.door.door_open_x))
+		{
+			info->ray.door.can_close_door = false;
+			if (info->map[info->ray.door.door_open_y][info->ray.door.door_open_x] == DOOR_OPEN)
+			{
+				info->map[info->ray.door.door_open_y][info->ray.door.door_open_x] = DOOR_CLOSED;
+				door_pos = info->ray.door.door_open_y * info->max_x
+					+ info->ray.door.door_open_x;
+				info->int_map[door_pos] = DOOR_CLOSE_INT;
 			}
 		}
 	}
@@ -78,7 +90,7 @@ int	key_press_bonus(int keysym, t_parsing *info)
 	else if (keysym == XK_d)
 		info->keys.right = true;
 	else if (keysym == XK_e)
-		info->keys.want_to_open_door = true;
+		info->keys.can_interact_w_door = true;
 	return (0);
 }
 

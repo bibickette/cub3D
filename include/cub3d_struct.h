@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/27 16:50:48 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 00:01:46 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,19 +154,30 @@ typedef struct s_player_arrow
 
 typedef struct s_door
 {
+	// bool player_on_door;
 	bool			can_open_door;
-	int				is_door_horizontal;
-	int				is_door_vertical;
+	int				door_closed_x;
+	int				door_closed_y;
+	int				is_door_closed_h;
+	int				is_door_closed_v;
 	int				v_door_closed_x;
 	int				v_door_closed_y;
 	int				h_door_closed_x;
 	int				h_door_closed_y;
+	
+	bool can_close_door;
+	bool took_nearest_door_h;
+	bool took_nearest_door_v;
+	float distance_to_open_h;
+	float distance_to_open_v;
+	int				is_door_open_h;
+	int				is_door_open_v;
 	int				v_door_open_x;
 	int				v_door_open_y;
 	int				h_door_open_x;
 	int				h_door_open_y;
-	int				door_x;
-	int				door_y;
+	int				door_open_x;
+	int				door_open_y;
 	unsigned int	door_closed_color;
 	unsigned int	door_open_color;
 }	t_door;
@@ -258,7 +269,7 @@ typedef struct keys
 	bool			right;
 	bool			rotate_left;
 	bool			rotate_right;
-	bool			want_to_open_door;
+	bool			can_interact_w_door;
 }					t_keys;
 
 typedef struct s_parsing

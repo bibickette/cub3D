@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:20:24 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/27 16:47:14 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 22:30:15 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	door_handling(t_parsing *info, t_ray *ray, int direction)
 	if (info->int_map[ray->map_pos] == DOOR_CLOSE_INT)
 	{
 		if (direction == HORIZONTAL)
-			ray->door.is_door_horizontal = IS_DOOR_HORIZONTAL;
+			ray->door.is_door_closed_h = IS_DOOR_HORIZONTAL;
 		else
-			ray->door.is_door_vertical = IS_DOOR_VERTICAL;
+			ray->door.is_door_closed_v = IS_DOOR_VERTICAL;
 		// la porte quon voit au milieu de lecran est la porte quon peut ouvrir
 		if (ray->r == SIZE_X / 2)
 		{

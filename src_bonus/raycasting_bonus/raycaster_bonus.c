@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/27 16:20:30 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 23:43:50 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ void	raycaster_bonus(t_player *player, t_ray *ray, t_parsing *info)
 	ray->angle = protect_angle_trigo_value(ray->angle);
 	ray->r = 0;
 	ray->door.can_open_door = false;
+	ray->door.can_close_door = false;
+	ray->door.took_nearest_door_h = false;
+	ray->door.took_nearest_door_v = false;
 	while (ray->r < SIZE_X)
 	{
 		horizontal_len = ray_horizon_plan_len_bonus(player, ray, info);
@@ -51,8 +54,10 @@ void	raycaster_bonus(t_player *player, t_ray *ray, t_parsing *info)
 		find_smallest_ray_bonus(ray, horizontal_len, vertical_len);
 		// draw_mini_line(info, WHITE, ray->diatance); // bonus part
 		draw_3d_wall_bonus(info, ray);
-		ray->door.is_door_horizontal = IS_NOT_DOOR;
-		ray->door.is_door_vertical = IS_NOT_DOOR;
+		ray->door.is_door_closed_h = IS_NOT_DOOR;
+		ray->door.is_door_closed_v = IS_NOT_DOOR;
+		ray->door.is_door_open_h = IS_NOT_DOOR;
+		ray->door.is_door_open_v = IS_NOT_DOOR;
 		ray->angle += ray->rad_value / SIZE_X;
 		ray->angle = protect_angle_trigo_value(ray->angle);
 		ray->r++;

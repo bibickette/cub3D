@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:06:55 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 16:55:50 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 00:04:52 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,36 @@ void	init_vertical_value_bonus(t_ray *ray, float ray_len)
 		ray->id = EA;
 	else
 		ray->id = WE;
-	if (ray->door.is_door_vertical == IS_DOOR_VERTICAL)
+	if (ray->door.is_door_closed_v == IS_DOOR_VERTICAL)
 	{
 		ray->id = DOOR_CLOSE_INT;
-		if (ray_len <= DISTANCE_TO_DOOR)
+		if (ray_len <= DISTANCE_TO_OPEN_DOOR)
 		{
 			ray->door.can_open_door = true;
-			ray->door.door_x = ray->door.v_door_closed_x;
-			ray->door.door_y = ray->door.v_door_closed_y;
+			ray->door.door_closed_x = ray->door.v_door_closed_x;
+			ray->door.door_closed_y = ray->door.v_door_closed_y;
 		}
 	}
+	if(ray->door.is_door_open_v == IS_DOOR_VERTICAL)
+	{
+		if (ray->door.distance_to_open_v <= DISTANCE_TO_CLOSE_DOOR && ray->door.distance_to_open_v > MINI_PLAYER_SIZE / 2 + SECURITY_DISTANCE)
+		{
+			ray->door.can_close_door = true;
+			ray->door.door_open_x = ray->door.v_door_open_x;
+			ray->door.door_open_y = ray->door.v_door_open_y;
+		}
+		// else{
+		// 	ray->door.can_close_door = false;
+		// }
+	}
+	// if(ray->door.is_door_open_v == IS_DOOR_VERTICAL)
+	// {
+	// 	printf("on an open door\n");
+	// }
+	// else if (ray->door.is_door_open_v == IS_NOT_DOOR)
+	// {
+	// 	printf("not on door\n");
+	// }
 	ray->wall_hit = fmod(ray->vy, SCALE) / SCALE;
 }
 
@@ -98,6 +118,20 @@ float	ray_vertical_plan_len_bonus(t_player *player, t_ray *ray,
 		ray->map_pos = ray->map_y * info->max_x + ray->map_x;
 		if (ray->map_pos < 0)
 			ray->map_pos = 0;
+		if(ray->map_pos < info->max_x * info->max_y
+		&& info->int_map[ray->map_pos] == DOOR_OPEN_INT)
+		{
+			ray->door.is_door_open_v = IS_DOOR_VERTICAL;
+		// la porte quon voit au milieu de lecran est la porte quon peut fermer
+			if (ray->r == SIZE_X / 2 && !ray->door.took_nearest_door_v)
+			{
+				ray->door.v_door_open_x = ray->map_x;
+				ray->door.v_door_open_y = ray->map_y;
+			ray->door.distance_to_open_v = get_distance(ray->player_posx, ray->player_posy, ray->vx, ray->vy);
+				ray->door.took_nearest_door_v = true;
+				// printf("door[%d] is took", ray->map_pos);
+			}
+		}
 		if (is_door_or_wall(info, ray))
 		{
 			door_handling(info, ray, VERTICAL);

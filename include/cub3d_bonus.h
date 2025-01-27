@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:16:29 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 16:55:35 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 00:06:26 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,15 @@
 
 # include "cub3d.h"
 
-// parsing
+# define DOOR_FILE "textures/door.xpm"
+# define DOOR_COLOR 0x91524F // need to be removed
+
 # define DOOR_CLOSED 'D'
 # define DOOR_OPEN 'O'
 # define DOOR_CLOSE_INT 5
 # define DOOR_OPEN_INT 6
-# define DOOR_FILE "textures/door.xpm"
-# define DOOR_COLOR 0x91524F // need to be removed
-# define DISTANCE_TO_DOOR 20 // (SCALE / 2) for now
+# define DISTANCE_TO_OPEN_DOOR 20
+# define DISTANCE_TO_CLOSE_DOOR 32 // (SCALE) for now
 
 # define IS_DOOR_HORIZONTAL 1 // for raycasting detection door
 # define IS_DOOR_VERTICAL 2

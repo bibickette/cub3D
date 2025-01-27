@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:00:57 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 16:58:11 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 00:04:45 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,34 @@ void	init_horizontal_value_bonus(t_ray *ray, float ray_len)
 		ray->id = SO;
 	else
 		ray->id = NO;
-	if (ray->door.is_door_horizontal == IS_DOOR_HORIZONTAL)
+	if (ray->door.is_door_closed_h == IS_DOOR_HORIZONTAL)
 	{
 		ray->id = DOOR_CLOSE_INT;
-		if (ray_len <= DISTANCE_TO_DOOR)
+		if (ray_len <= DISTANCE_TO_OPEN_DOOR)
 		{
 			ray->door.can_open_door = true;
-			ray->door.door_x = ray->door.h_door_closed_x;
-			ray->door.door_y = ray->door.h_door_closed_y;
+			ray->door.door_closed_x = ray->door.h_door_closed_x;
+			ray->door.door_closed_y = ray->door.h_door_closed_y;
+		// printf("ray_len = %f\n", ray_len);
 		}
 	}
+	if(ray->door.is_door_open_h == IS_DOOR_HORIZONTAL)
+	{
+		if (ray->door.distance_to_open_h <= DISTANCE_TO_CLOSE_DOOR && ray->door.distance_to_open_h > MINI_PLAYER_SIZE / 2 + SECURITY_DISTANCE)
+		{
+			ray->door.can_close_door = true;
+			ray->door.door_open_x = ray->door.h_door_open_x;
+			ray->door.door_open_y = ray->door.h_door_open_y;
+			// printf("distance to open door\n");
+		}
+		// else{
+		// 	ray->door.can_close_door = false;
+		// }
+	}
+	// else if (ray->door.is_door_open_h == IS_NOT_DOOR)
+	// {
+	// 	printf("not on door\n");
+	// }
 	ray->wall_hit = fmod(ray->hx, SCALE) / SCALE;
 }
 
@@ -105,6 +123,20 @@ float	ray_horizon_plan_len_bonus(t_player *player, t_ray *ray,
 			ray->map_pos = 0;
 		// si mon joueur au premier tour de la boucle NEST PAS sur la porte
 		// si je suis face porte ouverte, register la position de la porte
+		if(ray->map_pos < info->max_x * info->max_y
+		&& info->int_map[ray->map_pos] == DOOR_OPEN_INT)
+		{
+			ray->door.is_door_open_h = IS_DOOR_HORIZONTAL;
+		// la porte quon voit au milieu de lecran est la porte quon peut fermer
+			if (ray->r == SIZE_X / 2 && !ray->door.took_nearest_door_h)
+			{
+				ray->door.h_door_open_x = ray->map_x;
+				ray->door.h_door_open_y = ray->map_y;
+			ray->door.distance_to_open_h = get_distance(ray->player_posx,
+					ray->player_posy, ray->hx, ray->hy);
+				ray->door.took_nearest_door_h = true;
+			}
+		}
 		if (is_door_or_wall(info, ray))
 		{
 			door_handling(info, ray, HORIZONTAL);
