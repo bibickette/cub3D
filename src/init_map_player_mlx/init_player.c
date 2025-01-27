@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:35:38 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/22 13:45:38 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/27 14:08:10 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ bool	init_player(char **map, t_player *player)
 			if (is_player(map[y][x]))
 			{
 				player_setting(map, player, x, y);
+				map[y][x] = '0';
 				player_count++;
 			}
 		}

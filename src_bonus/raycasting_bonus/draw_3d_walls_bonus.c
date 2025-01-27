@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:30:57 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/25 19:29:26 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 14:27:24 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ static unsigned int	get_color_pixel_texture(t_parsing *info, int x, int y,
 	unsigned int	color;
 	char			*dst;
 
-	if (id == DOOR_INT)
+	if (id == DOOR_CLOSE_INT)
 	{
 		dst = info->door.addr + (y * info->door.line_len + x * (info->door.bpp
 					/ 8));
-		color = *(unsigned int *)dst;
 	}
 	else
 	{
