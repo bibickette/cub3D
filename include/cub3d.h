@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/25 19:26:17 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 15:20:46 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ bool			is_valid_arguments(int argc, char **argv);
 int				is_start_with_id(char *line);
 int				len_of_texture(char *line);
 int				start_of_texture(char *line);
+unsigned int	rgb_to_uint(int rgb[3]);
 
 bool			load_texture(t_parsing *info);
 

@@ -71,6 +71,7 @@ UTILS_FILES = \
 		print_error.c \
 		print_debug.c \
 		utils.c \
+		rgb_to_uint.c \
 		convert_tab_in_space.c 
 UTILS = $(addprefix $(UTILS_DIR)/, $(UTILS_FILES))	
 

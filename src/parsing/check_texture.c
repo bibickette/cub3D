@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 09:35:35 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/13 16:42:45 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 15:20:53 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,6 @@ static bool	is_valid_rgb_value(int rgb[3])
 		i++;
 	}
 	return (true);
-}
-
-static unsigned int	rgb_to_uint(int rgb[3])
-{
-	return (rgb[0] << 16 | rgb[1] << 8 | rgb[2]);
 }
 
 bool	is_valid_file_and_rgb(t_parsing *info)

@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/27 14:02:40 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 15:54:35 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,18 @@ typedef struct s_player_arrow
 	int				step_y;
 }					t_player_arrow;
 
+typedef struct s_door
+{
+	int				is_door_horizontal;
+	int				is_door_vertical;
+	bool			can_open_door;
+	int				vertical_door_x;
+	int				vertical_door_y;
+	int				horizontal_door_x;
+	int				horizontal_door_y;
+	int				door_x;
+	int				door_y;
+}	t_door;
 typedef struct s_ray
 {
 	double			angle;
@@ -185,11 +197,7 @@ typedef struct s_ray
 	int				map_pos;
 	int				last_ray;
 
-	int				is_door_horizontal;
-	int				is_door_vertical;
-	bool			can_open_door;
-	int				door_x;
-	int				door_y;
+	t_door			door;
 }					t_ray;
 
 typedef struct s_image

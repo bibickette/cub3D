@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:00:57 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 14:27:24 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 15:55:30 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,15 @@ void	init_horizontal_value_bonus(t_ray *ray, float ray_len)
 		ray->id = SO;
 	else
 		ray->id = NO;
-	if (ray->is_door_horizontal == IS_DOOR_HORIZONTAL)
+	if (ray->door.is_door_horizontal == IS_DOOR_HORIZONTAL)
 	{
 		ray->id = DOOR_CLOSE_INT;
 		if (ray_len <= SCALE / 2)
-			ray->can_open_door = true;
+		{
+			ray->door.can_open_door = true;
+			ray->door.door_x = ray->door.horizontal_door_x;
+			ray->door.door_y = ray->door.horizontal_door_y;
+		}
 	}
 	ray->wall_hit = fmod(ray->hx, SCALE) / SCALE;
 	ray->rx = ray->hx;

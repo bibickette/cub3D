@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 11:44:33 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 14:27:55 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 15:55:55 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ void	handle_key_bonus(t_parsing *info)
 	if (info->keys.want_to_open_door)
 	{
 		info->keys.want_to_open_door = false;
-		if (info->ray.can_open_door)
+		if (info->ray.door.can_open_door)
 		{
-			info->ray.can_open_door = false;
-			info->map[info->ray.door_y][info->ray.door_x] = DOOR_OPEN;
-			door_pos = info->ray.door_y * info->max_x + info->ray.door_x;
+			info->ray.door.can_open_door = false;
+			info->map[info->ray.door.door_y][info->ray.door.door_x] = DOOR_OPEN;
+			door_pos = info->ray.door.door_y * info->max_x + info->ray.door.door_x;
 			info->int_map[door_pos] = DOOR_OPEN_INT;
 		}
 	}

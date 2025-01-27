@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/27 14:40:23 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 15:56:17 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,50 +20,27 @@ Si les longueurs sont égales et non nulles, on privilégie le dernier rayon.
  Alors on privilégie le rayon horizontal.
  dans les autres cas on previligie le rayon vertical.
  */
-// static bool	is_horizontal_line_hit_first(int last_ray, float horizontal_len,
-// 		float vertical_len)
-// {
-// 	if (vertical_len <= horizontal_len)
-// 		return (false);
-// 	else
-// 		return (true);
-// 	return (false);
-// }
-// static void	draw_mini_line(t_parsing *info, unsigned int color,
-// 		float line_length)
-// {
-// 	float	i;
-// 	int		x;
-// 	int		y;
-
-// 	i = 0;
-// 	x = MINI_MAP_CENTER + i * cos(info->player.angle);
-// 	y = MINI_MAP_CENTER + i * sin(info->player.angle);
-// 	while (i < line_length / 2 + 1)
-// 	{
-// 		x = MINI_MAP_CENTER + i * cos(info->ray.angle);
-// 		y = MINI_MAP_CENTER + i * sin(info->ray.angle);
-// 		if (get_backup_color(*(info->mlx.current_background), x,
-// 				y) == info->textures.ceiling_color)
-// 			break ;
-// 		if (is_on_minimap(x, y, MINI_MAP_RAY))
-// 			my_mlx_pixel_put(*(info->mlx.current_background), y, x, color);
-// 		i++;
-// 	}
-// }
 
 void	door_handling(t_parsing *info, t_ray *ray, int door_flag, int direction)
 {
 	if (info->int_map[ray->map_pos] == DOOR_CLOSE_INT)
 	{
 		if (direction == HORIZONTAL)
-			ray->is_door_horizontal = door_flag;
+			ray->door.is_door_horizontal = door_flag;
 		else
-			ray->is_door_vertical = door_flag;
+			ray->door.is_door_vertical = door_flag;
 		if (ray->r == SIZE_X / 2)
 		{
-			ray->door_x = ray->map_x;
-			ray->door_y = ray->map_y;
+			if (direction == HORIZONTAL)
+			{
+				ray->door.horizontal_door_x = ray->map_x;
+				ray->door.horizontal_door_y = ray->map_y;
+			}
+			else
+			{
+				ray->door.vertical_door_x = ray->map_x;
+				ray->door.vertical_door_y = ray->map_y;
+			}
 		}
 	}
 }
@@ -97,7 +74,7 @@ void	raycaster_bonus(t_player *player, t_ray *ray, t_parsing *info)
 	ray->angle = player->angle - (ray->rad_value / 2);
 	ray->angle = protect_angle_trigo_value(ray->angle);
 	ray->r = 0;
-	ray->can_open_door = false;
+	ray->door.can_open_door = false;
 	while (ray->r < SIZE_X)
 	{
 		horizontal_len = ray_horizon_plan_len_bonus(player, ray, info);
@@ -105,8 +82,8 @@ void	raycaster_bonus(t_player *player, t_ray *ray, t_parsing *info)
 		find_smallest_ray_bonus(ray, horizontal_len, vertical_len);
 		// draw_mini_line(info, WHITE, ray->diatance); // bonus part
 		draw_3d_wall_bonus(ray, info);
-		ray->is_door_horizontal = IS_NOT_DOOR;
-		ray->is_door_vertical = IS_NOT_DOOR;
+		ray->door.is_door_horizontal = IS_NOT_DOOR;
+		ray->door.is_door_vertical = IS_NOT_DOOR;
 		ray->angle += ray->rad_value / SIZE_X;
 		ray->angle = protect_angle_trigo_value(ray->angle);
 		ray->r++;
