@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 19:52:00 by fanfan            #+#    #+#             */
-/*   Updated: 2025/01/27 16:03:39 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:10:21 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,3 @@ void	print_texture(t_parsing *info)
 		printf("id : %d\n", info->textures.walls[i].id);
 	}
 }
-

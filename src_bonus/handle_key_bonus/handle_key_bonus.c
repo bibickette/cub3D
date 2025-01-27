@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 11:44:33 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 15:55:55 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:09:52 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	handle_key_bonus(t_parsing *info)
 		{
 			info->ray.door.can_open_door = false;
 			info->map[info->ray.door.door_y][info->ray.door.door_x] = DOOR_OPEN;
-			door_pos = info->ray.door.door_y * info->max_x + info->ray.door.door_x;
+			door_pos = info->ray.door.door_y * info->max_x
+				+ info->ray.door.door_x;
 			info->int_map[door_pos] = DOOR_OPEN_INT;
 		}
 	}

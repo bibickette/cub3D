@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 16:30:57 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/25 17:11:59 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:19:31 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,16 @@ static unsigned int	get_color_pixel_texture(t_parsing *info, int x, int y,
 	return (color);
 }
 
-static void	draw_ray(t_parsing *info, int id)
+static void	draw_ray(t_parsing *info, t_ray *ray, int id)
 {
 	float	i;
 	float	line_length;
 	int		tex_x;
 	int		tex_y;
-	t_ray	*ray;
 
-	ray = &info->ray;
 	line_length = get_distance(ray->start_x, ray->start_y, ray->start_x,
 			ray->start_y + ray->height_l);
-	tex_x = (int)(info->ray.wall_hit * TEXTURE_SIZE);
+	tex_x = (int)(ray->wall_hit * TEXTURE_SIZE);
 	i = -1;
 	if (ray->start_y < 0)
 	{
@@ -53,13 +51,6 @@ static void	draw_ray(t_parsing *info, int id)
 	}
 }
 
-static void	draw_big_line(t_parsing *info, t_ray *ray)
-{
-	ray->start_x = ray->r;
-	ray->start_y = ray->offset_l;
-	draw_ray(info, ray->id);
-}
-
 void	draw_3d_wall(t_ray *ray, t_parsing *info)
 {
 	int	x;
@@ -67,11 +58,12 @@ void	draw_3d_wall(t_ray *ray, t_parsing *info)
 
 	x = SIZE_X / 2;
 	y = SIZE_Y / 2;
-	info->ray.cos_angle = info->player.angle - info->ray.angle;
-	info->ray.cos_angle = protect_angle_trigo_value(info->ray.cos_angle);
-	info->ray.distance = (info->ray.distance) * cos(info->ray.cos_angle);
-	info->ray.height_l = (SCALE / info->ray.distance) * (x / tan(ray->rad_value
-				/ 2));
-	info->ray.offset_l = y - info->ray.height_l / 2;
-	draw_big_line(info, ray);
+	ray->cos_angle = info->player.angle - ray->angle;
+	ray->cos_angle = protect_angle_trigo_value(ray->cos_angle);
+	ray->distance = (ray->distance) * cos(ray->cos_angle);
+	ray->height_l = (SCALE / ray->distance) * (x / tan(ray->rad_value / 2));
+	ray->offset_l = y - ray->height_l / 2;
+	ray->start_x = ray->r;
+	ray->start_y = ray->offset_l;
+	draw_ray(info, ray, ray->id);
 }

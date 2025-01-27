@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/27 15:56:17 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:20:30 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,37 +20,6 @@ Si les longueurs sont égales et non nulles, on privilégie le dernier rayon.
  Alors on privilégie le rayon horizontal.
  dans les autres cas on previligie le rayon vertical.
  */
-
-void	door_handling(t_parsing *info, t_ray *ray, int door_flag, int direction)
-{
-	if (info->int_map[ray->map_pos] == DOOR_CLOSE_INT)
-	{
-		if (direction == HORIZONTAL)
-			ray->door.is_door_horizontal = door_flag;
-		else
-			ray->door.is_door_vertical = door_flag;
-		if (ray->r == SIZE_X / 2)
-		{
-			if (direction == HORIZONTAL)
-			{
-				ray->door.horizontal_door_x = ray->map_x;
-				ray->door.horizontal_door_y = ray->map_y;
-			}
-			else
-			{
-				ray->door.vertical_door_x = ray->map_x;
-				ray->door.vertical_door_y = ray->map_y;
-			}
-		}
-	}
-}
-
-bool	is_door_or_wall(t_parsing *info, t_ray *ray)
-{
-	return (ray->map_pos < info->max_x * info->max_y
-		&& (info->int_map[ray->map_pos] == 1
-			|| info->int_map[ray->map_pos] == DOOR_CLOSE_INT));
-}
 
 static void	find_smallest_ray_bonus(t_ray *ray, float horizontal_len,
 		float vertical_len)
@@ -81,7 +50,7 @@ void	raycaster_bonus(t_player *player, t_ray *ray, t_parsing *info)
 		vertical_len = ray_vertical_plan_len_bonus(player, ray, info);
 		find_smallest_ray_bonus(ray, horizontal_len, vertical_len);
 		// draw_mini_line(info, WHITE, ray->diatance); // bonus part
-		draw_3d_wall_bonus(ray, info);
+		draw_3d_wall_bonus(info, ray);
 		ray->door.is_door_horizontal = IS_NOT_DOOR;
 		ray->door.is_door_vertical = IS_NOT_DOOR;
 		ray->angle += ray->rad_value / SIZE_X;

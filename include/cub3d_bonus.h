@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:16:29 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 14:27:36 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:17:51 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	draw_line_on_map(t_parsing *info, t_img img);
 void	draw_player_on_minimap(t_parsing *info, unsigned int color);
 
 // raycasting
-void	draw_3d_wall_bonus(t_ray *ray, t_parsing *info);
+void	draw_3d_wall_bonus(t_parsing *info, t_ray *ray);
 void	raycaster_bonus(t_player *player, t_ray *ray, t_parsing *info);
 float	ray_vertical_plan_len_bonus(t_player *player, t_ray *ray,
 			t_parsing *info);
@@ -77,5 +77,6 @@ float	ray_horizon_plan_len_bonus(t_player *player, t_ray *ray,
 void	init_vertical_value_bonus(t_ray *ray, float ray_len);
 void	init_horizontal_value_bonus(t_ray *ray, float ray_len);
 bool	is_door_or_wall(t_parsing *info, t_ray *ray);
-void	door_handling(t_parsing *info, t_ray *ray, int door_flag, int direction);
+void	door_handling(t_parsing *info, t_ray *ray, int door_flag,
+			int direction);
 #endif

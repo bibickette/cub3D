@@ -91,6 +91,7 @@ PARSING_BONUS = $(addprefix $(PARSING_BONUS_DIR)/, $(PARSING_BONUS_FILES))
 
 RAYCASTER_BONUS_DIR = $(SRC_BONUS_DIR)/raycasting_bonus
 RAYCASTER_BONUS_FILES = \
+		door.c \
 		draw_3d_walls_bonus.c \
 		raycaster_bonus.c \
 		horizontal_ray_bonus.c \
