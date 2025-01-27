@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 19:52:00 by fanfan            #+#    #+#             */
-/*   Updated: 2025/01/08 16:19:35 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:03:39 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,3 @@ void	print_texture(t_parsing *info)
 	}
 }
 
-void	print_player_info(t_player player)
-{
-	printf("player first pos x : %d\n", player.x);
-	printf("player first pos y : %d\n", player.y);
-}

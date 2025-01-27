@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:35:38 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/27 14:08:10 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:03:31 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ static void	set_angle_player(char c, t_player *player)
 
 static void	player_setting(char **map, t_player *player, int pos_x, int pos_y)
 {
-	player->x = pos_x;
-	player->y = pos_y;
 	player->pos_x = pos_x * SCALE + SCALE / 2
 		- MINI_PLAYER_SIZE / 2;
 	player->pos_y = pos_y * SCALE + SCALE / 2

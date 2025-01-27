@@ -29,6 +29,7 @@ SRC_DIR = src
 SRC_BONUS_DIR = src_bonus
 OBJ_DIR = obj
 
+#SRC FILES
 INIT_MAP_PLAYER_DIR = $(SRC_DIR)/init_map_player_mlx
 INIT_MAP_PLAYER_FILES = \
 		convert_to_tab_int.c \
@@ -75,8 +76,9 @@ UTILS_FILES = \
 		convert_tab_in_space.c 
 UTILS = $(addprefix $(UTILS_DIR)/, $(UTILS_FILES))	
 
-# BONUS PART SRC
 
+
+# BONUS PART SRC
 PARSING_BONUS_DIR = $(SRC_BONUS_DIR)/parsing_bonus
 PARSING_BONUS_FILES = \
 		convert_to_tab_int_bonus.c \
@@ -95,6 +97,14 @@ RAYCASTER_BONUS_FILES = \
 		vertical_ray_bonus.c 
 RAYCASTER_BONUS = $(addprefix $(RAYCASTER_BONUS_DIR)/, $(RAYCASTER_BONUS_FILES))
 
+HANDLE_KEY_BONUS_DIR = $(SRC_BONUS_DIR)/handle_key_bonus
+HANDLE_KEY_BONUS_FILES = \
+		handle_key_bonus.c \
+		handle_key_utils_bonus.c \
+		collision.c \
+		boussole.c 
+HANDLE_KEY_BONUS = $(addprefix $(HANDLE_KEY_BONUS_DIR)/, $(HANDLE_KEY_BONUS_FILES))
+
 MINIMAP_DIR = $(SRC_BONUS_DIR)/minimap
 MINIMAP_FILES = \
 		draw_mini_map.c \
@@ -104,17 +114,9 @@ MINIMAP_FILES = \
 		might_be_useless.c
 MINIMAP = $(addprefix $(MINIMAP_DIR)/, $(MINIMAP_FILES))
 
-# SRC = \
-# 		$(INIT_MAP_PLAYER) \
-# 		$(KEYSIM) \
-# 		$(MINIMAP) \
-# 		$(PARSING) \
-# 		$(RAYCASTER) \
-# 		$(UTILS) \
-# 		$(SRC_DIR)/main.c \
-# 		$(SRC_DIR)/display.c \
-# 		$(SRC_DIR)/might_be_useless.c
 
+
+# PUT FILES TOGETHER
 COMMON_SRCS =  \
 		$(INIT_MAP_PLAYER) \
 		$(KEYSIM) \
@@ -130,13 +132,10 @@ BONUS_SRCS = \
 		$(PARSING_BONUS) \
 		$(MINIMAP) \
 		$(RAYCASTER_BONUS) \
+		$(HANDLE_KEY_BONUS) \
 		$(SRC_BONUS_DIR)/main_bonus.c \
 		$(SRC_BONUS_DIR)/display_bonus.c \
-		$(SRC_BONUS_DIR)/handle_key_bonus.c \
-		$(SRC_BONUS_DIR)/handle_key_utils_bonus.c \
-		$(SRC_BONUS_DIR)/collision.c \
 		$(SRC_BONUS_DIR)/load_door.c \
-		$(SRC_BONUS_DIR)/boussole.c \
 
 PMANDATORY = $(MANDATORY_SRCS) $(COMMON_SRCS)
 PBONUS = $(BONUS_SRCS) $(COMMON_SRCS)

@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/27 15:54:35 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 16:03:45 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,8 +234,6 @@ typedef struct s_player
 	float			d_x;
 	float			d_y;
 	float			angle;
-	int				x;
-	int				y;
 }					t_player;
 
 typedef struct s_mlx

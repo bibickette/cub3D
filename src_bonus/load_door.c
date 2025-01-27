@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:25:47 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/27 15:56:53 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/27 15:58:36 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ bool	load_door(t_parsing *info)
 	int	width;
 	int	height;
 
+	ft_memset(&info->ray.door, 0, sizeof(t_door));
 	info->door.mlx_img = mlx_xpm_file_to_image(info->mlx.mlx_ptr, DOOR_FILE,
 			&width, &height);
 	if (!info->door.mlx_img)
