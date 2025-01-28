@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 16:38:48 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 17:03:47 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define PI 3.1415926535
 # define FOV 60.00000
 
-# define MOVE_SPEED 5
+# define MOVE_SPEED 2.5
 # define ROTATE_SPEED 0.04
 
 # define TEXTURE_SIZE 128.0000f
