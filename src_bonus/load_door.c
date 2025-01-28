@@ -6,11 +6,16 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:25:47 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 12:45:00 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 13:45:56 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
+
+static unsigned int mix_two_colors(unsigned int c_one, unsigned int c_two)
+{
+	return((c_one + c_two) / 2);
+}
 
 bool	load_door(t_parsing *info)
 {
@@ -33,7 +38,8 @@ bool	load_door(t_parsing *info)
 	info->ray.door.is_door_closed_h = IS_NOT_DOOR;
 	info->ray.door.is_door_closed_v = IS_NOT_DOOR;
 	// la faire une fonction qui mixe pour une closed door et open door
-	info->ray.door.door_closed_color = DOOR_COLOR;
+	info->ray.door.door_closed_color = mix_two_colors(info->textures.ceiling_color, info->textures.floor_color);
+
 	info->ray.door.door_open_color = 0x00FF00;
 	return (true);
 }

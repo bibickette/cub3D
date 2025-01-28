@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:07:29 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 13:14:03 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 13:47:52 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static bool	check_char_in_map(char **map)
 		while (map[j][++i])
 		{
 			if (map[j][i] != '0' && map[j][i] != '1' && !is_player(map[j][i])
-				&& map[j][i] != ' ')
+				&& map[j][i] != ' ' && map[j][i] != '\n')
 				return (print_error(MAP_ERR, CHAR_ERR), false);
 		}
 	}
