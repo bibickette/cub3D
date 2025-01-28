@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: naphy <naphy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:19:37 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/28 13:04:35 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 20:27:07 by naphy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	display_bonus(t_parsing *info)
 		handle_key_bonus(info);
 		replace_background(info);
 		draw_mini_map(info);
+		draw_animated_heart(info, NB_OF_HEARTS);
 		raycaster_bonus(&info->player, &info->ray, info);
 		mlx_put_image_to_window(info->mlx.mlx_ptr, info->mlx.win_ptr,
 			info->mlx.current_background->mlx_img, 0, 0);

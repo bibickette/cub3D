@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: naphy <naphy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:55:58 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/28 15:15:02 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 20:26:52 by naphy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 
 	if (!initialization_all_bonus(&info, argc, argv))
 		return (1);
-	if (!init_create_mlx(&info) || !load_door(&info))
+	if (!init_create_mlx(&info) || !load_door(&info) || !load_sprite(&info))
 		return (destroy_info(&info), destroy_mlx(&info.mlx), 1);
 	display_intro();
 	display_bonus(&info);

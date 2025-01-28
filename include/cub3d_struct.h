@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 17:03:47 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/28 20:07:59 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,19 @@
 # define NO_SIGN 42 // quand dans le tab int ya un vide
 
 # define ERROR "Error\n"
+//sprite
+
+# define BIG_HEART 32
+# define SMALL_HEART 16
+# define FIRST_PART 64
+# define SECOND_PART 128
+# define BIG_HEART_XPM "textures/bigheart.xpm"
+# define SMALL_HEART_XPM "textures/heart.xpm"
+# define HEART_GAP 16
+# define NB_OF_HEARTS 3
+# define HEART_ONE_GAP_X 16
+# define HEART_TWO_GAP_X 48
+# define HEART_THREE_GAP_X 80
 
 // screen options
 # define TITLE "The Legend of The Cherry Blossom House"
@@ -66,7 +79,7 @@
 # define OTHER_PINK 0xFF6987 // pour le faisceau de vision
 # define NUDE 0xfce7cd
 # define NUDE_ANSI "\033[38;2;252;231;205m"
-
+# define WHITE 0xFFFFFF
 // collision
 # define SECURITY_DISTANCE 2
 
@@ -141,12 +154,8 @@ rx et ry sont les coordonnées finales du rayon.
 xo et yo sont les valeurs d'incrementation pour avancer
 jusqua la prochaine case de la map.
 arc_tan est la tangente de l'angle du rayon.
-angle est l'angle du rayon.
-r est le compteur de rayon.
-lineH est la longueur du rayon.
-lineO est la longueur de l'intersection.
-ca est le cosinus de l'angle du rayon.
-last_ray indique si le dernier rayon a dabord frappe
+angle est l'angle du rayon.	int width;
+	int height;yon a dabord frappe
 un mur horizontaement ou verticalement.
  */
 
@@ -291,6 +300,9 @@ typedef struct s_parsing
 	t_keys			keys;
 
 	t_img			door;
+	t_img			hearts[128];
+	int				hearts_frame;
+	int				heart_size;
 	t_player_arrow	arrow;
 }					t_parsing;
 

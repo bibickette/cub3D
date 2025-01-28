@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   might_be_useless.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: naphy <naphy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 15:07:28 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 17:24:36 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/28 20:27:44 by naphy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@
 // 	return (-1);
 // }
 
-// static void	init_delta_step(t_parsing *info, int end_x, int end_y, int *error)
+// static void	init_delta_step(t_parsing *info, int end_x, int end_y,
+	//		int *error)
 // {
 // 	info->arrow.delta_x = abs(end_x - MINI_MAP_CENTER);
 // 	info->arrow.delta_y = abs(end_y - MINI_MAP_CENTER);

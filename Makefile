@@ -143,6 +143,7 @@ BONUS_SRCS = \
 		$(SRC_BONUS_DIR)/main_bonus.c \
 		$(SRC_BONUS_DIR)/display_bonus.c \
 		$(SRC_BONUS_DIR)/load_door.c \
+		$(SRC_BONUS_DIR)/sprite.c \
 
 PMANDATORY = $(MANDATORY_SRCS) $(COMMON_SRCS)
 PBONUS = $(BONUS_SRCS) $(COMMON_SRCS)
