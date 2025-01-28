@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:13:44 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/15 13:04:46 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:24:03 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ bool	is_valid_data(t_parsing *info, char *filename)
 	if (!init_texture_and_color(info, fd))
 		return (false);
 	if (!init_map(info, fd))
-		return (false);
+		return (close(fd), false);
+	close(fd);
 	return (true);
 }

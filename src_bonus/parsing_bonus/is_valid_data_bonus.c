@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid_data.c                                    :+:      :+:    :+:   */
+/*   is_valid_data_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:13:44 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/25 18:10:22 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 16:24:36 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ bool	is_valid_data_bonus(t_parsing *info, char *filename)
 	if (!init_texture_and_color(info, fd))
 		return (false);
 	if (!init_map_bonus(info, fd))
-		return (false);
+		return (close(fd), false);
+	close(fd);
 	return (true);
 }
