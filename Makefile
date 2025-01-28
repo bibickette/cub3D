@@ -72,7 +72,9 @@ UTILS_FILES = \
 		print_error.c \
 		print_debug.c \
 		utils.c \
+		display_intro.c \
 		rgb_to_uint.c \
+		rgb_mix_two_colors.c \
 		convert_tab_in_space.c 
 UTILS = $(addprefix $(UTILS_DIR)/, $(UTILS_FILES))	
 

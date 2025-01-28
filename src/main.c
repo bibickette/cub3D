@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:55:58 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:11 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 15:14:44 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!init_create_mlx(&info))
 		return (destroy_info(&info), destroy_mlx(&info.mlx), 1);
+	display_intro();
 	display(&info);
 	mlx_hook(info.mlx.win_ptr, KeyPress, KeyPressMask, &key_press, &info);
 	mlx_hook(info.mlx.win_ptr, KeyRelease, KeyReleaseMask, &key_release, &info);

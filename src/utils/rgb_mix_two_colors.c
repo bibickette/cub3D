@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_player_minimap.c                              :+:      :+:    :+:   */
+/*   rgb_mix_two_colors.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/13 15:05:45 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 15:16:29 by phwang           ###   ########.fr       */
+/*   Created: 2025/01/28 13:53:47 by phwang            #+#    #+#             */
+/*   Updated: 2025/01/28 14:19:49 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
+#include "cub3d.h"
 
-void	draw_player_on_minimap(t_parsing *info, unsigned int color)
+/* deux tableaux existant avec un new tab sur la stack (no alloc) */
+void	rgb_mix_colors(int *c_one, int *c_two, int *new_color)
 {
-	int	x;
-	int	y;
-
-	y = -1;
-	while (++y < PLAYER_SIZE_MINIMAP)
-	{
-		x = -1;
-		while (++x < PLAYER_SIZE_MINIMAP)
-		{
-			my_mlx_pixel_put(*(info->mlx.current_background), MINI_MAP_CENTER
-				- PLAYER_SIZE_MINIMAP / 2 + y, MINI_MAP_CENTER
-				- PLAYER_SIZE_MINIMAP / 2 + x, color);
-		}
-	}
+	new_color[0] = (c_one[0] + c_two[0]) / 2;
+	new_color[1] = (c_one[1] + c_two[1]) / 2;
+	new_color[2] = (c_one[2] + c_two[2]) / 2;
 }

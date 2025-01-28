@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 13:13:36 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 15:03:09 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,14 @@
 # define VERTICAL 1
 
 // for minimap
+# define RESET_COLOR "\033[0m"
 # define RED 0x420000
+# define RED_ANSI "\033[38;2;66;0;0m"
 # define PINK 0xE0A59F
+# define PINK_ANSI "\033[38;2;224;165;159m"
 # define OTHER_PINK 0xFF6987 // pour le faisceau de vision
 # define NUDE 0xfce7cd
-# define BLACK 0x000000
-# define WHITE 0xFFFFFF
+# define NUDE_ANSI "\033[38;2;252;231;205m"
 
 // player
 # define MINI_PLAYER_SIZE 4

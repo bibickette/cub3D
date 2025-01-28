@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 12:53:48 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 14:21:41 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	raycaster_bonus(t_player *player, t_ray *ray, t_parsing *info)
 		horizontal_len = ray_horizon_plan_len_bonus(player, ray, info);
 		vertical_len = ray_vertical_plan_len_bonus(player, ray, info);
 		find_smallest_ray_bonus(ray, horizontal_len, vertical_len);
-		// draw_mini_line(info, WHITE, ray->diatance); // bonus part
 		draw_3d_wall_bonus(info, ray);
 		reset_is_door(&ray->door);
 		ray->angle += ray->rad_value / SIZE_X;

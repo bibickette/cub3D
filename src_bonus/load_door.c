@@ -6,15 +6,23 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:25:47 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 13:45:56 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 14:20:26 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-static unsigned int mix_two_colors(unsigned int c_one, unsigned int c_two)
+static void	set_color_door(t_texture *textures, t_door *door)
 {
-	return((c_one + c_two) / 2);
+	int	middle_rgb[3];
+	int	open_rgb[3];
+	int	close_rgb[3];
+
+	rgb_mix_colors(textures->floor_rgb, textures->ceiling_rgb, middle_rgb);
+	rgb_mix_colors(textures->floor_rgb, middle_rgb, open_rgb);
+	rgb_mix_colors(textures->ceiling_rgb, middle_rgb, close_rgb);
+	door->door_closed_color = rgb_to_uint(close_rgb);
+	door->door_open_color = rgb_to_uint(open_rgb);
 }
 
 bool	load_door(t_parsing *info)
@@ -33,13 +41,8 @@ bool	load_door(t_parsing *info)
 			&info->door.line_len, &info->door.endian);
 	if (!info->door.addr)
 		return (print_error(MLX_GET_DATA_ADDR_ERR, NULL), false);
-	info->keys.want_interact_w_door = false;
-	info->ray.door.can_open_door = false;
-	info->ray.door.is_door_closed_h = IS_NOT_DOOR;
-	info->ray.door.is_door_closed_v = IS_NOT_DOOR;
-	// la faire une fonction qui mixe pour une closed door et open door
-	info->ray.door.door_closed_color = mix_two_colors(info->textures.ceiling_color, info->textures.floor_color);
-
-	info->ray.door.door_open_color = 0x00FF00;
+	reset_can_took_door(&info->ray.door);
+	reset_is_door(&info->ray.door);
+	set_color_door(&info->textures, &info->ray.door);
 	return (true);
 }

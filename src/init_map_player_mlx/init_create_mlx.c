@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:29:01 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/15 00:08:41 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 15:14:38 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,5 @@ bool	init_create_mlx(t_parsing *info)
 	if (!load_texture(info))
 		return (false);
 	init_ray(&info->ray);
-	// print intro hihi
 	return (true);
 }

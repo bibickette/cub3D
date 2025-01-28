@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:03:00 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 13:06:36 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 14:22:58 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,17 @@ static void	choose_which_wall(t_parsing *info, int x, int y)
 	screen_x = square_pos(info, x, POS_X);
 	screen_y = square_pos(info, y, POS_Y);
 	if (info->map[y][x] == '1')
-		draw_mini_map_square(*(info->mlx.current_background), screen_x, screen_y,
-			info->textures.ceiling_color);
+		draw_mini_map_square(*(info->mlx.current_background), screen_x,
+			screen_y, info->textures.ceiling_color);
 	else if ((info->map[y][x] == '0'))
-		draw_mini_map_square(*(info->mlx.current_background), screen_x, screen_y,
-			info->textures.floor_color);
+		draw_mini_map_square(*(info->mlx.current_background), screen_x,
+			screen_y, info->textures.floor_color);
 	else if (info->map[y][x] == DOOR_CLOSED)
-		draw_mini_map_square(*(info->mlx.current_background), screen_x, screen_y,
-			info->ray.door.door_closed_color);
+		draw_mini_map_square(*(info->mlx.current_background), screen_x,
+			screen_y, info->ray.door.door_closed_color);
 	else if (info->map[y][x] == DOOR_OPEN)
-		draw_mini_map_square(*(info->mlx.current_background), screen_x, screen_y,
-			info->ray.door.door_open_color);
+		draw_mini_map_square(*(info->mlx.current_background), screen_x,
+			screen_y, info->ray.door.door_open_color);
 }
 
 // dessine les murs a la bonne position en fonction du joueur
@@ -86,5 +86,4 @@ void	draw_mini_map(t_parsing *info)
 	draw_circle_map(info, MINI_MAP_RAY + MINI_MAP_BORDER, NUDE);
 	draw_actual_mini_map(info);
 	draw_player_on_minimap(info, OTHER_PINK);
-	// draw_player_arrow(info);
 }

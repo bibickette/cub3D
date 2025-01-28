@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 13:55:58 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 16:04:17 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 15:15:02 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (!init_create_mlx(&info) || !load_door(&info))
 		return (destroy_info(&info), destroy_mlx(&info.mlx), 1);
-	print_map(info.map);
-	print_map_int(info.int_map, info.max_x, info.max_y);
-	printf("info max x = %d\n", info.max_x);
-	printf("info max y = %d\n", info.max_y);
+	display_intro();
 	display_bonus(&info);
 	mlx_hook(info.mlx.win_ptr, KeyPress, KeyPressMask, &key_press_bonus, &info);
 	mlx_hook(info.mlx.win_ptr, KeyRelease, KeyReleaseMask, &key_release_bonus,

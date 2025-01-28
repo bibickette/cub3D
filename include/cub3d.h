@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 15:20:46 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 15:14:12 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int				start_of_texture(char *line);
 unsigned int	rgb_to_uint(int rgb[3]);
 
 bool			load_texture(t_parsing *info);
+void			rgb_mix_colors(int *c_one, int *c_two, int *new_color);
 
 // init_map_player_mlx
 bool			init_map(t_parsing *info, int fd);
@@ -42,6 +43,7 @@ int				*convert_to_int_tab(t_parsing *info, char **map);
 bool			init_player(char **map, t_player *player);
 bool			is_player(char c);
 bool			init_create_mlx(t_parsing *info);
+void			display_intro(void);
 
 // keysim_handling
 int				cross_exit(t_parsing *info);
