@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 10:08:32 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/28 15:14:12 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 16:41:31 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ void			move_player_up(t_parsing *info);
 void			move_player_down(t_parsing *info);
 void			move_player_left(t_parsing *info);
 void			move_player_right(t_parsing *info);
+bool			is_north(float angle);
+bool			is_south(float angle);
+bool			is_east(float angle, float pi2, float pi3);
+bool			is_west(float angle, float pi2, float pi3);
 
 // display
 int				display(t_parsing *info);

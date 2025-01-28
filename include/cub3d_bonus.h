@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:16:29 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/28 13:54:17 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 16:41:22 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@
 # define IS_DOOR_VERTICAL 2
 # define IS_NOT_DOOR 0
 
-// collision
-# define SECURITY_DISTANCE 2
-
 bool	is_valid_map_bonus(t_parsing *info);
 bool	is_everything_surrounded_bonus(char **map, int last_tab);
 bool	init_map_bonus(t_parsing *info, int fd);
@@ -57,10 +54,6 @@ void	handle_open_close_door(t_parsing *info, t_door *door);
 // collision
 bool	is_possible_to_move(t_parsing *info, int x, int y);
 bool	is_possible_to_move_in_a_way(char **map, int x, int y);
-bool	is_north(float angle);
-bool	is_south(float angle);
-bool	is_east(float angle, float pi2, float pi3);
-bool	is_west(float angle, float pi2, float pi3);
 
 // minimap
 void	draw_mini_map(t_parsing *info);

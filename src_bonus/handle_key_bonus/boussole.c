@@ -6,11 +6,11 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 17:02:31 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/17 17:18:30 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 16:43:27 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
+#include "cub3d.h"
 
 bool	is_north(float angle)
 {

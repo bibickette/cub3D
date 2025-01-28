@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 12:41:27 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 13:02:26 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 16:45:34 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,18 @@ static bool	is_player_on_interacted_door(t_ray *ray)
 		|| ((int)(ray->player_posx) / SCALE) != ray->door.door_open_x));
 }
 
+static bool	is_on_map(t_parsing *info, int y, int x)
+{
+	return (y >= 0 && y < info->max_y && x >= 0 && x < info->max_x);
+}
+
 void	handle_open_close_door(t_parsing *info, t_door *door)
 {
 	int	door_pos;
 
 	info->keys.want_interact_w_door = false;
-	if (door->can_open_door)
+	if (door->can_open_door && is_on_map(info, door->door_closed_y,
+			door->door_closed_x))
 	{
 		door->can_open_door = false;
 		if (info->map[door->door_closed_y][door->door_closed_x] == DOOR_CLOSED)
@@ -33,7 +39,8 @@ void	handle_open_close_door(t_parsing *info, t_door *door)
 			info->int_map[door_pos] = DOOR_OPEN_INT;
 		}
 	}
-	else if (door->can_close_door && is_player_on_interacted_door(&info->ray))
+	else if (door->can_close_door && is_player_on_interacted_door(&info->ray)
+		&& is_on_map(info, door->door_open_y, door->door_open_x))
 	{
 		door->can_close_door = false;
 		if (info->map[door->door_open_y][door->door_open_x] == DOOR_OPEN)

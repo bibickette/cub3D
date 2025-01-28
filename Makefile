@@ -131,6 +131,7 @@ COMMON_SRCS =  \
 		$(UTILS) \
 			
 MANDATORY_SRCS = \
+		$(HANDLE_KEY_BONUS_DIR)/boussole.c \
 		$(SRC_DIR)/main.c \
 		$(SRC_DIR)/display.c \
 

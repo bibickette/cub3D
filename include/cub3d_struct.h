@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 15:03:09 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 16:38:48 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@
 # define OTHER_PINK 0xFF6987 // pour le faisceau de vision
 # define NUDE 0xfce7cd
 # define NUDE_ANSI "\033[38;2;252;231;205m"
+
+// collision
+# define SECURITY_DISTANCE 2
 
 // player
 # define MINI_PLAYER_SIZE 4
