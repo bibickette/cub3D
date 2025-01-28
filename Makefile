@@ -91,7 +91,9 @@ PARSING_BONUS = $(addprefix $(PARSING_BONUS_DIR)/, $(PARSING_BONUS_FILES))
 
 RAYCASTER_BONUS_DIR = $(SRC_BONUS_DIR)/raycasting_bonus
 RAYCASTER_BONUS_FILES = \
-		door.c \
+		door_open.c \
+		door_closed.c \
+		door_utils.c \
 		draw_3d_walls_bonus.c \
 		raycaster_bonus.c \
 		horizontal_ray_bonus.c \
@@ -102,6 +104,7 @@ HANDLE_KEY_BONUS_DIR = $(SRC_BONUS_DIR)/handle_key_bonus
 HANDLE_KEY_BONUS_FILES = \
 		handle_key_bonus.c \
 		handle_key_utils_bonus.c \
+		handle_door.c \
 		collision.c \
 		boussole.c 
 HANDLE_KEY_BONUS = $(addprefix $(HANDLE_KEY_BONUS_DIR)/, $(HANDLE_KEY_BONUS_FILES))

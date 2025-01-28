@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:00:57 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 16:29:48 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 12:26:03 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ en plaçant l'intersection à la position du joueur.
 void	init_horizontal_value(t_ray *ray, float ray_len)
 {
 	ray->distance = ray_len;
-	ray->last_ray = HORIZONTAL;
 	if (ray->angle > PI && ray->angle < 2 * PI)
 		ray->id = SO;
 	else

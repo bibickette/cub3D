@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 00:01:46 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 13:13:36 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ and contains 3 values separate by space or coma"
 # define LETTER_ERR "Only digits are accepted in RGB"
 # define COMA_ERR "Only 2 comas accepted"
 # define NB_VALUE_RGB_ERR "Only 3 RGB values are accepted"
+# define CHAR_ERR "Only 0, 1, N, S, E, W and space are accepted"
 
 // mlx
 # define MLX_INIT_ERR "mlx_init() failed"
@@ -154,33 +155,33 @@ typedef struct s_player_arrow
 
 typedef struct s_door
 {
-	// bool player_on_door;
 	bool			can_open_door;
-	int				door_closed_x;
-	int				door_closed_y;
 	int				is_door_closed_h;
 	int				is_door_closed_v;
-	int				v_door_closed_x;
-	int				v_door_closed_y;
 	int				h_door_closed_x;
 	int				h_door_closed_y;
-	
-	bool can_close_door;
-	bool took_nearest_door_h;
-	bool took_nearest_door_v;
-	float distance_to_open_h;
-	float distance_to_open_v;
+	int				v_door_closed_x;
+	int				v_door_closed_y;
+	int				door_closed_x;
+	int				door_closed_y;
+
+	bool			can_close_door;
+	bool			took_nearest_door_h;
+	bool			took_nearest_door_v;
+	float			distance_to_open_h;
+	float			distance_to_open_v;
 	int				is_door_open_h;
 	int				is_door_open_v;
-	int				v_door_open_x;
-	int				v_door_open_y;
 	int				h_door_open_x;
 	int				h_door_open_y;
+	int				v_door_open_x;
+	int				v_door_open_y;
 	int				door_open_x;
 	int				door_open_y;
+
 	unsigned int	door_closed_color;
 	unsigned int	door_open_color;
-}	t_door;
+}					t_door;
 typedef struct s_ray
 {
 	double			angle;
@@ -210,7 +211,6 @@ typedef struct s_ray
 	int				map_x;
 	int				map_y;
 	int				map_pos;
-	int				last_ray;
 	t_door			door;
 }					t_ray;
 
@@ -269,7 +269,7 @@ typedef struct keys
 	bool			right;
 	bool			rotate_left;
 	bool			rotate_right;
-	bool			can_interact_w_door;
+	bool			want_interact_w_door;
 }					t_keys;
 
 typedef struct s_parsing

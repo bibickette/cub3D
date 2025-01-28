@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/25 17:11:52 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 12:52:17 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,6 @@ Si les longueurs sont égales et non nulles, on privilégie le dernier rayon.
  Alors on privilégie le rayon horizontal.
  dans les autres cas on previligie le rayon vertical.
  */
-// static bool	is_horizontal_line_hit_first(int last_ray, float horizontal_len,
-// 		float vertical_len)
-// {
-// 	if (vertical_len <= horizontal_len)
-// 		return (false);
-// 	else
-// 		return (true);
-// 	return (false);
-// }
 
 static void	find_smallest_ray(t_ray *ray, float horizontal_len,
 		float vertical_len)

@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:19:37 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 23:59:48 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 13:04:35 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,6 @@ int	display_bonus(t_parsing *info)
 	if (info->nb_frame >= FRAME_TIME)
 	{
 		handle_key_bonus(info);
-		// if (info->int_map[((int)(info->ray.player_posy) / SCALE) * info->max_x
-		// 	+ ((int)(info->ray.player_posx) / SCALE)] == DOOR_OPEN_INT)
-		// {
-		// 	info->ray.door.player_on_door = true;
-		// }
-		// else
-		// 	info->ray.door.player_on_door = false;
-		// check si joueur sur porte
 		replace_background(info);
 		draw_mini_map(info);
 		raycaster_bonus(&info->player, &info->ray, info);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 17:07:29 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/22 14:00:09 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:14:03 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,33 @@ static bool	there_is_empty_line_in_map(char **map)
 	return (false);
 }
 
+static bool	check_char_in_map(char **map)
+{
+	int	i;
+	int	j;
+
+	j = -1;
+	while (map[++j])
+	{
+		i = -1;
+		while (map[j][++i])
+		{
+			if (map[j][i] != '0' && map[j][i] != '1' && !is_player(map[j][i])
+				&& map[j][i] != ' ')
+				return (print_error(MAP_ERR, CHAR_ERR), false);
+		}
+	}
+	return (true);
+}
+
 bool	is_valid_map(t_parsing *info)
 {
 	int	last_tab;
 
 	last_tab = 0;
 	if (there_is_empty_line_in_map(info->map))
+		return (false);
+	if (!check_char_in_map(info->map))
 		return (false);
 	if (!init_player(info->map, &info->player))
 		return (false);

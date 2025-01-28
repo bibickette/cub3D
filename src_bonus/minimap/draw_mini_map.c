@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:03:00 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/27 16:48:55 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 13:06:36 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,23 @@ static int	square_pos(t_parsing *info, int pos, int flag)
 
 static void	choose_which_wall(t_parsing *info, int x, int y)
 {
+	int	screen_x;
+	int	screen_y;
+
+	screen_x = square_pos(info, x, POS_X);
+	screen_y = square_pos(info, y, POS_Y);
 	if (info->map[y][x] == '1')
-	{
-		draw_mini_map_square(*(info->mlx.current_background), square_pos(info,
-				x, POS_X), square_pos(info, y, POS_Y),
+		draw_mini_map_square(*(info->mlx.current_background), screen_x, screen_y,
 			info->textures.ceiling_color);
-	}
 	else if ((info->map[y][x] == '0'))
-	{
-		draw_mini_map_square(*(info->mlx.current_background), square_pos(info,
-				x, POS_X), square_pos(info, y, POS_Y),
+		draw_mini_map_square(*(info->mlx.current_background), screen_x, screen_y,
 			info->textures.floor_color);
-	}
 	else if (info->map[y][x] == DOOR_CLOSED)
-	{
-		draw_mini_map_square(*(info->mlx.current_background), square_pos(info,
-				x, POS_X), square_pos(info, y, POS_Y), info->ray.door.door_closed_color);
-	}
+		draw_mini_map_square(*(info->mlx.current_background), screen_x, screen_y,
+			info->ray.door.door_closed_color);
 	else if (info->map[y][x] == DOOR_OPEN)
-	{
-		draw_mini_map_square(*(info->mlx.current_background), square_pos(info,
-				x, POS_X), square_pos(info, y, POS_Y), info->ray.door.door_open_color);
-	}
+		draw_mini_map_square(*(info->mlx.current_background), screen_x, screen_y,
+			info->ray.door.door_open_color);
 }
 
 // dessine les murs a la bonne position en fonction du joueur

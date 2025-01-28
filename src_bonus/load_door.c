@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:25:47 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 00:02:13 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 12:45:00 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	load_door(t_parsing *info)
 			&info->door.line_len, &info->door.endian);
 	if (!info->door.addr)
 		return (print_error(MLX_GET_DATA_ADDR_ERR, NULL), false);
-	info->keys.can_interact_w_door = false;
+	info->keys.want_interact_w_door = false;
 	info->ray.door.can_open_door = false;
 	info->ray.door.is_door_closed_h = IS_NOT_DOOR;
 	info->ray.door.is_door_closed_v = IS_NOT_DOOR;

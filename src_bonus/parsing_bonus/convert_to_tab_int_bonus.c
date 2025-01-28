@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 12:09:27 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 22:04:28 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 11:44:12 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	ft_atoi_char(char c)
 	else if (c == '0')
 		return (0);
 	else if (c == DOOR_CLOSED)
-		return (DOOR_CLOSE_INT);
+		return (DOOR_CLOSED_INT);
 	return (NO_SIGN);
 }
 
@@ -46,11 +46,7 @@ static int	*init_int_tab(int *tab, char **map, int max_x, int max_y)
 			if (x >= (int)line_len || map[y][x] == '\n')
 				tab[i++] = 2;
 			else
-			{
 				tab[i++] = ft_atoi_char(map[y][x]);
-				if (ft_atoi_char(map[y][x]) == DOOR_CLOSE_INT)
-					printf("tab[%d] = %d\n", i - 1, tab[i - 1]);
-			}
 			x++;
 		}
 		y++;

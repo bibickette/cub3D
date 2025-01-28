@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:06:55 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/27 16:29:45 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/28 12:26:05 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ plaçant l'intersection à la position du joueur.
 void	init_vertical_value(t_ray *ray, float ray_len)
 {
 	ray->distance = ray_len;
-	ray->last_ray = VERTICAL;
 	if (ray->angle > ray->pi2 && ray->angle < ray->pi3)
 		ray->id = EA;
 	else
