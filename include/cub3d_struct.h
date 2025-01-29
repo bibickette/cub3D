@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: naphy <naphy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 20:07:59 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:39:45 by naphy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,7 @@
 # define NO_SIGN 42 // quand dans le tab int ya un vide
 
 # define ERROR "Error\n"
-//sprite
 
-# define BIG_HEART 32
-# define SMALL_HEART 16
-# define FIRST_PART 64
-# define SECOND_PART 128
-# define BIG_HEART_XPM "textures/bigheart.xpm"
-# define SMALL_HEART_XPM "textures/heart.xpm"
-# define HEART_GAP 16
-# define NB_OF_HEARTS 3
-# define HEART_ONE_GAP_X 16
-# define HEART_TWO_GAP_X 48
-# define HEART_THREE_GAP_X 80
 
 // screen options
 # define TITLE "The Legend of The Cherry Blossom House"
@@ -82,7 +70,15 @@
 # define WHITE 0xFFFFFF
 // collision
 # define SECURITY_DISTANCE 2
-
+//sprite
+# define BIG_HEART 32
+# define SMALL_HEART 16
+# define FIRST_PART 64
+# define SECOND_PART 128
+# define BIG_HEART_XPM "textures/bigheart.xpm"
+# define SMALL_HEART_XPM "textures/heart.xpm"
+# define HEART_GAP 16
+# define NB_OF_HEARTS 3
 // player
 # define MINI_PLAYER_SIZE 4
 // size of each square and have to be the size of texture

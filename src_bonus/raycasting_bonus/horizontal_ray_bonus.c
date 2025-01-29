@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   horizontal_ray_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 14:00:57 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/28 12:55:47 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/29 15:06:36 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,6 @@ Ensuite,
 La distance à l'intersection est finalement calculée et retournée.
 */
 
-// bool	is_door_or_wall(t_parsing *info, t_ray *ray)
-// {
-// 	return (ray->map_pos < info->max_x * info->max_y
-// 		&& (info->int_map[ray->map_pos] == 1
-// 			|| info->int_map[ray->map_pos] == DOOR_CLOSE_INT));
-// }
 float	ray_horizon_plan_len_bonus(t_player *player, t_ray *ray,
 		t_parsing *info)
 {

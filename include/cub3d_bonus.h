@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: naphy <naphy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:16:29 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/28 20:03:12 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:39:36 by naphy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define CUB3D_BONUS_H
 
 # include "cub3d.h"
+
+
 
 # define CHAR_ERR_BONUS "Only 0, 1, N, S, E, W, D and space are accepted"
 

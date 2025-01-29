@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_open.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 16:20:24 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 13:02:43 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/29 15:20:35 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	door_open_handling_v(t_parsing *info, t_ray *ray)
 	if (ray->map_pos < info->max_x * info->max_y
 		&& info->int_map[ray->map_pos] == DOOR_OPEN_INT)
 	{
+		ray->door.is_door_open_v = IS_DOOR_VERTICAL;
 		if (ray->r == SIZE_X / 2 && !ray->door.took_nearest_door_v)
 		{
-			ray->door.is_door_open_v = IS_DOOR_VERTICAL;
 			ray->door.v_door_open_x = ray->map_x;
 			ray->door.v_door_open_y = ray->map_y;
 			ray->door.distance_to_open_v = get_distance(ray->player_posx,
@@ -55,9 +55,9 @@ void	door_open_handling_h(t_parsing *info, t_ray *ray)
 	if (ray->map_pos < info->max_x * info->max_y
 		&& info->int_map[ray->map_pos] == DOOR_OPEN_INT)
 	{
+		ray->door.is_door_open_h = IS_DOOR_HORIZONTAL;
 		if (ray->r == SIZE_X / 2 && !ray->door.took_nearest_door_h)
 		{
-			ray->door.is_door_open_h = IS_DOOR_HORIZONTAL;
 			ray->door.h_door_open_x = ray->map_x;
 			ray->door.h_door_open_y = ray->map_y;
 			ray->door.distance_to_open_h = get_distance(ray->player_posx,
