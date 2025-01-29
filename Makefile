@@ -25,12 +25,15 @@ INCLUDE_LIBFT = LIBFT
 LIBFT = LIBFT/libft.a
 
 # Source directories
-SRC_DIR = src
-SRC_BONUS_DIR = src_bonus
+SRC_DIR = src/
+SRC_COMMON_DIR = $(SRC_DIR)common
+SRC_BONUS_DIR =$(SRC_DIR)bonus
+SRC_MANDATORY_DIR = $(SRC_DIR)mandatory
 OBJ_DIR = obj
+OBJ_BONUS_DIR = obj_bonus
 
 #SRC FILES
-INIT_MAP_PLAYER_DIR = $(SRC_DIR)/init_map_player_mlx
+INIT_MAP_PLAYER_DIR = $(SRC_COMMON_DIR)/init_map_player_mlx
 INIT_MAP_PLAYER_FILES = \
 		convert_to_tab_int.c \
 		init_create_mlx.c \
@@ -40,14 +43,14 @@ INIT_MAP_PLAYER_FILES = \
 		is_valid_map_utils.c
 INIT_MAP_PLAYER = $(addprefix $(INIT_MAP_PLAYER_DIR)/, $(INIT_MAP_PLAYER_FILES))
 
-KEYSIM_DIR = $(SRC_DIR)/keysim_handling
+KEYSIM_DIR = $(SRC_COMMON_DIR)/keysim_handling
 KEYSIM_FILES = \
 		cross_exit.c \
 		handle_key_utils.c \
 		handle_key.c
 KEYSIM = $(addprefix $(KEYSIM_DIR)/, $(KEYSIM_FILES))
 
-PARSING_DIR = $(SRC_DIR)/parsing
+PARSING_DIR = $(SRC_COMMON_DIR)/parsing
 PARSING_FILES = \
 		check_texture.c \
 		init_arg_data.c \
@@ -57,7 +60,7 @@ PARSING_FILES = \
 		load_texture.c
 PARSING = $(addprefix $(PARSING_DIR)/, $(PARSING_FILES))				
 
-RAYCASTER_DIR = $(SRC_DIR)/raycasting
+RAYCASTER_DIR = $(SRC_COMMON_DIR)/raycasting
 RAYCASTER_FILES = \
 		draw_3d_walls.c \
 		horizontal_ray.c \
@@ -66,7 +69,7 @@ RAYCASTER_FILES = \
 		raycasting_utils.c
 RAYCASTER = $(addprefix $(RAYCASTER_DIR)/, $(RAYCASTER_FILES))
 
-UTILS_DIR = $(SRC_DIR)/utils
+UTILS_DIR = $(SRC_COMMON_DIR)/utils
 UTILS_FILES = \
 		apocalypse.c \
 		print_error.c \
@@ -74,6 +77,7 @@ UTILS_FILES = \
 		utils.c \
 		display_intro.c \
 		rgb_to_uint.c \
+		boussole.c \
 		rgb_mix_two_colors.c \
 		convert_tab_in_space.c 
 UTILS = $(addprefix $(UTILS_DIR)/, $(UTILS_FILES))	
@@ -107,8 +111,7 @@ HANDLE_KEY_BONUS_FILES = \
 		handle_key_bonus.c \
 		handle_key_utils_bonus.c \
 		handle_door.c \
-		collision.c \
-		boussole.c 
+		collision.c 
 HANDLE_KEY_BONUS = $(addprefix $(HANDLE_KEY_BONUS_DIR)/, $(HANDLE_KEY_BONUS_FILES))
 
 MINIMAP_DIR = $(SRC_BONUS_DIR)/minimap
@@ -131,9 +134,8 @@ COMMON_SRCS =  \
 		$(UTILS) \
 			
 MANDATORY_SRCS = \
-		$(HANDLE_KEY_BONUS_DIR)/boussole.c \
-		$(SRC_DIR)/main.c \
-		$(SRC_DIR)/display.c \
+		$(SRC_MANDATORY_DIR)/main.c \
+		$(SRC_MANDATORY_DIR)/display.c \
 
 BONUS_SRCS = \
 		$(PARSING_BONUS) \
@@ -145,13 +147,12 @@ BONUS_SRCS = \
 		$(SRC_BONUS_DIR)/load_door.c \
 		$(SRC_BONUS_DIR)/sprite.c \
 
-PMANDATORY = $(MANDATORY_SRCS) $(COMMON_SRCS)
-PBONUS = $(BONUS_SRCS) $(COMMON_SRCS)
-B_OBJS = $(PBONUS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-M_OBJS = $(PMANDATORY:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
+PMANDATORY =  $(addprefix , $(MANDATORY_SRCS)) $(addprefix , $(COMMON_SRCS)) 
+PBONUS = $(addprefix , $(BONUS_SRCS)) $(addprefix , $(COMMON_SRCS)) 
+B_OBJS = $(PBONUS:$(SRC_DIR)%.c=$(OBJ_DIR)/%.o)
+M_OBJS = $(PMANDATORY:$(SRC_DIR)%.c=$(OBJ_DIR)/%.o)
 
-# OBJ	= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 #PROGRESS BAR
 TOTAL_SRCS := $(words $(COMMON_SRCS) $(MANDATORY_SRCS))
@@ -165,12 +166,12 @@ COLOR_BLUE = \e[0;35m
 
 all: $(NAME)
 
-$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o :  $(SRC_DIR)%.c 
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 	@$(eval COMPILED_SRCS=$(shell echo $$(($(COMPILED_SRCS)+1))))
-	@echo -n "$(COLOR_BLUE)Compiling Objects cub3D: $(COLOR_RESET)[$(COLOR_GREEN)"
+	@echo -n "$(COLOR_BLUE)Compiling Objects cub3D $(COLOR_RESET)[$(COLOR_GREEN)"
 	@for i in $(shell seq 1 25); do \
 		if [ $$i -le $$(($(COMPILED_SRCS)*25/$(TOTAL_SRCS))) ]; then \
 			echo -n "♣"; \
@@ -201,7 +202,10 @@ fclean: clean
 
 re: fclean all
 
-bonus : $(B_OBJS)
+bonus : $(NAME_BONUS)
+
+$(NAME_BONUS) : $(B_OBJS)
+
 	@echo "$(COLOR_BLUE)\nCompiling cub3D bonus...$(COLOR_RESET)"
 	@make -s -C LIBFT
 	@make -s -C minilibx-linux
