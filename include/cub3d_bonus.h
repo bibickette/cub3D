@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naphy <naphy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:16:29 by fsalomon          #+#    #+#             */
-/*   Updated: 2025/01/29 15:39:36 by naphy            ###   ########.fr       */
+/*   Updated: 2025/01/30 12:28:37 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define CUB3D_BONUS_H
 
 # include "cub3d.h"
-
-
 
 # define CHAR_ERR_BONUS "Only 0, 1, N, S, E, W, D and space are accepted"
 
@@ -90,7 +88,7 @@ void	init_door_closed_v(t_ray *ray, float ray_len);
 void	reset_is_door(t_door *door);
 void	reset_can_took_door(t_door *door);
 
-//sprite
+// sprite
 bool	load_sprite(t_parsing *info);
 void	draw_sprite(t_parsing *info, int gap_x);
 void	draw_animated_heart(t_parsing *info, int nb_of_hearts);

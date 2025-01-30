@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_mini_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 19:03:00 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 14:22:58 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/30 12:26:21 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	choose_which_wall(t_parsing *info, int x, int y)
 	if (info->map[y][x] == '1')
 		draw_mini_map_square(*(info->mlx.current_background), screen_x,
 			screen_y, info->textures.ceiling_color);
-	else if ((info->map[y][x] == '0'))
+	else if (info->map[y][x] == '0')
 		draw_mini_map_square(*(info->mlx.current_background), screen_x,
 			screen_y, info->textures.floor_color);
 	else if (info->map[y][x] == DOOR_CLOSED)

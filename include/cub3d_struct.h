@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_struct.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: naphy <naphy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/29 15:39:45 by naphy            ###   ########.fr       */
+/*   Updated: 2025/01/30 12:25:16 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 # define NO_SIGN 42 // quand dans le tab int ya un vide
 
 # define ERROR "Error\n"
-
 
 // screen options
 # define TITLE "The Legend of The Cherry Blossom House"
@@ -70,7 +69,7 @@
 # define WHITE 0xFFFFFF
 // collision
 # define SECURITY_DISTANCE 2
-//sprite
+// sprite
 # define BIG_HEART 32
 # define SMALL_HEART 16
 # define FIRST_PART 64
@@ -104,8 +103,7 @@
 # define UNKNOWN_FILE_ERR "File access unknown error : "
 # define IDPLC_ERR "Identifier must be before the map"
 
-# define RGB_VALUE \
-	"RGB value must be between 0 and 255 \
+# define RGB_VALUE "RGB value must be between 0 and 255 \
 and contains 3 values separate by space or coma"
 
 # define MAP_ERR "Map is not valid : "
