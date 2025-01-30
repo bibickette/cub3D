@@ -6,7 +6,7 @@
 /*   By: fsalomon <fsalomon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 16:26:30 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/30 12:25:16 by fsalomon         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:49:11 by fsalomon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define FOV 60.00000
 
 # define MOVE_SPEED 2.5
-# define ROTATE_SPEED 0.04
+# define ROTATE_SPEED 0.06
 
 # define TEXTURE_SIZE 128.0000f
 # define SCALE 32
@@ -72,12 +72,12 @@
 // sprite
 # define BIG_HEART 32
 # define SMALL_HEART 16
-# define FIRST_PART 64
-# define SECOND_PART 128
+# define FIRST_PART 48
+# define SECOND_PART 96
 # define BIG_HEART_XPM "textures/bigheart.xpm"
 # define SMALL_HEART_XPM "textures/heart.xpm"
 # define HEART_GAP 16
-# define NB_OF_HEARTS 3
+# define NB_OF_HEARTS 10
 // player
 # define MINI_PLAYER_SIZE 4
 // size of each square and have to be the size of texture
@@ -294,7 +294,7 @@ typedef struct s_parsing
 	t_keys			keys;
 
 	t_img			door;
-	t_img			hearts[128];
+	t_img			hearts[96];
 	int				hearts_frame;
 	int				heart_size;
 	t_player_arrow	arrow;
