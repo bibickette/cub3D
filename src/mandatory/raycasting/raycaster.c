@@ -6,7 +6,7 @@
 /*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 21:38:05 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/28 12:52:17 by phwang           ###   ########.fr       */
+/*   Updated: 2025/01/31 13:26:38 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	find_smallest_ray(t_ray *ray, float horizontal_len,
 	if (vertical_len < horizontal_len)
 		init_vertical_value(ray, vertical_len);
 	ray->wall_hit -= floor(ray->wall_hit);
+	if (ray->id == NO || ray->id == EA)
+		ray->wall_hit = 1 - ray->wall_hit;
 }
 
 /*

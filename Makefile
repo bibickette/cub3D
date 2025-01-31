@@ -17,7 +17,7 @@ NAME_BONUS = cub3D_bonus
 
 CC = cc
 INCLUDE = include
-CFLAGS = -Wall -Werror -Wextra -I$(INCLUDE) -I$(INCLUDE_LIBFT) -g3
+CFLAGS = -Wall -Wextra -I$(INCLUDE) -I$(INCLUDE_LIBFT) -g3
 
 MINILIBX_FLAGS = -Lminilibx-linux -lmlx_Linux -lXext -lX11 -lm -lz
 INCLUDE_LIBFT = LIBFT
@@ -60,13 +60,12 @@ PARSING_FILES = \
 		load_texture.c
 PARSING = $(addprefix $(PARSING_DIR)/, $(PARSING_FILES))				
 
-RAYCASTER_DIR = $(SRC_COMMON_DIR)/raycasting
+RAYCASTER_DIR = $(SRC_MANDATORY_DIR)/raycasting
 RAYCASTER_FILES = \
 		draw_3d_walls.c \
 		horizontal_ray.c \
 		vertical_ray.c \
-		raycaster.c \
-		raycasting_utils.c
+		raycaster.c 
 RAYCASTER = $(addprefix $(RAYCASTER_DIR)/, $(RAYCASTER_FILES))
 
 UTILS_DIR = $(SRC_COMMON_DIR)/utils
@@ -76,6 +75,7 @@ UTILS_FILES = \
 		print_debug.c \
 		utils.c \
 		display_intro.c \
+		raycasting_utils.c \
 		rgb_to_uint.c \
 		boussole.c \
 		rgb_mix_two_colors.c \
@@ -129,10 +129,10 @@ COMMON_SRCS =  \
 		$(INIT_MAP_PLAYER) \
 		$(KEYSIM) \
 		$(PARSING) \
-		$(RAYCASTER) \
 		$(UTILS) \
 			
 MANDATORY_SRCS = \
+		$(RAYCASTER) \
 		$(SRC_MANDATORY_DIR)/main.c \
 		$(SRC_MANDATORY_DIR)/display.c \
 
