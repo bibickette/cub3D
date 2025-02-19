@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: phwang <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: phwang <phwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:31:45 by phwang            #+#    #+#             */
-/*   Updated: 2025/01/31 15:48:24 by phwang           ###   ########.fr       */
+/*   Updated: 2025/02/19 14:03:52 by phwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static bool	get_map(int fd, char ***map)
 		line = get_next_line(fd, 0);
 		if (!line)
 			break ;
-		if (!is_white_space_line(line))
+		if (!is_white_space_line(line) || (*map))
 			if (!char_add_back_tab(map, line))
 				return (false);
 		free_n_set_null(&line);
