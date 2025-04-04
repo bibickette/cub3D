@@ -3,7 +3,7 @@
 
 # Libraries
 *.a
-/minilibx-linux
+
 
 cub3D
 cub3D_bonus
