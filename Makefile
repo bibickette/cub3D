@@ -20,14 +20,14 @@ INCLUDE = include
 CFLAGS = -Wall -Wextra -I$(INCLUDE) -I$(INCLUDE_LIBFT) -g3
 
 MINILIBX_FLAGS = -Lminilibx-linux -lmlx_Linux -lXext -lX11 -lm -lz
-INCLUDE_LIBFT = LIBFT
+INCLUDE_LIBFT = libft
 
-LIBFT = LIBFT/libft.a
+LIBFT = libft/libft.a
 
 # Source directories
 SRC_DIR = src/
 SRC_COMMON_DIR = $(SRC_DIR)common
-SRC_BONUS_DIR =$(SRC_DIR)bonus
+SRC_BONUS_DIR = $(SRC_DIR)bonus
 SRC_MANDATORY_DIR = $(SRC_DIR)mandatory
 OBJ_DIR = obj
 OBJ_BONUS_DIR = obj_bonus
@@ -181,20 +181,19 @@ $(OBJ_DIR)/%.o :  $(SRC_DIR)%.c
 	@echo -n "$(COLOR_RESET)] $(COMPILED_SRCS)/$(TOTAL_SRCS)\r"
 
 $(NAME) : $(M_OBJS)
-	
 	@echo "$(COLOR_BLUE)\nCompiling cub3D...$(COLOR_RESET)"
-	@make -s -C LIBFT
+	@make -s -C libft
 	@make -s -C minilibx-linux
 	@$(CC) $(CFLAGS) $(M_OBJS) $(MINILIBX_FLAGS) -o $(NAME) $(LIBFT)
 	@echo "$(COLOR_GREEN)cub3D Compilation complete !$(COLOR_RESET)        "
 
 clean:
-	@make -s -C LIBFT clean
+	@make -s -C libft clean
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@echo "$(COLOR_BLUE)✘✘✘ Deleting cub3D... ✘✘✘$(COLOR_RESET)"
-	@make -s -C LIBFT fclean
+	@make -s -C libft fclean
 	@rm -f $(NAME)
 	@rm -f $(NAME_BONUS)
 	@echo "$(COLOR_GREEN)✘✘✘ cub3D fcleaned ! ✘✘✘$(COLOR_RESET)        "
@@ -204,14 +203,12 @@ re: fclean all
 bonus : $(NAME_BONUS)
 
 $(NAME_BONUS) : $(B_OBJS)
-
 	@echo "$(COLOR_BLUE)\nCompiling cub3D bonus...$(COLOR_RESET)"
-	@make -s -C LIBFT
+	@make -s -C libft
 	@make -s -C minilibx-linux
 	@$(CC) $(CFLAGS) $(B_OBJS) $(MINILIBX_FLAGS) -o $(NAME_BONUS) $(LIBFT)
 	@echo "$(COLOR_GREEN)cub3D bonus Compilation complete !$(COLOR_RESET)        "
 
 rebonus : fclean bonus
 
-
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus rebonus
