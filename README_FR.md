@@ -102,8 +102,8 @@ La version bonus inclut :
 
 L’exécutable bonus est nommé `./cub3D_bonus`.
 
-![hearts](textures/gif/animation_sprites.gif)
 ![map](textures/gif/map.gif)
+![hearts](textures/gif/animation_sprites.gif)
 ![door](textures/gif/door.gif)
 
 * * *
