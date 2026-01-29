@@ -4,6 +4,7 @@
 # Project presentation - `cub3D`
 
 **Introduction**
+
 *This project was realized in a **duo with [Naphiye](https://github.com/Naphiye)***
 
 ## **Description**
