@@ -20,6 +20,8 @@ Le projet comprend :
 - Le parsing et la validation des fichiers de configuration
 - La création d’une expérience graphique fluide et réactive
 
+![Gameplay](textures/gif/gameplay.gif)
+
 * * *
 ## Langages & Technologies
 
@@ -99,6 +101,10 @@ La version bonus inclut :
 - Portes ouvrables et fermables
 
 L’exécutable bonus est nommé `./cub3D_bonus`.
+
+![hearts](textures/gif/animation_sprites.gif)
+![map](textures/gif/map.gif)
+![door](textures/gif/door.gif)
 
 * * *
 ## Ressources & Crédits

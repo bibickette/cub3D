@@ -1,6 +1,5 @@
 🇫🇷 Version française disponible [ici](README_FR.md)
 * * *
-
 # Project presentation - `cub3D`
 
 **Introduction**
@@ -18,8 +17,10 @@ This project involves :
 - Rendering a 3D environment from a 2D map
 - Handling player movement and camera rotation
 - Managing textures, colors, and collision detection
-- Parsing and validate configuration files
+- Parsing and validating configuration files
 - Creating a smooth and responsive graphical experience
+
+![Gameplay](textures/gif/gameplay.gif)
 
 * * *
 
@@ -46,7 +47,7 @@ The executable `cub3D` will receive a map as the only argument, and this map wil
 |  Key  |          Action          |
 |:-----:|:------------------------:|
 |   W   |       Move forward       |
-|   S   |      Move  backward      |
+|   S   |      Move backward       |
 |   A   |        Move left         |
 |   D   |        Move right        |
 | ← / → |      Rotate camera       |
@@ -59,7 +60,7 @@ The executable `cub3D` will receive a map as the only argument, and this map wil
 
 The player can move around the environment, observe wall textures, interact with doors (bonus), and experience smooth camera rotation and collision handling.
 
-You can close `cub3D` by clicking on the red cross on the window’s frame, or pressing **Esc**.
+You can close `cub3D` by clicking on the red cross on the window’s frame, or pressing `Esc`.
 
 ### Map rules
 The file also must follow these rules :
@@ -101,6 +102,10 @@ The bonus version includes :
 - Doors which can be opened and closed
 
 The executable is named `./cub3D_bonus`
+
+![hearts](textures/gif/animation_sprites.gif)
+![map](textures/gif/map.gif)
+![door](textures/gif/door.gif)
 
 * * *
 
