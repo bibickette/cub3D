@@ -111,7 +111,7 @@ The executable is named `./cub3D_bonus`
 
 ## Assets & Credits
 - Sprites were taken from a **[Minecraft resource pack](https://www.minecraft-france.fr/resources-pack/textures-256x256/)**.
-- All image editing, composition, and montage were done by **myself**
+- All image editing, composition, and montage were done by **us**
 
 *This project is strictly for educational and non-commercial purposes.*
 

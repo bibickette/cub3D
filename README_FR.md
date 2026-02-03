@@ -110,7 +110,7 @@ L’exécutable bonus est nommé `./cub3D_bonus`.
 ## Ressources & Crédits
 
 - Les sprites proviennent d’un **[pack de ressources Minecraft](https://www.minecraft-france.fr/resources-pack/textures-256x256/)**.
-- Toute l’édition d’images, la composition et le montage ont été réalisés par **moi-même**
+- Toute l’édition d’images, la composition et le montage ont été réalisés par **nous-mêmes**
 
 *Ce projet est strictement à des fins éducatives et non commerciales.*
 
