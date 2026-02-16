@@ -130,7 +130,7 @@ The executable is named `./cub3D_bonus`
 ## How to use `cub3D`
 
 *Note : the `cub3D` project works on its own and uses the [libft](https://github.com/bibickette/libft) and [minilibx-linux](https://github.com/42Paris/minilibx-linux) libraries. Since they are included as submodules, the repository must be cloned with them.*
-1. Clone `cub3D` in a folder first  : `git clone --recurse-submodules git@github.com:bibickette/cub3D.git`
+1. Clone `cub3D` in a folder first  : `git clone --recurse-submodules https://github.com:bibickette/cub3D.git`
 2. Go to the `cub3D` folder then compile it : `cd cub3D && make`
 3. Run the game with a map file : `./cub3D maps/tuto_map.cub`. *The folder `maps/` contains maps that can be used*
 
