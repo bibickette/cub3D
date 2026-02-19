@@ -6,7 +6,7 @@
 
 **Introduction**
 
-\*This project was realized in a **duo with [Naphiye](https://github.com/Naphiye)\***
+*This project was realized in a **duo with [Fanny Salomon](https://github.com/Naphiye)***
 
 ## **Description**
 
